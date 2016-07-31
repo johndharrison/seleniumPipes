@@ -1,6 +1,11 @@
 seleniumPipes - lightweight implementation of w3c wedriver specification
 ==========================
 
+### Introduction
+
+seleniumPipes is a lightweight implementation of the [w3c wedriver specification](https://w3c.github.io/webdriver/webdriver-spec.html).
+It has been built utilising `xml2`, `httr` and `magrittr` so provides an alternative for users who are familiar with piping.
+
 ### Install
 
 To install seleniumPipes run:

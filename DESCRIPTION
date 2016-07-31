@@ -11,4 +11,6 @@ Depends:
     R (>= 3.0.0),httr,jsonlite,xml2,magrittr
 Encoding: UTF-8
 License: GPL-3
+Suggests:
+    RSelenium
 RoxygenNote: 5.0.1
