@@ -27,7 +27,7 @@ methPaths[, elemInd := grepl("\\{elementId\\}", PathTemplate)]
 methPaths[, Arg := ifelse(elemInd, "webElem", "remDr")]
 methPaths <- methPaths[!is.na(methPaths$description), ]
 
-funcTemp <- "#' Title
+funcTemp <- "#' {{description}}
 #'
 #' @param {{Arg}}
 #'
@@ -37,10 +37,10 @@ funcTemp <- "#' Title
 #' @examples
 
 {{description}} <- function({{Arg}}, ...){
-  pathTemplate <- whisker.render(\"{{PathTemplate}}\", data = .e)
-  pathURL <- .e$remServAdd
-  pathURL$path <- paste0(pathURL$path, pathTemplate)
-  {{HTTPMethod}}(url = build_url(pathURL$path), ...)
+  pathTemplate <- whisker.render(\"{{PathTemplate}}\", data = {{Arg}})
+  pathURL <- {{Arg}}[['remServAdd']]
+  pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
+  {{HTTPMethod}}(url = build_url(pathURL), ...)
 }
 
 
