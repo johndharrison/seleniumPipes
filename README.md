@@ -9,7 +9,7 @@ To install seleniumPipes run:
 devtools::install_github("johndharrison/seleniumPipes")
 ```
 
-To get started using `RSelenium` you can look at the following example
+To get started using `seleniumPipes` you can look at the following example
 
 ```
 library(seleniumPipes)
