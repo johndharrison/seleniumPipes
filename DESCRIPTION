@@ -1,12 +1,14 @@
 Package: seleniumPipes
 Type: Package
-Title:  Implements the W3C webdriver specification
+Title: Implements the W3C webdriver specification
 Version: 0.1.1
 Author: John Harrison <johndharrison0@gmail.com>
 Maintainer: John Harrison <johndharrison0@gmail.com>
-Description: The seleniumPipes packages implements the W3C webdriver specification which
-defines a way for out-of-process programs to remotely instruct the behaviour of web browsers.
+Description: The seleniumPipes packages implements the W3C webdriver
+    specification which defines a way for out-of-process programs to remotely
+    instruct the behaviour of web browsers.
 Depends:
     R (>= 3.0.0),httr,jsonlite,xml2
 Encoding: UTF-8
 License: GPL-3
+RoxygenNote: 5.0.1
