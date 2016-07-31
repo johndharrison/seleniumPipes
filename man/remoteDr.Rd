@@ -4,10 +4,10 @@
 \alias{remoteDr}
 \title{remoteDr}
 \usage{
-remoteDr(remoteServerAddr = "localhost", port = 4444L,
+remoteDr(remoteServerAddr = "http://localhost", port = 4444L,
   browserName = "firefox", version = "", platform = "ANY",
   javascript = TRUE, nativeEvents = TRUE, extraCapabilities = list(),
-  newSession = TRUE)
+  path = "wd/hub", newSession = TRUE)
 }
 \description{
 remoteDr
