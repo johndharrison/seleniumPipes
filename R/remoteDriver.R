@@ -8,16 +8,19 @@
 #' @examples
 
 newSession <- function(remDr, ...){
-
+  
 # Add function specific JSON to post
-  jsonBody <- toJSON(
-    list(desiredCapabilities =c(remDr$desiredCapabilities, remDr$extraCapabilities))
-    , auto_unbox = TRUE)
-
+  jsonBody <- toJSON(list(
+    desiredCapabilities =c(remDr$desiredCapabilities, remDr$extraCapabilities)
+  ), auto_unbox = TRUE)
+  
+  remDr$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  .e$sessionId <- res$sessionId
+  invisible(res)
 }
 
 
@@ -31,11 +34,14 @@ newSession <- function(remDr, ...){
 #' @examples
 
 deleteSession <- function(remDr, ...){
-
+  
+  remDr$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  queryDriver(verb = DELETE, url = build_url(pathURL), json = NULL,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  .e$sessionId <- res$sessionId
+  invisible(res)
 }
 
 
@@ -48,17 +54,20 @@ deleteSession <- function(remDr, ...){
 #'
 #' @examples
 
-go <- function(remDr, ...){
-
+go <- function(remDr, url, ...){
+  
 # Add function specific JSON to post
   jsonBody <- toJSON(list(
-
+     url = url
   ), auto_unbox = TRUE)
-
+  
+  remDr$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/url", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  .e$sessionId <- res$sessionId
+  invisible(res)
 }
 
 
@@ -72,11 +81,14 @@ go <- function(remDr, ...){
 #' @examples
 
 getCurrentUrl <- function(remDr, ...){
-
+  
+  remDr$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/url", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  queryDriver(verb = GET, url = build_url(pathURL), json = NULL,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  .e$sessionId <- res$sessionId
+  invisible(res)
 }
 
 
@@ -90,16 +102,19 @@ getCurrentUrl <- function(remDr, ...){
 #' @examples
 
 back <- function(remDr, ...){
-
+  
 # Add function specific JSON to post
   jsonBody <- toJSON(list(
 
   ), auto_unbox = TRUE)
-
+  
+  remDr$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/back", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  .e$sessionId <- res$sessionId
+  invisible(res)
 }
 
 
@@ -113,16 +128,19 @@ back <- function(remDr, ...){
 #' @examples
 
 forward <- function(remDr, ...){
-
+  
 # Add function specific JSON to post
   jsonBody <- toJSON(list(
 
   ), auto_unbox = TRUE)
-
+  
+  remDr$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/forward", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  .e$sessionId <- res$sessionId
+  invisible(res)
 }
 
 
@@ -136,16 +154,19 @@ forward <- function(remDr, ...){
 #' @examples
 
 refresh <- function(remDr, ...){
-
+  
 # Add function specific JSON to post
   jsonBody <- toJSON(list(
 
   ), auto_unbox = TRUE)
-
+  
+  remDr$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/refresh", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  .e$sessionId <- res$sessionId
+  invisible(res)
 }
 
 
@@ -159,11 +180,14 @@ refresh <- function(remDr, ...){
 #' @examples
 
 getTitle <- function(remDr, ...){
-
+  
+  remDr$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/title", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  queryDriver(verb = GET, url = build_url(pathURL), json = NULL,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  .e$sessionId <- res$sessionId
+  invisible(res)
 }
 
 
@@ -177,11 +201,14 @@ getTitle <- function(remDr, ...){
 #' @examples
 
 getWindowHandle <- function(remDr, ...){
-
+  
+  remDr$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/window", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  queryDriver(verb = GET, url = build_url(pathURL), json = NULL,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  .e$sessionId <- res$sessionId
+  invisible(res)
 }
 
 
@@ -195,11 +222,14 @@ getWindowHandle <- function(remDr, ...){
 #' @examples
 
 closeWindow <- function(remDr, ...){
-
+  
+  remDr$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/window", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  queryDriver(verb = DELETE, url = build_url(pathURL), json = NULL,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  .e$sessionId <- res$sessionId
+  invisible(res)
 }
 
 
@@ -213,16 +243,19 @@ closeWindow <- function(remDr, ...){
 #' @examples
 
 switchToWindow <- function(remDr, ...){
-
+  
 # Add function specific JSON to post
   jsonBody <- toJSON(list(
 
   ), auto_unbox = TRUE)
-
+  
+  remDr$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/window", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  .e$sessionId <- res$sessionId
+  invisible(res)
 }
 
 
@@ -236,11 +269,14 @@ switchToWindow <- function(remDr, ...){
 #' @examples
 
 getWindowHandles <- function(remDr, ...){
-
+  
+  remDr$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/window/handles", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  queryDriver(verb = GET, url = build_url(pathURL), json = NULL,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  .e$sessionId <- res$sessionId
+  invisible(res)
 }
 
 
@@ -254,16 +290,19 @@ getWindowHandles <- function(remDr, ...){
 #' @examples
 
 fullscreenWindow <- function(remDr, ...){
-
+  
 # Add function specific JSON to post
   jsonBody <- toJSON(list(
 
   ), auto_unbox = TRUE)
-
+  
+  remDr$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/window/fullscreen", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  .e$sessionId <- res$sessionId
+  invisible(res)
 }
 
 
@@ -277,16 +316,19 @@ fullscreenWindow <- function(remDr, ...){
 #' @examples
 
 maximizeWindow <- function(remDr, ...){
-
+  
 # Add function specific JSON to post
   jsonBody <- toJSON(list(
 
   ), auto_unbox = TRUE)
-
+  
+  remDr$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/window/maximize", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  .e$sessionId <- res$sessionId
+  invisible(res)
 }
 
 
@@ -300,16 +342,19 @@ maximizeWindow <- function(remDr, ...){
 #' @examples
 
 setWindowSize <- function(remDr, ...){
-
+  
 # Add function specific JSON to post
   jsonBody <- toJSON(list(
 
   ), auto_unbox = TRUE)
-
+  
+  remDr$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/window/size", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  .e$sessionId <- res$sessionId
+  invisible(res)
 }
 
 
@@ -323,11 +368,14 @@ setWindowSize <- function(remDr, ...){
 #' @examples
 
 getWindowPosition <- function(remDr, ...){
-
+  
+  remDr$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/window/position", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  queryDriver(verb = GET, url = build_url(pathURL), json = NULL,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  .e$sessionId <- res$sessionId
+  invisible(res)
 }
 
 
@@ -341,16 +389,19 @@ getWindowPosition <- function(remDr, ...){
 #' @examples
 
 setWindowPosition <- function(remDr, ...){
-
+  
 # Add function specific JSON to post
   jsonBody <- toJSON(list(
 
   ), auto_unbox = TRUE)
-
+  
+  remDr$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/window/position", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  .e$sessionId <- res$sessionId
+  invisible(res)
 }
 
 
@@ -364,11 +415,14 @@ setWindowPosition <- function(remDr, ...){
 #' @examples
 
 getWindowSize <- function(remDr, ...){
-
+  
+  remDr$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/window/size", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  queryDriver(verb = GET, url = build_url(pathURL), json = NULL,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  .e$sessionId <- res$sessionId
+  invisible(res)
 }
 
 
@@ -382,16 +436,19 @@ getWindowSize <- function(remDr, ...){
 #' @examples
 
 switchToFrame <- function(remDr, ...){
-
+  
 # Add function specific JSON to post
   jsonBody <- toJSON(list(
 
   ), auto_unbox = TRUE)
-
+  
+  remDr$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/frame", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  .e$sessionId <- res$sessionId
+  invisible(res)
 }
 
 
@@ -405,16 +462,19 @@ switchToFrame <- function(remDr, ...){
 #' @examples
 
 switchToParentFrame <- function(remDr, ...){
-
+  
 # Add function specific JSON to post
   jsonBody <- toJSON(list(
 
   ), auto_unbox = TRUE)
-
+  
+  remDr$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/frame/parent", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  .e$sessionId <- res$sessionId
+  invisible(res)
 }
 
 
@@ -428,16 +488,19 @@ switchToParentFrame <- function(remDr, ...){
 #' @examples
 
 findElement <- function(remDr, ...){
-
+  
 # Add function specific JSON to post
   jsonBody <- toJSON(list(
 
   ), auto_unbox = TRUE)
-
+  
+  remDr$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/element", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  .e$sessionId <- res$sessionId
+  invisible(res)
 }
 
 
@@ -451,16 +514,19 @@ findElement <- function(remDr, ...){
 #' @examples
 
 findElements <- function(remDr, ...){
-
+  
 # Add function specific JSON to post
   jsonBody <- toJSON(list(
 
   ), auto_unbox = TRUE)
-
+  
+  remDr$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/elements", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  .e$sessionId <- res$sessionId
+  invisible(res)
 }
 
 
@@ -474,11 +540,14 @@ findElements <- function(remDr, ...){
 #' @examples
 
 getActiveElement <- function(remDr, ...){
-
+  
+  remDr$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/element/active", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  queryDriver(verb = GET, url = build_url(pathURL), json = NULL,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  .e$sessionId <- res$sessionId
+  invisible(res)
 }
 
 
@@ -492,11 +561,14 @@ getActiveElement <- function(remDr, ...){
 #' @examples
 
 getPageSource <- function(remDr, ...){
-
+  
+  remDr$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/source", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  queryDriver(verb = GET, url = build_url(pathURL), json = NULL,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  .e$sessionId <- res$sessionId
+  invisible(res)
 }
 
 
@@ -510,16 +582,19 @@ getPageSource <- function(remDr, ...){
 #' @examples
 
 executeScript <- function(remDr, ...){
-
+  
 # Add function specific JSON to post
   jsonBody <- toJSON(list(
 
   ), auto_unbox = TRUE)
-
+  
+  remDr$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/execute/sync", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  .e$sessionId <- res$sessionId
+  invisible(res)
 }
 
 
@@ -533,16 +608,19 @@ executeScript <- function(remDr, ...){
 #' @examples
 
 executeAsyncScript <- function(remDr, ...){
-
+  
 # Add function specific JSON to post
   jsonBody <- toJSON(list(
 
   ), auto_unbox = TRUE)
-
+  
+  remDr$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/execute/async", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  .e$sessionId <- res$sessionId
+  invisible(res)
 }
 
 
@@ -556,11 +634,14 @@ executeAsyncScript <- function(remDr, ...){
 #' @examples
 
 getCookie <- function(remDr, ...){
-
+  
+  remDr$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/cookie/{{name}}", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  queryDriver(verb = GET, url = build_url(pathURL), json = NULL,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  .e$sessionId <- res$sessionId
+  invisible(res)
 }
 
 
@@ -574,16 +655,19 @@ getCookie <- function(remDr, ...){
 #' @examples
 
 addCookie <- function(remDr, ...){
-
+  
 # Add function specific JSON to post
   jsonBody <- toJSON(list(
 
   ), auto_unbox = TRUE)
-
+  
+  remDr$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/cookie", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  .e$sessionId <- res$sessionId
+  invisible(res)
 }
 
 
@@ -597,11 +681,14 @@ addCookie <- function(remDr, ...){
 #' @examples
 
 deleteCookie <- function(remDr, ...){
-
+  
+  remDr$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/cookie/{{name}}", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  queryDriver(verb = DELETE, url = build_url(pathURL), json = NULL,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  .e$sessionId <- res$sessionId
+  invisible(res)
 }
 
 
@@ -615,11 +702,14 @@ deleteCookie <- function(remDr, ...){
 #' @examples
 
 deleteAllCookies <- function(remDr, ...){
-
+  
+  remDr$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId)/cookie", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  queryDriver(verb = DELETE, url = build_url(pathURL), json = NULL,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  .e$sessionId <- res$sessionId
+  invisible(res)
 }
 
 
@@ -633,16 +723,19 @@ deleteAllCookies <- function(remDr, ...){
 #' @examples
 
 setTimeout <- function(remDr, ...){
-
+  
 # Add function specific JSON to post
   jsonBody <- toJSON(list(
 
   ), auto_unbox = TRUE)
-
+  
+  remDr$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/timeouts", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  .e$sessionId <- res$sessionId
+  invisible(res)
 }
 
 
@@ -656,16 +749,19 @@ setTimeout <- function(remDr, ...){
 #' @examples
 
 performActions <- function(remDr, ...){
-
+  
 # Add function specific JSON to post
   jsonBody <- toJSON(list(
 
   ), auto_unbox = TRUE)
-
+  
+  remDr$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/actions", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  .e$sessionId <- res$sessionId
+  invisible(res)
 }
 
 
@@ -679,11 +775,14 @@ performActions <- function(remDr, ...){
 #' @examples
 
 releasingActions <- function(remDr, ...){
-
+  
+  remDr$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/actions", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  queryDriver(verb = DELETE, url = build_url(pathURL), json = NULL,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  .e$sessionId <- res$sessionId
+  invisible(res)
 }
 
 
@@ -697,16 +796,19 @@ releasingActions <- function(remDr, ...){
 #' @examples
 
 dismissAlert <- function(remDr, ...){
-
+  
 # Add function specific JSON to post
   jsonBody <- toJSON(list(
 
   ), auto_unbox = TRUE)
-
+  
+  remDr$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/alert/dismiss", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  .e$sessionId <- res$sessionId
+  invisible(res)
 }
 
 
@@ -720,16 +822,19 @@ dismissAlert <- function(remDr, ...){
 #' @examples
 
 acceptAlert <- function(remDr, ...){
-
+  
 # Add function specific JSON to post
   jsonBody <- toJSON(list(
 
   ), auto_unbox = TRUE)
-
+  
+  remDr$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/alert/accept", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  .e$sessionId <- res$sessionId
+  invisible(res)
 }
 
 
@@ -743,11 +848,14 @@ acceptAlert <- function(remDr, ...){
 #' @examples
 
 getAlertText <- function(remDr, ...){
-
+  
+  remDr$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/alert/text", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  queryDriver(verb = GET, url = build_url(pathURL), json = NULL,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  .e$sessionId <- res$sessionId
+  invisible(res)
 }
 
 
@@ -761,16 +869,19 @@ getAlertText <- function(remDr, ...){
 #' @examples
 
 sendAlertText <- function(remDr, ...){
-
+  
 # Add function specific JSON to post
   jsonBody <- toJSON(list(
 
   ), auto_unbox = TRUE)
-
+  
+  remDr$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/alert/text", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  .e$sessionId <- res$sessionId
+  invisible(res)
 }
 
 
@@ -784,11 +895,14 @@ sendAlertText <- function(remDr, ...){
 #' @examples
 
 takeScreenshot <- function(remDr, ...){
-
+  
+  remDr$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/screenshot", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  queryDriver(verb = GET, url = build_url(pathURL), json = NULL,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  .e$sessionId <- res$sessionId
+  invisible(res)
 }
 
 

@@ -4,7 +4,7 @@
 \alias{go}
 \title{go}
 \usage{
-go(remDr, ...)
+go(remDr, url, ...)
 }
 \arguments{
 \item{remDr}{}

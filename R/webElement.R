@@ -13,11 +13,14 @@ findElementFromElement <- function(webElem, ...){
   jsonBody <- toJSON(list(
 
   ), auto_unbox = TRUE)
-
+  
+  webElem$sessionId <- webElem$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/element", data = webElem)
   pathURL <- webElem[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  .e$sessionId <- res$sessionId
+  invisible(res)
 }
 
 
@@ -36,11 +39,14 @@ findElementsFromElement <- function(webElem, ...){
   jsonBody <- toJSON(list(
 
   ), auto_unbox = TRUE)
-
+  
+  webElem$sessionId <- webElem$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/elements", data = webElem)
   pathURL <- webElem[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  .e$sessionId <- res$sessionId
+  invisible(res)
 }
 
 
@@ -55,10 +61,13 @@ findElementsFromElement <- function(webElem, ...){
 
 isElementSelected <- function(webElem, ...){
   
+  webElem$sessionId <- webElem$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/selected", data = webElem)
   pathURL <- webElem[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  queryDriver(verb = GET, url = build_url(pathURL), json = NULL,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  .e$sessionId <- res$sessionId
+  invisible(res)
 }
 
 
@@ -73,10 +82,13 @@ isElementSelected <- function(webElem, ...){
 
 getElementAttribute <- function(webElem, ...){
   
+  webElem$sessionId <- webElem$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/attribute/{{name}}", data = webElem)
   pathURL <- webElem[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  queryDriver(verb = GET, url = build_url(pathURL), json = NULL,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  .e$sessionId <- res$sessionId
+  invisible(res)
 }
 
 
@@ -91,10 +103,13 @@ getElementAttribute <- function(webElem, ...){
 
 getElementProperty <- function(webElem, ...){
   
+  webElem$sessionId <- webElem$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/property/{{name}}", data = webElem)
   pathURL <- webElem[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  queryDriver(verb = GET, url = build_url(pathURL), json = NULL,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  .e$sessionId <- res$sessionId
+  invisible(res)
 }
 
 
@@ -109,10 +124,13 @@ getElementProperty <- function(webElem, ...){
 
 getElementCssValue <- function(webElem, ...){
   
+  webElem$sessionId <- webElem$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/css/{{property name}}", data = webElem)
   pathURL <- webElem[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  queryDriver(verb = GET, url = build_url(pathURL), json = NULL,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  .e$sessionId <- res$sessionId
+  invisible(res)
 }
 
 
@@ -127,10 +145,13 @@ getElementCssValue <- function(webElem, ...){
 
 getElementText <- function(webElem, ...){
   
+  webElem$sessionId <- webElem$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/text", data = webElem)
   pathURL <- webElem[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  queryDriver(verb = GET, url = build_url(pathURL), json = NULL,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  .e$sessionId <- res$sessionId
+  invisible(res)
 }
 
 
@@ -145,10 +166,13 @@ getElementText <- function(webElem, ...){
 
 getElementTagName <- function(webElem, ...){
   
+  webElem$sessionId <- webElem$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/name", data = webElem)
   pathURL <- webElem[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  queryDriver(verb = GET, url = build_url(pathURL), json = NULL,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  .e$sessionId <- res$sessionId
+  invisible(res)
 }
 
 
@@ -163,10 +187,13 @@ getElementTagName <- function(webElem, ...){
 
 getElementRect <- function(webElem, ...){
   
+  webElem$sessionId <- webElem$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/rect", data = webElem)
   pathURL <- webElem[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  queryDriver(verb = GET, url = build_url(pathURL), json = NULL,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  .e$sessionId <- res$sessionId
+  invisible(res)
 }
 
 
@@ -181,10 +208,13 @@ getElementRect <- function(webElem, ...){
 
 isElementEnabled <- function(webElem, ...){
   
+  webElem$sessionId <- webElem$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/enabled", data = webElem)
   pathURL <- webElem[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  queryDriver(verb = GET, url = build_url(pathURL), json = NULL,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  .e$sessionId <- res$sessionId
+  invisible(res)
 }
 
 
@@ -203,11 +233,14 @@ elementClick <- function(webElem, ...){
   jsonBody <- toJSON(list(
 
   ), auto_unbox = TRUE)
-
+  
+  webElem$sessionId <- webElem$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/click", data = webElem)
   pathURL <- webElem[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  .e$sessionId <- res$sessionId
+  invisible(res)
 }
 
 
@@ -226,11 +259,14 @@ elementClear <- function(webElem, ...){
   jsonBody <- toJSON(list(
 
   ), auto_unbox = TRUE)
-
+  
+  webElem$sessionId <- webElem$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/clear", data = webElem)
   pathURL <- webElem[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  .e$sessionId <- res$sessionId
+  invisible(res)
 }
 
 
@@ -249,11 +285,14 @@ elementSendKeys <- function(webElem, ...){
   jsonBody <- toJSON(list(
 
   ), auto_unbox = TRUE)
-
+  
+  webElem$sessionId <- webElem$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/value", data = webElem)
   pathURL <- webElem[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  .e$sessionId <- res$sessionId
+  invisible(res)
 }
 
 
@@ -268,10 +307,13 @@ elementSendKeys <- function(webElem, ...){
 
 takeElementScreenshot <- function(webElem, ...){
   
+  webElem$sessionId <- webElem$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/screenshot", data = webElem)
   pathURL <- webElem[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  queryDriver(verb = GET, url = build_url(pathURL), json = NULL,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  .e$sessionId <- res$sessionId
+  invisible(res)
 }
 
 
