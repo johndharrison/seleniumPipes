@@ -25,6 +25,7 @@ methPaths[, PathTemplate := gsub("\\{", "\\{\\{", PathTemplate)]
 methPaths[, PathTemplate := gsub("\\}", "\\}\\}", PathTemplate)]
 methPaths[, elemInd := grepl("\\{elementId\\}", PathTemplate)]
 methPaths[, Arg := ifelse(elemInd, "webElem", "remDr")]
+methPaths <- methPaths[!is.na(methPaths$description), ]
 
 funcTemp <- "#' Title
 #'
