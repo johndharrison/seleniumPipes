@@ -8,10 +8,16 @@
 #' @examples
 
 findElementFromElement <- function(webElem, ...){
+  
+# Add function specific JSON to post
+  jsonBody <- toJSON(list(
+
+  ), auto_unbox = TRUE)
+
   pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/element", data = webElem)
   pathURL <- webElem[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  queryDriver(verb = POST, url = build_url(pathURL), ...)
+  queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
 }
 
 
@@ -25,10 +31,16 @@ findElementFromElement <- function(webElem, ...){
 #' @examples
 
 findElementsFromElement <- function(webElem, ...){
+  
+# Add function specific JSON to post
+  jsonBody <- toJSON(list(
+
+  ), auto_unbox = TRUE)
+
   pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/elements", data = webElem)
   pathURL <- webElem[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  queryDriver(verb = POST, url = build_url(pathURL), ...)
+  queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
 }
 
 
@@ -42,10 +54,11 @@ findElementsFromElement <- function(webElem, ...){
 #' @examples
 
 isElementSelected <- function(webElem, ...){
+  
   pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/selected", data = webElem)
   pathURL <- webElem[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  queryDriver(verb = GET, url = build_url(pathURL), ...)
+  queryDriver(verb = GET, url = build_url(pathURL), json = NULL,...)
 }
 
 
@@ -59,10 +72,11 @@ isElementSelected <- function(webElem, ...){
 #' @examples
 
 getElementAttribute <- function(webElem, ...){
+  
   pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/attribute/{{name}}", data = webElem)
   pathURL <- webElem[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  queryDriver(verb = GET, url = build_url(pathURL), ...)
+  queryDriver(verb = GET, url = build_url(pathURL), json = NULL,...)
 }
 
 
@@ -76,10 +90,11 @@ getElementAttribute <- function(webElem, ...){
 #' @examples
 
 getElementProperty <- function(webElem, ...){
+  
   pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/property/{{name}}", data = webElem)
   pathURL <- webElem[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  queryDriver(verb = GET, url = build_url(pathURL), ...)
+  queryDriver(verb = GET, url = build_url(pathURL), json = NULL,...)
 }
 
 
@@ -93,10 +108,11 @@ getElementProperty <- function(webElem, ...){
 #' @examples
 
 getElementCssValue <- function(webElem, ...){
+  
   pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/css/{{property name}}", data = webElem)
   pathURL <- webElem[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  queryDriver(verb = GET, url = build_url(pathURL), ...)
+  queryDriver(verb = GET, url = build_url(pathURL), json = NULL,...)
 }
 
 
@@ -110,10 +126,11 @@ getElementCssValue <- function(webElem, ...){
 #' @examples
 
 getElementText <- function(webElem, ...){
+  
   pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/text", data = webElem)
   pathURL <- webElem[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  queryDriver(verb = GET, url = build_url(pathURL), ...)
+  queryDriver(verb = GET, url = build_url(pathURL), json = NULL,...)
 }
 
 
@@ -127,10 +144,11 @@ getElementText <- function(webElem, ...){
 #' @examples
 
 getElementTagName <- function(webElem, ...){
+  
   pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/name", data = webElem)
   pathURL <- webElem[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  queryDriver(verb = GET, url = build_url(pathURL), ...)
+  queryDriver(verb = GET, url = build_url(pathURL), json = NULL,...)
 }
 
 
@@ -144,10 +162,11 @@ getElementTagName <- function(webElem, ...){
 #' @examples
 
 getElementRect <- function(webElem, ...){
+  
   pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/rect", data = webElem)
   pathURL <- webElem[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  queryDriver(verb = GET, url = build_url(pathURL), ...)
+  queryDriver(verb = GET, url = build_url(pathURL), json = NULL,...)
 }
 
 
@@ -161,10 +180,11 @@ getElementRect <- function(webElem, ...){
 #' @examples
 
 isElementEnabled <- function(webElem, ...){
+  
   pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/enabled", data = webElem)
   pathURL <- webElem[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  queryDriver(verb = GET, url = build_url(pathURL), ...)
+  queryDriver(verb = GET, url = build_url(pathURL), json = NULL,...)
 }
 
 
@@ -178,10 +198,16 @@ isElementEnabled <- function(webElem, ...){
 #' @examples
 
 elementClick <- function(webElem, ...){
+  
+# Add function specific JSON to post
+  jsonBody <- toJSON(list(
+
+  ), auto_unbox = TRUE)
+
   pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/click", data = webElem)
   pathURL <- webElem[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  queryDriver(verb = POST, url = build_url(pathURL), ...)
+  queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
 }
 
 
@@ -195,10 +221,16 @@ elementClick <- function(webElem, ...){
 #' @examples
 
 elementClear <- function(webElem, ...){
+  
+# Add function specific JSON to post
+  jsonBody <- toJSON(list(
+
+  ), auto_unbox = TRUE)
+
   pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/clear", data = webElem)
   pathURL <- webElem[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  queryDriver(verb = POST, url = build_url(pathURL), ...)
+  queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
 }
 
 
@@ -212,10 +244,16 @@ elementClear <- function(webElem, ...){
 #' @examples
 
 elementSendKeys <- function(webElem, ...){
+  
+# Add function specific JSON to post
+  jsonBody <- toJSON(list(
+
+  ), auto_unbox = TRUE)
+
   pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/value", data = webElem)
   pathURL <- webElem[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  queryDriver(verb = POST, url = build_url(pathURL), ...)
+  queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
 }
 
 
@@ -229,10 +267,11 @@ elementSendKeys <- function(webElem, ...){
 #' @examples
 
 takeElementScreenshot <- function(webElem, ...){
+  
   pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/screenshot", data = webElem)
   pathURL <- webElem[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  queryDriver(verb = GET, url = build_url(pathURL), ...)
+  queryDriver(verb = GET, url = build_url(pathURL), json = NULL,...)
 }
 
 
