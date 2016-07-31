@@ -2,12 +2,15 @@
 % Please edit documentation in R/init.R
 \name{remoteDr}
 \alias{remoteDr}
-\title{Title}
+\title{remoteDr}
 \usage{
-remoteDr()
+remoteDr(remoteServerAddr = "localhost", port = 4444L,
+  browserName = "firefox", version = "", platform = "ANY",
+  javascript = TRUE, nativeEvents = TRUE, extraCapabilities = list(),
+  newSession = TRUE)
 }
 \description{
-Title
+remoteDr
 }
 \examples{
 

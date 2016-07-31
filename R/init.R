@@ -13,7 +13,7 @@ remoteDr <- function(remoteServerAddr = "localhost",
                      platform         = "ANY",
                      javascript       = TRUE,
                      nativeEvents     = TRUE,
-                     extraCapabilities = "list"
+                     extraCapabilities = list()
                      , newSession = TRUE){
   remServAdd <- parse_url(remoteServerAddr)
   remServAdd[["port"]] <- port
@@ -31,4 +31,21 @@ remoteDr <- function(remoteServerAddr = "localhost",
     newSession(session)
   }
   invisible(session)
+}
+
+
+#' queryDriver
+#'
+#' @param verb
+#' @param url
+#' @param ...
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#'
+
+queryDriver <- function(verb = GET, url, ...){
+  do.call(verb, c(list(url), as.list(...)))
 }

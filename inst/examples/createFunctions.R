@@ -8,26 +8,19 @@ library(rapportools)
 library(whisker)
 appURL <- "https://w3c.github.io/webdriver/webdriver-spec.html"
 doc <- read_html(appURL)
-tabXpath <- "//table[@class='simple jsoncommand']"
-methPaths <- rbindlist(html_table(xml_find_all(doc, tabXpath)))
-desMeth <- sapply(xml_find_all(doc, tabXpath)
-                  , function(x) {
-                    tryCatch(xml_text(xml_find_one(x, "./preceding-sibling::h3")),
-                             error=function(err) NA_character_)
-                  }
-)
-
-methPaths[,description := tocamel(tolower(desMeth))]
-setnames(methPaths, names(methPaths), tocamel(names(methPaths)))
-methPaths[, PathTemplate := gsub("session id", "sessionId", PathTemplate)]
-methPaths[, PathTemplate := gsub("element id", "elementId", PathTemplate)]
-methPaths[, PathTemplate := gsub("\\{", "\\{\\{", PathTemplate)]
-methPaths[, PathTemplate := gsub("\\}", "\\}\\}", PathTemplate)]
-methPaths[, elemInd := grepl("\\{elementId\\}", PathTemplate)]
+tabXpath <- "//section[h3[text()='List of Endpoints']]//table"
+methPaths <- html_table(xml_find_all(doc, tabXpath))[[1]]
+setDT(methPaths)
+setnames(methPaths, names(methPaths), tocamel(tolower(names(methPaths))))
+methPaths[,command := tocamel(tolower(command))]
+methPaths[, uriTemplate := gsub("session id", "sessionId", uriTemplate)]
+methPaths[, uriTemplate := gsub("element id", "elementId", uriTemplate)]
+methPaths[, uriTemplate := gsub("\\{", "\\{\\{", uriTemplate)]
+methPaths[, uriTemplate := gsub("\\}", "\\}\\}", uriTemplate)]
+methPaths[, elemInd := grepl("\\{elementId\\}", uriTemplate)]
 methPaths[, Arg := ifelse(elemInd, "webElem", "remDr")]
-methPaths <- methPaths[!is.na(methPaths$description), ]
 
-funcTemp <- "#' {{description}}
+funcTemp <- "#' {{command}}
 #'
 #' @param {{Arg}}
 #'
@@ -36,11 +29,11 @@ funcTemp <- "#' {{description}}
 #'
 #' @examples
 
-{{description}} <- function({{Arg}}, ...){
-  pathTemplate <- whisker.render(\"{{PathTemplate}}\", data = {{Arg}})
+{{command}} <- function({{Arg}}, ...){
+  pathTemplate <- whisker.render(\"{{uriTemplate}}\", data = {{Arg}})
   pathURL <- {{Arg}}[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  {{HTTPMethod}}(url = build_url(pathURL), ...)
+  queryDriver(verb = {{method}}, url = build_url(pathURL), ...)
 }
 
 
