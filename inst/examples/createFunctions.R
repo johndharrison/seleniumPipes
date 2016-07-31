@@ -29,29 +29,54 @@ funcTemp <- "#' {{command}}
 #'
 #' @examples
 
-{{command}} <- function({{Arg}}, ...){
+{{command}} <- function({{Arg}},{{addArgs}} ...){
   {{{JSON_command}}}
+  {{Arg}}$sessionId <- {{Arg}}$sessionId()
   pathTemplate <- whisker.render(\"{{uriTemplate}}\", data = {{Arg}})
   pathURL <- {{Arg}}[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  queryDriver(verb = {{method}}, url = build_url(pathURL), json = {{JSON}},...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
+  .e$sessionId <- res$sessionId
+  invisible(res)
 }
 
 
 "
+# list of POST type JSON commands
 
-selPipeFuncs <- lapply(rowSplit(methPaths), function(x){
-  if(identical(x[["method"]], "POST")){
-    x[["JSON_command"]] <- "
+JCommands <- list(
+  newSession = list( com = "
+# Add function specific JSON to post
+  jsonBody <- toJSON(list(
+    desiredCapabilities =c(remDr$desiredCapabilities, remDr$extraCapabilities)
+  ), auto_unbox = TRUE)
+  ", args = NULL),
+
+  go = list(com =  "
+# Add function specific JSON to post
+  jsonBody <- toJSON(list(
+     url = url
+  ), auto_unbox = TRUE)
+  ", args = " url,"),
+
+  default = list(com = "
 # Add function specific JSON to post
   jsonBody <- toJSON(list(
 
   ), auto_unbox = TRUE)
-"
+  ")
+)
+
+selPipeFuncs <- lapply(rowSplit(methPaths), function(x){
+  if(identical(x[["method"]], "POST")){
+    appCommand <- JCommands[[x[["command"]]]][["com"]]
+    defCommand <- JCommands[["default"]][["com"]]
+    x[["JSON_command"]] <- ifelse(!is.null(appCommand), appCommand, defCommand)
     x[["JSON"]] <- "jsonBody"
   }else{
     x[["JSON"]] <- "NULL"
   }
+  x[["addArgs"]] <- JCommands[[x[["command"]]]][["args"]]
   whisker.render(funcTemp, x)
 }
 )
