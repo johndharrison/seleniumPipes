@@ -4,6 +4,8 @@
   )
   toset <- !(names(op.seleniumPipes) %in% names(op))
   if(any(toset)) options(op.seleniumPipes[toset])
-
   invisible()
 }
+
+.e <- new.env()
+.e$sessionId <- NA

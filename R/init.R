@@ -27,7 +27,8 @@ remoteDr <- function(remoteServerAddr = "http://localhost",
       , javascriptEnabled = javascript
       , platform = platform
       , nativeEvents = nativeEvents),
-    extraCapabilities = extraCapabilities
+    extraCapabilities = extraCapabilities,
+    sessionId = function(){.e$sessionId}
   )
   if(newSession){
     newSession(session)
@@ -50,4 +51,5 @@ remoteDr <- function(remoteServerAddr = "http://localhost",
 
 queryDriver <- function(verb = GET, url, ...){
   res <- do.call(verb, c(list(url), body = list(...)[["json"]]))
+  content(res)
 }
