@@ -1,4 +1,4 @@
-#' Title
+#' newSession
 #'
 #' @param remDr
 #'
@@ -8,14 +8,14 @@
 #' @examples
 
 newSession <- function(remDr, ...){
-  pathTemplate <- whisker.render("/session", data = .e)
-  pathURL <- .e$remServAdd
-  pathURL$path <- paste0(pathURL$path, pathTemplate)
-  POST(url = build_url(pathURL$path), ...)
+  pathTemplate <- whisker.render("/session", data = remDr)
+  pathURL <- remDr[['remServAdd']]
+  pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
+  POST(url = build_url(pathURL), ...)
 }
 
 
-#' Title
+#' deleteSession
 #'
 #' @param remDr
 #'
@@ -25,14 +25,14 @@ newSession <- function(remDr, ...){
 #' @examples
 
 deleteSession <- function(remDr, ...){
-  pathTemplate <- whisker.render("/session/{{sessionId}}", data = .e)
-  pathURL <- .e$remServAdd
-  pathURL$path <- paste0(pathURL$path, pathTemplate)
-  DELETE(url = build_url(pathURL$path), ...)
+  pathTemplate <- whisker.render("/session/{{sessionId}}", data = remDr)
+  pathURL <- remDr[['remServAdd']]
+  pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
+  DELETE(url = build_url(pathURL), ...)
 }
 
 
-#' Title
+#' setTimeout
 #'
 #' @param remDr
 #'
@@ -42,14 +42,14 @@ deleteSession <- function(remDr, ...){
 #' @examples
 
 setTimeout <- function(remDr, ...){
-  pathTemplate <- whisker.render("/session/{{sessionId}}/timeouts", data = .e)
-  pathURL <- .e$remServAdd
-  pathURL$path <- paste0(pathURL$path, pathTemplate)
-  POST(url = build_url(pathURL$path), ...)
+  pathTemplate <- whisker.render("/session/{{sessionId}}/timeouts", data = remDr)
+  pathURL <- remDr[['remServAdd']]
+  pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
+  POST(url = build_url(pathURL), ...)
 }
 
 
-#' Title
+#' go
 #'
 #' @param remDr
 #'
@@ -59,14 +59,14 @@ setTimeout <- function(remDr, ...){
 #' @examples
 
 go <- function(remDr, ...){
-  pathTemplate <- whisker.render("/session/{{sessionId}}/url", data = .e)
-  pathURL <- .e$remServAdd
-  pathURL$path <- paste0(pathURL$path, pathTemplate)
-  POST(url = build_url(pathURL$path), ...)
+  pathTemplate <- whisker.render("/session/{{sessionId}}/url", data = remDr)
+  pathURL <- remDr[['remServAdd']]
+  pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
+  POST(url = build_url(pathURL), ...)
 }
 
 
-#' Title
+#' getCurrentUrl
 #'
 #' @param remDr
 #'
@@ -76,14 +76,14 @@ go <- function(remDr, ...){
 #' @examples
 
 getCurrentUrl <- function(remDr, ...){
-  pathTemplate <- whisker.render("/session/{{sessionId}}/url", data = .e)
-  pathURL <- .e$remServAdd
-  pathURL$path <- paste0(pathURL$path, pathTemplate)
-  GET(url = build_url(pathURL$path), ...)
+  pathTemplate <- whisker.render("/session/{{sessionId}}/url", data = remDr)
+  pathURL <- remDr[['remServAdd']]
+  pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
+  GET(url = build_url(pathURL), ...)
 }
 
 
-#' Title
+#' back
 #'
 #' @param remDr
 #'
@@ -93,14 +93,14 @@ getCurrentUrl <- function(remDr, ...){
 #' @examples
 
 back <- function(remDr, ...){
-  pathTemplate <- whisker.render("/session/{{sessionId}}/back", data = .e)
-  pathURL <- .e$remServAdd
-  pathURL$path <- paste0(pathURL$path, pathTemplate)
-  POST(url = build_url(pathURL$path), ...)
+  pathTemplate <- whisker.render("/session/{{sessionId}}/back", data = remDr)
+  pathURL <- remDr[['remServAdd']]
+  pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
+  POST(url = build_url(pathURL), ...)
 }
 
 
-#' Title
+#' forward
 #'
 #' @param remDr
 #'
@@ -110,14 +110,14 @@ back <- function(remDr, ...){
 #' @examples
 
 forward <- function(remDr, ...){
-  pathTemplate <- whisker.render("/session/{{sessionId}}/forward", data = .e)
-  pathURL <- .e$remServAdd
-  pathURL$path <- paste0(pathURL$path, pathTemplate)
-  POST(url = build_url(pathURL$path), ...)
+  pathTemplate <- whisker.render("/session/{{sessionId}}/forward", data = remDr)
+  pathURL <- remDr[['remServAdd']]
+  pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
+  POST(url = build_url(pathURL), ...)
 }
 
 
-#' Title
+#' refresh
 #'
 #' @param remDr
 #'
@@ -127,14 +127,14 @@ forward <- function(remDr, ...){
 #' @examples
 
 refresh <- function(remDr, ...){
-  pathTemplate <- whisker.render("/session/{{sessionId}}/refresh", data = .e)
-  pathURL <- .e$remServAdd
-  pathURL$path <- paste0(pathURL$path, pathTemplate)
-  POST(url = build_url(pathURL$path), ...)
+  pathTemplate <- whisker.render("/session/{{sessionId}}/refresh", data = remDr)
+  pathURL <- remDr[['remServAdd']]
+  pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
+  POST(url = build_url(pathURL), ...)
 }
 
 
-#' Title
+#' getTitle
 #'
 #' @param remDr
 #'
@@ -144,14 +144,14 @@ refresh <- function(remDr, ...){
 #' @examples
 
 getTitle <- function(remDr, ...){
-  pathTemplate <- whisker.render("/session/{{sessionId}}/title", data = .e)
-  pathURL <- .e$remServAdd
-  pathURL$path <- paste0(pathURL$path, pathTemplate)
-  GET(url = build_url(pathURL$path), ...)
+  pathTemplate <- whisker.render("/session/{{sessionId}}/title", data = remDr)
+  pathURL <- remDr[['remServAdd']]
+  pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
+  GET(url = build_url(pathURL), ...)
 }
 
 
-#' Title
+#' getWindowHandle
 #'
 #' @param remDr
 #'
@@ -161,14 +161,14 @@ getTitle <- function(remDr, ...){
 #' @examples
 
 getWindowHandle <- function(remDr, ...){
-  pathTemplate <- whisker.render("/session/{{sessionId}}/window", data = .e)
-  pathURL <- .e$remServAdd
-  pathURL$path <- paste0(pathURL$path, pathTemplate)
-  GET(url = build_url(pathURL$path), ...)
+  pathTemplate <- whisker.render("/session/{{sessionId}}/window", data = remDr)
+  pathURL <- remDr[['remServAdd']]
+  pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
+  GET(url = build_url(pathURL), ...)
 }
 
 
-#' Title
+#' closeWindow
 #'
 #' @param remDr
 #'
@@ -178,14 +178,14 @@ getWindowHandle <- function(remDr, ...){
 #' @examples
 
 closeWindow <- function(remDr, ...){
-  pathTemplate <- whisker.render("/session/{{sessionId}}/window", data = .e)
-  pathURL <- .e$remServAdd
-  pathURL$path <- paste0(pathURL$path, pathTemplate)
-  DELETE(url = build_url(pathURL$path), ...)
+  pathTemplate <- whisker.render("/session/{{sessionId}}/window", data = remDr)
+  pathURL <- remDr[['remServAdd']]
+  pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
+  DELETE(url = build_url(pathURL), ...)
 }
 
 
-#' Title
+#' switchToWindow
 #'
 #' @param remDr
 #'
@@ -195,14 +195,14 @@ closeWindow <- function(remDr, ...){
 #' @examples
 
 switchToWindow <- function(remDr, ...){
-  pathTemplate <- whisker.render("/session/{{sessionId}}/window", data = .e)
-  pathURL <- .e$remServAdd
-  pathURL$path <- paste0(pathURL$path, pathTemplate)
-  POST(url = build_url(pathURL$path), ...)
+  pathTemplate <- whisker.render("/session/{{sessionId}}/window", data = remDr)
+  pathURL <- remDr[['remServAdd']]
+  pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
+  POST(url = build_url(pathURL), ...)
 }
 
 
-#' Title
+#' getWindowHandles
 #'
 #' @param remDr
 #'
@@ -212,14 +212,14 @@ switchToWindow <- function(remDr, ...){
 #' @examples
 
 getWindowHandles <- function(remDr, ...){
-  pathTemplate <- whisker.render("/session/{{sessionId}}/window/handles", data = .e)
-  pathURL <- .e$remServAdd
-  pathURL$path <- paste0(pathURL$path, pathTemplate)
-  GET(url = build_url(pathURL$path), ...)
+  pathTemplate <- whisker.render("/session/{{sessionId}}/window/handles", data = remDr)
+  pathURL <- remDr[['remServAdd']]
+  pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
+  GET(url = build_url(pathURL), ...)
 }
 
 
-#' Title
+#' switchToFrame
 #'
 #' @param remDr
 #'
@@ -229,14 +229,14 @@ getWindowHandles <- function(remDr, ...){
 #' @examples
 
 switchToFrame <- function(remDr, ...){
-  pathTemplate <- whisker.render("/session/{{sessionId}}/frame", data = .e)
-  pathURL <- .e$remServAdd
-  pathURL$path <- paste0(pathURL$path, pathTemplate)
-  POST(url = build_url(pathURL$path), ...)
+  pathTemplate <- whisker.render("/session/{{sessionId}}/frame", data = remDr)
+  pathURL <- remDr[['remServAdd']]
+  pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
+  POST(url = build_url(pathURL), ...)
 }
 
 
-#' Title
+#' switchToParentFrame
 #'
 #' @param remDr
 #'
@@ -246,14 +246,14 @@ switchToFrame <- function(remDr, ...){
 #' @examples
 
 switchToParentFrame <- function(remDr, ...){
-  pathTemplate <- whisker.render("/session/{{sessionId}}/frame/parent", data = .e)
-  pathURL <- .e$remServAdd
-  pathURL$path <- paste0(pathURL$path, pathTemplate)
-  POST(url = build_url(pathURL$path), ...)
+  pathTemplate <- whisker.render("/session/{{sessionId}}/frame/parent", data = remDr)
+  pathURL <- remDr[['remServAdd']]
+  pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
+  POST(url = build_url(pathURL), ...)
 }
 
 
-#' Title
+#' getWindowSize
 #'
 #' @param remDr
 #'
@@ -263,14 +263,14 @@ switchToParentFrame <- function(remDr, ...){
 #' @examples
 
 getWindowSize <- function(remDr, ...){
-  pathTemplate <- whisker.render("/session/{{sessionId}}/window/size", data = .e)
-  pathURL <- .e$remServAdd
-  pathURL$path <- paste0(pathURL$path, pathTemplate)
-  GET(url = build_url(pathURL$path), ...)
+  pathTemplate <- whisker.render("/session/{{sessionId}}/window/size", data = remDr)
+  pathURL <- remDr[['remServAdd']]
+  pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
+  GET(url = build_url(pathURL), ...)
 }
 
 
-#' Title
+#' setWindowSize
 #'
 #' @param remDr
 #'
@@ -280,14 +280,14 @@ getWindowSize <- function(remDr, ...){
 #' @examples
 
 setWindowSize <- function(remDr, ...){
-  pathTemplate <- whisker.render("/session/{{sessionId}}/window/size", data = .e)
-  pathURL <- .e$remServAdd
-  pathURL$path <- paste0(pathURL$path, pathTemplate)
-  POST(url = build_url(pathURL$path), ...)
+  pathTemplate <- whisker.render("/session/{{sessionId}}/window/size", data = remDr)
+  pathURL <- remDr[['remServAdd']]
+  pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
+  POST(url = build_url(pathURL), ...)
 }
 
 
-#' Title
+#' getWindowPosition
 #'
 #' @param remDr
 #'
@@ -297,14 +297,14 @@ setWindowSize <- function(remDr, ...){
 #' @examples
 
 getWindowPosition <- function(remDr, ...){
-  pathTemplate <- whisker.render("/session/{{sessionId}}/window/position", data = .e)
-  pathURL <- .e$remServAdd
-  pathURL$path <- paste0(pathURL$path, pathTemplate)
-  GET(url = build_url(pathURL$path), ...)
+  pathTemplate <- whisker.render("/session/{{sessionId}}/window/position", data = remDr)
+  pathURL <- remDr[['remServAdd']]
+  pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
+  GET(url = build_url(pathURL), ...)
 }
 
 
-#' Title
+#' setWindowPosition
 #'
 #' @param remDr
 #'
@@ -314,14 +314,14 @@ getWindowPosition <- function(remDr, ...){
 #' @examples
 
 setWindowPosition <- function(remDr, ...){
-  pathTemplate <- whisker.render("/session/{{sessionId}}/window/position", data = .e)
-  pathURL <- .e$remServAdd
-  pathURL$path <- paste0(pathURL$path, pathTemplate)
-  POST(url = build_url(pathURL$path), ...)
+  pathTemplate <- whisker.render("/session/{{sessionId}}/window/position", data = remDr)
+  pathURL <- remDr[['remServAdd']]
+  pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
+  POST(url = build_url(pathURL), ...)
 }
 
 
-#' Title
+#' maximizeWindow
 #'
 #' @param remDr
 #'
@@ -331,14 +331,14 @@ setWindowPosition <- function(remDr, ...){
 #' @examples
 
 maximizeWindow <- function(remDr, ...){
-  pathTemplate <- whisker.render("/session/{{sessionId}}/window/maximize", data = .e)
-  pathURL <- .e$remServAdd
-  pathURL$path <- paste0(pathURL$path, pathTemplate)
-  POST(url = build_url(pathURL$path), ...)
+  pathTemplate <- whisker.render("/session/{{sessionId}}/window/maximize", data = remDr)
+  pathURL <- remDr[['remServAdd']]
+  pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
+  POST(url = build_url(pathURL), ...)
 }
 
 
-#' Title
+#' fullscreenWindow
 #'
 #' @param remDr
 #'
@@ -348,14 +348,14 @@ maximizeWindow <- function(remDr, ...){
 #' @examples
 
 fullscreenWindow <- function(remDr, ...){
-  pathTemplate <- whisker.render("/session/{{sessionId}}/window/fullscreen", data = .e)
-  pathURL <- .e$remServAdd
-  pathURL$path <- paste0(pathURL$path, pathTemplate)
-  POST(url = build_url(pathURL$path), ...)
+  pathTemplate <- whisker.render("/session/{{sessionId}}/window/fullscreen", data = remDr)
+  pathURL <- remDr[['remServAdd']]
+  pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
+  POST(url = build_url(pathURL), ...)
 }
 
 
-#' Title
+#' getActiveElement
 #'
 #' @param remDr
 #'
@@ -365,14 +365,14 @@ fullscreenWindow <- function(remDr, ...){
 #' @examples
 
 getActiveElement <- function(remDr, ...){
-  pathTemplate <- whisker.render("/session/{{sessionId}}/element/active", data = .e)
-  pathURL <- .e$remServAdd
-  pathURL$path <- paste0(pathURL$path, pathTemplate)
-  GET(url = build_url(pathURL$path), ...)
+  pathTemplate <- whisker.render("/session/{{sessionId}}/element/active", data = remDr)
+  pathURL <- remDr[['remServAdd']]
+  pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
+  GET(url = build_url(pathURL), ...)
 }
 
 
-#' Title
+#' findingElementsToInteract
 #'
 #' @param remDr
 #'
@@ -382,14 +382,14 @@ getActiveElement <- function(remDr, ...){
 #' @examples
 
 findingElementsToInteract <- function(remDr, ...){
-  pathTemplate <- whisker.render("/session/{{sessionId}}/element", data = .e)
-  pathURL <- .e$remServAdd
-  pathURL$path <- paste0(pathURL$path, pathTemplate)
-  POST(url = build_url(pathURL$path), ...)
+  pathTemplate <- whisker.render("/session/{{sessionId}}/element", data = remDr)
+  pathURL <- remDr[['remServAdd']]
+  pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
+  POST(url = build_url(pathURL), ...)
 }
 
 
-#' Title
+#' findingElementsToInteract
 #'
 #' @param remDr
 #'
@@ -399,14 +399,14 @@ findingElementsToInteract <- function(remDr, ...){
 #' @examples
 
 findingElementsToInteract <- function(remDr, ...){
-  pathTemplate <- whisker.render("/session/{{sessionId}}/elements", data = .e)
-  pathURL <- .e$remServAdd
-  pathURL$path <- paste0(pathURL$path, pathTemplate)
-  POST(url = build_url(pathURL$path), ...)
+  pathTemplate <- whisker.render("/session/{{sessionId}}/elements", data = remDr)
+  pathURL <- remDr[['remServAdd']]
+  pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
+  POST(url = build_url(pathURL), ...)
 }
 
 
-#' Title
+#' gettingPageSource
 #'
 #' @param remDr
 #'
@@ -416,14 +416,14 @@ findingElementsToInteract <- function(remDr, ...){
 #' @examples
 
 gettingPageSource <- function(remDr, ...){
-  pathTemplate <- whisker.render("/session/{{sessionId}}/source", data = .e)
-  pathURL <- .e$remServAdd
-  pathURL$path <- paste0(pathURL$path, pathTemplate)
-  GET(url = build_url(pathURL$path), ...)
+  pathTemplate <- whisker.render("/session/{{sessionId}}/source", data = remDr)
+  pathURL <- remDr[['remServAdd']]
+  pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
+  GET(url = build_url(pathURL), ...)
 }
 
 
-#' Title
+#' executeScript
 #'
 #' @param remDr
 #'
@@ -433,14 +433,14 @@ gettingPageSource <- function(remDr, ...){
 #' @examples
 
 executeScript <- function(remDr, ...){
-  pathTemplate <- whisker.render("/session/{{sessionId}}/execute/sync", data = .e)
-  pathURL <- .e$remServAdd
-  pathURL$path <- paste0(pathURL$path, pathTemplate)
-  POST(url = build_url(pathURL$path), ...)
+  pathTemplate <- whisker.render("/session/{{sessionId}}/execute/sync", data = remDr)
+  pathURL <- remDr[['remServAdd']]
+  pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
+  POST(url = build_url(pathURL), ...)
 }
 
 
-#' Title
+#' executeAsyncScript
 #'
 #' @param remDr
 #'
@@ -450,14 +450,14 @@ executeScript <- function(remDr, ...){
 #' @examples
 
 executeAsyncScript <- function(remDr, ...){
-  pathTemplate <- whisker.render("/session/{{sessionId}}/execute/async", data = .e)
-  pathURL <- .e$remServAdd
-  pathURL$path <- paste0(pathURL$path, pathTemplate)
-  POST(url = build_url(pathURL$path), ...)
+  pathTemplate <- whisker.render("/session/{{sessionId}}/execute/async", data = remDr)
+  pathURL <- remDr[['remServAdd']]
+  pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
+  POST(url = build_url(pathURL), ...)
 }
 
 
-#' Title
+#' getCookie
 #'
 #' @param remDr
 #'
@@ -467,14 +467,14 @@ executeAsyncScript <- function(remDr, ...){
 #' @examples
 
 getCookie <- function(remDr, ...){
-  pathTemplate <- whisker.render("/session/{{sessionId}}/cookie/{{name}}", data = .e)
-  pathURL <- .e$remServAdd
-  pathURL$path <- paste0(pathURL$path, pathTemplate)
-  GET(url = build_url(pathURL$path), ...)
+  pathTemplate <- whisker.render("/session/{{sessionId}}/cookie/{{name}}", data = remDr)
+  pathURL <- remDr[['remServAdd']]
+  pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
+  GET(url = build_url(pathURL), ...)
 }
 
 
-#' Title
+#' addCookie
 #'
 #' @param remDr
 #'
@@ -484,14 +484,14 @@ getCookie <- function(remDr, ...){
 #' @examples
 
 addCookie <- function(remDr, ...){
-  pathTemplate <- whisker.render("/session/{{sessionId}}/cookie", data = .e)
-  pathURL <- .e$remServAdd
-  pathURL$path <- paste0(pathURL$path, pathTemplate)
-  POST(url = build_url(pathURL$path), ...)
+  pathTemplate <- whisker.render("/session/{{sessionId}}/cookie", data = remDr)
+  pathURL <- remDr[['remServAdd']]
+  pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
+  POST(url = build_url(pathURL), ...)
 }
 
 
-#' Title
+#' deleteCookie
 #'
 #' @param remDr
 #'
@@ -501,48 +501,14 @@ addCookie <- function(remDr, ...){
 #' @examples
 
 deleteCookie <- function(remDr, ...){
-  pathTemplate <- whisker.render("/session/{{sessionId}}/cookie/{{name}}", data = .e)
-  pathURL <- .e$remServAdd
-  pathURL$path <- paste0(pathURL$path, pathTemplate)
-  DELETE(url = build_url(pathURL$path), ...)
+  pathTemplate <- whisker.render("/session/{{sessionId}}/cookie/{{name}}", data = remDr)
+  pathURL <- remDr[['remServAdd']]
+  pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
+  DELETE(url = build_url(pathURL), ...)
 }
 
 
-#' Title
-#'
-#' @param remDr
-#'
-#' @return
-#' @export
-#'
-#' @examples
-
-NA <- function(remDr, ...){
-  pathTemplate <- whisker.render("/session/{{sessionId}}/actions", data = .e)
-  pathURL <- .e$remServAdd
-  pathURL$path <- paste0(pathURL$path, pathTemplate)
-  POST(url = build_url(pathURL$path), ...)
-}
-
-
-#' Title
-#'
-#' @param remDr
-#'
-#' @return
-#' @export
-#'
-#' @examples
-
-NA <- function(remDr, ...){
-  pathTemplate <- whisker.render("/session/{{sessionId}}/actions", data = .e)
-  pathURL <- .e$remServAdd
-  pathURL$path <- paste0(pathURL$path, pathTemplate)
-  DELETE(url = build_url(pathURL$path), ...)
-}
-
-
-#' Title
+#' dismissAlert
 #'
 #' @param remDr
 #'
@@ -552,14 +518,14 @@ NA <- function(remDr, ...){
 #' @examples
 
 dismissAlert <- function(remDr, ...){
-  pathTemplate <- whisker.render("/session/{{sessionId}}/alert/dismiss", data = .e)
-  pathURL <- .e$remServAdd
-  pathURL$path <- paste0(pathURL$path, pathTemplate)
-  POST(url = build_url(pathURL$path), ...)
+  pathTemplate <- whisker.render("/session/{{sessionId}}/alert/dismiss", data = remDr)
+  pathURL <- remDr[['remServAdd']]
+  pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
+  POST(url = build_url(pathURL), ...)
 }
 
 
-#' Title
+#' acceptAlert
 #'
 #' @param remDr
 #'
@@ -569,14 +535,14 @@ dismissAlert <- function(remDr, ...){
 #' @examples
 
 acceptAlert <- function(remDr, ...){
-  pathTemplate <- whisker.render("/session/{{sessionId}}/alert/accept", data = .e)
-  pathURL <- .e$remServAdd
-  pathURL$path <- paste0(pathURL$path, pathTemplate)
-  POST(url = build_url(pathURL$path), ...)
+  pathTemplate <- whisker.render("/session/{{sessionId}}/alert/accept", data = remDr)
+  pathURL <- remDr[['remServAdd']]
+  pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
+  POST(url = build_url(pathURL), ...)
 }
 
 
-#' Title
+#' getAlertText
 #'
 #' @param remDr
 #'
@@ -586,14 +552,14 @@ acceptAlert <- function(remDr, ...){
 #' @examples
 
 getAlertText <- function(remDr, ...){
-  pathTemplate <- whisker.render("/session/{{sessionId}}/alert/text", data = .e)
-  pathURL <- .e$remServAdd
-  pathURL$path <- paste0(pathURL$path, pathTemplate)
-  GET(url = build_url(pathURL$path), ...)
+  pathTemplate <- whisker.render("/session/{{sessionId}}/alert/text", data = remDr)
+  pathURL <- remDr[['remServAdd']]
+  pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
+  GET(url = build_url(pathURL), ...)
 }
 
 
-#' Title
+#' sendAlertText
 #'
 #' @param remDr
 #'
@@ -603,14 +569,14 @@ getAlertText <- function(remDr, ...){
 #' @examples
 
 sendAlertText <- function(remDr, ...){
-  pathTemplate <- whisker.render("/session/{{sessionId}}/alert/text", data = .e)
-  pathURL <- .e$remServAdd
-  pathURL$path <- paste0(pathURL$path, pathTemplate)
-  POST(url = build_url(pathURL$path), ...)
+  pathTemplate <- whisker.render("/session/{{sessionId}}/alert/text", data = remDr)
+  pathURL <- remDr[['remServAdd']]
+  pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
+  POST(url = build_url(pathURL), ...)
 }
 
 
-#' Title
+#' takeScreenshot
 #'
 #' @param remDr
 #'
@@ -620,10 +586,10 @@ sendAlertText <- function(remDr, ...){
 #' @examples
 
 takeScreenshot <- function(remDr, ...){
-  pathTemplate <- whisker.render("/session/{{sessionId}}/screenshot", data = .e)
-  pathURL <- .e$remServAdd
-  pathURL$path <- paste0(pathURL$path, pathTemplate)
-  GET(url = build_url(pathURL$path), ...)
+  pathTemplate <- whisker.render("/session/{{sessionId}}/screenshot", data = remDr)
+  pathURL <- remDr[['remServAdd']]
+  pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
+  GET(url = build_url(pathURL), ...)
 }
 
 

@@ -1,4 +1,4 @@
-#' Title
+#' findingElementsToInteract
 #'
 #' @param webElem
 #'
@@ -8,14 +8,14 @@
 #' @examples
 
 findingElementsToInteract <- function(webElem, ...){
-  pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/element", data = .e)
-  pathURL <- .e$remServAdd
-  pathURL$path <- paste0(pathURL$path, pathTemplate)
-  POST(url = build_url(pathURL$path), ...)
+  pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/element", data = webElem)
+  pathURL <- webElem[['remServAdd']]
+  pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
+  POST(url = build_url(pathURL), ...)
 }
 
 
-#' Title
+#' findingElementsToInteract
 #'
 #' @param webElem
 #'
@@ -25,14 +25,14 @@ findingElementsToInteract <- function(webElem, ...){
 #' @examples
 
 findingElementsToInteract <- function(webElem, ...){
-  pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/elements", data = .e)
-  pathURL <- .e$remServAdd
-  pathURL$path <- paste0(pathURL$path, pathTemplate)
-  POST(url = build_url(pathURL$path), ...)
+  pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/elements", data = webElem)
+  pathURL <- webElem[['remServAdd']]
+  pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
+  POST(url = build_url(pathURL), ...)
 }
 
 
-#' Title
+#' isElementSelected
 #'
 #' @param webElem
 #'
@@ -42,14 +42,14 @@ findingElementsToInteract <- function(webElem, ...){
 #' @examples
 
 isElementSelected <- function(webElem, ...){
-  pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/selected", data = .e)
-  pathURL <- .e$remServAdd
-  pathURL$path <- paste0(pathURL$path, pathTemplate)
-  GET(url = build_url(pathURL$path), ...)
+  pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/selected", data = webElem)
+  pathURL <- webElem[['remServAdd']]
+  pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
+  GET(url = build_url(pathURL), ...)
 }
 
 
-#' Title
+#' getElementAttribute
 #'
 #' @param webElem
 #'
@@ -59,14 +59,14 @@ isElementSelected <- function(webElem, ...){
 #' @examples
 
 getElementAttribute <- function(webElem, ...){
-  pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/attribute/{{name}}", data = .e)
-  pathURL <- .e$remServAdd
-  pathURL$path <- paste0(pathURL$path, pathTemplate)
-  GET(url = build_url(pathURL$path), ...)
+  pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/attribute/{{name}}", data = webElem)
+  pathURL <- webElem[['remServAdd']]
+  pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
+  GET(url = build_url(pathURL), ...)
 }
 
 
-#' Title
+#' getElementProperty
 #'
 #' @param webElem
 #'
@@ -76,14 +76,14 @@ getElementAttribute <- function(webElem, ...){
 #' @examples
 
 getElementProperty <- function(webElem, ...){
-  pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/property/{{name}}", data = .e)
-  pathURL <- .e$remServAdd
-  pathURL$path <- paste0(pathURL$path, pathTemplate)
-  GET(url = build_url(pathURL$path), ...)
+  pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/property/{{name}}", data = webElem)
+  pathURL <- webElem[['remServAdd']]
+  pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
+  GET(url = build_url(pathURL), ...)
 }
 
 
-#' Title
+#' getElementCssValue
 #'
 #' @param webElem
 #'
@@ -93,14 +93,14 @@ getElementProperty <- function(webElem, ...){
 #' @examples
 
 getElementCssValue <- function(webElem, ...){
-  pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/css/{{property name}}", data = .e)
-  pathURL <- .e$remServAdd
-  pathURL$path <- paste0(pathURL$path, pathTemplate)
-  GET(url = build_url(pathURL$path), ...)
+  pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/css/{{property name}}", data = webElem)
+  pathURL <- webElem[['remServAdd']]
+  pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
+  GET(url = build_url(pathURL), ...)
 }
 
 
-#' Title
+#' getElementText
 #'
 #' @param webElem
 #'
@@ -110,14 +110,14 @@ getElementCssValue <- function(webElem, ...){
 #' @examples
 
 getElementText <- function(webElem, ...){
-  pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/text", data = .e)
-  pathURL <- .e$remServAdd
-  pathURL$path <- paste0(pathURL$path, pathTemplate)
-  GET(url = build_url(pathURL$path), ...)
+  pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/text", data = webElem)
+  pathURL <- webElem[['remServAdd']]
+  pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
+  GET(url = build_url(pathURL), ...)
 }
 
 
-#' Title
+#' getElementTagName
 #'
 #' @param webElem
 #'
@@ -127,14 +127,14 @@ getElementText <- function(webElem, ...){
 #' @examples
 
 getElementTagName <- function(webElem, ...){
-  pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/name", data = .e)
-  pathURL <- .e$remServAdd
-  pathURL$path <- paste0(pathURL$path, pathTemplate)
-  GET(url = build_url(pathURL$path), ...)
+  pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/name", data = webElem)
+  pathURL <- webElem[['remServAdd']]
+  pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
+  GET(url = build_url(pathURL), ...)
 }
 
 
-#' Title
+#' getElementRect
 #'
 #' @param webElem
 #'
@@ -144,14 +144,14 @@ getElementTagName <- function(webElem, ...){
 #' @examples
 
 getElementRect <- function(webElem, ...){
-  pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/rect", data = .e)
-  pathURL <- .e$remServAdd
-  pathURL$path <- paste0(pathURL$path, pathTemplate)
-  GET(url = build_url(pathURL$path), ...)
+  pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/rect", data = webElem)
+  pathURL <- webElem[['remServAdd']]
+  pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
+  GET(url = build_url(pathURL), ...)
 }
 
 
-#' Title
+#' isElementEnabled
 #'
 #' @param webElem
 #'
@@ -161,14 +161,14 @@ getElementRect <- function(webElem, ...){
 #' @examples
 
 isElementEnabled <- function(webElem, ...){
-  pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/enabled", data = .e)
-  pathURL <- .e$remServAdd
-  pathURL$path <- paste0(pathURL$path, pathTemplate)
-  GET(url = build_url(pathURL$path), ...)
+  pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/enabled", data = webElem)
+  pathURL <- webElem[['remServAdd']]
+  pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
+  GET(url = build_url(pathURL), ...)
 }
 
 
-#' Title
+#' elementClick
 #'
 #' @param webElem
 #'
@@ -178,14 +178,14 @@ isElementEnabled <- function(webElem, ...){
 #' @examples
 
 elementClick <- function(webElem, ...){
-  pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/click", data = .e)
-  pathURL <- .e$remServAdd
-  pathURL$path <- paste0(pathURL$path, pathTemplate)
-  POST(url = build_url(pathURL$path), ...)
+  pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/click", data = webElem)
+  pathURL <- webElem[['remServAdd']]
+  pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
+  POST(url = build_url(pathURL), ...)
 }
 
 
-#' Title
+#' elementClear
 #'
 #' @param webElem
 #'
@@ -195,14 +195,14 @@ elementClick <- function(webElem, ...){
 #' @examples
 
 elementClear <- function(webElem, ...){
-  pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/clear", data = .e)
-  pathURL <- .e$remServAdd
-  pathURL$path <- paste0(pathURL$path, pathTemplate)
-  POST(url = build_url(pathURL$path), ...)
+  pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/clear", data = webElem)
+  pathURL <- webElem[['remServAdd']]
+  pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
+  POST(url = build_url(pathURL), ...)
 }
 
 
-#' Title
+#' elementSendKeys
 #'
 #' @param webElem
 #'
@@ -212,14 +212,14 @@ elementClear <- function(webElem, ...){
 #' @examples
 
 elementSendKeys <- function(webElem, ...){
-  pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/value", data = .e)
-  pathURL <- .e$remServAdd
-  pathURL$path <- paste0(pathURL$path, pathTemplate)
-  POST(url = build_url(pathURL$path), ...)
+  pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/value", data = webElem)
+  pathURL <- webElem[['remServAdd']]
+  pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
+  POST(url = build_url(pathURL), ...)
 }
 
 
-#' Title
+#' takeElementScreenshot
 #'
 #' @param webElem
 #'
@@ -229,10 +229,10 @@ elementSendKeys <- function(webElem, ...){
 #' @examples
 
 takeElementScreenshot <- function(webElem, ...){
-  pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/screenshot", data = .e)
-  pathURL <- .e$remServAdd
-  pathURL$path <- paste0(pathURL$path, pathTemplate)
-  GET(url = build_url(pathURL$path), ...)
+  pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/screenshot", data = webElem)
+  pathURL <- webElem[['remServAdd']]
+  pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
+  GET(url = build_url(pathURL), ...)
 }
 
 
