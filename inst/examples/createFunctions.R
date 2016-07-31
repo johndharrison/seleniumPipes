@@ -1,4 +1,5 @@
 # utility script to get the w3c specs to create the functions in seleniumPipes
+# assummed ran from the project base
 
 library(xml2)
 library(httr)
@@ -17,21 +18,36 @@ desMeth <- sapply(xml_find_all(doc, tabXpath)
 )
 
 methPaths[,description := tocamel(tolower(desMeth))]
-names(methPaths) <- tocamel(names(methPaths))
+setnames(methPaths, names(methPaths), tocamel(names(methPaths)))
 methPaths[, PathTemplate := gsub("session id", "sessionId", PathTemplate)]
 methPaths[, PathTemplate := gsub("element id", "elementId", PathTemplate)]
 methPaths[, PathTemplate := gsub("\\{", "\\{\\{", PathTemplate)]
 methPaths[, PathTemplate := gsub("\\}", "\\}\\}", PathTemplate)]
+methPaths[, elemInd := grepl("\\{elementId\\}", PathTemplate)]
+methPaths[, Arg := ifelse(elemInd, "webElem", "remDr")]
 
-funcTemp <- "
-{{description}} <- function(...){
+funcTemp <- "#' Title
+#'
+#' @param {{Arg}}
+#'
+#' @return
+#' @export
+#'
+#' @examples
+
+{{description}} <- function({{Arg}}, ...){
   pathTemplate <- whisker.render(\"{{PathTemplate}}\", data = .e)
   pathURL <- .e$remServAdd
   pathURL$path <- paste0(pathURL$path, pathTemplate)
   {{HTTPMethod}}(url = build_url(pathURL$path), ...)
-}"
+}
 
+
+"
 
 selPipeFuncs <- lapply(rowSplit(methPaths), function(x) whisker.render(funcTemp, x))
-
+remDrFuncs <- paste(selPipeFuncs[!grepl("\\{elementId\\}", selPipeFuncs)], collapse = "")
+webElemFuncs <- paste(selPipeFuncs[grepl("\\{elementId\\}", selPipeFuncs)], collapse = "")
+write(remDrFuncs, "R/remoteDriver.R")
+write(webElemFuncs, "R/webElement.R")
 
