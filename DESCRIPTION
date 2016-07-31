@@ -8,7 +8,7 @@ Description: The seleniumPipes packages implements the W3C webdriver
     specification which defines a way for out-of-process programs to remotely
     instruct the behaviour of web browsers.
 Depends:
-    R (>= 3.0.0),httr,jsonlite,xml2
+    R (>= 3.0.0),httr,jsonlite,xml2,magrittr
 Encoding: UTF-8
 License: GPL-3
 RoxygenNote: 5.0.1
