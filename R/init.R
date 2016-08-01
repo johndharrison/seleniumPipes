@@ -39,6 +39,26 @@ remoteDr <- function(remoteServerAddr = "http://localhost",
   invisible(session)
 }
 
+#' wbElement
+#'
+#' @param elementId
+#' @param remDr
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#'
+
+wbElement <- function(elementId, remDr){
+  structure(
+    list(
+      sessionId = function(){.e$sessionId},
+      elementId = elementId,
+      remDr = remDr
+    )
+    ,  class = "wElement")
+}
 
 #' queryDriver
 #'
