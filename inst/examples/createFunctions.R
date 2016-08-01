@@ -3,6 +3,7 @@
 
 library(xml2)
 library(httr)
+library(rvest)
 library(data.table)
 library(rapportools)
 library(whisker)
@@ -45,9 +46,9 @@ funcTemp <- "#' {{command}}
 
 # configure returns
 selReturn <- list(
-  "invisible(remDr)"
-  , "res$value"
-  , "read_html(res$value)"
+  ret1 = "invisible(remDr)"
+  , ret2 = "res$value"
+  , ret3 = "read_html(res$value)"
 )
 
 # list of POST type JSON commands
@@ -58,40 +59,64 @@ JCommands <- list(
   jsonBody <- toJSON(list(
     desiredCapabilities =c(remDr$desiredCapabilities, remDr$extraCapabilities)
   ), auto_unbox = TRUE)
-  ", args = NULL, type = 1L),
+  ", args = NULL, type = "ret1"),
 
   go = list(com =  "
 # Add function specific JSON to post
   jsonBody <- toJSON(list(
      url = url
   ), auto_unbox = TRUE)
-  ", args = " url,", type = 1L),
+  ", args = " url,", type = "ret1"),
 
   back = list(com =  "
 # Add function specific JSON to post
   jsonBody <- NULL
-  ", type = 1L),
+  ", type = "ret1"),
 
 
   forward = list(com =  "
 # Add function specific JSON to post
   jsonBody <- NULL
-  ", type = 1L),
+  ", type = "ret1"),
 
 
   refresh = list(com =  "
 # Add function specific JSON to post
   jsonBody <- NULL
-  ", type = 1L),
+  ", type = "ret1"),
 
   default = list(com = "
 # Add function specific JSON to post
   jsonBody <- toJSON(list(
 
   ), auto_unbox = TRUE)
-  ", type = 1L),
+  ", type = "ret1"),
 
-  getPageSource = list(type = 3L)
+  getPageSource = list(type = "ret3"),
+  getTitle = list(type = "ret2"),
+  getWindowHandle = list(type = "ret2"),
+  closeWindow = list(type = "ret1"),
+  switchToWindow = list(
+    com = "
+# Add function specific JSON to post
+  jsonBody <- toJSON(list(
+    name = name
+  ), auto_unbox = TRUE)
+    ", args = " name,", type = "ret1"
+  ),
+  getWindowHandles = list(type = "ret2"),
+  switchToFrame = list(
+    com = "
+# Add function specific JSON to post
+  if(\"webElement\" %in% class(Id)){
+    # pass the webElement as Json to SS
+    Id <- setNames(as.character(Id$elementId), \"ELEMENT\")
+  }
+  jsonBody <- toJSON(list(
+    id = Id
+  ), auto_unbox = TRUE, null = \"null\")
+    ", args = " Id = NULL,", type = "ret1"
+  )
 )
 
 selPipeFuncs <- lapply(rowSplit(methPaths), function(x){
