@@ -4,7 +4,9 @@
 \alias{findElementFromElement}
 \title{findElementFromElement}
 \usage{
-findElementFromElement(webElem, ...)
+findElementFromElement(webElem, using = c("xpath", "css selector", "id",
+  "name", "tag name", "class name", "link text", "partial link text"), value,
+  ...)
 }
 \arguments{
 \item{webElem}{}
