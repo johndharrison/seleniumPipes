@@ -26,4 +26,9 @@ remDr %>% go(url = "http://www.bbc.com")
 remDr %>% back()
 remDr %>% forward()
 remDr %>% refresh()
+remDr %>% go("https://cloud.r-project.org/") %>% getPageSource()
+# {xml_document}
+# <html>
+# [1] <head>\n<title>The Comprehensive R Archive Network</title>\n<meta content="text/html; charset=u ...
+# [2] <frameset style="border: none;" cols="1*, 4*">\n<frameset rows="120, 1*">\n<frame frameborder=" ...
 ```
