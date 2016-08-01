@@ -49,7 +49,13 @@ remoteDr <- function(remoteServerAddr = "http://localhost",
 #' @examples
 #'
 
-queryDriver <- function(verb = GET, url, ...){
+queryDriver <- function(verb = GET, url, source, ...){
+  if(!identical(source, "newSession")){
+    if(is.na(.e$sessionId)) stop("No session exists. Run remoteRd with newSession = TRUE or\n run newSession()")
+  }
   res <- do.call(verb, c(list(url), body = list(...)[["json"]]))
-  content(res)
+  # Add error checking code here
+  res <- content(res)
+  .e$sessionId <- res$sessionId
+  res
 }
