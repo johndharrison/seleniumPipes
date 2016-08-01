@@ -4,7 +4,7 @@
 \alias{switchToFrame}
 \title{switchToFrame}
 \usage{
-switchToFrame(remDr, ...)
+switchToFrame(remDr, Id = NULL, ...)
 }
 \arguments{
 \item{remDr}{}

@@ -34,7 +34,7 @@ remDr %>% go("https://cloud.r-project.org/") %>% getPageSource()
 # [1] <head>\n<title>The Comprehensive R Archive Network</title>\n<meta content="text/html; charset=u ...
 # [2] <frameset style="border: none;" cols="1*, 4*">\n<frameset rows="120, 1*">\n<frame frameborder=" ...
 
- remDr %>% getPageSource() %>% xml_find_all("//frame") %>% xml_attr("name")
+remDr %>% getPageSource() %>% xml_find_all("//frame") %>% xml_attr("name")
  
 # [1] "logo"     "contents" "banner"  
 

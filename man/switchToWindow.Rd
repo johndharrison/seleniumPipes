@@ -4,7 +4,7 @@
 \alias{switchToWindow}
 \title{switchToWindow}
 \usage{
-switchToWindow(remDr, ...)
+switchToWindow(remDr, name, ...)
 }
 \arguments{
 \item{remDr}{}

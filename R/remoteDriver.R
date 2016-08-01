@@ -181,7 +181,7 @@ getTitle <- function(remDr, ...){
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
   res <- queryDriver(verb = GET, url = build_url(pathURL), source = "getTitle", json = NULL,...)
-  invisible(remDr)
+  res$value
 }
 
 
@@ -202,7 +202,7 @@ getWindowHandle <- function(remDr, ...){
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
   res <- queryDriver(verb = GET, url = build_url(pathURL), source = "getWindowHandle", json = NULL,...)
-  invisible(remDr)
+  res$value
 }
 
 
@@ -236,13 +236,13 @@ closeWindow <- function(remDr, ...){
 #'
 #' @examples
 
-switchToWindow <- function(remDr, ...){
+switchToWindow <- function(remDr, name, ...){
   
 # Add function specific JSON to post
   jsonBody <- toJSON(list(
-
+    name = name
   ), auto_unbox = TRUE)
-  
+    
   obj <- remDr
   obj$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/window", data = obj)
@@ -270,7 +270,7 @@ getWindowHandles <- function(remDr, ...){
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
   res <- queryDriver(verb = GET, url = build_url(pathURL), source = "getWindowHandles", json = NULL,...)
-  invisible(remDr)
+  res$value
 }
 
 
@@ -429,13 +429,17 @@ getWindowSize <- function(remDr, ...){
 #'
 #' @examples
 
-switchToFrame <- function(remDr, ...){
+switchToFrame <- function(remDr, Id = NULL, ...){
   
 # Add function specific JSON to post
+  if("webElement" %in% class(Id)){
+    # pass the webElement as Json to SS
+    Id <- setNames(as.character(Id$elementId), "ELEMENT")
+  }
   jsonBody <- toJSON(list(
-
-  ), auto_unbox = TRUE)
-  
+    id = Id
+  ), auto_unbox = TRUE, null = "null")
+    
   obj <- remDr
   obj$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/frame", data = obj)
