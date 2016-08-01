@@ -100,9 +100,7 @@ getCurrentUrl <- function(remDr, ...){
 back <- function(remDr, ...){
   
 # Add function specific JSON to post
-  jsonBody <- toJSON(list(
-
-  ), auto_unbox = TRUE)
+  jsonBody <- NULL
   
   remDr$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/back", data = remDr)
@@ -125,9 +123,7 @@ back <- function(remDr, ...){
 forward <- function(remDr, ...){
   
 # Add function specific JSON to post
-  jsonBody <- toJSON(list(
-
-  ), auto_unbox = TRUE)
+  jsonBody <- NULL
   
   remDr$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/forward", data = remDr)
@@ -150,9 +146,7 @@ forward <- function(remDr, ...){
 refresh <- function(remDr, ...){
   
 # Add function specific JSON to post
-  jsonBody <- toJSON(list(
-
-  ), auto_unbox = TRUE)
+  jsonBody <- NULL
   
   remDr$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/refresh", data = remDr)

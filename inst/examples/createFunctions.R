@@ -58,6 +58,23 @@ JCommands <- list(
   ), auto_unbox = TRUE)
   ", args = " url,"),
 
+  back = list(com =  "
+# Add function specific JSON to post
+  jsonBody <- NULL
+  "),
+
+
+  forward = list(com =  "
+# Add function specific JSON to post
+  jsonBody <- NULL
+  "),
+
+
+  refresh = list(com =  "
+# Add function specific JSON to post
+  jsonBody <- NULL
+  "),
+
   default = list(com = "
 # Add function specific JSON to post
   jsonBody <- toJSON(list(
