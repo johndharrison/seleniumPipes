@@ -23,4 +23,7 @@ RSelenium::startServer()
 remDr <- remoteDr()
 remDr %>% go(url = "http://www.google.com")
 remDr %>% go(url = "http://www.bbc.com")
+remDr %>% back()
+remDr %>% forward()
+remDr %>% refresh()
 ```
