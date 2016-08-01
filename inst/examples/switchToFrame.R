@@ -19,3 +19,5 @@ remDr %>% switchToFrame(frames[2])
 remDr %>%  getPageSource() %>% xml_find_all("//a")
 remDr %>%  getPageSource() %>% xml_find_all("//a") %>% length
 # [1] 13
+
+remDr %>% deleteSession()
