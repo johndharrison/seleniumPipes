@@ -31,16 +31,25 @@ funcTemp <- "#' {{command}}
 
 {{command}} <- function({{Arg}},{{addArgs}} ...){
   {{{JSON_command}}}
-  {{Arg}}$sessionId <- {{Arg}}$sessionId()
-  pathTemplate <- whisker.render(\"{{uriTemplate}}\", data = {{Arg}})
+  obj <- {{Arg}}
+  obj$sessionId <- {{Arg}}$sessionId()
+  pathTemplate <- whisker.render(\"{{uriTemplate}}\", data = obj)
   pathURL <- {{Arg}}[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
   res <- queryDriver(verb = {{method}}, url = build_url(pathURL), source = \"{{command}}\", json = {{JSON}},...)
-  invisible(res)
+  {{return}}
 }
 
 
 "
+
+# configure returns
+selReturn <- list(
+  "invisible(remDr)"
+  , "res$value"
+  , "read_html(res$value)"
+)
+
 # list of POST type JSON commands
 
 JCommands <- list(
@@ -49,43 +58,46 @@ JCommands <- list(
   jsonBody <- toJSON(list(
     desiredCapabilities =c(remDr$desiredCapabilities, remDr$extraCapabilities)
   ), auto_unbox = TRUE)
-  ", args = NULL),
+  ", args = NULL, type = 1L),
 
   go = list(com =  "
 # Add function specific JSON to post
   jsonBody <- toJSON(list(
      url = url
   ), auto_unbox = TRUE)
-  ", args = " url,"),
+  ", args = " url,", type = 1L),
 
   back = list(com =  "
 # Add function specific JSON to post
   jsonBody <- NULL
-  "),
+  ", type = 1L),
 
 
   forward = list(com =  "
 # Add function specific JSON to post
   jsonBody <- NULL
-  "),
+  ", type = 1L),
 
 
   refresh = list(com =  "
 # Add function specific JSON to post
   jsonBody <- NULL
-  "),
+  ", type = 1L),
 
   default = list(com = "
 # Add function specific JSON to post
   jsonBody <- toJSON(list(
 
   ), auto_unbox = TRUE)
-  ")
+  ", type = 1L),
+
+  getPageSource = list(type = 3L)
 )
 
 selPipeFuncs <- lapply(rowSplit(methPaths), function(x){
+  appFunc <- JCommands[[x[["command"]]]]
   if(identical(x[["method"]], "POST")){
-    appCommand <- JCommands[[x[["command"]]]][["com"]]
+    appCommand <- appFunc[["com"]]
     defCommand <- JCommands[["default"]][["com"]]
     x[["JSON_command"]] <- ifelse(!is.null(appCommand), appCommand, defCommand)
     x[["JSON"]] <- "jsonBody"
@@ -93,6 +105,12 @@ selPipeFuncs <- lapply(rowSplit(methPaths), function(x){
     x[["JSON"]] <- "NULL"
   }
   x[["addArgs"]] <- JCommands[[x[["command"]]]][["args"]]
+  type <- if(is.null(appFunc)){
+    JCommands[["default"]][["type"]]
+  }else{
+    appFunc[["type"]]
+  }
+  x[["return"]] <- selReturn[[type]]
   whisker.render(funcTemp, x)
 }
 )
