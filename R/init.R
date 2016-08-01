@@ -19,17 +19,20 @@ remoteDr <- function(remoteServerAddr = "http://localhost",
   remServAdd <- parse_url(remoteServerAddr)
   remServAdd[["port"]] <- port
   remServAdd[["path"]] <- path
-  session <- list(
-    remServAdd = remServAdd,
-    desiredCapabilities = list(
-      browserName = browserName
-      , version = version
-      , javascriptEnabled = javascript
-      , platform = platform
-      , nativeEvents = nativeEvents),
-    extraCapabilities = extraCapabilities,
-    sessionId = function(){.e$sessionId}
-  )
+  session <- structure(
+    list(
+      remServAdd = remServAdd,
+      desiredCapabilities = list(
+        browserName = browserName
+        , version = version
+        , javascriptEnabled = javascript
+        , platform = platform
+        , nativeEvents = nativeEvents),
+      extraCapabilities = extraCapabilities,
+      sessionId = function(){.e$sessionId}
+    )
+    , class = "rDriver")
+
   if(newSession){
     newSession(session)
   }
