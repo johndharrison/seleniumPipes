@@ -21,7 +21,8 @@ methPaths[, uriTemplate := gsub("\\}", "\\}\\}", uriTemplate)]
 methPaths[, elemInd := grepl("\\{elementId\\}", uriTemplate)]
 methPaths[, Arg := ifelse(elemInd, "webElem", "remDr")]
 
-funcTemp <- "#' {{command}}
+funcTemp <- list(
+remDr = "#' {{command}}
 #'
 #' @param {{Arg}}
 #'
@@ -42,7 +43,30 @@ funcTemp <- "#' {{command}}
 }
 
 
-"
+",
+webElem = "#' {{command}}
+#'
+#' @param {{Arg}}
+#'
+#' @return
+#' @export
+#'
+#' @examples
+
+{{command}} <- function({{Arg}},{{{addArgs}}} ...){
+{{{JSON_command}}}
+obj <- {{Arg}}
+obj$sessionId <- {{Arg}}$sessionId()
+obj$elementId <- {{Arg}}$elementId$ELEMENT
+pathTemplate <- whisker.render(\"{{uriTemplate}}\", data = obj)
+pathURL <- {{Arg}}[['remDr']][['remServAdd']]
+pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
+res <- queryDriver(verb = {{method}}, url = build_url(pathURL), source = \"{{command}}\", json = {{JSON}},...)
+{{return}}
+}
+
+
+")
 
 # configure returns
 selReturn <- list(
@@ -116,9 +140,9 @@ JCommands <- list(
   switchToFrame = list(
     com = "
 # Add function specific JSON to post
-  if(\"webElement\" %in% class(Id)){
+  if(\"wElement\" %in% class(Id)){
     # pass the webElement as Json to SS
-    Id <- setNames(as.character(Id$elementId), \"ELEMENT\")
+    Id <- Id$elementId
   }
   jsonBody <- toJSON(list(
     id = Id
@@ -131,24 +155,49 @@ JCommands <- list(
   findElement = list(
     com = "
 # Add function specific JSON to post
-    using <- match.arg(using)
-    jsonBody <- toJSON(list(
-      using = using, value = value
-    ), auto_unbox = TRUE)
-    ", args = " using = c(\"xpath\", \"css selector\", \"id\", \"name\", \"tag name\", \"class name\", \"link text\", \"partial link text\"), value,"
+  using <- match.arg(using)
+  jsonBody <- toJSON(list(
+    using = using, value = value
+  ), auto_unbox = TRUE)
+  ", args = " using = c(\"xpath\", \"css selector\", \"id\", \"name\", \"tag name\", \"class name\", \"link text\", \"partial link text\"), value,"
+    , type = "ret4"
+  ),
+
+  findElementFromElement = list(
+    com = "
+# Add function specific JSON to post
+  using <- match.arg(using)
+  jsonBody <- toJSON(list(
+    using = using, value = value
+  ), auto_unbox = TRUE)
+  " , args = " using = c(\"xpath\", \"css selector\", \"id\", \"name\", \"tag name\", \"class name\", \"link text\", \"partial link text\"), value,"
     , type = "ret4"
   ),
 
   findElements = list(
     com = "
-    # Add function specific JSON to post
-    using <- match.arg(using)
-    jsonBody <- toJSON(list(
+# Add function specific JSON to post
+  using <- match.arg(using)
+  jsonBody <- toJSON(list(
     using = using, value = value
-    ), auto_unbox = TRUE)
-    ", args = " using = c(\"xpath\", \"css selector\", \"id\", \"name\", \"tag name\", \"class name\", \"link text\", \"partial link text\"), value,"
+  ), auto_unbox = TRUE)
+  " , args = " using = c(\"xpath\", \"css selector\", \"id\", \"name\", \"tag name\", \"class name\", \"link text\", \"partial link text\"), value,"
     , type = "ret5"
-    )
+  ),
+
+  findElementsFromElement = list(
+    com = "
+# Add function specific JSON to post
+  using <- match.arg(using)
+  jsonBody <- toJSON(list(
+    using = using, value = value
+  ), auto_unbox = TRUE)
+  "  , args = " using = c(\"xpath\", \"css selector\", \"id\", \"name\", \"tag name\", \"class name\", \"link text\", \"partial link text\"), value,"
+    , type = "ret5"
+  ),
+
+  getActiveElement = list(type = "ret4")
+
 )
 
 selPipeFuncs <- lapply(rowSplit(methPaths), function(x){
@@ -168,7 +217,7 @@ selPipeFuncs <- lapply(rowSplit(methPaths), function(x){
     appFunc[["type"]]
   }
   x[["return"]] <- selReturn[[type]]
-  whisker.render(funcTemp, x)
+  whisker.render(funcTemp[[x$Arg]], x)
 }
 )
 remDrFuncs <- paste(selPipeFuncs[!grepl("\\{elementId\\}", selPipeFuncs)], collapse = "")
