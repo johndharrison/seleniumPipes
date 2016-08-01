@@ -432,9 +432,9 @@ getWindowSize <- function(remDr, ...){
 switchToFrame <- function(remDr, Id = NULL, ...){
   
 # Add function specific JSON to post
-  if("webElement" %in% class(Id)){
+  if("wElement" %in% class(Id)){
     # pass the webElement as Json to SS
-    Id <- setNames(as.character(Id$elementId), "ELEMENT")
+    Id <- Id$elementId
   }
   jsonBody <- toJSON(list(
     id = Id
@@ -488,11 +488,11 @@ switchToParentFrame <- function(remDr, ...){
 findElement <- function(remDr, using = c("xpath", "css selector", "id", "name", "tag name", "class name", "link text", "partial link text"), value, ...){
   
 # Add function specific JSON to post
-    using <- match.arg(using)
-    jsonBody <- toJSON(list(
-      using = using, value = value
-    ), auto_unbox = TRUE)
-    
+  using <- match.arg(using)
+  jsonBody <- toJSON(list(
+    using = using, value = value
+  ), auto_unbox = TRUE)
+  
   obj <- remDr
   obj$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/element", data = obj)
@@ -514,12 +514,12 @@ findElement <- function(remDr, using = c("xpath", "css selector", "id", "name", 
 
 findElements <- function(remDr, using = c("xpath", "css selector", "id", "name", "tag name", "class name", "link text", "partial link text"), value, ...){
   
-    # Add function specific JSON to post
-    using <- match.arg(using)
-    jsonBody <- toJSON(list(
+# Add function specific JSON to post
+  using <- match.arg(using)
+  jsonBody <- toJSON(list(
     using = using, value = value
-    ), auto_unbox = TRUE)
-    
+  ), auto_unbox = TRUE)
+  
   obj <- remDr
   obj$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/elements", data = obj)
@@ -547,7 +547,7 @@ getActiveElement <- function(remDr, ...){
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
   res <- queryDriver(verb = GET, url = build_url(pathURL), source = "getActiveElement", json = NULL,...)
-  invisible(remDr)
+  invisible(wbElement(res$value, remDr))
 }
 
 
