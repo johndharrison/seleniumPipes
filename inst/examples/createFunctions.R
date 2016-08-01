@@ -16,6 +16,7 @@ setnames(methPaths, names(methPaths), tocamel(tolower(names(methPaths))))
 methPaths[,command := tocamel(tolower(command))]
 methPaths[, uriTemplate := gsub("session id", "sessionId", uriTemplate)]
 methPaths[, uriTemplate := gsub("element id", "elementId", uriTemplate)]
+methPaths[, uriTemplate := gsub("\\{property name\\}", "\\{propertyName\\}", uriTemplate)]
 methPaths[, uriTemplate := gsub("\\{", "\\{\\{", uriTemplate)]
 methPaths[, uriTemplate := gsub("\\}", "\\}\\}", uriTemplate)]
 methPaths[, elemInd := grepl("\\{elementId\\}", uriTemplate)]
@@ -32,9 +33,9 @@ remDr = "#' {{command}}
 #' @examples
 
 {{command}} <- function({{Arg}},{{{addArgs}}} ...){
-  {{{JSON_command}}}
   obj <- {{Arg}}
   obj$sessionId <- {{Arg}}$sessionId()
+  {{{JSON_command}}}
   pathTemplate <- whisker.render(\"{{uriTemplate}}\", data = obj)
   pathURL <- {{Arg}}[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
@@ -54,15 +55,15 @@ webElem = "#' {{command}}
 #' @examples
 
 {{command}} <- function({{Arg}},{{{addArgs}}} ...){
-{{{JSON_command}}}
-obj <- {{Arg}}
-obj$sessionId <- {{Arg}}$sessionId()
-obj$elementId <- {{Arg}}$elementId$ELEMENT
-pathTemplate <- whisker.render(\"{{uriTemplate}}\", data = obj)
-pathURL <- {{Arg}}[['remDr']][['remServAdd']]
-pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-res <- queryDriver(verb = {{method}}, url = build_url(pathURL), source = \"{{command}}\", json = {{JSON}},...)
-{{return}}
+  obj <- {{Arg}}
+  obj$sessionId <- {{Arg}}$sessionId()
+  obj$elementId <- {{Arg}}$elementId$ELEMENT
+  {{{JSON_command}}}
+  pathTemplate <- whisker.render(\"{{uriTemplate}}\", data = obj)
+  pathURL <- {{Arg}}[['remDr']][['remServAdd']]
+  pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
+  res <- queryDriver(verb = {{method}}, url = build_url(pathURL), source = \"{{command}}\", json = {{JSON}},...)
+  {{return}}
 }
 
 
@@ -196,18 +197,45 @@ JCommands <- list(
     , type = "ret5"
   ),
 
-  getActiveElement = list(type = "ret4")
+  getActiveElement = list(type = "ret4"),
+
+  isElementSelected = list(type = "ret2"),
+
+  getElementAttribute = list(
+    com = "obj$name <- attribute"
+    , args = " attribute, ", type = "ret2"),
+
+  getElementProperty = list(
+    com = "obj$name <- property"
+    , args = " property, ", type = "ret2"),
+
+  getElementCssValue = list(
+    com = "obj$propertyName <- propertyName"
+    , args = " propertyName, ", type = "ret2"),
+
+  getElementText = list(type = "ret2"),
+
+  getElementTagName = list(type = "ret2"),
+
+  getElementRect = list(type = "ret2"),
+
+  isElementEnabled = list(type = "ret2")
+
 
 )
 
 selPipeFuncs <- lapply(rowSplit(methPaths), function(x){
   appFunc <- JCommands[[x[["command"]]]]
+  appCommand <- appFunc[["com"]]
   if(identical(x[["method"]], "POST")){
-    appCommand <- appFunc[["com"]]
     defCommand <- JCommands[["default"]][["com"]]
     x[["JSON_command"]] <- ifelse(!is.null(appCommand), appCommand, defCommand)
     x[["JSON"]] <- "jsonBody"
   }else{
+    x[["JSON_command"]] <- if(!is.null(appCommand)){appCommand
+    }else{
+      NULL
+    }
     x[["JSON"]] <- "NULL"
   }
   x[["addArgs"]] <- JCommands[[x[["command"]]]][["args"]]
