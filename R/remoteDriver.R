@@ -8,14 +8,14 @@
 #' @examples
 
 newSession <- function(remDr, ...){
+  obj <- remDr
+  obj$sessionId <- remDr$sessionId()
   
 # Add function specific JSON to post
   jsonBody <- toJSON(list(
     desiredCapabilities =c(remDr$desiredCapabilities, remDr$extraCapabilities)
   ), auto_unbox = TRUE)
   
-  obj <- remDr
-  obj$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
@@ -34,9 +34,9 @@ newSession <- function(remDr, ...){
 #' @examples
 
 deleteSession <- function(remDr, ...){
-  
   obj <- remDr
   obj$sessionId <- remDr$sessionId()
+  
   pathTemplate <- whisker.render("/session/{{sessionId}}", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
@@ -55,14 +55,14 @@ deleteSession <- function(remDr, ...){
 #' @examples
 
 go <- function(remDr, url, ...){
+  obj <- remDr
+  obj$sessionId <- remDr$sessionId()
   
 # Add function specific JSON to post
   jsonBody <- toJSON(list(
      url = url
   ), auto_unbox = TRUE)
   
-  obj <- remDr
-  obj$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/url", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
@@ -81,9 +81,9 @@ go <- function(remDr, url, ...){
 #' @examples
 
 getCurrentUrl <- function(remDr, ...){
-  
   obj <- remDr
   obj$sessionId <- remDr$sessionId()
+  
   pathTemplate <- whisker.render("/session/{{sessionId}}/url", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
@@ -102,12 +102,12 @@ getCurrentUrl <- function(remDr, ...){
 #' @examples
 
 back <- function(remDr, ...){
+  obj <- remDr
+  obj$sessionId <- remDr$sessionId()
   
 # Add function specific JSON to post
   jsonBody <- NULL
   
-  obj <- remDr
-  obj$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/back", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
@@ -126,12 +126,12 @@ back <- function(remDr, ...){
 #' @examples
 
 forward <- function(remDr, ...){
+  obj <- remDr
+  obj$sessionId <- remDr$sessionId()
   
 # Add function specific JSON to post
   jsonBody <- NULL
   
-  obj <- remDr
-  obj$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/forward", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
@@ -150,12 +150,12 @@ forward <- function(remDr, ...){
 #' @examples
 
 refresh <- function(remDr, ...){
+  obj <- remDr
+  obj$sessionId <- remDr$sessionId()
   
 # Add function specific JSON to post
   jsonBody <- NULL
   
-  obj <- remDr
-  obj$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/refresh", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
@@ -174,9 +174,9 @@ refresh <- function(remDr, ...){
 #' @examples
 
 getTitle <- function(remDr, ...){
-  
   obj <- remDr
   obj$sessionId <- remDr$sessionId()
+  
   pathTemplate <- whisker.render("/session/{{sessionId}}/title", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
@@ -195,9 +195,9 @@ getTitle <- function(remDr, ...){
 #' @examples
 
 getWindowHandle <- function(remDr, ...){
-  
   obj <- remDr
   obj$sessionId <- remDr$sessionId()
+  
   pathTemplate <- whisker.render("/session/{{sessionId}}/window", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
@@ -216,9 +216,9 @@ getWindowHandle <- function(remDr, ...){
 #' @examples
 
 closeWindow <- function(remDr, ...){
-  
   obj <- remDr
   obj$sessionId <- remDr$sessionId()
+  
   pathTemplate <- whisker.render("/session/{{sessionId}}/window", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
@@ -237,14 +237,14 @@ closeWindow <- function(remDr, ...){
 #' @examples
 
 switchToWindow <- function(remDr, name, ...){
+  obj <- remDr
+  obj$sessionId <- remDr$sessionId()
   
 # Add function specific JSON to post
   jsonBody <- toJSON(list(
     name = name
   ), auto_unbox = TRUE)
     
-  obj <- remDr
-  obj$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/window", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
@@ -263,9 +263,9 @@ switchToWindow <- function(remDr, name, ...){
 #' @examples
 
 getWindowHandles <- function(remDr, ...){
-  
   obj <- remDr
   obj$sessionId <- remDr$sessionId()
+  
   pathTemplate <- whisker.render("/session/{{sessionId}}/window/handles", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
@@ -284,14 +284,14 @@ getWindowHandles <- function(remDr, ...){
 #' @examples
 
 fullscreenWindow <- function(remDr, ...){
+  obj <- remDr
+  obj$sessionId <- remDr$sessionId()
   
 # Add function specific JSON to post
   jsonBody <- toJSON(list(
 
   ), auto_unbox = TRUE)
   
-  obj <- remDr
-  obj$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/window/fullscreen", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
@@ -310,14 +310,14 @@ fullscreenWindow <- function(remDr, ...){
 #' @examples
 
 maximizeWindow <- function(remDr, ...){
+  obj <- remDr
+  obj$sessionId <- remDr$sessionId()
   
 # Add function specific JSON to post
   jsonBody <- toJSON(list(
 
   ), auto_unbox = TRUE)
   
-  obj <- remDr
-  obj$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/window/maximize", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
@@ -336,14 +336,14 @@ maximizeWindow <- function(remDr, ...){
 #' @examples
 
 setWindowSize <- function(remDr, ...){
+  obj <- remDr
+  obj$sessionId <- remDr$sessionId()
   
 # Add function specific JSON to post
   jsonBody <- toJSON(list(
 
   ), auto_unbox = TRUE)
   
-  obj <- remDr
-  obj$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/window/size", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
@@ -362,9 +362,9 @@ setWindowSize <- function(remDr, ...){
 #' @examples
 
 getWindowPosition <- function(remDr, ...){
-  
   obj <- remDr
   obj$sessionId <- remDr$sessionId()
+  
   pathTemplate <- whisker.render("/session/{{sessionId}}/window/position", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
@@ -383,14 +383,14 @@ getWindowPosition <- function(remDr, ...){
 #' @examples
 
 setWindowPosition <- function(remDr, ...){
+  obj <- remDr
+  obj$sessionId <- remDr$sessionId()
   
 # Add function specific JSON to post
   jsonBody <- toJSON(list(
 
   ), auto_unbox = TRUE)
   
-  obj <- remDr
-  obj$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/window/position", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
@@ -409,9 +409,9 @@ setWindowPosition <- function(remDr, ...){
 #' @examples
 
 getWindowSize <- function(remDr, ...){
-  
   obj <- remDr
   obj$sessionId <- remDr$sessionId()
+  
   pathTemplate <- whisker.render("/session/{{sessionId}}/window/size", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
@@ -430,6 +430,8 @@ getWindowSize <- function(remDr, ...){
 #' @examples
 
 switchToFrame <- function(remDr, Id = NULL, ...){
+  obj <- remDr
+  obj$sessionId <- remDr$sessionId()
   
 # Add function specific JSON to post
   if("wElement" %in% class(Id)){
@@ -440,8 +442,6 @@ switchToFrame <- function(remDr, Id = NULL, ...){
     id = Id
   ), auto_unbox = TRUE, null = "null")
     
-  obj <- remDr
-  obj$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/frame", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
@@ -460,14 +460,14 @@ switchToFrame <- function(remDr, Id = NULL, ...){
 #' @examples
 
 switchToParentFrame <- function(remDr, ...){
+  obj <- remDr
+  obj$sessionId <- remDr$sessionId()
   
 # Add function specific JSON to post
   jsonBody <- toJSON(list(
 
   ), auto_unbox = TRUE)
   
-  obj <- remDr
-  obj$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/frame/parent", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
@@ -486,6 +486,8 @@ switchToParentFrame <- function(remDr, ...){
 #' @examples
 
 findElement <- function(remDr, using = c("xpath", "css selector", "id", "name", "tag name", "class name", "link text", "partial link text"), value, ...){
+  obj <- remDr
+  obj$sessionId <- remDr$sessionId()
   
 # Add function specific JSON to post
   using <- match.arg(using)
@@ -493,8 +495,6 @@ findElement <- function(remDr, using = c("xpath", "css selector", "id", "name", 
     using = using, value = value
   ), auto_unbox = TRUE)
   
-  obj <- remDr
-  obj$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/element", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
@@ -513,6 +513,8 @@ findElement <- function(remDr, using = c("xpath", "css selector", "id", "name", 
 #' @examples
 
 findElements <- function(remDr, using = c("xpath", "css selector", "id", "name", "tag name", "class name", "link text", "partial link text"), value, ...){
+  obj <- remDr
+  obj$sessionId <- remDr$sessionId()
   
 # Add function specific JSON to post
   using <- match.arg(using)
@@ -520,8 +522,6 @@ findElements <- function(remDr, using = c("xpath", "css selector", "id", "name",
     using = using, value = value
   ), auto_unbox = TRUE)
   
-  obj <- remDr
-  obj$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/elements", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
@@ -540,9 +540,9 @@ findElements <- function(remDr, using = c("xpath", "css selector", "id", "name",
 #' @examples
 
 getActiveElement <- function(remDr, ...){
-  
   obj <- remDr
   obj$sessionId <- remDr$sessionId()
+  
   pathTemplate <- whisker.render("/session/{{sessionId}}/element/active", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
@@ -561,9 +561,9 @@ getActiveElement <- function(remDr, ...){
 #' @examples
 
 getPageSource <- function(remDr, ...){
-  
   obj <- remDr
   obj$sessionId <- remDr$sessionId()
+  
   pathTemplate <- whisker.render("/session/{{sessionId}}/source", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
@@ -582,14 +582,14 @@ getPageSource <- function(remDr, ...){
 #' @examples
 
 executeScript <- function(remDr, ...){
+  obj <- remDr
+  obj$sessionId <- remDr$sessionId()
   
 # Add function specific JSON to post
   jsonBody <- toJSON(list(
 
   ), auto_unbox = TRUE)
   
-  obj <- remDr
-  obj$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/execute/sync", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
@@ -608,14 +608,14 @@ executeScript <- function(remDr, ...){
 #' @examples
 
 executeAsyncScript <- function(remDr, ...){
+  obj <- remDr
+  obj$sessionId <- remDr$sessionId()
   
 # Add function specific JSON to post
   jsonBody <- toJSON(list(
 
   ), auto_unbox = TRUE)
   
-  obj <- remDr
-  obj$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/execute/async", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
@@ -634,9 +634,9 @@ executeAsyncScript <- function(remDr, ...){
 #' @examples
 
 getCookie <- function(remDr, ...){
-  
   obj <- remDr
   obj$sessionId <- remDr$sessionId()
+  
   pathTemplate <- whisker.render("/session/{{sessionId}}/cookie/{{name}}", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
@@ -655,14 +655,14 @@ getCookie <- function(remDr, ...){
 #' @examples
 
 addCookie <- function(remDr, ...){
+  obj <- remDr
+  obj$sessionId <- remDr$sessionId()
   
 # Add function specific JSON to post
   jsonBody <- toJSON(list(
 
   ), auto_unbox = TRUE)
   
-  obj <- remDr
-  obj$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/cookie", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
@@ -681,9 +681,9 @@ addCookie <- function(remDr, ...){
 #' @examples
 
 deleteCookie <- function(remDr, ...){
-  
   obj <- remDr
   obj$sessionId <- remDr$sessionId()
+  
   pathTemplate <- whisker.render("/session/{{sessionId}}/cookie/{{name}}", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
@@ -702,9 +702,9 @@ deleteCookie <- function(remDr, ...){
 #' @examples
 
 deleteAllCookies <- function(remDr, ...){
-  
   obj <- remDr
   obj$sessionId <- remDr$sessionId()
+  
   pathTemplate <- whisker.render("/session/{{sessionId)/cookie", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
@@ -723,14 +723,14 @@ deleteAllCookies <- function(remDr, ...){
 #' @examples
 
 setTimeout <- function(remDr, ...){
+  obj <- remDr
+  obj$sessionId <- remDr$sessionId()
   
 # Add function specific JSON to post
   jsonBody <- toJSON(list(
 
   ), auto_unbox = TRUE)
   
-  obj <- remDr
-  obj$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/timeouts", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
@@ -749,14 +749,14 @@ setTimeout <- function(remDr, ...){
 #' @examples
 
 performActions <- function(remDr, ...){
+  obj <- remDr
+  obj$sessionId <- remDr$sessionId()
   
 # Add function specific JSON to post
   jsonBody <- toJSON(list(
 
   ), auto_unbox = TRUE)
   
-  obj <- remDr
-  obj$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/actions", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
@@ -775,9 +775,9 @@ performActions <- function(remDr, ...){
 #' @examples
 
 releasingActions <- function(remDr, ...){
-  
   obj <- remDr
   obj$sessionId <- remDr$sessionId()
+  
   pathTemplate <- whisker.render("/session/{{sessionId}}/actions", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
@@ -796,14 +796,14 @@ releasingActions <- function(remDr, ...){
 #' @examples
 
 dismissAlert <- function(remDr, ...){
+  obj <- remDr
+  obj$sessionId <- remDr$sessionId()
   
 # Add function specific JSON to post
   jsonBody <- toJSON(list(
 
   ), auto_unbox = TRUE)
   
-  obj <- remDr
-  obj$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/alert/dismiss", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
@@ -822,14 +822,14 @@ dismissAlert <- function(remDr, ...){
 #' @examples
 
 acceptAlert <- function(remDr, ...){
+  obj <- remDr
+  obj$sessionId <- remDr$sessionId()
   
 # Add function specific JSON to post
   jsonBody <- toJSON(list(
 
   ), auto_unbox = TRUE)
   
-  obj <- remDr
-  obj$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/alert/accept", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
@@ -848,9 +848,9 @@ acceptAlert <- function(remDr, ...){
 #' @examples
 
 getAlertText <- function(remDr, ...){
-  
   obj <- remDr
   obj$sessionId <- remDr$sessionId()
+  
   pathTemplate <- whisker.render("/session/{{sessionId}}/alert/text", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
@@ -869,14 +869,14 @@ getAlertText <- function(remDr, ...){
 #' @examples
 
 sendAlertText <- function(remDr, ...){
+  obj <- remDr
+  obj$sessionId <- remDr$sessionId()
   
 # Add function specific JSON to post
   jsonBody <- toJSON(list(
 
   ), auto_unbox = TRUE)
   
-  obj <- remDr
-  obj$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/alert/text", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
@@ -895,9 +895,9 @@ sendAlertText <- function(remDr, ...){
 #' @examples
 
 takeScreenshot <- function(remDr, ...){
-  
   obj <- remDr
   obj$sessionId <- remDr$sessionId()
+  
   pathTemplate <- whisker.render("/session/{{sessionId}}/screenshot", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
