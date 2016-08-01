@@ -18,8 +18,7 @@ newSession <- function(remDr, ...){
   pathTemplate <- whisker.render("/session", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
-  .e$sessionId <- res$sessionId
+  res <- queryDriver(verb = POST, url = build_url(pathURL), source = "newSession", json = jsonBody,...)
   invisible(res)
 }
 
@@ -39,8 +38,7 @@ deleteSession <- function(remDr, ...){
   pathTemplate <- whisker.render("/session/{{sessionId}}", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
-  .e$sessionId <- res$sessionId
+  res <- queryDriver(verb = DELETE, url = build_url(pathURL), source = "deleteSession", json = NULL,...)
   invisible(res)
 }
 
@@ -65,8 +63,7 @@ go <- function(remDr, url, ...){
   pathTemplate <- whisker.render("/session/{{sessionId}}/url", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
-  .e$sessionId <- res$sessionId
+  res <- queryDriver(verb = POST, url = build_url(pathURL), source = "go", json = jsonBody,...)
   invisible(res)
 }
 
@@ -86,8 +83,7 @@ getCurrentUrl <- function(remDr, ...){
   pathTemplate <- whisker.render("/session/{{sessionId}}/url", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
-  .e$sessionId <- res$sessionId
+  res <- queryDriver(verb = GET, url = build_url(pathURL), source = "getCurrentUrl", json = NULL,...)
   invisible(res)
 }
 
@@ -112,8 +108,7 @@ back <- function(remDr, ...){
   pathTemplate <- whisker.render("/session/{{sessionId}}/back", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
-  .e$sessionId <- res$sessionId
+  res <- queryDriver(verb = POST, url = build_url(pathURL), source = "back", json = jsonBody,...)
   invisible(res)
 }
 
@@ -138,8 +133,7 @@ forward <- function(remDr, ...){
   pathTemplate <- whisker.render("/session/{{sessionId}}/forward", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
-  .e$sessionId <- res$sessionId
+  res <- queryDriver(verb = POST, url = build_url(pathURL), source = "forward", json = jsonBody,...)
   invisible(res)
 }
 
@@ -164,8 +158,7 @@ refresh <- function(remDr, ...){
   pathTemplate <- whisker.render("/session/{{sessionId}}/refresh", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
-  .e$sessionId <- res$sessionId
+  res <- queryDriver(verb = POST, url = build_url(pathURL), source = "refresh", json = jsonBody,...)
   invisible(res)
 }
 
@@ -185,8 +178,7 @@ getTitle <- function(remDr, ...){
   pathTemplate <- whisker.render("/session/{{sessionId}}/title", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
-  .e$sessionId <- res$sessionId
+  res <- queryDriver(verb = GET, url = build_url(pathURL), source = "getTitle", json = NULL,...)
   invisible(res)
 }
 
@@ -206,8 +198,7 @@ getWindowHandle <- function(remDr, ...){
   pathTemplate <- whisker.render("/session/{{sessionId}}/window", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
-  .e$sessionId <- res$sessionId
+  res <- queryDriver(verb = GET, url = build_url(pathURL), source = "getWindowHandle", json = NULL,...)
   invisible(res)
 }
 
@@ -227,8 +218,7 @@ closeWindow <- function(remDr, ...){
   pathTemplate <- whisker.render("/session/{{sessionId}}/window", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
-  .e$sessionId <- res$sessionId
+  res <- queryDriver(verb = DELETE, url = build_url(pathURL), source = "closeWindow", json = NULL,...)
   invisible(res)
 }
 
@@ -253,8 +243,7 @@ switchToWindow <- function(remDr, ...){
   pathTemplate <- whisker.render("/session/{{sessionId}}/window", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
-  .e$sessionId <- res$sessionId
+  res <- queryDriver(verb = POST, url = build_url(pathURL), source = "switchToWindow", json = jsonBody,...)
   invisible(res)
 }
 
@@ -274,8 +263,7 @@ getWindowHandles <- function(remDr, ...){
   pathTemplate <- whisker.render("/session/{{sessionId}}/window/handles", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
-  .e$sessionId <- res$sessionId
+  res <- queryDriver(verb = GET, url = build_url(pathURL), source = "getWindowHandles", json = NULL,...)
   invisible(res)
 }
 
@@ -300,8 +288,7 @@ fullscreenWindow <- function(remDr, ...){
   pathTemplate <- whisker.render("/session/{{sessionId}}/window/fullscreen", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
-  .e$sessionId <- res$sessionId
+  res <- queryDriver(verb = POST, url = build_url(pathURL), source = "fullscreenWindow", json = jsonBody,...)
   invisible(res)
 }
 
@@ -326,8 +313,7 @@ maximizeWindow <- function(remDr, ...){
   pathTemplate <- whisker.render("/session/{{sessionId}}/window/maximize", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
-  .e$sessionId <- res$sessionId
+  res <- queryDriver(verb = POST, url = build_url(pathURL), source = "maximizeWindow", json = jsonBody,...)
   invisible(res)
 }
 
@@ -352,8 +338,7 @@ setWindowSize <- function(remDr, ...){
   pathTemplate <- whisker.render("/session/{{sessionId}}/window/size", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
-  .e$sessionId <- res$sessionId
+  res <- queryDriver(verb = POST, url = build_url(pathURL), source = "setWindowSize", json = jsonBody,...)
   invisible(res)
 }
 
@@ -373,8 +358,7 @@ getWindowPosition <- function(remDr, ...){
   pathTemplate <- whisker.render("/session/{{sessionId}}/window/position", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
-  .e$sessionId <- res$sessionId
+  res <- queryDriver(verb = GET, url = build_url(pathURL), source = "getWindowPosition", json = NULL,...)
   invisible(res)
 }
 
@@ -399,8 +383,7 @@ setWindowPosition <- function(remDr, ...){
   pathTemplate <- whisker.render("/session/{{sessionId}}/window/position", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
-  .e$sessionId <- res$sessionId
+  res <- queryDriver(verb = POST, url = build_url(pathURL), source = "setWindowPosition", json = jsonBody,...)
   invisible(res)
 }
 
@@ -420,8 +403,7 @@ getWindowSize <- function(remDr, ...){
   pathTemplate <- whisker.render("/session/{{sessionId}}/window/size", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
-  .e$sessionId <- res$sessionId
+  res <- queryDriver(verb = GET, url = build_url(pathURL), source = "getWindowSize", json = NULL,...)
   invisible(res)
 }
 
@@ -446,8 +428,7 @@ switchToFrame <- function(remDr, ...){
   pathTemplate <- whisker.render("/session/{{sessionId}}/frame", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
-  .e$sessionId <- res$sessionId
+  res <- queryDriver(verb = POST, url = build_url(pathURL), source = "switchToFrame", json = jsonBody,...)
   invisible(res)
 }
 
@@ -472,8 +453,7 @@ switchToParentFrame <- function(remDr, ...){
   pathTemplate <- whisker.render("/session/{{sessionId}}/frame/parent", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
-  .e$sessionId <- res$sessionId
+  res <- queryDriver(verb = POST, url = build_url(pathURL), source = "switchToParentFrame", json = jsonBody,...)
   invisible(res)
 }
 
@@ -498,8 +478,7 @@ findElement <- function(remDr, ...){
   pathTemplate <- whisker.render("/session/{{sessionId}}/element", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
-  .e$sessionId <- res$sessionId
+  res <- queryDriver(verb = POST, url = build_url(pathURL), source = "findElement", json = jsonBody,...)
   invisible(res)
 }
 
@@ -524,8 +503,7 @@ findElements <- function(remDr, ...){
   pathTemplate <- whisker.render("/session/{{sessionId}}/elements", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
-  .e$sessionId <- res$sessionId
+  res <- queryDriver(verb = POST, url = build_url(pathURL), source = "findElements", json = jsonBody,...)
   invisible(res)
 }
 
@@ -545,8 +523,7 @@ getActiveElement <- function(remDr, ...){
   pathTemplate <- whisker.render("/session/{{sessionId}}/element/active", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
-  .e$sessionId <- res$sessionId
+  res <- queryDriver(verb = GET, url = build_url(pathURL), source = "getActiveElement", json = NULL,...)
   invisible(res)
 }
 
@@ -566,8 +543,7 @@ getPageSource <- function(remDr, ...){
   pathTemplate <- whisker.render("/session/{{sessionId}}/source", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
-  .e$sessionId <- res$sessionId
+  res <- queryDriver(verb = GET, url = build_url(pathURL), source = "getPageSource", json = NULL,...)
   invisible(res)
 }
 
@@ -592,8 +568,7 @@ executeScript <- function(remDr, ...){
   pathTemplate <- whisker.render("/session/{{sessionId}}/execute/sync", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
-  .e$sessionId <- res$sessionId
+  res <- queryDriver(verb = POST, url = build_url(pathURL), source = "executeScript", json = jsonBody,...)
   invisible(res)
 }
 
@@ -618,8 +593,7 @@ executeAsyncScript <- function(remDr, ...){
   pathTemplate <- whisker.render("/session/{{sessionId}}/execute/async", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
-  .e$sessionId <- res$sessionId
+  res <- queryDriver(verb = POST, url = build_url(pathURL), source = "executeAsyncScript", json = jsonBody,...)
   invisible(res)
 }
 
@@ -639,8 +613,7 @@ getCookie <- function(remDr, ...){
   pathTemplate <- whisker.render("/session/{{sessionId}}/cookie/{{name}}", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
-  .e$sessionId <- res$sessionId
+  res <- queryDriver(verb = GET, url = build_url(pathURL), source = "getCookie", json = NULL,...)
   invisible(res)
 }
 
@@ -665,8 +638,7 @@ addCookie <- function(remDr, ...){
   pathTemplate <- whisker.render("/session/{{sessionId}}/cookie", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
-  .e$sessionId <- res$sessionId
+  res <- queryDriver(verb = POST, url = build_url(pathURL), source = "addCookie", json = jsonBody,...)
   invisible(res)
 }
 
@@ -686,8 +658,7 @@ deleteCookie <- function(remDr, ...){
   pathTemplate <- whisker.render("/session/{{sessionId}}/cookie/{{name}}", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
-  .e$sessionId <- res$sessionId
+  res <- queryDriver(verb = DELETE, url = build_url(pathURL), source = "deleteCookie", json = NULL,...)
   invisible(res)
 }
 
@@ -707,8 +678,7 @@ deleteAllCookies <- function(remDr, ...){
   pathTemplate <- whisker.render("/session/{{sessionId)/cookie", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
-  .e$sessionId <- res$sessionId
+  res <- queryDriver(verb = DELETE, url = build_url(pathURL), source = "deleteAllCookies", json = NULL,...)
   invisible(res)
 }
 
@@ -733,8 +703,7 @@ setTimeout <- function(remDr, ...){
   pathTemplate <- whisker.render("/session/{{sessionId}}/timeouts", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
-  .e$sessionId <- res$sessionId
+  res <- queryDriver(verb = POST, url = build_url(pathURL), source = "setTimeout", json = jsonBody,...)
   invisible(res)
 }
 
@@ -759,8 +728,7 @@ performActions <- function(remDr, ...){
   pathTemplate <- whisker.render("/session/{{sessionId}}/actions", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
-  .e$sessionId <- res$sessionId
+  res <- queryDriver(verb = POST, url = build_url(pathURL), source = "performActions", json = jsonBody,...)
   invisible(res)
 }
 
@@ -780,8 +748,7 @@ releasingActions <- function(remDr, ...){
   pathTemplate <- whisker.render("/session/{{sessionId}}/actions", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
-  .e$sessionId <- res$sessionId
+  res <- queryDriver(verb = DELETE, url = build_url(pathURL), source = "releasingActions", json = NULL,...)
   invisible(res)
 }
 
@@ -806,8 +773,7 @@ dismissAlert <- function(remDr, ...){
   pathTemplate <- whisker.render("/session/{{sessionId}}/alert/dismiss", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
-  .e$sessionId <- res$sessionId
+  res <- queryDriver(verb = POST, url = build_url(pathURL), source = "dismissAlert", json = jsonBody,...)
   invisible(res)
 }
 
@@ -832,8 +798,7 @@ acceptAlert <- function(remDr, ...){
   pathTemplate <- whisker.render("/session/{{sessionId}}/alert/accept", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
-  .e$sessionId <- res$sessionId
+  res <- queryDriver(verb = POST, url = build_url(pathURL), source = "acceptAlert", json = jsonBody,...)
   invisible(res)
 }
 
@@ -853,8 +818,7 @@ getAlertText <- function(remDr, ...){
   pathTemplate <- whisker.render("/session/{{sessionId}}/alert/text", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
-  .e$sessionId <- res$sessionId
+  res <- queryDriver(verb = GET, url = build_url(pathURL), source = "getAlertText", json = NULL,...)
   invisible(res)
 }
 
@@ -879,8 +843,7 @@ sendAlertText <- function(remDr, ...){
   pathTemplate <- whisker.render("/session/{{sessionId}}/alert/text", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
-  .e$sessionId <- res$sessionId
+  res <- queryDriver(verb = POST, url = build_url(pathURL), source = "sendAlertText", json = jsonBody,...)
   invisible(res)
 }
 
@@ -900,8 +863,7 @@ takeScreenshot <- function(remDr, ...){
   pathTemplate <- whisker.render("/session/{{sessionId}}/screenshot", data = remDr)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
-  .e$sessionId <- res$sessionId
+  res <- queryDriver(verb = GET, url = build_url(pathURL), source = "takeScreenshot", json = NULL,...)
   invisible(res)
 }
 
