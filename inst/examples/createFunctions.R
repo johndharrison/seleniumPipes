@@ -35,8 +35,7 @@ funcTemp <- "#' {{command}}
   pathTemplate <- whisker.render(\"{{uriTemplate}}\", data = {{Arg}})
   pathURL <- {{Arg}}[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = POST, url = build_url(pathURL), json = jsonBody,...)
-  .e$sessionId <- res$sessionId
+  res <- queryDriver(verb = {{method}}, url = build_url(pathURL), source = \"{{command}}\", json = {{JSON}},...)
   invisible(res)
 }
 
