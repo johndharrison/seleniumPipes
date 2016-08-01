@@ -485,20 +485,21 @@ switchToParentFrame <- function(remDr, ...){
 #'
 #' @examples
 
-findElement <- function(remDr, ...){
+findElement <- function(remDr, using = c("xpath", "css selector", "id", "name", "tag name", "class name", "link text", "partial link text"), value, ...){
   
 # Add function specific JSON to post
-  jsonBody <- toJSON(list(
-
-  ), auto_unbox = TRUE)
-  
+    using <- match.arg(using)
+    jsonBody <- toJSON(list(
+      using = using, value = value
+    ), auto_unbox = TRUE)
+    
   obj <- remDr
   obj$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/element", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
   res <- queryDriver(verb = POST, url = build_url(pathURL), source = "findElement", json = jsonBody,...)
-  invisible(remDr)
+  invisible(wbElement(res$value, remDr))
 }
 
 
@@ -511,20 +512,21 @@ findElement <- function(remDr, ...){
 #'
 #' @examples
 
-findElements <- function(remDr, ...){
+findElements <- function(remDr, using = c("xpath", "css selector", "id", "name", "tag name", "class name", "link text", "partial link text"), value, ...){
   
-# Add function specific JSON to post
-  jsonBody <- toJSON(list(
-
-  ), auto_unbox = TRUE)
-  
+    # Add function specific JSON to post
+    using <- match.arg(using)
+    jsonBody <- toJSON(list(
+    using = using, value = value
+    ), auto_unbox = TRUE)
+    
   obj <- remDr
   obj$sessionId <- remDr$sessionId()
   pathTemplate <- whisker.render("/session/{{sessionId}}/elements", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
   res <- queryDriver(verb = POST, url = build_url(pathURL), source = "findElements", json = jsonBody,...)
-  invisible(remDr)
+  invisible(lapply(res$value, wbElement, remDr = remDr))
 }
 
 

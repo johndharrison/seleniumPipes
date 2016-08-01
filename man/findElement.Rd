@@ -4,7 +4,8 @@
 \alias{findElement}
 \title{findElement}
 \usage{
-findElement(remDr, ...)
+findElement(remDr, using = c("xpath", "css selector", "id", "name",
+  "tag name", "class name", "link text", "partial link text"), value, ...)
 }
 \arguments{
 \item{remDr}{}
