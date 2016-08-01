@@ -30,7 +30,7 @@ funcTemp <- "#' {{command}}
 #'
 #' @examples
 
-{{command}} <- function({{Arg}},{{addArgs}} ...){
+{{command}} <- function({{Arg}},{{{addArgs}}} ...){
   {{{JSON_command}}}
   obj <- {{Arg}}
   obj$sessionId <- {{Arg}}$sessionId()
@@ -49,6 +49,8 @@ selReturn <- list(
   ret1 = "invisible(remDr)"
   , ret2 = "res$value"
   , ret3 = "read_html(res$value)"
+  , ret4 = "invisible(wbElement(res$value, remDr))"
+  , ret5 = "invisible(lapply(res$value, wbElement, remDr = remDr))"
 )
 
 # list of POST type JSON commands
@@ -93,9 +95,13 @@ JCommands <- list(
   ", type = "ret1"),
 
   getPageSource = list(type = "ret3"),
+
   getTitle = list(type = "ret2"),
+
   getWindowHandle = list(type = "ret2"),
+
   closeWindow = list(type = "ret1"),
+
   switchToWindow = list(
     com = "
 # Add function specific JSON to post
@@ -104,7 +110,9 @@ JCommands <- list(
   ), auto_unbox = TRUE)
     ", args = " name,", type = "ret1"
   ),
+
   getWindowHandles = list(type = "ret2"),
+
   switchToFrame = list(
     com = "
 # Add function specific JSON to post
@@ -116,7 +124,31 @@ JCommands <- list(
     id = Id
   ), auto_unbox = TRUE, null = \"null\")
     ", args = " Id = NULL,", type = "ret1"
-  )
+  ),
+
+  switchToParentFrame = list(type = "ret1"),
+
+  findElement = list(
+    com = "
+# Add function specific JSON to post
+    using <- match.arg(using)
+    jsonBody <- toJSON(list(
+      using = using, value = value
+    ), auto_unbox = TRUE)
+    ", args = " using = c(\"xpath\", \"css selector\", \"id\", \"name\", \"tag name\", \"class name\", \"link text\", \"partial link text\"), value,"
+    , type = "ret4"
+  ),
+
+  findElements = list(
+    com = "
+    # Add function specific JSON to post
+    using <- match.arg(using)
+    jsonBody <- toJSON(list(
+    using = using, value = value
+    ), auto_unbox = TRUE)
+    ", args = " using = c(\"xpath\", \"css selector\", \"id\", \"name\", \"tag name\", \"class name\", \"link text\", \"partial link text\"), value,"
+    , type = "ret5"
+    )
 )
 
 selPipeFuncs <- lapply(rowSplit(methPaths), function(x){
