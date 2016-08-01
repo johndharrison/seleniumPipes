@@ -1,5 +1,7 @@
-seleniumPipes - lightweight implementation of w3c wedriver specification
+seleniumPipes
 ==========================
+
+##### *A lightweight implementation of w3c wedriver specification*
 
 ### Introduction
 
