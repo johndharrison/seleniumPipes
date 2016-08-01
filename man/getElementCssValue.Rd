@@ -4,7 +4,7 @@
 \alias{getElementCssValue}
 \title{getElementCssValue}
 \usage{
-getElementCssValue(webElem, ...)
+getElementCssValue(webElem, propertyName, ...)
 }
 \arguments{
 \item{webElem}{}

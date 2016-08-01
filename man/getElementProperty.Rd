@@ -4,7 +4,7 @@
 \alias{getElementProperty}
 \title{getElementProperty}
 \usage{
-getElementProperty(webElem, ...)
+getElementProperty(webElem, property, ...)
 }
 \arguments{
 \item{webElem}{}
