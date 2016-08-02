@@ -4,7 +4,7 @@
 \alias{elementSendKeys}
 \title{elementSendKeys}
 \usage{
-elementSendKeys(webElem, sendKeys, ...)
+elementSendKeys(webElem, ...)
 }
 \arguments{
 \item{webElem}{}

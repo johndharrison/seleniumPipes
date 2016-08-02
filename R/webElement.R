@@ -283,11 +283,12 @@ elementClear <- function(webElem, ...){
 #'
 #' @examples
 
-elementSendKeys <- function(webElem, sendKeys,  ...){
+elementSendKeys <- function(webElem, ...){
   obj <- webElem
   obj$sessionId <- webElem$sessionId()
   obj$elementId <- webElem$elementId$ELEMENT
-  jsonBody <- toJSON(list(value = matchSelKeys(sendKeys)), auto_unbox = TRUE)
+  sendKeys <- list(...)
+      jsonBody <- toJSON(list(value = matchSelKeys(sendKeys)), auto_unbox = TRUE)
   pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/value", data = obj)
   pathURL <- webElem[['remDr']][['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
