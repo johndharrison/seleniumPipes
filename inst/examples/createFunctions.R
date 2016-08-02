@@ -265,6 +265,10 @@ JCommands <- list(
     , type = "ret6"
   ),
 
+  getCookie = list(
+    args = " name = NULL, "
+    , type = "ret2"),
+
   setTimeout = list(
     com = "
       jsonBody <- toJSON(list(type = type, ms = milliseconds), auto_unbox = TRUE)"

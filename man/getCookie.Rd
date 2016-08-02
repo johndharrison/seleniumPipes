@@ -4,7 +4,7 @@
 \alias{getCookie}
 \title{getCookie}
 \usage{
-getCookie(remDr, ...)
+getCookie(remDr, name = NULL, ...)
 }
 \arguments{
 \item{remDr}{}

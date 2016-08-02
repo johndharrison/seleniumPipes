@@ -645,7 +645,7 @@ executeAsyncScript <- function(remDr, script, args = list(), replace = TRUE,  ..
 #'
 #' @examples
 
-getCookie <- function(remDr, ...){
+getCookie <- function(remDr, name = NULL,  ...){
   obj <- remDr
   obj$sessionId <- remDr$sessionId()
   
@@ -653,7 +653,7 @@ getCookie <- function(remDr, ...){
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
   res <- queryDriver(verb = GET, url = build_url(pathURL), source = "getCookie", json = NULL,...)
-  invisible(remDr)
+  res$value
 }
 
 
