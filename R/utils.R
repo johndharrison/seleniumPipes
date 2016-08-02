@@ -52,3 +52,14 @@ selKeys <- structure(list(null = "\uE000", cancel = "\uE001", help = "\uE002", b
                                                                                "numpad_8", "numpad_9", "multiply", "add", "separator", "subtract",
                                                                                "decimal", "divide", "f1", "f2", "f3", "f4", "f5", "f6", "f7",
                                                                                "f8", "f9", "f10", "f11", "f12", "command_meta"))
+
+testWebElement <- function(x, remDr){
+  replaceWE <- function(x, remDr) if(identical(name(x), "ELEMENT")){wbElement(x, remDr)}else{x}
+  if(is.null(x)) return(x)
+  listTest <- sum(sapply(x, inherits, "list")) > 0
+  if(listTest){
+    lapply(x, testWebElement, remDr = remDr)
+  }else{
+    replaceWE(x, remDr = remDr)
+  }
+}
