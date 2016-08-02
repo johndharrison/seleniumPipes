@@ -78,11 +78,12 @@ queryDriver <- function(verb = GET, url, source, ...){
   }
   res <- do.call(verb, c(list(url), body = list(...)[["json"]]))
   # Add error checking code here
-  res <- if(validate(content(res, as = "text"))){
-    fromJSON(content(res, as = "text"))
-  }else{
-    content(res)
-  }
+  # res <- if(validate(content(res, as = "text"))){
+  #   fromJSON(content(res, as = "text"))
+  # }else{
+  #   content(res)
+  # }
+  res <- content(res)
   .e$sessionId <- res$sessionId
   res
 }
