@@ -39,3 +39,5 @@ remDr %>% getPageSource() %>% xml_find_all("//frame") %>% xml_attr("name")
 # [1] "logo"     "contents" "banner"  
 
 ```
+
+Further examples are available on install in the examples directory.
