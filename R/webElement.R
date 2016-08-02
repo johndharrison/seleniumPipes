@@ -293,21 +293,16 @@ elementClear <- function(webElem, ...){
 #'
 #' @examples
 
-elementSendKeys <- function(webElem, ...){
+elementSendKeys <- function(webElem, sendKeys,  ...){
   obj <- webElem
   obj$sessionId <- webElem$sessionId()
   obj$elementId <- webElem$elementId$ELEMENT
-  
-# Add function specific JSON to post
-  jsonBody <- toJSON(list(
-
-  ), auto_unbox = TRUE)
-  
+  jsonBody <- toJSON(list(value = matchSelKeys(sendKeys)), auto_unbox = TRUE)
   pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/value", data = obj)
   pathURL <- webElem[['remDr']][['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
   res <- queryDriver(verb = POST, url = build_url(pathURL), source = "elementSendKeys", json = jsonBody,...)
-  invisible(remDr)
+  invisible(wbElement(res$value, remDr))
 }
 
 
