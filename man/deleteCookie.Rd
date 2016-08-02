@@ -4,7 +4,7 @@
 \alias{deleteCookie}
 \title{deleteCookie}
 \usage{
-deleteCookie(remDr, ...)
+deleteCookie(remDr, name = NULL, ...)
 }
 \arguments{
 \item{remDr}{}

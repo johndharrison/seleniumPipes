@@ -648,7 +648,7 @@ executeAsyncScript <- function(remDr, script, args = list(), replace = TRUE,  ..
 getCookie <- function(remDr, name = NULL,  ...){
   obj <- remDr
   obj$sessionId <- remDr$sessionId()
-  
+  obj$name <- name
   pathTemplate <- whisker.render("/session/{{sessionId}}/cookie/{{name}}", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
@@ -666,15 +666,14 @@ getCookie <- function(remDr, name = NULL,  ...){
 #'
 #' @examples
 
-addCookie <- function(remDr, ...){
+addCookie <- function(remDr, name, value, path = NULL, domain = NULL, secure = FALSE, httpOnly = NULL, expiry = NULL,  ...){
   obj <- remDr
   obj$sessionId <- remDr$sessionId()
   
-# Add function specific JSON to post
-  jsonBody <- toJSON(list(
-
-  ), auto_unbox = TRUE)
-  
+  cookie <- list(name = name, value = value, path = path, domain = domain
+                , secure = secure, httpOnly = httpOnly, expiry = expiry)
+  cookie <- cookie[!sapply(cookie, is.null)]
+  jsonBody <- toJSON(list(cookie = cookie), null = "null", auto_unbox = TRUE)
   pathTemplate <- whisker.render("/session/{{sessionId}}/cookie", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
@@ -692,10 +691,10 @@ addCookie <- function(remDr, ...){
 #'
 #' @examples
 
-deleteCookie <- function(remDr, ...){
+deleteCookie <- function(remDr, name = NULL,  ...){
   obj <- remDr
   obj$sessionId <- remDr$sessionId()
-  
+  obj$name <- name
   pathTemplate <- whisker.render("/session/{{sessionId}}/cookie/{{name}}", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
@@ -717,7 +716,7 @@ deleteAllCookies <- function(remDr, ...){
   obj <- remDr
   obj$sessionId <- remDr$sessionId()
   
-  pathTemplate <- whisker.render("/session/{{sessionId)/cookie", data = obj)
+  pathTemplate <- whisker.render("/session/{{sessionId}}/cookie", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
   res <- queryDriver(verb = DELETE, url = build_url(pathURL), source = "deleteAllCookies", json = NULL,...)

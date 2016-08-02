@@ -4,7 +4,8 @@
 \alias{addCookie}
 \title{addCookie}
 \usage{
-addCookie(remDr, ...)
+addCookie(remDr, name, value, path = NULL, domain = NULL, secure = FALSE,
+  httpOnly = NULL, expiry = NULL, ...)
 }
 \arguments{
 \item{remDr}{}
