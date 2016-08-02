@@ -226,8 +226,9 @@ JCommands <- list(
   elementClick = list(com = "jsonBody <- NULL", type = "ret4"),
 
   elementSendKeys = list(
-    com = "jsonBody <- toJSON(list(value = matchSelKeys(sendKeys)), auto_unbox = TRUE)"
-    , args = " sendKeys, ", type = "ret4")
+    com = "sendKeys <- list(...)
+      jsonBody <- toJSON(list(value = matchSelKeys(sendKeys)), auto_unbox = TRUE)"
+    , type = "ret4")
 
 
 )
