@@ -76,6 +76,7 @@ selReturn <- list(
   , ret3 = "read_html(res$value)"
   , ret4 = "invisible(wbElement(res$value, remDr))"
   , ret5 = "invisible(lapply(res$value, wbElement, remDr = remDr))"
+  , ret6 = "if(replace){testWebElement(res$value, remDr)}else{res$value}"
 )
 
 # list of POST type JSON commands
@@ -228,7 +229,24 @@ JCommands <- list(
   elementSendKeys = list(
     com = "sendKeys <- list(...)
       jsonBody <- toJSON(list(value = matchSelKeys(sendKeys)), auto_unbox = TRUE)"
-    , type = "ret4")
+    , type = "ret4"),
+
+  executeScript = list(
+    com = "
+  args <- lapply(args, function(x){
+    if('wElement' %in% class(x)){
+      x$elementId
+    }else{
+      x
+    }
+  })
+  jsonBody <- toJSON(list(
+    script = script, args = args
+  ), auto_unbox = TRUE)
+"
+    , args = " script, args = list(), replace = TRUE, "
+    , type = "ret6"
+  )
 
 
 )
