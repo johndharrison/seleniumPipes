@@ -4,7 +4,7 @@
 \alias{executeScript}
 \title{executeScript}
 \usage{
-executeScript(remDr, ...)
+executeScript(remDr, script, args = list(), replace = TRUE, ...)
 }
 \arguments{
 \item{remDr}{}

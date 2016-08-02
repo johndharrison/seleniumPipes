@@ -581,20 +581,26 @@ getPageSource <- function(remDr, ...){
 #'
 #' @examples
 
-executeScript <- function(remDr, ...){
+executeScript <- function(remDr, script, args = list(), replace = TRUE,  ...){
   obj <- remDr
   obj$sessionId <- remDr$sessionId()
   
-# Add function specific JSON to post
+  args <- lapply(args, function(x){
+    if('wElement' %in% class(x)){
+      x$elementId
+    }else{
+      x
+    }
+  })
   jsonBody <- toJSON(list(
-
+    script = script, args = args
   ), auto_unbox = TRUE)
-  
+
   pathTemplate <- whisker.render("/session/{{sessionId}}/execute/sync", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
   res <- queryDriver(verb = POST, url = build_url(pathURL), source = "executeScript", json = jsonBody,...)
-  invisible(remDr)
+  if(replace){testWebElement(res$value, remDr)}else{res$value}
 }
 
 
