@@ -54,7 +54,7 @@ selKeys <- structure(list(null = "\uE000", cancel = "\uE001", help = "\uE002", b
                                                                                "f8", "f9", "f10", "f11", "f12", "command_meta"))
 
 testWebElement <- function(x, remDr){
-  replaceWE <- function(x, remDr) if(identical(name(x), "ELEMENT")){wbElement(x, remDr)}else{x}
+  replaceWE <- function(x, remDr) if(identical(names(x), "ELEMENT")){wbElement(x, remDr)}else{x}
   if(is.null(x)||identical(length(x), 0L)) return(x)
   listTest <- sum(sapply(x, inherits, "list")) > 0
   if(listTest){
