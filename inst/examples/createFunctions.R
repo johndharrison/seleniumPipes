@@ -14,6 +14,8 @@ methPaths <- html_table(xml_find_all(doc, tabXpath))[[1]]
 setDT(methPaths)
 setnames(methPaths, names(methPaths), tocamel(tolower(names(methPaths))))
 methPaths[,command := tocamel(tolower(command))]
+
+methPaths[, uriTemplate := gsub("/session/\\{session id)/cookie", "/session/\\{session id\\}/cookie", uriTemplate)]
 methPaths[, uriTemplate := gsub("session id", "sessionId", uriTemplate)]
 methPaths[, uriTemplate := gsub("element id", "elementId", uriTemplate)]
 methPaths[, uriTemplate := gsub("\\{property name\\}", "\\{propertyName\\}", uriTemplate)]
@@ -266,8 +268,25 @@ JCommands <- list(
   ),
 
   getCookie = list(
-    args = " name = NULL, "
+    com = "obj$name <- name"
+    , args = " name = NULL, "
     , type = "ret2"),
+
+  addCookie = list(
+    com = "
+  cookie <- list(name = name, value = value, path = path, domain = domain
+                , secure = secure, httpOnly = httpOnly, expiry = expiry)
+  cookie <- cookie[!sapply(cookie, is.null)]
+  jsonBody <- toJSON(list(cookie = cookie), null = \"null\", auto_unbox = TRUE)"
+    , args = " name, value, path = NULL, domain = NULL, secure = FALSE, httpOnly = NULL, expiry = NULL, "
+    , type = "ret1"),
+
+  deleteCookie = list(
+    com = "obj$name <- name"
+    , args = " name = NULL, "
+    , type = "ret1"),
+
+  deleteAllCookies = list(type = "ret1"),
 
   setTimeout = list(
     com = "
