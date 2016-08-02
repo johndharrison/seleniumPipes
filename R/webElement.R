@@ -243,17 +243,12 @@ elementClick <- function(webElem, ...){
   obj <- webElem
   obj$sessionId <- webElem$sessionId()
   obj$elementId <- webElem$elementId$ELEMENT
-  
-# Add function specific JSON to post
-  jsonBody <- toJSON(list(
-
-  ), auto_unbox = TRUE)
-  
+  jsonBody <- NULL
   pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/click", data = obj)
   pathURL <- webElem[['remDr']][['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
   res <- queryDriver(verb = POST, url = build_url(pathURL), source = "elementClick", json = jsonBody,...)
-  invisible(remDr)
+  invisible(wbElement(res$value, remDr))
 }
 
 
@@ -270,17 +265,12 @@ elementClear <- function(webElem, ...){
   obj <- webElem
   obj$sessionId <- webElem$sessionId()
   obj$elementId <- webElem$elementId$ELEMENT
-  
-# Add function specific JSON to post
-  jsonBody <- toJSON(list(
-
-  ), auto_unbox = TRUE)
-  
+  jsonBody <- NULL
   pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/clear", data = obj)
   pathURL <- webElem[['remDr']][['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
   res <- queryDriver(verb = POST, url = build_url(pathURL), source = "elementClear", json = jsonBody,...)
-  invisible(remDr)
+  invisible(wbElement(res$value, remDr))
 }
 
 
