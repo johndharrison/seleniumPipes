@@ -137,7 +137,7 @@ checkResponse <- function(response){
   }
   if(!is.null(content(response)$status)){
     scDetail <- statusCodes[statusCodes$Code == content(response)$status,]
-    cat("Selenium Status code: ", scDetail$code, "\n")
+    cat("Selenium Status code: ", scDetail$Code, "\n")
     cat("Selenium Status summary: ", scDetail$Summary, "\n")
     cat("Selenium Status detail: ", scDetail$Detail, "\n")
   }
