@@ -246,7 +246,30 @@ JCommands <- list(
 "
     , args = " script, args = list(), replace = TRUE, "
     , type = "ret6"
-  )
+  ),
+
+  executeAsyncScript = list(
+    com = "
+  args <- lapply(args, function(x){
+    if('wElement' %in% class(x)){
+      x$elementId
+    }else{
+      x
+    }
+  })
+  jsonBody <- toJSON(list(
+    script = script, args = args
+  ), auto_unbox = TRUE)
+"
+    , args = " script, args = list(), replace = TRUE, "
+    , type = "ret6"
+  ),
+
+  setTimeout = list(
+    com = "
+      jsonBody <- toJSON(list(type = type, ms = milliseconds), auto_unbox = TRUE)"
+    , args = " type = 'page load', milliseconds = 10000, "
+    , type = "ret1")
 
 
 )

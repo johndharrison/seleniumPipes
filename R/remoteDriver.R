@@ -613,20 +613,26 @@ executeScript <- function(remDr, script, args = list(), replace = TRUE,  ...){
 #'
 #' @examples
 
-executeAsyncScript <- function(remDr, ...){
+executeAsyncScript <- function(remDr, script, args = list(), replace = TRUE,  ...){
   obj <- remDr
   obj$sessionId <- remDr$sessionId()
   
-# Add function specific JSON to post
+  args <- lapply(args, function(x){
+    if('wElement' %in% class(x)){
+      x$elementId
+    }else{
+      x
+    }
+  })
   jsonBody <- toJSON(list(
-
+    script = script, args = args
   ), auto_unbox = TRUE)
-  
+
   pathTemplate <- whisker.render("/session/{{sessionId}}/execute/async", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
   res <- queryDriver(verb = POST, url = build_url(pathURL), source = "executeAsyncScript", json = jsonBody,...)
-  invisible(remDr)
+  if(replace){testWebElement(res$value, remDr)}else{res$value}
 }
 
 
@@ -728,15 +734,11 @@ deleteAllCookies <- function(remDr, ...){
 #'
 #' @examples
 
-setTimeout <- function(remDr, ...){
+setTimeout <- function(remDr, type = 'page load', milliseconds = 10000,  ...){
   obj <- remDr
   obj$sessionId <- remDr$sessionId()
   
-# Add function specific JSON to post
-  jsonBody <- toJSON(list(
-
-  ), auto_unbox = TRUE)
-  
+      jsonBody <- toJSON(list(type = type, ms = milliseconds), auto_unbox = TRUE)
   pathTemplate <- whisker.render("/session/{{sessionId}}/timeouts", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)

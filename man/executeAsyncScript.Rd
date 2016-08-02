@@ -4,7 +4,7 @@
 \alias{executeAsyncScript}
 \title{executeAsyncScript}
 \usage{
-executeAsyncScript(remDr, ...)
+executeAsyncScript(remDr, script, args = list(), replace = TRUE, ...)
 }
 \arguments{
 \item{remDr}{}

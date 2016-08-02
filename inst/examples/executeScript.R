@@ -44,3 +44,6 @@ remDr %>% executeScript(script = "var test ={num:1, str:'a', el:document.getElem
 # $el
 # $el$ELEMENT
 # [1] "0"
+
+remDr %>% deleteSession()
+

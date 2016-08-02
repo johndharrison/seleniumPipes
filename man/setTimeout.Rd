@@ -4,7 +4,7 @@
 \alias{setTimeout}
 \title{setTimeout}
 \usage{
-setTimeout(remDr, ...)
+setTimeout(remDr, type = "page load", milliseconds = 10000, ...)
 }
 \arguments{
 \item{remDr}{}
