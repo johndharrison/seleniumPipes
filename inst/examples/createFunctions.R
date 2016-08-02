@@ -288,6 +288,17 @@ JCommands <- list(
 
   deleteAllCookies = list(type = "ret1"),
 
+  dismissAlert = list(com = "jsonBody <- NULL", type = "ret1"),
+
+  acceptAlert = list(com = "jsonBody <- NULL", type = "ret1"),
+
+  getAlertText = list(type = "ret2"),
+
+  sendAlertText = list(
+    com = "sendKeys <- list(...)
+  jsonBody <- toJSON(list(text = matchSelKeys(sendKeys)), auto_unbox = TRUE)"
+    , type = "ret1"),
+
   setTimeout = list(
     com = "
       jsonBody <- toJSON(list(type = type, ms = milliseconds), auto_unbox = TRUE)"
