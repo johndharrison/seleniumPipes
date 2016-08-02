@@ -78,12 +78,53 @@ queryDriver <- function(verb = GET, url, source, ...){
   }
   res <- do.call(verb, c(list(url), body = list(...)[["json"]]))
   # Add error checking code here
-  # res <- if(validate(content(res, as = "text"))){
-  #   fromJSON(content(res, as = "text"))
-  # }else{
-  #   content(res)
-  # }
+  checkResponse(res)
   res <- content(res)
   .e$sessionId <- res$sessionId
   res
+}
+
+#' Title
+#'
+#' @param response
+#'
+#' @return
+#' @export
+#'
+#' @examples
+
+checkResponse <- function(response){
+  if(identical(res$status_code, 200L)) return()
+  cat("Error detected:\n")
+  cat("Response status code :", res$status_code, "\n")
+  if(!is.null(content(res)$value$class)){
+    cat("Selenium class exception:", content(res)$value$class,"\n")
+  }
+  cat("Please check the response with errorResponse()\n")
+  cat("Please check the content returned with errorContent()\n")
+  .e$errorResponse <- res
+  .e$errorContent <- content(res)
+  stop("Selenium Server error")
+}
+
+#' Title
+#'
+#' @return
+#' @export
+#'
+#' @examples
+
+errorResponse <- function(){
+  .e$errorResponse
+}
+
+#' Title
+#'
+#' @return
+#' @export
+#'
+#' @examples
+
+errorContent <- function(){
+  .e$errorContent
 }
