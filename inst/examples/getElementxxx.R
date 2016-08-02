@@ -1,4 +1,4 @@
-# examples for getE
+# examples for getElementxxx type functions
 
 remDr <- remoteDr()
 remDr %>% go("https://www.google.com/ncr")
