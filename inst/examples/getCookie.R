@@ -11,4 +11,5 @@ remDr %>% getCookie("myCookie")
 remDr %>% getCookie()
 remDr %>% deleteAllCookies()
 remDr %>% getCookie()
+
 remDr %>% deleteSession()

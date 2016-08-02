@@ -805,12 +805,7 @@ releasingActions <- function(remDr, ...){
 dismissAlert <- function(remDr, ...){
   obj <- remDr
   obj$sessionId <- remDr$sessionId()
-  
-# Add function specific JSON to post
-  jsonBody <- toJSON(list(
-
-  ), auto_unbox = TRUE)
-  
+  jsonBody <- NULL
   pathTemplate <- whisker.render("/session/{{sessionId}}/alert/dismiss", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
@@ -831,12 +826,7 @@ dismissAlert <- function(remDr, ...){
 acceptAlert <- function(remDr, ...){
   obj <- remDr
   obj$sessionId <- remDr$sessionId()
-  
-# Add function specific JSON to post
-  jsonBody <- toJSON(list(
-
-  ), auto_unbox = TRUE)
-  
+  jsonBody <- NULL
   pathTemplate <- whisker.render("/session/{{sessionId}}/alert/accept", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
@@ -862,7 +852,7 @@ getAlertText <- function(remDr, ...){
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
   res <- queryDriver(verb = GET, url = build_url(pathURL), source = "getAlertText", json = NULL,...)
-  invisible(remDr)
+  res$value
 }
 
 
@@ -878,12 +868,8 @@ getAlertText <- function(remDr, ...){
 sendAlertText <- function(remDr, ...){
   obj <- remDr
   obj$sessionId <- remDr$sessionId()
-  
-# Add function specific JSON to post
-  jsonBody <- toJSON(list(
-
-  ), auto_unbox = TRUE)
-  
+  sendKeys <- list(...)
+  jsonBody <- toJSON(list(text = matchSelKeys(sendKeys)), auto_unbox = TRUE)
   pathTemplate <- whisker.render("/session/{{sessionId}}/alert/text", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
