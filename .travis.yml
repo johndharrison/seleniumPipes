@@ -8,8 +8,8 @@ language: c
 
 before_install:
   - curl -OL http://raw.github.com/craigcitro/r-travis/master/scripts/travis-tool.sh
-- chmod 755 ./travis-tool.sh
-- ./travis-tool.sh bootstrap
+  - chmod 755 ./travis-tool.sh
+  - ./travis-tool.sh bootstrap
 install:
   - ./travis-tool.sh install_deps
 script: ./travis-tool.sh run_tests
@@ -19,5 +19,5 @@ after_failure:
 
 notifications:
   email:
-  on_success: change
-on_failure: change
+    on_success: change
+    on_failure: change
