@@ -1,6 +1,9 @@
 seleniumPipes
 ==========================
 
+#### Travis build status
+[![Build Status](https://travis-ci.org/johndharrison/seleniumPipes.svg?branch=master)](https://travis-ci.org/johndharrison/seleniumPipes)
+
 ##### *A lightweight implementation of w3c wedriver specification*
 
 ### Introduction
