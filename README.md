@@ -21,7 +21,7 @@ To get started using `seleniumPipes` you can look at the following example
 ```
 library(seleniumPipes)
 library(RSelenium) # start a server with utility function
-RSelenium::startServer()
+selServ <- RSelenium::startServer()
 remDr <- remoteDr()
 remDr %>% go(url = "http://www.google.com")
 remDr %>% go(url = "http://www.bbc.com")
@@ -38,6 +38,8 @@ remDr %>% getPageSource() %>% xml_find_all("//frame") %>% xml_attr("name")
  
 # [1] "logo"     "contents" "banner"  
 
+remDr %>% deleteSession()
+selServ$stop()
 ```
 
 Further examples are available on install in the examples directory.
