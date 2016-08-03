@@ -1,3 +1,13 @@
+#' @importFrom  httr parse_url
+#' @importFrom  httr build_url
+#' @importFrom  httr GET
+#' @importFrom  httr POST
+#' @importFrom  httr DELETE
+#' @importFrom  httr content
+#' @importFrom  jsonlite toJSON
+#' @importFrom  jsonlite fromJSON
+NULL
+
 #' remoteDr
 #'
 #' @return
