@@ -4,8 +4,10 @@
 #' @importFrom  httr POST
 #' @importFrom  httr DELETE
 #' @importFrom  httr content
+#' @importFrom  xml2 read_html
 #' @importFrom  jsonlite toJSON
 #' @importFrom  jsonlite fromJSON
+#' @importFrom  whisker whisker.render
 NULL
 
 #' remoteDr
