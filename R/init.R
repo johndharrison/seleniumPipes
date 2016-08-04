@@ -153,6 +153,10 @@ checkResponse <- function(response){
     cat("Selenium Status summary: ", scDetail$Summary, "\n")
     cat("Selenium Status detail: ", scDetail$Detail, "\n")
   }
+  if(!is.null(content(response)$value$message)){
+    messageDetail <- content(response)$value$message
+    cat("Selenium message: ", messageDetail, "\n")
+  }
   cat("Please check the response with errorResponse()\n")
   cat("Please check the content returned with errorContent()\n")
   .e$errorResponse <- response
