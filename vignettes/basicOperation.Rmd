@@ -1,0 +1,17 @@
+---
+title: "seleniumPipes: Basic operation"
+author: "John D Harrison"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+The goal of this document is to introduce the user to the `seleniumPipes` package and
+to illustrate the basic operations/functions in the package.
+
+
+## Introduction
+

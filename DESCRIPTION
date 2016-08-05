@@ -12,5 +12,8 @@ Depends:
 Encoding: UTF-8
 License: GPL-3
 Suggests:
-    RSelenium
+    RSelenium,
+    knitr,
+    rmarkdown
 RoxygenNote: 5.0.1
+VignetteBuilder: knitr
