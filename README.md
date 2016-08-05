@@ -45,4 +45,18 @@ remDr %>% deleteSession()
 selServ$stop()
 ```
 
+### Piping
+
+Piping in `seleniumPipes` is achieved using the pipe operator from `magrittr `%>%`:
+
+```
+remDr %>% go("http://www.google.com/ncr") %>% 
+  findElement("name", "q") %>% 
+  elementSendKeys("R project", key = "enter")
+  
+```
+
+Functions relating to the remote driver which would not be expected to return data can
+be expected to return the remote driver. Functions relating to a web element which would not be expected to return data can be expected to return the web element. This allows chaining of commands as shown above.
+
 Further examples are available on install in the examples directory.
