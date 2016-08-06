@@ -18,7 +18,7 @@ NULL
 #' @examples
 #'
 
-remoteDr <- function(remoteServerAddr = "http://localhost",
+remoteDr <- function(remoteServerAddr = "localhost",
                      port             = 4444L,
                      browserName      = "firefox",
                      version          = "",
@@ -31,6 +31,9 @@ remoteDr <- function(remoteServerAddr = "http://localhost",
   remServAdd <- parse_url(remoteServerAddr)
   remServAdd[["port"]] <- port
   remServAdd[["path"]] <- path
+  if(is.null(remServAdd[["scheme"]])){
+    remServAdd[["scheme"]] <- "http"
+  }
   session <- structure(
     list(
       remServAdd = remServAdd,
