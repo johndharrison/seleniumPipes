@@ -15,3 +15,7 @@ to illustrate the basic operations/functions in the package.
 
 ## Introduction
 
+WebDriver is a remote control interface that enables introspection and control of user agents. It provides a platform- and language-neutral wire protocol as a way for out-of-process programs to remotely instruct the behaviour of web browsers. 
+
+`seleniumPipes` implements the [w3c specification](https://w3c.github.io/webdriver/webdriver-spec.html) for 
+webdrivers. 
