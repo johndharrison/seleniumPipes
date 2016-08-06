@@ -24,11 +24,36 @@ methPaths[, uriTemplate := gsub("\\}", "\\}\\}", uriTemplate)]
 methPaths[, elemInd := grepl("\\{elementId\\}", uriTemplate)]
 methPaths[, Arg := ifelse(elemInd, "webElem", "remDr")]
 
+methGroups <- list(
+  sessions = c("newSession", "deleteSession", "setTimeout"),
+  navigation = c("go", "getCurrentUrl", "back", "forward", "refresh", "getTitle"),
+  commandContexts = c("getWindowHandle", "closeWindow", "switchToWindow", "getWindowHandles"
+                      , "switchToFrame", "switchToParentFrame", "getWindowSize", "setWindowSize"
+                      , "getWindowPosition", "setWindowPosition", "maximizeWindow", "fullscreenWindow"),
+  elementRetrieval = c("getActiveElement", "findElement", "findElements", "findElementFromElement"
+                       , "findElementsFromElement"),
+  elementState = c("isElementSelected", "getElementAttribute", "getElementProperty", "getElementCssValue"
+                   , "getElementText", "getElementTagName", "getElementRect", "isElementEnabled"),
+  elementInteraction = c("elementClick", "elementClear", "elementSendKeys"),
+  documentHandling = c("getPageSource", "executeScript", "executeAsyncScript"),
+  cookies = c("getCookie", "addCookie", "deleteCookie", "deleteAllCookies"),
+  interactions = c("performActions", "releasingActions"),
+  userPrompts = c("dismissAlert", "acceptAlert", "getAlertText", "sendAlertText"),
+  screenCapture = c("takeScreenshot", "takeElementScreenshot")
+)
+methGroups <- lapply(names(methGroups), function(x){
+  expand.grid(group = x, command = methGroups[[x]], stringsAsFactors = FALSE)
+}
+)
+methGroups <- rbindlist(methGroups)
+methPaths <- merge(methPaths, methGroups, by = "command")
+
 funcTemp <- list(
 remDr = "#' {{command}}
 #'
 #' @param {{Arg}}
 #'
+#' @family {{group}} functions
 #' @return
 #' @export
 #'
@@ -51,6 +76,7 @@ webElem = "#' {{command}}
 #'
 #' @param {{Arg}}
 #'
+#' @family {{group}} functions
 #' @return
 #' @export
 #'
@@ -308,7 +334,7 @@ JCommands <- list(
 
 )
 
-selPipeFuncs <- lapply(rowSplit(methPaths), function(x){
+selPipeFuncs <- sapply(rowSplit(methPaths), function(x){
   appFunc <- JCommands[[x[["command"]]]]
   appCommand <- appFunc[["com"]]
   if(identical(x[["method"]], "POST")){
@@ -332,8 +358,11 @@ selPipeFuncs <- lapply(rowSplit(methPaths), function(x){
   whisker.render(funcTemp[[x$Arg]], x)
 }
 )
-remDrFuncs <- paste(selPipeFuncs[!grepl("\\{elementId\\}", selPipeFuncs)], collapse = "")
-webElemFuncs <- paste(selPipeFuncs[grepl("\\{elementId\\}", selPipeFuncs)], collapse = "")
-write(remDrFuncs, "R/remoteDriver.R")
-write(webElemFuncs, "R/webElement.R")
+methPaths[["selFuncs"]] <- selPipeFuncs
+# remDrFuncs <- paste(selPipeFuncs[!grepl("\\{elementId\\}", selPipeFuncs)], collapse = "")
+# webElemFuncs <- paste(selPipeFuncs[grepl("\\{elementId\\}", selPipeFuncs)], collapse = "")
+# write(remDrFuncs, "R/remoteDriver.R")
+# write(webElemFuncs, "R/webElement.R")
 
+# write the functions to file based on the groups they are in
+methPaths[,write(file = paste0("R/", group, ".R"), paste(selFuncs, collapse = "")), by = group]
