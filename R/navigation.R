@@ -66,7 +66,7 @@ getCurrentUrl <- function(remDr, ...){
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
   res <- queryDriver(verb = GET, url = build_url(pathURL), source = "getCurrentUrl", json = NULL,...)
-  invisible(remDr)
+  res$value
 }
 
 
