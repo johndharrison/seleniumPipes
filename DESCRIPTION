@@ -14,6 +14,7 @@ License: GPL-3
 Suggests:
     RSelenium,
     knitr,
-    rmarkdown
+    rmarkdown,
+    testthat
 RoxygenNote: 5.0.1
 VignetteBuilder: knitr
