@@ -18,7 +18,7 @@ NULL
 #' @examples
 #'
 
-remoteDr <- function(remoteServerAddr = "localhost",
+remoteDr <- function(remoteServerAddr = "http://localhost",
                      port             = 4444L,
                      browserName      = "firefox",
                      version          = "",
@@ -30,7 +30,11 @@ remoteDr <- function(remoteServerAddr = "localhost",
                      , newSession = TRUE){
   remServAdd <- parse_url(remoteServerAddr)
   remServAdd[["port"]] <- port
-  remServAdd[["path"]] <- path
+  remServAdd[["path"]] <- if(identical(remServAdd[["path"]], "")){
+    path
+  }else{
+    file.path(remServAdd[["path"]], path)
+  }
   if(is.null(remServAdd[["scheme"]])){
     remServAdd[["scheme"]] <- "http"
   }
