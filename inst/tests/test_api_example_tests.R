@@ -10,7 +10,7 @@ if(exists('rsel.opt', where = parent.env(environment()) , inherits = FALSE)){
   rsel.opt$extraCapabilities <- c(rsel.opt$extraCapabilities, slFlags)
 }
 
-source(file.path(find.package("seleniumPipes"), "tests", 'setup.r'), local = TRUE)
+source(file.path(find.package("seleniumPipes"), "tests", 'setup.R'), local = TRUE)
 on.exit(remDr %>% deleteSession())
 
 #1
@@ -185,10 +185,10 @@ test_that("IsEnabled", {
 
 #21-24
 test_that("IsSelectedAndToggle", {
-  if(rdBrowser == 'chrome' && package_version(remDr$sessionInfo$version)$major < 16){
-    return("deselecting preselected values only works on chrome >= 16")
-  }
-  return()
+  # if(rdBrowser == 'chrome' && package_version(remDr$sessionInfo$version)$major < 16){
+  #   return("deselecting preselected values only works on chrome >= 16")
+  # }
+  # return()
   elem <- remDr %>% go(loadPage("formPage")) %>%
     findElement(using = "id", "multi")
   option_elems <-  elem %>% findElementsFromElement(using = "xpath", "option")
@@ -211,9 +211,9 @@ test_that("Navigate", {
   remDr %>% go(loadPage("formPage")) %>%
     findElement(using = "id", "imageButton") %>% elementClick
   expect_equal("We Arrive Here", remDr %>% getTitle)
-  remDr %>% goBack()
+  remDr %>% seleniumPipes::back()
   expect_equal("We Leave From Here", remDr %>% getTitle)
-  remDr %>% goForward()
+  remDr %>% forward()
   expect_equal("We Arrive Here", remDr %>% getTitle)
 }
 )
@@ -222,7 +222,7 @@ test_that("Navigate", {
 test_that("GetAttribute", {
   attr <- remDr %>% go(loadPage("xhtmlTest")) %>%
     findElement(using = "id", "id1") %>% getElementAttribute("href")
-  expect_equal(paste0(loadPage(page), "#"), attr)
+  expect_equal(paste0(loadPage("xhtmlTest"), "#"), attr)
 }
 )
 
@@ -329,6 +329,7 @@ test_that("MoveWindowPosition", {
 #44-45
 test_that("ChangeWindowSize", {
   # not currently implemented
+  return()
   if(rdBrowser == 'android'){
     print("Not applicable")
     return()
