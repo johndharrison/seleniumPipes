@@ -168,7 +168,7 @@ checkResponse <- function(response){
   cat("Please check the content returned with errorContent()\n")
   .e$errorResponse <- response
   .e$errorContent <- content(response)
-  stop("Selenium Server error")
+  stop("Selenium Server error", call. = FALSE)
 }
 
 #' Title

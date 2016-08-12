@@ -17,7 +17,7 @@ elementClear <- function(webElem, ...){
   pathURL <- webElem[['remDr']][['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
   res <- queryDriver(verb = POST, url = build_url(pathURL), source = "elementClear", json = jsonBody,...)
-  invisible(wbElement(res$value, remDr))
+  invisible(webElem)
 }
 
 
@@ -40,7 +40,7 @@ elementClick <- function(webElem, ...){
   pathURL <- webElem[['remDr']][['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
   res <- queryDriver(verb = POST, url = build_url(pathURL), source = "elementClick", json = jsonBody,...)
-  invisible(wbElement(res$value, remDr))
+  invisible(webElem)
 }
 
 
@@ -64,7 +64,7 @@ elementSendKeys <- function(webElem, ...){
   pathURL <- webElem[['remDr']][['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
   res <- queryDriver(verb = POST, url = build_url(pathURL), source = "elementSendKeys", json = jsonBody,...)
-  invisible(wbElement(res$value, remDr))
+  invisible(webElem)
 }
 
 
