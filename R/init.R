@@ -48,12 +48,13 @@ remoteDr <- function(remoteServerAddr = "http://localhost",
         , platform = platform
         , nativeEvents = nativeEvents),
       extraCapabilities = extraCapabilities,
-      sessionId = function(){.e$sessionId}
+      sessionId = function(){.e$sessionId},
+      sessionInfo = NULL
     )
     , class = "rDriver")
 
   if(newSession){
-    newSession(session)
+    session <- newSession(session)
   }
   invisible(session)
 }
