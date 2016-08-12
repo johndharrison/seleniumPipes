@@ -36,7 +36,7 @@ methGroups <- list(
                    , "getElementText", "getElementTagName", "getElementRect", "isElementEnabled"),
   elementInteraction = c("elementClick", "elementClear", "elementSendKeys"),
   documentHandling = c("getPageSource", "executeScript", "executeAsyncScript"),
-  cookies = c("getCookie", "addCookie", "deleteCookie", "deleteAllCookies"),
+  cookies = c("getAllCookies", "getNamedCookie", "addCookie", "deleteCookie", "deleteAllCookies"),
   interactions = c("performActions", "releasingActions"),
   userPrompts = c("dismissAlert", "acceptAlert", "getAlertText", "sendAlertText"),
   screenCapture = c("takeScreenshot", "takeElementScreenshot")
@@ -123,6 +123,8 @@ JCommands <- list(
      url = url
   ), auto_unbox = TRUE)
   ", args = " url,", type = "ret1"),
+
+  getCurrentUrl = list(type = "ret2"),
 
   back = list(com =  "
 # Add function specific JSON to post
@@ -293,7 +295,9 @@ JCommands <- list(
     , type = "ret6"
   ),
 
-  getCookie = list(
+  getAllCookies = list(type = "ret2"),
+
+  getNamedCookie = list(
     com = "obj$name <- name"
     , args = " name = NULL, "
     , type = "ret2"),

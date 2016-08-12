@@ -14,6 +14,7 @@ deleteAllCookies
 }
 \seealso{
 Other cookies functions: \code{\link{addCookie}},
-  \code{\link{deleteCookie}}, \code{\link{getCookie}}
+  \code{\link{deleteCookie}}, \code{\link{getAllCookies}},
+  \code{\link{getNamedCookie}}
 }
 
