@@ -43,7 +43,7 @@ newSession <- function(remDr, ...){
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
   res <- queryDriver(verb = POST, url = build_url(pathURL), source = "newSession", json = jsonBody,...)
-  invisible(remDr)
+  remDr$sessionInfo <- res$value;invisible(remDr)
 }
 
 

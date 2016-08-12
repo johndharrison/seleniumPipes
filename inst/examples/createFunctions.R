@@ -67,7 +67,7 @@ remDr = "#' {{command}}
   pathURL <- {{Arg}}[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
   res <- queryDriver(verb = {{method}}, url = build_url(pathURL), source = \"{{command}}\", json = {{JSON}},...)
-  {{return}}
+  {{{return}}}
 }
 
 
@@ -91,7 +91,7 @@ webElem = "#' {{command}}
   pathURL <- {{Arg}}[['remDr']][['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
   res <- queryDriver(verb = {{method}}, url = build_url(pathURL), source = \"{{command}}\", json = {{JSON}},...)
-  {{return}}
+  {{{return}}}
 }
 
 
@@ -106,6 +106,7 @@ selReturn <- list(
   , ret5 = "invisible(lapply(res$value, wbElement, remDr = remDr))"
   , ret6 = "if(replace){testWebElement(res$value, remDr)}else{res$value}"
   , ret7 = "invisible(webElem)"
+  , ret8 = "remDr$sessionInfo <- res$value;invisible(remDr)"
 )
 
 # list of POST type JSON commands
@@ -116,7 +117,7 @@ JCommands <- list(
   jsonBody <- toJSON(list(
     desiredCapabilities =c(remDr$desiredCapabilities, remDr$extraCapabilities)
   ), auto_unbox = TRUE)
-  ", args = NULL, type = "ret1"),
+  ", args = NULL, type = "ret8"),
 
   go = list(com =  "
 # Add function specific JSON to post
