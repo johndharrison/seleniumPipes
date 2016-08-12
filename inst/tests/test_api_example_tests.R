@@ -38,7 +38,7 @@ test_that("FindElementsByXPath", {
 }
 )
 
-#4
+#4-5
 test_that("FindElementByXpathThrowNoSuchElementException", {
   expect_error(
     findElementText <- remDr%>% go(loadPage("simpleTest")) %>%
@@ -48,7 +48,7 @@ test_that("FindElementByXpathThrowNoSuchElementException", {
 }
 )
 
-#5-6
+#6-7
 test_that("FindElementsByXpath", {
   elems <- remDr %>% go(loadPage("nestedElements")) %>%
     findElements(using = "xpath", "//option")
@@ -57,7 +57,7 @@ test_that("FindElementsByXpath", {
 }
 )
 
-#7
+#8
 test_that("FindElementsByName", {
   elem <- remDr %>% go(loadPage("xhtmlTest")) %>%
     findElement(using = "name", "windowOne")
@@ -65,7 +65,7 @@ test_that("FindElementsByName", {
 }
 )
 
-#8
+#9
 test_that("FindElementsByNameInElementContext", {
   childElem <- remDr %>% go(loadPage("nestedElements")) %>%
     findElement(using = "name", "form2") %>%
@@ -74,7 +74,7 @@ test_that("FindElementsByNameInElementContext", {
 }
 )
 
-#9
+#10
 test_that("FindElementsByLinkTextInElementContext", {
   childElem <- remDr %>% go(loadPage("nestedElements")) %>%
     findElement(using = "name", "div1") %>%
@@ -83,7 +83,7 @@ test_that("FindElementsByLinkTextInElementContext", {
 }
 )
 
-#10
+#11
 test_that("FindElementByIdInElementContext", {
   childElem <- remDr %>% go(loadPage("nestedElements")) %>%
     findElement(using = "name", "form2") %>%
@@ -92,7 +92,7 @@ test_that("FindElementByIdInElementContext", {
 }
 )
 
-#11
+#12
 test_that("FindElementByXpathInElementContext", {
   childElem <- remDr %>% go(loadPage("nestedElements")) %>%
     findElement(using = "name", "form2") %>%
@@ -101,7 +101,7 @@ test_that("FindElementByXpathInElementContext", {
 }
 )
 
-#12
+#13-14
 test_that("FindElementByXpathInElementContextNotFound", {
   expect_error(remDr %>% go(loadPage("nestedElements")) %>%
                  findElement(using = "name", "form2") %>%
@@ -110,7 +110,7 @@ test_that("FindElementByXpathInElementContextNotFound", {
 }
 )
 
-#13
+#15
 test_that("ShouldBeAbleToEnterDataIntoFormFields", {
   elem <- remDr %>% go(loadPage("xhtmlTest")) %>%
     findElement(using = "xpath", "//form[@name='someForm']/input[@id='username']") %>%
@@ -121,7 +121,7 @@ test_that("ShouldBeAbleToEnterDataIntoFormFields", {
 }
 )
 
-#14-15
+#16-17
 test_that("FindElementByTagName", {
   elems <-remDr %>% go(loadPage("simpleTest")) %>%
     findElements(using = "tag name", "div")
@@ -132,7 +132,7 @@ test_that("FindElementByTagName", {
 }
 )
 
-#16
+#18
 test_that("FindElementByTagNameWithinElement", {
   elems <- remDr %>% go(loadPage("simpleTest")) %>%
     findElement(using = "id", "multiline") %>%
@@ -141,7 +141,7 @@ test_that("FindElementByTagNameWithinElement", {
 }
 )
 
-#17-18
+#19-21
 test_that("SwitchToWindow", {
   #if(rdBrowser == 'safari'){
   # see https://code.google.com/p/selenium/issues/detail?id=3693
@@ -173,7 +173,7 @@ test_that("SwitchFrameByName", {
 }
 )
 
-#19-20
+#22-23
 test_that("IsEnabled", {
   elem <- remDr %>% go(loadPage("formPage")) %>%
     findElement(using = "xpath", "//input[@id='working']")
@@ -183,7 +183,7 @@ test_that("IsEnabled", {
 }
 )
 
-#21-24
+#24-27
 test_that("IsSelectedAndToggle", {
   # if(rdBrowser == 'chrome' && package_version(remDr$sessionInfo$version)$major < 16){
   #   return("deselecting preselected values only works on chrome >= 16")
@@ -201,7 +201,7 @@ test_that("IsSelectedAndToggle", {
 }
 )
 
-#25-27
+#28-30
 test_that("Navigate", {
   # if(rdBrowser == 'safari'){
   # see http://code.google.com/p/selenium/issues/detail?id=3771&can=1&q=browser%3DSafari%20component%3DWebDriver%20status%3ANew%2CAccepted%2CWorkingAsIntended%2CWontFix%2CNotFeasible&colspec=ID%20Stars%20Type%20Status%20Priority%20Owner%20Summary%20Browser%20Component
@@ -218,7 +218,7 @@ test_that("Navigate", {
 }
 )
 
-#28
+#31
 test_that("GetAttribute", {
   attr <- remDr %>% go(loadPage("xhtmlTest")) %>%
     findElement(using = "id", "id1") %>% getElementAttribute("href")
@@ -226,7 +226,7 @@ test_that("GetAttribute", {
 }
 )
 
-#29-33
+#32-36
 test_that("GetImplicitAttribute", {
   elems <- remDr %>% go(loadPage("nestedElements")) %>%
     findElements(using = "xpath", "//option")
@@ -237,7 +237,7 @@ test_that("GetImplicitAttribute", {
 }
 )
 
-#34
+#37
 test_that("ExecuteSimpleScript", {
   title <- remDr %>% go(loadPage("xhtmlTest")) %>%
     executeScript("return document.title;")
@@ -245,7 +245,7 @@ test_that("ExecuteSimpleScript", {
 }
 )
 
-#35
+#38
 test_that("ExecuteScriptAndReturnElement", {
   elem <- remDr %>% go(loadPage("xhtmlTest")) %>%
     executeScript("return document.getElementById('id1');")
@@ -253,7 +253,7 @@ test_that("ExecuteScriptAndReturnElement", {
 }
 )
 
-#36
+#39
 test_that("ExecuteScriptWithArgs", {
   result <- remDr %>% go(loadPage("xhtmlTest")) %>%
     executeScript("return arguments[0] == 'fish' ? 'fish' : 'not fish';", list("fish"))
@@ -261,7 +261,7 @@ test_that("ExecuteScriptWithArgs", {
 }
 )
 
-#37
+#40
 test_that("ExecuteScriptWithMultipleArgs", {
   result <- remDr %>% go(loadPage("xhtmlTest")) %>%
     executeScript("return arguments[0] + arguments[1]", list(1, 2))
@@ -269,7 +269,7 @@ test_that("ExecuteScriptWithMultipleArgs", {
 }
 )
 
-#38
+#41
 test_that("ExecuteScriptWithElementArgs", {
   button <- remDr %>% go(loadPage("javascriptPage")) %>%
     findElement(using = "id", "plainButton")
@@ -279,7 +279,7 @@ test_that("ExecuteScriptWithElementArgs", {
 }
 )
 
-#39
+#42
 test_that("FindElementsByPartialLinkText", {
   elem <- remDr %>% go(loadPage("xhtmlTest")) %>%
     findElement(using = "partial link text", "new window")
@@ -287,7 +287,7 @@ test_that("FindElementsByPartialLinkText", {
 }
 )
 
-#40-41
+#43-44
 test_that("IsElementDisplayed", {
   visible <- remDr %>% go(loadPage("javascriptPage")) %>%
     findElement(using = "id", "displayed") %>% getElementCssValue("visibility")
@@ -297,7 +297,7 @@ test_that("IsElementDisplayed", {
 }
 )
 
-#42-43
+#45-46
 test_that("MoveWindowPosition", {
   # not implemented for now
   return()
@@ -326,7 +326,7 @@ test_that("MoveWindowPosition", {
 }
 )
 
-#44-45
+#47-48
 test_that("ChangeWindowSize", {
   # not currently implemented
   return()
