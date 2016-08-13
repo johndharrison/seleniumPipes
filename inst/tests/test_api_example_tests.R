@@ -1,13 +1,14 @@
 context("api_example_tests")
-# add build details for sauceLabs
-if(exists('rsel.opt', where = parent.env(environment()) , inherits = FALSE)){
+testEnv <- seleniumPipes:::.e
+if(identical(TRUE, testEnv$SL)){
+  # sauce labs test
   pv <- packageVersion("seleniumPipes")
   slFlags <- list(name = "seleniumPipes-test-suite"
                   , build = sum(unlist(pv)*10^(3-seq_along(unlist(pv)))) # 1.2.1 for example 121
                   , tags =  list("api-example")
                   , "custom-data" = list(release = do.call(paste, list(pv, collapse = ".")))
   )
-  rsel.opt$extraCapabilities <- c(rsel.opt$extraCapabilities, slFlags)
+  testEnv$selOptions$extraCapabilities <- c(testEnv$selOptions$extraCapabilities, slFlags)
 }
 
 source(file.path(find.package("seleniumPipes"), "tests", 'setup.R'), local = TRUE)
@@ -185,10 +186,9 @@ test_that("IsEnabled", {
 
 #24-27
 test_that("IsSelectedAndToggle", {
-  # if(rdBrowser == 'chrome' && package_version(remDr$sessionInfo$version)$major < 16){
-  #   return("deselecting preselected values only works on chrome >= 16")
-  # }
-  # return()
+  if(rdBrowser == 'chrome' && package_version(remDr$sessionInfo$version)$major < 16){
+    return("deselecting preselected values only works on chrome >= 16")
+  }
   elem <- remDr %>% go(loadPage("formPage")) %>%
     findElement(using = "id", "multi")
   option_elems <-  elem %>% findElementsFromElement(using = "xpath", "option")
