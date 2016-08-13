@@ -15,6 +15,7 @@ Suggests:
     RSelenium,
     knitr,
     rmarkdown,
-    testthat
+    testthat,
+    data.table
 RoxygenNote: 5.0.1
 VignetteBuilder: knitr
