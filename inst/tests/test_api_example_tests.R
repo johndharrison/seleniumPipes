@@ -1,5 +1,5 @@
 context("api_example_tests")
-testEnv <- seleniumPipes:::.e
+testEnv <- getOption("seleniumOptions")
 if(identical(TRUE, testEnv$SL)){
   # sauce labs test
   pv <- packageVersion("seleniumPipes")
@@ -8,7 +8,9 @@ if(identical(TRUE, testEnv$SL)){
                   , tags =  list("api-example")
                   , "custom-data" = list(release = do.call(paste, list(pv, collapse = ".")))
   )
-  testEnv$selOptions$extraCapabilities <- c(testEnv$selOptions$extraCapabilities, slFlags)
+  selOptions <- getOption("seleniumPipes_selOptions")
+  selOptions$extraCapabilities <- c(selOptions$extraCapabilities, slFlags)
+  options(seleniumPipes_selOptions = selOptions)
 }
 
 source(file.path(find.package("seleniumPipes"), "tests", 'setup.R'), local = TRUE)

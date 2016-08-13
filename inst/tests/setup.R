@@ -1,15 +1,13 @@
-library(seleniumPipes)
 library(testthat)
-testEnv <- seleniumPipes:::.e
-if(is.null(testEnv$selOptions)){
+if(is.null(getOption("seleniumPipes_selOptions"))){
   stop("Please set test options")
 }
-remDr <- do.call(remoteDr, testEnv$selOptions)
+remDr <- do.call(remoteDr, getOption("seleniumPipes_selOptions"))
+if(identical(getOption("seleniumPipes_SL"), TRUE)){
+  options(seleniumPipes_sauceID = remDr$sessionInfo$id)
+}
 remDr %>% setTimeout(milliseconds = 3000) # set page load timeout to 3 secs
 rdBrowser <- remDr$sessionInfo$browserName
-if(identical(testEnv$SL, TRUE)){
-  testEnv$SauceID <- remDr$sessionInfo$id
-}
 if(rdBrowser %in% c("iPhone", "iPad", "safari")){
   htmlSrc <- "localhost:3000"
 }else{

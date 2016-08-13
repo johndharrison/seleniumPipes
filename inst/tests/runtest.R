@@ -1,9 +1,8 @@
 library(data.table)
 library(testthat)
 library(seleniumPipes)
-testEnv <- seleniumPipes:::.e
-testEnv$selOptions <- list() # reset selenium options
-testEnv$SL <- TRUE
+
+options(seleniumPipes_SL = TRUE)
 user <- "seleniumPipes"
 pass <- Sys.getenv("SLPASS")
 if(identical(pass, "")){stop("Set a SLPASS env variable with sauceLabs pass")}
@@ -33,7 +32,7 @@ osBrowser <- list(
                       #, list(browser = "safari", version = '8')
   )
 )
-
+osBrowser <- osBrowser[1]
 osBrowser <- lapply(names(osBrowser), function(x){
   out <- rbindlist(osBrowser[[x]])
   out[, os:=x]
@@ -42,16 +41,17 @@ osBrowser <- lapply(names(osBrowser), function(x){
 osBrowser <- rbindlist(osBrowser)
 
 testResults <- Map(function(os, browser, version){
-  testEnv$selOptions <- list(remoteServerAddr = ip, port = port, browserName = browser
+  selOptions <- list(remoteServerAddr = ip, port = port, browserName = browser
                              , version = version, platform = os
                              , extraCapabilities = list(username = user
                                                         , accessKey = pass
                                                         , "selenium-version" = selVersion)
   )
+  options(seleniumPipes_selOptions = selOptions)
   testRes <- test_dir(testDir, reporter = "Tap", filter = "api_example")
-  list(id = testEnv[['sauceID']], result = testRes)
+  list(id = getOption("seleniumPipes_sauceID"), result = testRes, browser = browser, os = os)
 }, os = osBrowser$os
 , browser = osBrowser$browser
 , version = osBrowser$version)
 
-testEnv$SL <- NULL
+#assign("SL", NULL, envir = testEnv)
