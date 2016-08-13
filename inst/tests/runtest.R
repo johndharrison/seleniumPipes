@@ -1,4 +1,6 @@
 library(data.table)
+library(testthat)
+library(seleniumPipes)
 testEnv <- seleniumPipes:::.e
 testEnv$selOptions <- list() # reset selenium options
 testEnv$SL <- TRUE
@@ -10,14 +12,6 @@ selVersion <- "2.53.1"
 ip <- paste0("http://", user, ':', pass, "@ondemand.saucelabs.com")
 testDir <- system.file("tests", package = "seleniumPipes")
 osBrowser <- list(
-  "OS X 10.11" = list(list(browser = "safari", version = '9')
-                      , list(browser = "firefox", version = '45')
-                      , list(browser = "chrome", version = '51')
-  ),
-  "OS X 10.10" = list(list(browser = "safari", version = '8')
-                      , list(browser = "firefox", version = '45')
-                      , list(browser = "chrome", version = '51')
-  ),
   "Windows 10" = list(list(browser = "chrome", version = '51')
                       , list(browser = "firefox", version = '45')
                       , list(browser = "internet explorer", version = '11')
@@ -28,7 +22,15 @@ osBrowser <- list(
   ),
   "Linux" = list(list(browser = "chrome", version = '48')
                  , list(browser = "firefox", version = '45')
-                 , list(browser = "opera", version = '12')
+                 #, list(browser = "opera", version = '12')
+  ),
+  "OS X 10.11" = list(list(browser = "firefox", version = '45')
+                      , list(browser = "chrome", version = '51')
+                    #  , list(browser = "safari", version = '9')
+  ),
+  "OS X 10.10" = list(list(browser = "firefox", version = '45')
+                      , list(browser = "chrome", version = '51')
+                      #, list(browser = "safari", version = '8')
   )
 )
 
@@ -40,15 +42,14 @@ osBrowser <- lapply(names(osBrowser), function(x){
 osBrowser <- rbindlist(osBrowser)
 
 testResults <- Map(function(os, browser, version){
-  version <- y$version
   testEnv$selOptions <- list(remoteServerAddr = ip, port = port, browserName = browser
-                             , version = version, platform = platform
+                             , version = version, platform = os
                              , extraCapabilities = list(username = user
                                                         , accessKey = pass
                                                         , "selenium-version" = selVersion)
   )
   testRes <- test_dir(testDir, reporter = "Tap", filter = "api_example")
-  list(testsel[['rsel.opt']]$id, testRes)
+  list(id = testEnv[['sauceID']], result = testRes)
 }, os = osBrowser$os
 , browser = osBrowser$browser
 , version = osBrowser$version)
