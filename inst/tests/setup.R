@@ -4,7 +4,7 @@ if(is.null(getOption("seleniumPipes_selOptions"))){
 }
 remDr <- do.call(remoteDr, getOption("seleniumPipes_selOptions"))
 if(identical(getOption("seleniumPipes_SL"), TRUE)){
-  options(seleniumPipes_sauceID = remDr$sessionInfo$id)
+  options(seleniumPipes_sauceID = remDr$sessionInfo$webdriver.remote.sessionid)
 }
 remDr %>% setTimeout(milliseconds = 3000) # set page load timeout to 3 secs
 rdBrowser <- remDr$sessionInfo$browserName
