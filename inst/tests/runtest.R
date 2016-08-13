@@ -14,6 +14,7 @@ osBrowser <- list(
   "Windows 10" = list(list(browser = "chrome", version = '51')
                       , list(browser = "firefox", version = '45')
                       , list(browser = "internet explorer", version = '11')
+                      , list(browser = "MicrosoftEdge", version = '13.10586')
   ),
   "Windows 8.1" = list(list(browser = "chrome", version = '51')
                        , list(browser = "firefox", version = '45')
