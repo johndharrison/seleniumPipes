@@ -54,4 +54,14 @@ testResults <- Map(function(os, browser, version){
 , browser = osBrowser$browser
 , version = osBrowser$version)
 
-#assign("SL", NULL, envir = testEnv)
+# Annotate tests
+pv <- packageVersion("seleniumPipes")
+updateResults <- lapply(testResults, function(x){
+  ip <- paste0("https://saucelabs.com/rest/v1/", user, "/jobs/", x$id)
+  body <- list(
+    passed = !any(data.frame(x$result)$error),
+    "custom-data" = list(release = do.call(paste, list(pv, collapse = "."))
+                         , testResults = data.frame(x$result)[, c("test", "failed", "error")])
+  )
+  PUT(ip, body = body, authenticate(user, pass), encode = "json")
+})
