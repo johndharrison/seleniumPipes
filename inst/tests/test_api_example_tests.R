@@ -1,6 +1,5 @@
 context("api_example_tests")
-testEnv <- getOption("seleniumOptions")
-if(identical(TRUE, testEnv$SL)){
+if(identical(TRUE, getOption("seleniumPipes_SL"))){
   # sauce labs test
   pv <- packageVersion("seleniumPipes")
   slFlags <- list(name = "seleniumPipes-test-suite"
