@@ -7,7 +7,7 @@ user <- "seleniumPipes"
 pass <- Sys.getenv("SLPASS")
 if(identical(pass, "")){stop("Set a SLPASS env variable with sauceLabs pass")}
 port <- 80
-selVersion <- "2.53.1"
+# selVersion <- "2.53.1"
 ip <- paste0("http://", user, ':', pass, "@ondemand.saucelabs.com")
 testDir <- system.file("tests", package = "seleniumPipes")
 osBrowser <- list(
