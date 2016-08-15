@@ -10,7 +10,7 @@
 
 findElement <- function(remDr, using = c("xpath", "css selector", "id", "name", "tag name", "class name", "link text", "partial link text"), value, ...){
   obj <- remDr
-  obj$sessionId <- remDr$sessionId()
+  obj$sessionId <- remDr$sessionId(remDr$drvID)
   
 # Add function specific JSON to post
   using <- match.arg(using)
@@ -21,7 +21,7 @@ findElement <- function(remDr, using = c("xpath", "css selector", "id", "name", 
   pathTemplate <- whisker.render("/session/{{sessionId}}/element", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = POST, url = build_url(pathURL), source = "findElement", json = jsonBody,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), source = "findElement", drvID = remDr$drvID, json = jsonBody,...)
   invisible(wbElement(res$value, remDr))
 }
 
@@ -38,7 +38,7 @@ findElement <- function(remDr, using = c("xpath", "css selector", "id", "name", 
 
 findElementFromElement <- function(webElem, using = c("xpath", "css selector", "id", "name", "tag name", "class name", "link text", "partial link text"), value, ...){
   obj <- webElem
-  obj$sessionId <- webElem$sessionId()
+  obj$sessionId <- webElem$sessionId(webElem$drvID)
   obj$elementId <- webElem$elementId$ELEMENT
   
 # Add function specific JSON to post
@@ -50,7 +50,7 @@ findElementFromElement <- function(webElem, using = c("xpath", "css selector", "
   pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/element", data = obj)
   pathURL <- webElem[['remDr']][['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = POST, url = build_url(pathURL), source = "findElementFromElement", json = jsonBody,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), source = "findElementFromElement", drvID = webElem$drvID, json = jsonBody,...)
   invisible(wbElement(res$value, remDr))
 }
 
@@ -67,7 +67,7 @@ findElementFromElement <- function(webElem, using = c("xpath", "css selector", "
 
 findElements <- function(remDr, using = c("xpath", "css selector", "id", "name", "tag name", "class name", "link text", "partial link text"), value, ...){
   obj <- remDr
-  obj$sessionId <- remDr$sessionId()
+  obj$sessionId <- remDr$sessionId(remDr$drvID)
   
 # Add function specific JSON to post
   using <- match.arg(using)
@@ -78,7 +78,7 @@ findElements <- function(remDr, using = c("xpath", "css selector", "id", "name",
   pathTemplate <- whisker.render("/session/{{sessionId}}/elements", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = POST, url = build_url(pathURL), source = "findElements", json = jsonBody,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), source = "findElements", drvID = remDr$drvID, json = jsonBody,...)
   invisible(lapply(res$value, wbElement, remDr = remDr))
 }
 
@@ -95,7 +95,7 @@ findElements <- function(remDr, using = c("xpath", "css selector", "id", "name",
 
 findElementsFromElement <- function(webElem, using = c("xpath", "css selector", "id", "name", "tag name", "class name", "link text", "partial link text"), value, ...){
   obj <- webElem
-  obj$sessionId <- webElem$sessionId()
+  obj$sessionId <- webElem$sessionId(webElem$drvID)
   obj$elementId <- webElem$elementId$ELEMENT
   
 # Add function specific JSON to post
@@ -107,7 +107,7 @@ findElementsFromElement <- function(webElem, using = c("xpath", "css selector", 
   pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/elements", data = obj)
   pathURL <- webElem[['remDr']][['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = POST, url = build_url(pathURL), source = "findElementsFromElement", json = jsonBody,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), source = "findElementsFromElement", drvID = webElem$drvID, json = jsonBody,...)
   invisible(lapply(res$value, wbElement, remDr = remDr))
 }
 
@@ -124,12 +124,12 @@ findElementsFromElement <- function(webElem, using = c("xpath", "css selector", 
 
 getActiveElement <- function(remDr, ...){
   obj <- remDr
-  obj$sessionId <- remDr$sessionId()
+  obj$sessionId <- remDr$sessionId(remDr$drvID)
   
   pathTemplate <- whisker.render("/session/{{sessionId}}/element/active", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = GET, url = build_url(pathURL), source = "getActiveElement", json = NULL,...)
+  res <- queryDriver(verb = GET, url = build_url(pathURL), source = "getActiveElement", drvID = remDr$drvID, json = NULL,...)
   invisible(wbElement(res$value, remDr))
 }
 

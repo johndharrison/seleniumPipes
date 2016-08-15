@@ -10,12 +10,12 @@
 
 closeWindow <- function(remDr, ...){
   obj <- remDr
-  obj$sessionId <- remDr$sessionId()
+  obj$sessionId <- remDr$sessionId(remDr$drvID)
   
   pathTemplate <- whisker.render("/session/{{sessionId}}/window", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = DELETE, url = build_url(pathURL), source = "closeWindow", json = NULL,...)
+  res <- queryDriver(verb = DELETE, url = build_url(pathURL), source = "closeWindow", drvID = remDr$drvID, json = NULL,...)
   invisible(remDr)
 }
 
@@ -32,7 +32,7 @@ closeWindow <- function(remDr, ...){
 
 fullscreenWindow <- function(remDr, ...){
   obj <- remDr
-  obj$sessionId <- remDr$sessionId()
+  obj$sessionId <- remDr$sessionId(remDr$drvID)
   
 # Add function specific JSON to post
   jsonBody <- toJSON(list(
@@ -42,7 +42,7 @@ fullscreenWindow <- function(remDr, ...){
   pathTemplate <- whisker.render("/session/{{sessionId}}/window/fullscreen", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = POST, url = build_url(pathURL), source = "fullscreenWindow", json = jsonBody,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), source = "fullscreenWindow", drvID = remDr$drvID, json = jsonBody,...)
   invisible(remDr)
 }
 
@@ -59,12 +59,12 @@ fullscreenWindow <- function(remDr, ...){
 
 getWindowHandle <- function(remDr, ...){
   obj <- remDr
-  obj$sessionId <- remDr$sessionId()
+  obj$sessionId <- remDr$sessionId(remDr$drvID)
   
   pathTemplate <- whisker.render("/session/{{sessionId}}/window", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = GET, url = build_url(pathURL), source = "getWindowHandle", json = NULL,...)
+  res <- queryDriver(verb = GET, url = build_url(pathURL), source = "getWindowHandle", drvID = remDr$drvID, json = NULL,...)
   res$value
 }
 
@@ -81,12 +81,12 @@ getWindowHandle <- function(remDr, ...){
 
 getWindowHandles <- function(remDr, ...){
   obj <- remDr
-  obj$sessionId <- remDr$sessionId()
+  obj$sessionId <- remDr$sessionId(remDr$drvID)
   
   pathTemplate <- whisker.render("/session/{{sessionId}}/window/handles", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = GET, url = build_url(pathURL), source = "getWindowHandles", json = NULL,...)
+  res <- queryDriver(verb = GET, url = build_url(pathURL), source = "getWindowHandles", drvID = remDr$drvID, json = NULL,...)
   res$value
 }
 
@@ -103,12 +103,12 @@ getWindowHandles <- function(remDr, ...){
 
 getWindowPosition <- function(remDr, ...){
   obj <- remDr
-  obj$sessionId <- remDr$sessionId()
+  obj$sessionId <- remDr$sessionId(remDr$drvID)
   
   pathTemplate <- whisker.render("/session/{{sessionId}}/window/position", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = GET, url = build_url(pathURL), source = "getWindowPosition", json = NULL,...)
+  res <- queryDriver(verb = GET, url = build_url(pathURL), source = "getWindowPosition", drvID = remDr$drvID, json = NULL,...)
   invisible(remDr)
 }
 
@@ -125,12 +125,12 @@ getWindowPosition <- function(remDr, ...){
 
 getWindowSize <- function(remDr, ...){
   obj <- remDr
-  obj$sessionId <- remDr$sessionId()
+  obj$sessionId <- remDr$sessionId(remDr$drvID)
   
   pathTemplate <- whisker.render("/session/{{sessionId}}/window/size", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = GET, url = build_url(pathURL), source = "getWindowSize", json = NULL,...)
+  res <- queryDriver(verb = GET, url = build_url(pathURL), source = "getWindowSize", drvID = remDr$drvID, json = NULL,...)
   invisible(remDr)
 }
 
@@ -147,7 +147,7 @@ getWindowSize <- function(remDr, ...){
 
 maximizeWindow <- function(remDr, ...){
   obj <- remDr
-  obj$sessionId <- remDr$sessionId()
+  obj$sessionId <- remDr$sessionId(remDr$drvID)
   
 # Add function specific JSON to post
   jsonBody <- toJSON(list(
@@ -157,7 +157,7 @@ maximizeWindow <- function(remDr, ...){
   pathTemplate <- whisker.render("/session/{{sessionId}}/window/maximize", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = POST, url = build_url(pathURL), source = "maximizeWindow", json = jsonBody,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), source = "maximizeWindow", drvID = remDr$drvID, json = jsonBody,...)
   invisible(remDr)
 }
 
@@ -174,7 +174,7 @@ maximizeWindow <- function(remDr, ...){
 
 setWindowPosition <- function(remDr, ...){
   obj <- remDr
-  obj$sessionId <- remDr$sessionId()
+  obj$sessionId <- remDr$sessionId(remDr$drvID)
   
 # Add function specific JSON to post
   jsonBody <- toJSON(list(
@@ -184,7 +184,7 @@ setWindowPosition <- function(remDr, ...){
   pathTemplate <- whisker.render("/session/{{sessionId}}/window/position", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = POST, url = build_url(pathURL), source = "setWindowPosition", json = jsonBody,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), source = "setWindowPosition", drvID = remDr$drvID, json = jsonBody,...)
   invisible(remDr)
 }
 
@@ -201,7 +201,7 @@ setWindowPosition <- function(remDr, ...){
 
 setWindowSize <- function(remDr, ...){
   obj <- remDr
-  obj$sessionId <- remDr$sessionId()
+  obj$sessionId <- remDr$sessionId(remDr$drvID)
   
 # Add function specific JSON to post
   jsonBody <- toJSON(list(
@@ -211,7 +211,7 @@ setWindowSize <- function(remDr, ...){
   pathTemplate <- whisker.render("/session/{{sessionId}}/window/size", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = POST, url = build_url(pathURL), source = "setWindowSize", json = jsonBody,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), source = "setWindowSize", drvID = remDr$drvID, json = jsonBody,...)
   invisible(remDr)
 }
 
@@ -228,7 +228,7 @@ setWindowSize <- function(remDr, ...){
 
 switchToFrame <- function(remDr, Id = NULL, ...){
   obj <- remDr
-  obj$sessionId <- remDr$sessionId()
+  obj$sessionId <- remDr$sessionId(remDr$drvID)
   
 # Add function specific JSON to post
   if("wElement" %in% class(Id)){
@@ -242,7 +242,7 @@ switchToFrame <- function(remDr, Id = NULL, ...){
   pathTemplate <- whisker.render("/session/{{sessionId}}/frame", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = POST, url = build_url(pathURL), source = "switchToFrame", json = jsonBody,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), source = "switchToFrame", drvID = remDr$drvID, json = jsonBody,...)
   invisible(remDr)
 }
 
@@ -259,7 +259,7 @@ switchToFrame <- function(remDr, Id = NULL, ...){
 
 switchToParentFrame <- function(remDr, ...){
   obj <- remDr
-  obj$sessionId <- remDr$sessionId()
+  obj$sessionId <- remDr$sessionId(remDr$drvID)
   
 # Add function specific JSON to post
   jsonBody <- toJSON(list(
@@ -269,7 +269,7 @@ switchToParentFrame <- function(remDr, ...){
   pathTemplate <- whisker.render("/session/{{sessionId}}/frame/parent", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = POST, url = build_url(pathURL), source = "switchToParentFrame", json = jsonBody,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), source = "switchToParentFrame", drvID = remDr$drvID, json = jsonBody,...)
   invisible(remDr)
 }
 
@@ -286,7 +286,7 @@ switchToParentFrame <- function(remDr, ...){
 
 switchToWindow <- function(remDr, name, ...){
   obj <- remDr
-  obj$sessionId <- remDr$sessionId()
+  obj$sessionId <- remDr$sessionId(remDr$drvID)
   
 # Add function specific JSON to post
   jsonBody <- toJSON(list(
@@ -296,7 +296,7 @@ switchToWindow <- function(remDr, name, ...){
   pathTemplate <- whisker.render("/session/{{sessionId}}/window", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = POST, url = build_url(pathURL), source = "switchToWindow", json = jsonBody,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), source = "switchToWindow", drvID = remDr$drvID, json = jsonBody,...)
   invisible(remDr)
 }
 

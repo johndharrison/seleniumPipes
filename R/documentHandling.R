@@ -10,7 +10,7 @@
 
 executeAsyncScript <- function(remDr, script, args = list(), replace = TRUE,  ...){
   obj <- remDr
-  obj$sessionId <- remDr$sessionId()
+  obj$sessionId <- remDr$sessionId(remDr$drvID)
   
   args <- lapply(args, function(x){
     if('wElement' %in% class(x)){
@@ -26,7 +26,7 @@ executeAsyncScript <- function(remDr, script, args = list(), replace = TRUE,  ..
   pathTemplate <- whisker.render("/session/{{sessionId}}/execute/async", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = POST, url = build_url(pathURL), source = "executeAsyncScript", json = jsonBody,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), source = "executeAsyncScript", drvID = remDr$drvID, json = jsonBody,...)
   if(replace){testWebElement(res$value, remDr)}else{res$value}
 }
 
@@ -43,7 +43,7 @@ executeAsyncScript <- function(remDr, script, args = list(), replace = TRUE,  ..
 
 executeScript <- function(remDr, script, args = list(), replace = TRUE,  ...){
   obj <- remDr
-  obj$sessionId <- remDr$sessionId()
+  obj$sessionId <- remDr$sessionId(remDr$drvID)
   
   args <- lapply(args, function(x){
     if('wElement' %in% class(x)){
@@ -59,7 +59,7 @@ executeScript <- function(remDr, script, args = list(), replace = TRUE,  ...){
   pathTemplate <- whisker.render("/session/{{sessionId}}/execute/sync", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = POST, url = build_url(pathURL), source = "executeScript", json = jsonBody,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), source = "executeScript", drvID = remDr$drvID, json = jsonBody,...)
   if(replace){testWebElement(res$value, remDr)}else{res$value}
 }
 
@@ -76,12 +76,12 @@ executeScript <- function(remDr, script, args = list(), replace = TRUE,  ...){
 
 getPageSource <- function(remDr, ...){
   obj <- remDr
-  obj$sessionId <- remDr$sessionId()
+  obj$sessionId <- remDr$sessionId(remDr$drvID)
   
   pathTemplate <- whisker.render("/session/{{sessionId}}/source", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = GET, url = build_url(pathURL), source = "getPageSource", json = NULL,...)
+  res <- queryDriver(verb = GET, url = build_url(pathURL), source = "getPageSource", drvID = remDr$drvID, json = NULL,...)
   read_html(res$value)
 }
 

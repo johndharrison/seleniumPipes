@@ -10,7 +10,7 @@
 
 addCookie <- function(remDr, name, value, path = NULL, domain = NULL, secure = FALSE, httpOnly = NULL, expiry = NULL,  ...){
   obj <- remDr
-  obj$sessionId <- remDr$sessionId()
+  obj$sessionId <- remDr$sessionId(remDr$drvID)
   
   cookie <- list(name = name, value = value, path = path, domain = domain
                 , secure = secure, httpOnly = httpOnly, expiry = expiry)
@@ -19,7 +19,7 @@ addCookie <- function(remDr, name, value, path = NULL, domain = NULL, secure = F
   pathTemplate <- whisker.render("/session/{{sessionId}}/cookie", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = POST, url = build_url(pathURL), source = "addCookie", json = jsonBody,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), source = "addCookie", drvID = remDr$drvID, json = jsonBody,...)
   invisible(remDr)
 }
 
@@ -36,12 +36,12 @@ addCookie <- function(remDr, name, value, path = NULL, domain = NULL, secure = F
 
 deleteAllCookies <- function(remDr, ...){
   obj <- remDr
-  obj$sessionId <- remDr$sessionId()
+  obj$sessionId <- remDr$sessionId(remDr$drvID)
   
   pathTemplate <- whisker.render("/session/{{sessionId}}/cookie", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = DELETE, url = build_url(pathURL), source = "deleteAllCookies", json = NULL,...)
+  res <- queryDriver(verb = DELETE, url = build_url(pathURL), source = "deleteAllCookies", drvID = remDr$drvID, json = NULL,...)
   invisible(remDr)
 }
 
@@ -58,12 +58,12 @@ deleteAllCookies <- function(remDr, ...){
 
 deleteCookie <- function(remDr, name = NULL,  ...){
   obj <- remDr
-  obj$sessionId <- remDr$sessionId()
+  obj$sessionId <- remDr$sessionId(remDr$drvID)
   obj$name <- name
   pathTemplate <- whisker.render("/session/{{sessionId}}/cookie/{{name}}", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = DELETE, url = build_url(pathURL), source = "deleteCookie", json = NULL,...)
+  res <- queryDriver(verb = DELETE, url = build_url(pathURL), source = "deleteCookie", drvID = remDr$drvID, json = NULL,...)
   invisible(remDr)
 }
 
@@ -80,12 +80,12 @@ deleteCookie <- function(remDr, name = NULL,  ...){
 
 getAllCookies <- function(remDr, ...){
   obj <- remDr
-  obj$sessionId <- remDr$sessionId()
+  obj$sessionId <- remDr$sessionId(remDr$drvID)
   
   pathTemplate <- whisker.render("/session/{{sessionId}}/cookie", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = GET, url = build_url(pathURL), source = "getAllCookies", json = NULL,...)
+  res <- queryDriver(verb = GET, url = build_url(pathURL), source = "getAllCookies", drvID = remDr$drvID, json = NULL,...)
   res$value
 }
 
@@ -102,12 +102,12 @@ getAllCookies <- function(remDr, ...){
 
 getNamedCookie <- function(remDr, name = NULL,  ...){
   obj <- remDr
-  obj$sessionId <- remDr$sessionId()
+  obj$sessionId <- remDr$sessionId(remDr$drvID)
   obj$name <- name
   pathTemplate <- whisker.render("/session/{{sessionId}}/cookie/{{name}}", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = GET, url = build_url(pathURL), source = "getNamedCookie", json = NULL,...)
+  res <- queryDriver(verb = GET, url = build_url(pathURL), source = "getNamedCookie", drvID = remDr$drvID, json = NULL,...)
   res$value
 }
 

@@ -10,13 +10,13 @@
 
 getElementAttribute <- function(webElem, attribute,  ...){
   obj <- webElem
-  obj$sessionId <- webElem$sessionId()
+  obj$sessionId <- webElem$sessionId(webElem$drvID)
   obj$elementId <- webElem$elementId$ELEMENT
   obj$name <- attribute
   pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/attribute/{{name}}", data = obj)
   pathURL <- webElem[['remDr']][['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = GET, url = build_url(pathURL), source = "getElementAttribute", json = NULL,...)
+  res <- queryDriver(verb = GET, url = build_url(pathURL), source = "getElementAttribute", drvID = webElem$drvID, json = NULL,...)
   res$value
 }
 
@@ -33,13 +33,13 @@ getElementAttribute <- function(webElem, attribute,  ...){
 
 getElementCssValue <- function(webElem, propertyName,  ...){
   obj <- webElem
-  obj$sessionId <- webElem$sessionId()
+  obj$sessionId <- webElem$sessionId(webElem$drvID)
   obj$elementId <- webElem$elementId$ELEMENT
   obj$propertyName <- propertyName
   pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/css/{{propertyName}}", data = obj)
   pathURL <- webElem[['remDr']][['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = GET, url = build_url(pathURL), source = "getElementCssValue", json = NULL,...)
+  res <- queryDriver(verb = GET, url = build_url(pathURL), source = "getElementCssValue", drvID = webElem$drvID, json = NULL,...)
   res$value
 }
 
@@ -56,13 +56,13 @@ getElementCssValue <- function(webElem, propertyName,  ...){
 
 getElementProperty <- function(webElem, property,  ...){
   obj <- webElem
-  obj$sessionId <- webElem$sessionId()
+  obj$sessionId <- webElem$sessionId(webElem$drvID)
   obj$elementId <- webElem$elementId$ELEMENT
   obj$name <- property
   pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/property/{{name}}", data = obj)
   pathURL <- webElem[['remDr']][['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = GET, url = build_url(pathURL), source = "getElementProperty", json = NULL,...)
+  res <- queryDriver(verb = GET, url = build_url(pathURL), source = "getElementProperty", drvID = webElem$drvID, json = NULL,...)
   res$value
 }
 
@@ -79,13 +79,13 @@ getElementProperty <- function(webElem, property,  ...){
 
 getElementRect <- function(webElem, ...){
   obj <- webElem
-  obj$sessionId <- webElem$sessionId()
+  obj$sessionId <- webElem$sessionId(webElem$drvID)
   obj$elementId <- webElem$elementId$ELEMENT
   
   pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/rect", data = obj)
   pathURL <- webElem[['remDr']][['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = GET, url = build_url(pathURL), source = "getElementRect", json = NULL,...)
+  res <- queryDriver(verb = GET, url = build_url(pathURL), source = "getElementRect", drvID = webElem$drvID, json = NULL,...)
   res$value
 }
 
@@ -102,13 +102,13 @@ getElementRect <- function(webElem, ...){
 
 getElementTagName <- function(webElem, ...){
   obj <- webElem
-  obj$sessionId <- webElem$sessionId()
+  obj$sessionId <- webElem$sessionId(webElem$drvID)
   obj$elementId <- webElem$elementId$ELEMENT
   
   pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/name", data = obj)
   pathURL <- webElem[['remDr']][['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = GET, url = build_url(pathURL), source = "getElementTagName", json = NULL,...)
+  res <- queryDriver(verb = GET, url = build_url(pathURL), source = "getElementTagName", drvID = webElem$drvID, json = NULL,...)
   res$value
 }
 
@@ -125,13 +125,13 @@ getElementTagName <- function(webElem, ...){
 
 getElementText <- function(webElem, ...){
   obj <- webElem
-  obj$sessionId <- webElem$sessionId()
+  obj$sessionId <- webElem$sessionId(webElem$drvID)
   obj$elementId <- webElem$elementId$ELEMENT
   
   pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/text", data = obj)
   pathURL <- webElem[['remDr']][['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = GET, url = build_url(pathURL), source = "getElementText", json = NULL,...)
+  res <- queryDriver(verb = GET, url = build_url(pathURL), source = "getElementText", drvID = webElem$drvID, json = NULL,...)
   res$value
 }
 
@@ -148,13 +148,13 @@ getElementText <- function(webElem, ...){
 
 isElementEnabled <- function(webElem, ...){
   obj <- webElem
-  obj$sessionId <- webElem$sessionId()
+  obj$sessionId <- webElem$sessionId(webElem$drvID)
   obj$elementId <- webElem$elementId$ELEMENT
   
   pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/enabled", data = obj)
   pathURL <- webElem[['remDr']][['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = GET, url = build_url(pathURL), source = "isElementEnabled", json = NULL,...)
+  res <- queryDriver(verb = GET, url = build_url(pathURL), source = "isElementEnabled", drvID = webElem$drvID, json = NULL,...)
   res$value
 }
 
@@ -171,13 +171,13 @@ isElementEnabled <- function(webElem, ...){
 
 isElementSelected <- function(webElem, ...){
   obj <- webElem
-  obj$sessionId <- webElem$sessionId()
+  obj$sessionId <- webElem$sessionId(webElem$drvID)
   obj$elementId <- webElem$elementId$ELEMENT
   
   pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/selected", data = obj)
   pathURL <- webElem[['remDr']][['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = GET, url = build_url(pathURL), source = "isElementSelected", json = NULL,...)
+  res <- queryDriver(verb = GET, url = build_url(pathURL), source = "isElementSelected", drvID = webElem$drvID, json = NULL,...)
   res$value
 }
 
