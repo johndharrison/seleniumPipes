@@ -48,8 +48,9 @@ remoteDr <- function(remoteServerAddr = "http://localhost",
         , platform = platform
         , nativeEvents = nativeEvents),
       extraCapabilities = extraCapabilities,
-      sessionId = function(){.e$sessionId},
-      sessionInfo = NULL
+      sessionId = function(drvID){.e$sessionId[[drvID]]},
+      sessionInfo = NULL,
+      drvID = length(.e$sessionId) + 1
     )
     , class = "rDriver")
 
@@ -73,7 +74,7 @@ remoteDr <- function(remoteServerAddr = "http://localhost",
 wbElement <- function(elementId, remDr){
   structure(
     list(
-      sessionId = function(){.e$sessionId},
+      sessionId = function(drvID){.e$sessionId[[drvID]]},
       elementId = elementId,
       remDr = remDr
     )
@@ -92,15 +93,15 @@ wbElement <- function(elementId, remDr){
 #' @examples
 #'
 
-queryDriver <- function(verb = GET, url, source, ...){
+queryDriver <- function(verb = GET, url, source, drvID, ...){
   if(!identical(source, "newSession")){
-    if(is.na(.e$sessionId)) stop("No session exists. Run remoteRd with newSession = TRUE or\n run newSession()")
+    if(is.na(.e$sessionId[[drvID]])) stop("No session exists. Run remoteRd with newSession = TRUE or\n run newSession()")
   }
   res <- do.call(verb, c(list(url), body = list(...)[["json"]]))
   # Add error checking code here
   checkResponse(res)
   res <- content(res)
-  .e$sessionId <- res$sessionId
+  .e$sessionId[[drvID]] <- res$sessionId[[drvID]]
   res
 }
 
