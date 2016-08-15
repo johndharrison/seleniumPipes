@@ -107,6 +107,7 @@ selReturn <- list(
   , ret6 = "if(replace){testWebElement(res$value, remDr)}else{res$value}"
   , ret7 = "invisible(webElem)"
   , ret8 = "remDr$sessionInfo <- res$value;invisible(remDr)"
+  , ret8 = ".e$sessionID[[remDr$drvID]] <- NULL;invisible(remDr)"
 )
 
 # list of POST type JSON commands
@@ -118,6 +119,8 @@ JCommands <- list(
     desiredCapabilities =c(remDr$desiredCapabilities, remDr$extraCapabilities)
   ), auto_unbox = TRUE)
   ", args = NULL, type = "ret8"),
+
+  deleteSession = list(type = "ret9"),
 
   go = list(com =  "
 # Add function specific JSON to post
