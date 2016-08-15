@@ -4,7 +4,7 @@
 \alias{queryDriver}
 \title{queryDriver}
 \usage{
-queryDriver(verb = GET, url, source, ...)
+queryDriver(verb = GET, url, source, drvID, ...)
 }
 \arguments{
 \item{...}{}
