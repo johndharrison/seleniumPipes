@@ -11,4 +11,4 @@
 }
 
 .e <- new.env(parent = emptyenv())
-.e$sessionId <- NA
+.e$sessionId <- list()
