@@ -130,6 +130,8 @@ selReturn <- list(
   , ret7 = "invisible(webElem)"
   , ret8 = "remDr$sessionInfo <- res$value;invisible(remDr)"
   , ret9 = ".e$sessionId[[remDr$drvID]] <- NULL;invisible(remDr)"
+  , ret10 = "invisible(wbElement(res$value, webElem$remDr))"
+  , ret11 = "invisible(lapply(res$value, wbElement, remDr = webElem$remDr))"
 )
 
 # list of POST type JSON commands
@@ -234,7 +236,7 @@ JCommands <- list(
     using = using, value = value
   ), auto_unbox = TRUE)
   " , args = " using = c(\"xpath\", \"css selector\", \"id\", \"name\", \"tag name\", \"class name\", \"link text\", \"partial link text\"), value,"
-    , type = "ret4"
+    , type = "ret10"
   ),
 
   findElements = list(
@@ -256,7 +258,7 @@ JCommands <- list(
     using = using, value = value
   ), auto_unbox = TRUE)
   "  , args = " using = c(\"xpath\", \"css selector\", \"id\", \"name\", \"tag name\", \"class name\", \"link text\", \"partial link text\"), value,"
-    , type = "ret5"
+    , type = "ret11"
   ),
 
   getActiveElement = list(type = "ret4"),
