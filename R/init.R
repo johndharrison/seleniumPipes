@@ -158,7 +158,7 @@ checkResponse <- function(response){
                             , .Names = c("Code", "Summary", "Detail")
                             , row.names = c(NA, -25L)
                             , class = "data.frame")
-  if(identical(response$status_code, 200L)) return()
+  if(identical(response$status_code, 200L) && identical(content(response)$status, 0L)) return()
   cat("Error detected:\n")
   cat("Response status code :", response$status_code, "\n")
   if(!is.null(content(response)$value$class)){
