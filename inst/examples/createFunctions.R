@@ -15,6 +15,26 @@ setDT(methPaths)
 setnames(methPaths, names(methPaths), tocamel(tolower(names(methPaths))))
 methPaths[,command := tocamel(tolower(command))]
 
+oldSelMethods <- list(
+  data.frame(method = "GET", uriTemplate = "/session/{session id}/window_handle",
+             command = "getWindowHandleOld", stringsAsFactors = FALSE),
+  data.frame(method = "GET", uriTemplate = "/session/{session id}/window_handles",
+             command = "getWindowHandlesOld", stringsAsFactors = FALSE),
+  data.frame(method = "POST", uriTemplate = "/session/{session id}/execute",
+             command = "executeScriptOld", stringsAsFactors = FALSE),
+  data.frame(method = "POST", uriTemplate = "/session/{session id}/execute_async",
+             command = "executeAsyncScriptOld", stringsAsFactors = FALSE),
+  data.frame(method = "GET", uriTemplate = "/session/{session id}/alert_text",
+             command = "getAlertTextOld", stringsAsFactors = FALSE),
+  data.frame(method = "POST", uriTemplate = "/session/{session id}/alert_text",
+             command = "sendAlertTextOld", stringsAsFactors = FALSE),
+  data.frame(method = "POST", uriTemplate = "/session/{session id}/alert_accept",
+             command = "acceptAlertOld", stringsAsFactors = FALSE),
+  data.frame(method = "POST", uriTemplate = "/session/{session id}/alert_dismiss",
+             command = "dismissAlertOld", stringsAsFactors = FALSE)
+  )
+methPaths <- rbindlist(list(methPaths, rbindlist(oldSelMethods)))
+
 methPaths[, uriTemplate := gsub("/session/\\{session id)/cookie", "/session/\\{session id\\}/cookie", uriTemplate)]
 methPaths[, uriTemplate := gsub("session id", "sessionId", uriTemplate)]
 methPaths[, uriTemplate := gsub("element id", "elementId", uriTemplate)]
@@ -39,7 +59,9 @@ methGroups <- list(
   cookies = c("getAllCookies", "getNamedCookie", "addCookie", "deleteCookie", "deleteAllCookies"),
   interactions = c("performActions", "releasingActions"),
   userPrompts = c("dismissAlert", "acceptAlert", "getAlertText", "sendAlertText"),
-  screenCapture = c("takeScreenshot", "takeElementScreenshot")
+  screenCapture = c("takeScreenshot", "takeElementScreenshot"),
+  oldMethods = c("getWindowHandleOld", "getWindowHandlesOld", "executeScriptOld", "executeAsyncScriptOld"
+                 , "getAlertTextOld", "sendAlertTextOld", "acceptAlertOld", "dismissAlertOld")
 )
 methGroups <- lapply(names(methGroups), function(x){
   expand.grid(group = x, command = methGroups[[x]], stringsAsFactors = FALSE)
@@ -161,6 +183,8 @@ JCommands <- list(
 
   getWindowHandle = list(type = "ret2"),
 
+  getWindowHandleOld = list(type = "ret2"),
+
   closeWindow = list(type = "ret1"),
 
   switchToWindow = list(
@@ -173,6 +197,8 @@ JCommands <- list(
   ),
 
   getWindowHandles = list(type = "ret2"),
+
+  getWindowHandlesOld = list(type = "ret2"),
 
   switchToFrame = list(
     com = "
@@ -283,6 +309,23 @@ JCommands <- list(
     , type = "ret6"
   ),
 
+  executeScriptOld = list(
+    com = "
+    args <- lapply(args, function(x){
+    if('wElement' %in% class(x)){
+    x$elementId
+    }else{
+    x
+    }
+    })
+    jsonBody <- toJSON(list(
+    script = script, args = args
+    ), auto_unbox = TRUE)
+    "
+    , args = " script, args = list(), replace = TRUE, "
+    , type = "ret6"
+  ),
+
   executeAsyncScript = list(
     com = "
   args <- lapply(args, function(x){
@@ -296,6 +339,23 @@ JCommands <- list(
     script = script, args = args
   ), auto_unbox = TRUE)
 "
+    , args = " script, args = list(), replace = TRUE, "
+    , type = "ret6"
+  ),
+
+  executeAsyncScriptOld = list(
+    com = "
+    args <- lapply(args, function(x){
+    if('wElement' %in% class(x)){
+    x$elementId
+    }else{
+    x
+    }
+    })
+    jsonBody <- toJSON(list(
+    script = script, args = args
+    ), auto_unbox = TRUE)
+    "
     , args = " script, args = list(), replace = TRUE, "
     , type = "ret6"
   ),
@@ -325,13 +385,24 @@ JCommands <- list(
 
   dismissAlert = list(com = "jsonBody <- NULL", type = "ret1"),
 
+  dismissAlertOld = list(com = "jsonBody <- NULL", type = "ret1"),
+
   acceptAlert = list(com = "jsonBody <- NULL", type = "ret1"),
 
+  acceptAlertOld = list(com = "jsonBody <- NULL", type = "ret1"),
+
   getAlertText = list(type = "ret2"),
+
+  getAlertTextOld = list(type = "ret2"),
 
   sendAlertText = list(
     com = "sendKeys <- list(...)
   jsonBody <- toJSON(list(text = matchSelKeys(sendKeys)), auto_unbox = TRUE)"
+    , type = "ret1"),
+
+  sendAlertTextOld = list(
+    com = "sendKeys <- list(...)
+    jsonBody <- toJSON(list(text = matchSelKeys(sendKeys)), auto_unbox = TRUE)"
     , type = "ret1"),
 
   setTimeout = list(
