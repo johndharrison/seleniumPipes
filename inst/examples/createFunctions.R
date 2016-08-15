@@ -107,7 +107,7 @@ selReturn <- list(
   , ret6 = "if(replace){testWebElement(res$value, remDr)}else{res$value}"
   , ret7 = "invisible(webElem)"
   , ret8 = "remDr$sessionInfo <- res$value;invisible(remDr)"
-  , ret8 = ".e$sessionID[[remDr$drvID]] <- NULL;invisible(remDr)"
+  , ret9 = ".e$sessionID[[remDr$drvID]] <- NULL;invisible(remDr)"
 )
 
 # list of POST type JSON commands

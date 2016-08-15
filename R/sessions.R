@@ -16,7 +16,7 @@ deleteSession <- function(remDr, ...){
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
   res <- queryDriver(verb = DELETE, url = build_url(pathURL), source = "deleteSession", drvID = remDr$drvID, json = NULL,...)
-  invisible(remDr)
+  .e$sessionID[[remDr$drvID]] <- NULL;invisible(remDr)
 }
 
 
