@@ -51,7 +51,7 @@ findElementFromElement <- function(webElem, using = c("xpath", "css selector", "
   pathURL <- webElem[['remDr']][['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
   res <- queryDriver(verb = POST, url = build_url(pathURL), source = "findElementFromElement", drvID = webElem$remDr$drvID, json = jsonBody,...)
-  invisible(wbElement(res$value, remDr))
+  invisible(wbElement(res$value, webElem$remDr))
 }
 
 
@@ -108,7 +108,7 @@ findElementsFromElement <- function(webElem, using = c("xpath", "css selector", 
   pathURL <- webElem[['remDr']][['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
   res <- queryDriver(verb = POST, url = build_url(pathURL), source = "findElementsFromElement", drvID = webElem$remDr$drvID, json = jsonBody,...)
-  invisible(lapply(res$value, wbElement, remDr = remDr))
+  invisible(lapply(res$value, wbElement, remDr = webElem$remDr))
 }
 
 
