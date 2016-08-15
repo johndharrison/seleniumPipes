@@ -50,7 +50,14 @@ remoteDr <- function(remoteServerAddr = "http://localhost",
       extraCapabilities = extraCapabilities,
       sessionId = function(drvID){.e$sessionId[[drvID]]},
       sessionInfo = NULL,
-      drvID = length(.e$sessionId) + 1
+      drvID = {
+        chk <- FALSE
+        while(!chk){
+          proID <- make.names(tempfile("",""))
+          if(proID %in% names(.e$sessionId)) chk <- TRUE
+        }
+        proID
+      }
     )
     , class = "rDriver")
 
