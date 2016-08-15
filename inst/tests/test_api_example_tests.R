@@ -160,9 +160,17 @@ test_that("SwitchToWindow", {
   #         wait.until(lambda dr: dr.switch_to_window("result") is None)
   expect_equal(title_2, remDr %>% getTitle)
   # close window and switch back to first one
-  windows <- unlist(remDr %>% getWindowHandles)
-  currentWindow <- remDr %>% getWindowHandle
-  remDr %>% closeWindow() %>% switchToWindow(windows[!windows %in% currentWindow])
+  chk <- tryCatch({
+    windows <- unlist(remDr %>% getWindowHandles)
+    currentWindow <- remDr %>% getWindowHandle
+    remDr %>% closeWindow() %>% switchToWindow(windows[!windows %in% currentWindow])
+  }, error = function(e) e)
+  if(grepl("Selenium Server error", as.character(chk))){
+    # try old functions
+    windows <- unlist(remDr %>% getWindowHandlesOld)
+    currentWindow <- remDr %>% getWindowHandleOld
+    remDr %>% closeWindow() %>% switchToWindow(windows[!windows %in% currentWindow])
+  }
   expect_equal(title_1, remDr %>% getTitle)
 }
 )
@@ -240,42 +248,79 @@ test_that("GetImplicitAttribute", {
 
 #37
 test_that("ExecuteSimpleScript", {
-  title <- remDr %>% go(loadPage("xhtmlTest")) %>%
-    executeScript("return document.title;")
+  chk <- tryCatch({
+    title <- remDr %>% go(loadPage("xhtmlTest")) %>%
+      executeScript("return document.title;")
+  }, error = function(e) e)
+  if(grepl("Selenium Server error", as.character(chk))){
+    # try old functions
+    title <- remDr %>% go(loadPage("xhtmlTest")) %>%
+      executeScriptOld("return document.title;")
+  }
   expect_equal("XHTML Test Page", title)
 }
 )
 
 #38
 test_that("ExecuteScriptAndReturnElement", {
-  elem <- remDr %>% go(loadPage("xhtmlTest")) %>%
-    executeScript("return document.getElementById('id1');")
+  chk <- tryCatch({
+    elem <- remDr %>% go(loadPage("xhtmlTest")) %>%
+      executeScript("return document.getElementById('id1');")
+  }, error = function(e) e)
+  if(grepl("Selenium Server error", as.character(chk))){
+    # try old functions
+    elem <- remDr %>% go(loadPage("xhtmlTest")) %>%
+      executeScriptOld("return document.getElementById('id1');")
+  }
   expect_identical("wElement", class(elem))
 }
 )
 
 #39
 test_that("ExecuteScriptWithArgs", {
-  result <- remDr %>% go(loadPage("xhtmlTest")) %>%
-    executeScript("return arguments[0] == 'fish' ? 'fish' : 'not fish';", list("fish"))
+  chk <- tryCatch({
+    result <- remDr %>% go(loadPage("xhtmlTest")) %>%
+      executeScript("return arguments[0] == 'fish' ? 'fish' : 'not fish';", list("fish"))
+  }, error = function(e) e)
+  if(grepl("Selenium Server error", as.character(chk))){
+    # try old functions
+    result <- remDr %>% go(loadPage("xhtmlTest")) %>%
+      executeScriptOld("return arguments[0] == 'fish' ? 'fish' : 'not fish';", list("fish"))
+  }
   expect_equal("fish", result)
 }
 )
 
 #40
 test_that("ExecuteScriptWithMultipleArgs", {
-  result <- remDr %>% go(loadPage("xhtmlTest")) %>%
-    executeScript("return arguments[0] + arguments[1]", list(1, 2))
+  chk <- tryCatch({
+    result <- remDr %>% go(loadPage("xhtmlTest")) %>%
+      executeScript("return arguments[0] + arguments[1]", list(1, 2))
+  }, error = function(e) e)
+  if(grepl("Selenium Server error", as.character(chk))){
+    # try old functions
+    result <- remDr %>% go(loadPage("xhtmlTest")) %>%
+      executeScriptOld("return arguments[0] + arguments[1]", list(1, 2))
+  }
   expect_equal(3, result)
 }
 )
 
 #41
 test_that("ExecuteScriptWithElementArgs", {
-  button <- remDr %>% go(loadPage("javascriptPage")) %>%
-    findElement(using = "id", "plainButton")
-  appScript <- "arguments[0]['flibble'] = arguments[0].getAttribute('id'); return arguments[0]['flibble'];"
-  result <- remDr %>% executeScript(appScript, list(button))
+  chk <- tryCatch({
+    button <- remDr %>% go(loadPage("javascriptPage")) %>%
+      findElement(using = "id", "plainButton")
+    appScript <- "arguments[0]['flibble'] = arguments[0].getAttribute('id'); return arguments[0]['flibble'];"
+    result <- remDr %>% executeScript(appScript, list(button))
+  }, error = function(e) e)
+  if(grepl("Selenium Server error", as.character(chk))){
+    # try old functions
+    button <- remDr %>% go(loadPage("javascriptPage")) %>%
+      findElement(using = "id", "plainButton")
+    appScript <- "arguments[0]['flibble'] = arguments[0].getAttribute('id'); return arguments[0]['flibble'];"
+    result <- remDr %>% executeScriptOld(appScript, list(button))
+  }
   expect_equal("plainButton", result)
 }
 )
