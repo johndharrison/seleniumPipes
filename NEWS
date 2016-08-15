@@ -1,2 +1,5 @@
+# seleniumpipes 0.2.4
+* Add support for multiple sessions
+
 # seleniumpipes 0.2.3
 * Add tests on the API in the tests directory. (inst/tests pre-install as Selenium Server needed)
