@@ -54,7 +54,7 @@ remoteDr <- function(remoteServerAddr = "http://localhost",
         chk <- FALSE
         while(!chk){
           proID <- make.names(tempfile("",""))
-          if(proID %in% names(.e$sessionId)) chk <- TRUE
+          if(!proID %in% names(.e$sessionId)) chk <- TRUE
         }
         proID
       }
@@ -108,7 +108,7 @@ queryDriver <- function(verb = GET, url, source, drvID, ...){
   # Add error checking code here
   checkResponse(res)
   res <- content(res)
-  .e$sessionId[[drvID]] <- res$sessionId[[drvID]]
+  .e$sessionId[[drvID]] <- res$sessionId
   res
 }
 
