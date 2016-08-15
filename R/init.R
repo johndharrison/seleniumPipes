@@ -164,18 +164,24 @@ checkResponse <- function(response){
   if(identical(response$status_code, 200L) && identical(content(response)$status, 0L)) return()
   cat("Error detected:\n")
   cat("Response status code :", response$status_code, "\n")
-  if(!is.null(content(response)$value$class)){
-    cat("Selenium class exception:", content(response)$value$class,"\n")
-  }
-  if(!is.null(content(response)$status)){
-    scDetail <- statusCodes[statusCodes$Code == content(response)$status,]
-    cat("Selenium Status code: ", scDetail$Code, "\n")
-    cat("Selenium Status summary: ", scDetail$Summary, "\n")
-    cat("Selenium Status detail: ", scDetail$Detail, "\n")
-  }
-  if(!is.null(content(response)$value$message)){
-    messageDetail <- content(response)$value$message
-    cat("Selenium message: ", messageDetail, "\n")
+  errTest <- tryCatch(content(response, encoding = "UTF-8")$value, error = function(e)e)
+  errTest <- inherits(errTest, "error")
+  if(!errTest){
+    if(!is.null(content(response)$value$class)){
+      cat("Selenium class exception:", content(response)$value$class,"\n")
+    }
+    if(!is.null(content(response)$status)){
+      scDetail <- statusCodes[statusCodes$Code == content(response)$status,]
+      cat("Selenium Status code: ", scDetail$Code, "\n")
+      cat("Selenium Status summary: ", scDetail$Summary, "\n")
+      cat("Selenium Status detail: ", scDetail$Detail, "\n")
+    }
+    if(!is.null(content(response)$value$message)){
+      messageDetail <- content(response)$value$message
+      cat("Selenium message: ", messageDetail, "\n")
+    }
+  }else{
+    cat("Response message:", content(response, encoding = "UTF-8"), "\n")
   }
   cat("Please check the response with errorResponse()\n")
   cat("Please check the content returned with errorContent()\n")
