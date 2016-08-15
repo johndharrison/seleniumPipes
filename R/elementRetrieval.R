@@ -38,7 +38,7 @@ findElement <- function(remDr, using = c("xpath", "css selector", "id", "name", 
 
 findElementFromElement <- function(webElem, using = c("xpath", "css selector", "id", "name", "tag name", "class name", "link text", "partial link text"), value, ...){
   obj <- webElem
-  obj$sessionId <- webElem$sessionId(webElem$drvID)
+  obj$sessionId <- webElem$sessionId(webElem$remDr$drvID)
   obj$elementId <- webElem$elementId$ELEMENT
   
 # Add function specific JSON to post
@@ -50,7 +50,7 @@ findElementFromElement <- function(webElem, using = c("xpath", "css selector", "
   pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/element", data = obj)
   pathURL <- webElem[['remDr']][['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = POST, url = build_url(pathURL), source = "findElementFromElement", drvID = webElem$drvID, json = jsonBody,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), source = "findElementFromElement", drvID = webElem$remDr$drvID, json = jsonBody,...)
   invisible(wbElement(res$value, remDr))
 }
 
@@ -95,7 +95,7 @@ findElements <- function(remDr, using = c("xpath", "css selector", "id", "name",
 
 findElementsFromElement <- function(webElem, using = c("xpath", "css selector", "id", "name", "tag name", "class name", "link text", "partial link text"), value, ...){
   obj <- webElem
-  obj$sessionId <- webElem$sessionId(webElem$drvID)
+  obj$sessionId <- webElem$sessionId(webElem$remDr$drvID)
   obj$elementId <- webElem$elementId$ELEMENT
   
 # Add function specific JSON to post
@@ -107,7 +107,7 @@ findElementsFromElement <- function(webElem, using = c("xpath", "css selector", 
   pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/elements", data = obj)
   pathURL <- webElem[['remDr']][['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = POST, url = build_url(pathURL), source = "findElementsFromElement", drvID = webElem$drvID, json = jsonBody,...)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), source = "findElementsFromElement", drvID = webElem$remDr$drvID, json = jsonBody,...)
   invisible(lapply(res$value, wbElement, remDr = remDr))
 }
 

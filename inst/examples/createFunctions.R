@@ -84,13 +84,13 @@ webElem = "#' {{command}}
 
 {{command}} <- function({{Arg}},{{{addArgs}}} ...){
   obj <- {{Arg}}
-  obj$sessionId <- {{Arg}}$sessionId({{Arg}}$drvID)
+  obj$sessionId <- {{Arg}}$sessionId({{Arg}}$remDr$drvID)
   obj$elementId <- {{Arg}}$elementId$ELEMENT
   {{{JSON_command}}}
   pathTemplate <- whisker.render(\"{{uriTemplate}}\", data = obj)
   pathURL <- {{Arg}}[['remDr']][['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = {{method}}, url = build_url(pathURL), source = \"{{command}}\", drvID = {{Arg}}$drvID, json = {{JSON}},...)
+  res <- queryDriver(verb = {{method}}, url = build_url(pathURL), source = \"{{command}}\", drvID = {{Arg}}$remDr$drvID, json = {{JSON}},...)
   {{{return}}}
 }
 

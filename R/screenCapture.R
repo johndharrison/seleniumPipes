@@ -10,13 +10,13 @@
 
 takeElementScreenshot <- function(webElem, ...){
   obj <- webElem
-  obj$sessionId <- webElem$sessionId(webElem$drvID)
+  obj$sessionId <- webElem$sessionId(webElem$remDr$drvID)
   obj$elementId <- webElem$elementId$ELEMENT
   
   pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/screenshot", data = obj)
   pathURL <- webElem[['remDr']][['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = GET, url = build_url(pathURL), source = "takeElementScreenshot", drvID = webElem$drvID, json = NULL,...)
+  res <- queryDriver(verb = GET, url = build_url(pathURL), source = "takeElementScreenshot", drvID = webElem$remDr$drvID, json = NULL,...)
   invisible(remDr)
 }
 
