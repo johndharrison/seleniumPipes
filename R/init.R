@@ -103,6 +103,7 @@ wbElement <- function(elementId, remDr){
 queryDriver <- function(verb = GET, url, source, drvID, ...){
   if(!identical(source, "newSession")){
     if(is.na(.e$sessionId[[drvID]])) stop("No session exists. Run remoteRd with newSession = TRUE or\n run newSession()")
+    if(is.null(.e$sessionId[[drvID]])) stop("Driver id is not registered. Has the session been deleted?")
   }
   res <- do.call(verb, c(list(url), body = list(...)[["json"]]))
   # Add error checking code here
