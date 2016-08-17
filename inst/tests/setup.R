@@ -7,12 +7,13 @@ if(identical(getOption("seleniumPipes_SL"), TRUE)){
   options(seleniumPipes_sauceID = remDr$sessionInfo$webdriver.remote.sessionid)
 }
 remDr %>% setTimeout(milliseconds = 10000) # set page load timeout to 3 secs
+remDr %>% setTimeout(type = "implicit", milliseconds = 5000) # wait 5 secs for elements to load
 rdBrowser <- remDr$sessionInfo$browserName
 if(rdBrowser %in% c("iPhone", "iPad", "safari")){
-  htmlSrc <- "localhost:3000"
+  htmlSrc <- "myname.local:3000"
 }else{
   # add somethin like 127.0.0.1	myname.local to /etc/hosts or equivalent
-  htmlSrc <- "myname.local:3000"
+  htmlSrc <- "localhost:3000"
 }
 loadPage <- function(pgStr){
   paste0("http://", file.path(htmlSrc, paste0(pgStr, ".html")))

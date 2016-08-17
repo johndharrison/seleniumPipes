@@ -72,6 +72,7 @@ test_that("FindElementsByNameInElementContext", {
   childElem <- remDr %>% go(loadPage("nestedElements")) %>%
     findElement(using = "name", "form2") %>%
     findElementFromElement(using = "name", "selectomatic")
+  Sys.sleep(2)
   expect_equal("2", childElem %>% getElementAttribute("id"))
 }
 )
@@ -81,6 +82,7 @@ test_that("FindElementsByLinkTextInElementContext", {
   childElem <- remDr %>% go(loadPage("nestedElements")) %>%
     findElement(using = "name", "div1") %>%
     findElementFromElement(using = "link text", "hello world")
+  Sys.sleep(2)
   expect_equal("link1", childElem %>% getElementAttribute("name"))
 }
 )
@@ -90,6 +92,7 @@ test_that("FindElementByIdInElementContext", {
   childElem <- remDr %>% go(loadPage("nestedElements")) %>%
     findElement(using = "name", "form2") %>%
     findElementFromElement(using = "id", "2")
+  Sys.sleep(2)
   expect_equal("selectomatic", childElem %>% getElementAttribute("name"))
 }
 )
@@ -99,6 +102,7 @@ test_that("FindElementByXpathInElementContext", {
   childElem <- remDr %>% go(loadPage("nestedElements")) %>%
     findElement(using = "name", "form2") %>%
     findElementFromElement(using = "xpath", "select")
+  Sys.sleep(2)
   expect_equal("2", childElem %>% getElementAttribute("id"))
 }
 )
@@ -201,10 +205,13 @@ test_that("IsSelectedAndToggle", {
   elem <- remDr %>% go(loadPage("formPage")) %>%
     findElement(using = "id", "multi")
   option_elems <-  elem %>% findElementsFromElement(using = "xpath", "option")
+  Sys.sleep(2)
   expect_true(option_elems[[1]] %>% isElementSelected)
   option_elems[[1]] %>% elementClick
+  Sys.sleep(2)
   expect_false(option_elems[[1]] %>% isElementSelected)
   option_elems[[1]] %>% elementClick
+  Sys.sleep(2)
   expect_true(option_elems[[1]] %>% isElementSelected)
   expect_true(option_elems[[3]] %>% isElementSelected)
 }

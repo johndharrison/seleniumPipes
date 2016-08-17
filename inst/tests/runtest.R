@@ -33,20 +33,20 @@ osBrowser <- list(
                       #, list(browser = "safari", version = '8')
   )
 )
-osBrowser <- osBrowser[1]
+osBrowser <- osBrowser[4]
 osBrowser <- lapply(names(osBrowser), function(x){
   out <- rbindlist(osBrowser[[x]])
   out[, os:=x]
 })
 
 osBrowser <- rbindlist(osBrowser)
-
+#osBrowser <- osBrowser[2,]
 testResults <- Map(function(os, browser, version){
   selOptions <- list(remoteServerAddr = ip, port = port, browserName = browser
                              , version = version, platform = os
                              , extraCapabilities = list(username = user
                                                         , accessKey = pass
-                                                        , "selenium-version" = selVersion)
+                                                        )#, "selenium-version" = selVersion)
   )
   options(seleniumPipes_selOptions = selOptions)
   testRes <- test_dir(testDir, reporter = "Tap", filter = "api_example")
