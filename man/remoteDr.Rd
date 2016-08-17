@@ -2,17 +2,52 @@
 % Please edit documentation in R/init.R
 \name{remoteDr}
 \alias{remoteDr}
-\title{remoteDr}
+\title{Create remote driver}
 \usage{
 remoteDr(remoteServerAddr = "http://localhost", port = 4444L,
   browserName = "firefox", version = "", platform = "ANY",
   javascript = TRUE, nativeEvents = TRUE, extraCapabilities = list(),
   path = "wd/hub", newSession = TRUE)
 }
+\arguments{
+\item{remoteServerAddr}{Object of class \code{"character"}, giving the ip of the remote server.
+Defaults to localhost}
+
+\item{port}{Object of class \code{"integer"}, the port of the remote server on which to connect}
+
+\item{browserName}{Object of class \code{"character"}. The name of the browser being used;
+choices include {chrome|firefox|internet explorer|iphone|htmlunit}. Defaults to firefox.}
+
+\item{version}{Object of class \code{"character"}. The browser version, or the empty string if unknown.}
+
+\item{platform}{Object of class \code{"character"}. A key specifying which platform the browser is running on. This value should be one of {WINDOWS|XP|VISTA|MAC|LINUX|UNIX}. When requesting a new session,
+the client may specify "ANY" to indicate any available platform may be used.}
+
+\item{javascript}{Object of class \code{"logical"}. Whether the session supports executing user supplied JavaScript in the context of the current page.}
+
+\item{nativeEvents}{Object of class \code{"logical"}. Whether the session supports native events. n WebDriver advanced user interactions are provided by either simulating the Javascript events directly (i.e. synthetic events) or by letting the browser generate the Javascript events (i.e. native events).
+Native events simulate the user interactions better.}
+
+\item{extraCapabilities}{A list containing any os/platform/driver specific arguments.}
+
+\item{path}{Path on the server side to issue webdriver calls to. Normally use the default value.}
+
+\item{newSession}{Logical value whether to start an instance of the browser. If TRUE a browser will be opened using \code{\link{newSession}}}
+}
+\value{
+An object of class "rDriver" is returned. This is a remote Driver object that is used
+   in many of the remote driver specific functions.
+}
 \description{
-remoteDr
+\code{remoteDr}: Create a remote Driver object
 }
 \examples{
+\dontrun{
+# assume a server is available at the default location.
+remDr <- remoteDr()
+remDR \%>\% go("http://www.google.com") \%>\% findElement("name", "q") \%>\%
+   elementSendKeys("R project", key = "enter")
+}
 
 }
 
