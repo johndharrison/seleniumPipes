@@ -1,6 +1,6 @@
 # utility script to get the w3c specs to create the functions in seleniumPipes
 # assummed ran from the project base
-
+DOCUMENT <- TRUE
 library(xml2)
 library(httr)
 library(rvest)
@@ -71,7 +71,7 @@ methGroups <- rbindlist(methGroups)
 methPaths <- merge(methPaths, methGroups, by = "command")
 
 funcTemp <- list(
-remDr = "#' {{command}}
+remDr = list( roxy = "#' {{command}}
 #'
 #' @param {{Arg}}
 #'
@@ -80,7 +80,13 @@ remDr = "#' {{command}}
 #' @export
 #'
 #' @examples
+#' @name {{command}}
+NULL
 
+",
+
+fbody = "
+#' @rdname {{command}}
 {{command}} <- function({{Arg}},{{{addArgs}}} ...){
   obj <- {{Arg}}
   obj$sessionId <- {{Arg}}$sessionId({{Arg}}$drvID)
@@ -91,10 +97,10 @@ remDr = "#' {{command}}
   res <- queryDriver(verb = {{method}}, url = build_url(pathURL), source = \"{{command}}\", drvID = {{Arg}}$drvID, json = {{JSON}},...)
   {{{return}}}
 }
+"
+),
 
-
-",
-webElem = "#' {{command}}
+webElem = list(roxy = "#' {{command}}
 #'
 #' @param {{Arg}}
 #'
@@ -103,7 +109,12 @@ webElem = "#' {{command}}
 #' @export
 #'
 #' @examples
+#' @name {{command}}
+NULL
 
+",
+fbody = "
+#' @rdname {{command}}
 {{command}} <- function({{Arg}},{{{addArgs}}} ...){
   obj <- {{Arg}}
   obj$sessionId <- {{Arg}}$sessionId({{Arg}}$remDr$drvID)
@@ -117,7 +128,7 @@ webElem = "#' {{command}}
 }
 
 
-")
+"))
 
 # configure returns
 selReturn <- list(
@@ -416,7 +427,7 @@ JCommands <- list(
 
 )
 
-selPipeFuncs <- sapply(rowSplit(methPaths), function(x){
+selPipeFuncs <- lapply(rowSplit(methPaths), function(x){
   appFunc <- JCommands[[x[["command"]]]]
   appCommand <- appFunc[["com"]]
   if(identical(x[["method"]], "POST")){
@@ -437,10 +448,12 @@ selPipeFuncs <- sapply(rowSplit(methPaths), function(x){
     appFunc[["type"]]
   }
   x[["return"]] <- selReturn[[type]]
-  whisker.render(funcTemp[[x$Arg]], x)
+  list(fbody = whisker.render(funcTemp[[x$Arg]][["fbody"]], x)
+       , roxy = whisker.render(funcTemp[[x$Arg]][["roxy"]], x))
 }
 )
-methPaths[["selFuncs"]] <- selPipeFuncs
+methPaths[["selFuncs"]] <- sapply(selPipeFuncs, "[[", "fbody")
+methPaths[["selRoxy"]] <- sapply(selPipeFuncs, "[[", "roxy")
 # remDrFuncs <- paste(selPipeFuncs[!grepl("\\{elementId\\}", selPipeFuncs)], collapse = "")
 # webElemFuncs <- paste(selPipeFuncs[grepl("\\{elementId\\}", selPipeFuncs)], collapse = "")
 # write(remDrFuncs, "R/remoteDriver.R")
@@ -448,3 +461,9 @@ methPaths[["selFuncs"]] <- selPipeFuncs
 
 # write the functions to file based on the groups they are in
 methPaths[,write(file = paste0("R/", group, ".R"), paste(selFuncs, collapse = "")), by = group]
+
+# add documentation
+if(DOCUMENT){
+  methPaths[,write(file = paste0("R/", group, "Doc.R"), paste(selRoxy, collapse = "")), by = group]
+}
+
