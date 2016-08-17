@@ -172,7 +172,9 @@ queryDriver <- function(verb = GET, url, source, drvID, ...){
 #'    \code{\link{errorContent}} may provide additional detail.
 #' @export
 #'
-#' @examples
+#' @examples \dontrun{
+#' }
+#'
 
 checkResponse <- function(response){
   statusCodes <- structure(list(Code = c(0L, 6L, 7L, 8L, 9L, 10L, 11L, 12L, 13L,
@@ -245,7 +247,8 @@ checkResponse <- function(response){
 #' @return returns response see \code{\link{VERB}}. Headers, request etc. can be examined from this object.
 #' @export
 #'
-#' @examples
+#' @examples \dontrun{
+#' }
 
 errorResponse <- function(){
   .e$errorResponse
@@ -257,7 +260,8 @@ errorResponse <- function(){
 #' @return returns content see \code{\link{content}}
 #' @export
 #'
-#' @examples
+#' @examples \dontrun{
+#' }
 
 errorContent <- function(){
   .e$errorContent
