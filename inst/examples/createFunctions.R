@@ -73,8 +73,8 @@ methPaths <- merge(methPaths, methGroups, by = "command")
 funcTemp <- list(
 remDr = list( roxy = "#' {{command}}
 #'
-#' @param {{Arg}}
-#'
+#' @template remDr
+{{roxyArgs}}
 #' @family {{group}} functions
 #' @return
 #' @export
@@ -102,8 +102,8 @@ fbody = "
 
 webElem = list(roxy = "#' {{command}}
 #'
-#' @param {{Arg}}
-#'
+#' @template webElem
+{{roxyArgs}}
 #' @family {{group}} functions
 #' @return
 #' @export
@@ -153,7 +153,7 @@ JCommands <- list(
   jsonBody <- toJSON(list(
     desiredCapabilities =c(remDr$desiredCapabilities, remDr$extraCapabilities)
   ), auto_unbox = TRUE)
-  ", args = NULL, type = "ret8"),
+  ", type = "ret8"),
 
   deleteSession = list(type = "ret9"),
 
@@ -162,7 +162,8 @@ JCommands <- list(
   jsonBody <- toJSON(list(
      url = url
   ), auto_unbox = TRUE)
-  ", args = " url,", type = "ret1"),
+  ", args = list(url = NA)
+, type = "ret1"),
 
   getCurrentUrl = list(type = "ret2"),
 
@@ -206,7 +207,8 @@ JCommands <- list(
   jsonBody <- toJSON(list(
     name = name
   ), auto_unbox = TRUE)
-    ", args = " name,", type = "ret1"
+    ", args = list(name = NA)
+    , type = "ret1"
   ),
 
   getWindowHandles = list(type = "ret2"),
@@ -223,7 +225,8 @@ JCommands <- list(
   jsonBody <- toJSON(list(
     id = Id
   ), auto_unbox = TRUE, null = \"null\")
-    ", args = " Id = NULL,", type = "ret1"
+    ", args = list(Id = "NULL")
+    , type = "ret1"
   ),
 
   switchToParentFrame = list(type = "ret1"),
@@ -235,7 +238,8 @@ JCommands <- list(
   jsonBody <- toJSON(list(
     using = using, value = value
   ), auto_unbox = TRUE)
-  ", args = " using = c(\"xpath\", \"css selector\", \"id\", \"name\", \"tag name\", \"class name\", \"link text\", \"partial link text\"), value,"
+  ", args = list(using = "c(\"xpath\", \"css selector\", \"id\", \"name\", \"tag name\", \"class name\", \"link text\", \"partial link text\")"
+                 , value = NA)
     , type = "ret4"
   ),
 
@@ -246,7 +250,8 @@ JCommands <- list(
   jsonBody <- toJSON(list(
     using = using, value = value
   ), auto_unbox = TRUE)
-  " , args = " using = c(\"xpath\", \"css selector\", \"id\", \"name\", \"tag name\", \"class name\", \"link text\", \"partial link text\"), value,"
+  " , args = list(using = "c(\"xpath\", \"css selector\", \"id\", \"name\", \"tag name\", \"class name\", \"link text\", \"partial link text\")"
+                  , value = NA)
     , type = "ret10"
   ),
 
@@ -257,7 +262,8 @@ JCommands <- list(
   jsonBody <- toJSON(list(
     using = using, value = value
   ), auto_unbox = TRUE)
-  " , args = " using = c(\"xpath\", \"css selector\", \"id\", \"name\", \"tag name\", \"class name\", \"link text\", \"partial link text\"), value,"
+  " , args = list(using = "c(\"xpath\", \"css selector\", \"id\", \"name\", \"tag name\", \"class name\", \"link text\", \"partial link text\")"
+                  , value = NA)
     , type = "ret5"
   ),
 
@@ -268,7 +274,8 @@ JCommands <- list(
   jsonBody <- toJSON(list(
     using = using, value = value
   ), auto_unbox = TRUE)
-  "  , args = " using = c(\"xpath\", \"css selector\", \"id\", \"name\", \"tag name\", \"class name\", \"link text\", \"partial link text\"), value,"
+  "  , args = list(using = "c(\"xpath\", \"css selector\", \"id\", \"name\", \"tag name\", \"class name\", \"link text\", \"partial link text\")"
+                   , value = NA)
     , type = "ret11"
   ),
 
@@ -278,15 +285,15 @@ JCommands <- list(
 
   getElementAttribute = list(
     com = "obj$name <- attribute"
-    , args = " attribute, ", type = "ret2"),
+    , args = list(attribute =NA), type = "ret2"),
 
   getElementProperty = list(
     com = "obj$name <- property"
-    , args = " property, ", type = "ret2"),
+    , args = list(property = NA), type = "ret2"),
 
   getElementCssValue = list(
     com = "obj$propertyName <- propertyName"
-    , args = " propertyName, ", type = "ret2"),
+    , args = list(propertyName = NA), type = "ret2"),
 
   getElementText = list(type = "ret2"),
 
@@ -318,7 +325,7 @@ JCommands <- list(
     script = script, args = args
   ), auto_unbox = TRUE)
 "
-    , args = " script, args = list(), replace = TRUE, "
+    , args = list(script = NA, args = "list()", replace = "TRUE")
     , type = "ret6"
   ),
 
@@ -335,7 +342,7 @@ JCommands <- list(
     script = script, args = args
     ), auto_unbox = TRUE)
     "
-    , args = " script, args = list(), replace = TRUE, "
+    , args = list(script = NA, args = "list()", replace = "TRUE")
     , type = "ret6"
   ),
 
@@ -352,7 +359,7 @@ JCommands <- list(
     script = script, args = args
   ), auto_unbox = TRUE)
 "
-    , args = " script, args = list(), replace = TRUE, "
+    , args = list(script = NA, args = "list()", replace = "TRUE")
     , type = "ret6"
   ),
 
@@ -369,7 +376,7 @@ JCommands <- list(
     script = script, args = args
     ), auto_unbox = TRUE)
     "
-    , args = " script, args = list(), replace = TRUE, "
+    , args = list(script = NA, args = "list()", replace = "TRUE")
     , type = "ret6"
   ),
 
@@ -377,7 +384,7 @@ JCommands <- list(
 
   getNamedCookie = list(
     com = "obj$name <- name"
-    , args = " name = NULL, "
+    , args = list(name = "NULL")
     , type = "ret2"),
 
   addCookie = list(
@@ -386,12 +393,13 @@ JCommands <- list(
                 , secure = secure, httpOnly = httpOnly, expiry = expiry)
   cookie <- cookie[!sapply(cookie, is.null)]
   jsonBody <- toJSON(list(cookie = cookie), null = \"null\", auto_unbox = TRUE)"
-    , args = " name, value, path = NULL, domain = NULL, secure = FALSE, httpOnly = NULL, expiry = NULL, "
+    , args = list(name = NA, value = NA, path = "NULL", domain = "NULL", secure = "FALSE"
+                  , httpOnly = "NULL", expiry = "NULL")
     , type = "ret1"),
 
   deleteCookie = list(
     com = "obj$name <- name"
-    , args = " name = NULL, "
+    , args = list(name = "NULL")
     , type = "ret1"),
 
   deleteAllCookies = list(type = "ret1"),
@@ -421,7 +429,7 @@ JCommands <- list(
   setTimeout = list(
     com = "
       jsonBody <- toJSON(list(type = type, ms = milliseconds), auto_unbox = TRUE)"
-    , args = " type = 'page load', milliseconds = 10000, "
+    , args = list(type = '\"page load\"', milliseconds = 10000)
     , type = "ret1")
 
 
@@ -441,7 +449,19 @@ selPipeFuncs <- lapply(rowSplit(methPaths), function(x){
     }
     x[["JSON"]] <- "NULL"
   }
-  x[["addArgs"]] <- JCommands[[x[["command"]]]][["args"]]
+  args <- JCommands[[x[["command"]]]][["args"]]
+  if(!is.null(args)){
+    x[["addArgs"]] <- paste(paste0(lapply(name(args), function(x){if(is.na(args[[x]])){
+      paste0(x, ", ")
+    }else{
+      paste0(x," = ",args[[x]],", ")
+    }
+    }
+    )), collapse = "")
+    x[["roxyArgs"]] <- paste(c(paste0("#' @param ",name(args), "\n"), "#'"), collapse = "")
+  }else{
+    x[["roxyArgs"]] <- "#'"
+  }
   type <- if(is.null(appFunc)){
     JCommands[["default"]][["type"]]
   }else{
