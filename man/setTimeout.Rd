@@ -7,7 +7,9 @@
 setTimeout(remDr, type = "page load", milliseconds = 10000, ...)
 }
 \arguments{
-\item{remDr}{}
+\item{remDr}{remote driver doc}
+
+\item{milliseconds}{}
 }
 \description{
 setTimeout

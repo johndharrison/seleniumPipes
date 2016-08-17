@@ -7,7 +7,9 @@
 executeScriptOld(remDr, script, args = list(), replace = TRUE, ...)
 }
 \arguments{
-\item{remDr}{}
+\item{remDr}{remote driver doc}
+
+\item{replace}{}
 }
 \description{
 executeScriptOld

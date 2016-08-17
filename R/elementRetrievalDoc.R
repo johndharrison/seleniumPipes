@@ -1,6 +1,8 @@
 #' findElement
 #'
-#' @param remDr
+#' @template remDr
+#' @param using
+#' @param value
 #'
 #' @family elementRetrieval functions
 #' @return
@@ -12,7 +14,9 @@ NULL
 
 #' findElementFromElement
 #'
-#' @param webElem
+#' @template webElem
+#' @param using
+#' @param value
 #'
 #' @family elementRetrieval functions
 #' @return
@@ -24,7 +28,9 @@ NULL
 
 #' findElements
 #'
-#' @param remDr
+#' @template remDr
+#' @param using
+#' @param value
 #'
 #' @family elementRetrieval functions
 #' @return
@@ -36,7 +42,9 @@ NULL
 
 #' findElementsFromElement
 #'
-#' @param webElem
+#' @template webElem
+#' @param using
+#' @param value
 #'
 #' @family elementRetrieval functions
 #' @return
@@ -48,7 +56,7 @@ NULL
 
 #' getActiveElement
 #'
-#' @param remDr
+#' @template remDr
 #'
 #' @family elementRetrieval functions
 #' @return

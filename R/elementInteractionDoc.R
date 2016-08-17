@@ -1,6 +1,6 @@
 #' elementClear
 #'
-#' @param webElem
+#' @template webElem
 #'
 #' @family elementInteraction functions
 #' @return
@@ -12,7 +12,7 @@ NULL
 
 #' elementClick
 #'
-#' @param webElem
+#' @template webElem
 #'
 #' @family elementInteraction functions
 #' @return
@@ -24,7 +24,7 @@ NULL
 
 #' elementSendKeys
 #'
-#' @param webElem
+#' @template webElem
 #'
 #' @family elementInteraction functions
 #' @return

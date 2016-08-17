@@ -1,6 +1,7 @@
 #' getElementAttribute
 #'
-#' @param webElem
+#' @template webElem
+#' @param attribute
 #'
 #' @family elementState functions
 #' @return
@@ -12,7 +13,8 @@ NULL
 
 #' getElementCssValue
 #'
-#' @param webElem
+#' @template webElem
+#' @param propertyName
 #'
 #' @family elementState functions
 #' @return
@@ -24,7 +26,8 @@ NULL
 
 #' getElementProperty
 #'
-#' @param webElem
+#' @template webElem
+#' @param property
 #'
 #' @family elementState functions
 #' @return
@@ -36,7 +39,7 @@ NULL
 
 #' getElementRect
 #'
-#' @param webElem
+#' @template webElem
 #'
 #' @family elementState functions
 #' @return
@@ -48,7 +51,7 @@ NULL
 
 #' getElementTagName
 #'
-#' @param webElem
+#' @template webElem
 #'
 #' @family elementState functions
 #' @return
@@ -60,7 +63,7 @@ NULL
 
 #' getElementText
 #'
-#' @param webElem
+#' @template webElem
 #'
 #' @family elementState functions
 #' @return
@@ -72,7 +75,7 @@ NULL
 
 #' isElementEnabled
 #'
-#' @param webElem
+#' @template webElem
 #'
 #' @family elementState functions
 #' @return
@@ -84,7 +87,7 @@ NULL
 
 #' isElementSelected
 #'
-#' @param webElem
+#' @template webElem
 #'
 #' @family elementState functions
 #' @return

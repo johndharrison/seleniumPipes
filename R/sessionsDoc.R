@@ -1,6 +1,6 @@
 #' deleteSession
 #'
-#' @param remDr
+#' @template remDr
 #'
 #' @family sessions functions
 #' @return
@@ -12,7 +12,7 @@ NULL
 
 #' newSession
 #'
-#' @param remDr
+#' @template remDr
 #'
 #' @family sessions functions
 #' @return
@@ -24,7 +24,9 @@ NULL
 
 #' setTimeout
 #'
-#' @param remDr
+#' @template remDr
+#' @param type
+#' @param milliseconds
 #'
 #' @family sessions functions
 #' @return

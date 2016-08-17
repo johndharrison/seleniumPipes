@@ -1,6 +1,6 @@
 
 #' @rdname getElementAttribute
-getElementAttribute <- function(webElem, attribute,  ...){
+getElementAttribute <- function(webElem, attribute, ...){
   obj <- webElem
   obj$sessionId <- webElem$sessionId(webElem$remDr$drvID)
   obj$elementId <- webElem$elementId$ELEMENT
@@ -15,7 +15,7 @@ getElementAttribute <- function(webElem, attribute,  ...){
 
 
 #' @rdname getElementCssValue
-getElementCssValue <- function(webElem, propertyName,  ...){
+getElementCssValue <- function(webElem, propertyName, ...){
   obj <- webElem
   obj$sessionId <- webElem$sessionId(webElem$remDr$drvID)
   obj$elementId <- webElem$elementId$ELEMENT
@@ -30,7 +30,7 @@ getElementCssValue <- function(webElem, propertyName,  ...){
 
 
 #' @rdname getElementProperty
-getElementProperty <- function(webElem, property,  ...){
+getElementProperty <- function(webElem, property, ...){
   obj <- webElem
   obj$sessionId <- webElem$sessionId(webElem$remDr$drvID)
   obj$elementId <- webElem$elementId$ELEMENT

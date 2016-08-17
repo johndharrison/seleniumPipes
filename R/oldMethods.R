@@ -24,7 +24,7 @@ dismissAlertOld <- function(remDr, ...){
 }
 
 #' @rdname executeAsyncScriptOld
-executeAsyncScriptOld <- function(remDr, script, args = list(), replace = TRUE,  ...){
+executeAsyncScriptOld <- function(remDr, script, args = list(), replace = TRUE, ...){
   obj <- remDr
   obj$sessionId <- remDr$sessionId(remDr$drvID)
   
@@ -47,7 +47,7 @@ executeAsyncScriptOld <- function(remDr, script, args = list(), replace = TRUE, 
 }
 
 #' @rdname executeScriptOld
-executeScriptOld <- function(remDr, script, args = list(), replace = TRUE,  ...){
+executeScriptOld <- function(remDr, script, args = list(), replace = TRUE, ...){
   obj <- remDr
   obj$sessionId <- remDr$sessionId(remDr$drvID)
   

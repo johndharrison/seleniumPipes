@@ -7,7 +7,9 @@
 getElementCssValue(webElem, propertyName, ...)
 }
 \arguments{
-\item{webElem}{}
+\item{webElem}{web Element doc}
+
+\item{propertyName}{}
 }
 \description{
 getElementCssValue

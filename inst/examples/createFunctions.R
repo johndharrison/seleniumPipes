@@ -87,7 +87,7 @@ NULL
 
 fbody = "
 #' @rdname {{command}}
-{{command}} <- function({{Arg}},{{{addArgs}}} ...){
+{{command}} <- function({{Arg}}, {{{addArgs}}}...){
   obj <- {{Arg}}
   obj$sessionId <- {{Arg}}$sessionId({{Arg}}$drvID)
   {{{JSON_command}}}
@@ -115,7 +115,7 @@ NULL
 ",
 fbody = "
 #' @rdname {{command}}
-{{command}} <- function({{Arg}},{{{addArgs}}} ...){
+{{command}} <- function({{Arg}}, {{{addArgs}}}...){
   obj <- {{Arg}}
   obj$sessionId <- {{Arg}}$sessionId({{Arg}}$remDr$drvID)
   obj$elementId <- {{Arg}}$elementId$ELEMENT

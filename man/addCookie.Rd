@@ -8,7 +8,9 @@ addCookie(remDr, name, value, path = NULL, domain = NULL, secure = FALSE,
   httpOnly = NULL, expiry = NULL, ...)
 }
 \arguments{
-\item{remDr}{}
+\item{remDr}{remote driver doc}
+
+\item{expiry}{}
 }
 \description{
 addCookie

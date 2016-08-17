@@ -7,7 +7,9 @@
 switchToWindow(remDr, name, ...)
 }
 \arguments{
-\item{remDr}{}
+\item{remDr}{remote driver doc}
+
+\item{name}{}
 }
 \description{
 switchToWindow

@@ -1,6 +1,6 @@
 
 #' @rdname addCookie
-addCookie <- function(remDr, name, value, path = NULL, domain = NULL, secure = FALSE, httpOnly = NULL, expiry = NULL,  ...){
+addCookie <- function(remDr, name, value, path = NULL, domain = NULL, secure = FALSE, httpOnly = NULL, expiry = NULL, ...){
   obj <- remDr
   obj$sessionId <- remDr$sessionId(remDr$drvID)
   
@@ -28,7 +28,7 @@ deleteAllCookies <- function(remDr, ...){
 }
 
 #' @rdname deleteCookie
-deleteCookie <- function(remDr, name = NULL,  ...){
+deleteCookie <- function(remDr, name = NULL, ...){
   obj <- remDr
   obj$sessionId <- remDr$sessionId(remDr$drvID)
   obj$name <- name
@@ -52,7 +52,7 @@ getAllCookies <- function(remDr, ...){
 }
 
 #' @rdname getNamedCookie
-getNamedCookie <- function(remDr, name = NULL,  ...){
+getNamedCookie <- function(remDr, name = NULL, ...){
   obj <- remDr
   obj$sessionId <- remDr$sessionId(remDr$drvID)
   obj$name <- name

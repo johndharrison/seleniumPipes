@@ -1,6 +1,6 @@
 #' closeWindow
 #'
-#' @param remDr
+#' @template remDr
 #'
 #' @family commandContexts functions
 #' @return
@@ -12,7 +12,7 @@ NULL
 
 #' fullscreenWindow
 #'
-#' @param remDr
+#' @template remDr
 #'
 #' @family commandContexts functions
 #' @return
@@ -24,7 +24,7 @@ NULL
 
 #' getWindowHandle
 #'
-#' @param remDr
+#' @template remDr
 #'
 #' @family commandContexts functions
 #' @return
@@ -36,7 +36,7 @@ NULL
 
 #' getWindowHandles
 #'
-#' @param remDr
+#' @template remDr
 #'
 #' @family commandContexts functions
 #' @return
@@ -48,7 +48,7 @@ NULL
 
 #' getWindowPosition
 #'
-#' @param remDr
+#' @template remDr
 #'
 #' @family commandContexts functions
 #' @return
@@ -60,7 +60,7 @@ NULL
 
 #' getWindowSize
 #'
-#' @param remDr
+#' @template remDr
 #'
 #' @family commandContexts functions
 #' @return
@@ -72,7 +72,7 @@ NULL
 
 #' maximizeWindow
 #'
-#' @param remDr
+#' @template remDr
 #'
 #' @family commandContexts functions
 #' @return
@@ -84,7 +84,7 @@ NULL
 
 #' setWindowPosition
 #'
-#' @param remDr
+#' @template remDr
 #'
 #' @family commandContexts functions
 #' @return
@@ -96,7 +96,7 @@ NULL
 
 #' setWindowSize
 #'
-#' @param remDr
+#' @template remDr
 #'
 #' @family commandContexts functions
 #' @return
@@ -108,7 +108,8 @@ NULL
 
 #' switchToFrame
 #'
-#' @param remDr
+#' @template remDr
+#' @param Id
 #'
 #' @family commandContexts functions
 #' @return
@@ -120,7 +121,7 @@ NULL
 
 #' switchToParentFrame
 #'
-#' @param remDr
+#' @template remDr
 #'
 #' @family commandContexts functions
 #' @return
@@ -132,7 +133,8 @@ NULL
 
 #' switchToWindow
 #'
-#' @param remDr
+#' @template remDr
+#' @param name
 #'
 #' @family commandContexts functions
 #' @return

@@ -1,6 +1,6 @@
 #' takeElementScreenshot
 #'
-#' @param webElem
+#' @template webElem
 #'
 #' @family screenCapture functions
 #' @return
@@ -12,7 +12,7 @@ NULL
 
 #' takeScreenshot
 #'
-#' @param remDr
+#' @template remDr
 #'
 #' @family screenCapture functions
 #' @return

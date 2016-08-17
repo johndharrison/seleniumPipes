@@ -1,6 +1,6 @@
 
 #' @rdname executeAsyncScript
-executeAsyncScript <- function(remDr, script, args = list(), replace = TRUE,  ...){
+executeAsyncScript <- function(remDr, script, args = list(), replace = TRUE, ...){
   obj <- remDr
   obj$sessionId <- remDr$sessionId(remDr$drvID)
   
@@ -23,7 +23,7 @@ executeAsyncScript <- function(remDr, script, args = list(), replace = TRUE,  ..
 }
 
 #' @rdname executeScript
-executeScript <- function(remDr, script, args = list(), replace = TRUE,  ...){
+executeScript <- function(remDr, script, args = list(), replace = TRUE, ...){
   obj <- remDr
   obj$sessionId <- remDr$sessionId(remDr$drvID)
   

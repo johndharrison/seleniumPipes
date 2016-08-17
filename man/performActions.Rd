@@ -7,7 +7,7 @@
 performActions(remDr, ...)
 }
 \arguments{
-\item{remDr}{}
+\item{remDr}{remote driver doc}
 }
 \description{
 performActions

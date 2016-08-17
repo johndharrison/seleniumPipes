@@ -7,7 +7,7 @@
 elementClick(webElem, ...)
 }
 \arguments{
-\item{webElem}{}
+\item{webElem}{web Element doc}
 }
 \description{
 elementClick

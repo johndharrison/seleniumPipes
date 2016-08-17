@@ -1,6 +1,13 @@
 #' addCookie
 #'
-#' @param remDr
+#' @template remDr
+#' @param name
+#' @param value
+#' @param path
+#' @param domain
+#' @param secure
+#' @param httpOnly
+#' @param expiry
 #'
 #' @family cookies functions
 #' @return
@@ -12,7 +19,7 @@ NULL
 
 #' deleteAllCookies
 #'
-#' @param remDr
+#' @template remDr
 #'
 #' @family cookies functions
 #' @return
@@ -24,7 +31,8 @@ NULL
 
 #' deleteCookie
 #'
-#' @param remDr
+#' @template remDr
+#' @param name
 #'
 #' @family cookies functions
 #' @return
@@ -36,7 +44,7 @@ NULL
 
 #' getAllCookies
 #'
-#' @param remDr
+#' @template remDr
 #'
 #' @family cookies functions
 #' @return
@@ -48,7 +56,8 @@ NULL
 
 #' getNamedCookie
 #'
-#' @param remDr
+#' @template remDr
+#' @param name
 #'
 #' @family cookies functions
 #' @return

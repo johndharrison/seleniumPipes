@@ -1,6 +1,6 @@
 #' acceptAlertOld
 #'
-#' @param remDr
+#' @template remDr
 #'
 #' @family oldMethods functions
 #' @return
@@ -12,7 +12,7 @@ NULL
 
 #' dismissAlertOld
 #'
-#' @param remDr
+#' @template remDr
 #'
 #' @family oldMethods functions
 #' @return
@@ -24,7 +24,10 @@ NULL
 
 #' executeAsyncScriptOld
 #'
-#' @param remDr
+#' @template remDr
+#' @param script
+#' @param args
+#' @param replace
 #'
 #' @family oldMethods functions
 #' @return
@@ -36,7 +39,10 @@ NULL
 
 #' executeScriptOld
 #'
-#' @param remDr
+#' @template remDr
+#' @param script
+#' @param args
+#' @param replace
 #'
 #' @family oldMethods functions
 #' @return
@@ -48,7 +54,7 @@ NULL
 
 #' getAlertTextOld
 #'
-#' @param remDr
+#' @template remDr
 #'
 #' @family oldMethods functions
 #' @return
@@ -60,7 +66,7 @@ NULL
 
 #' getWindowHandleOld
 #'
-#' @param remDr
+#' @template remDr
 #'
 #' @family oldMethods functions
 #' @return
@@ -72,7 +78,7 @@ NULL
 
 #' getWindowHandlesOld
 #'
-#' @param remDr
+#' @template remDr
 #'
 #' @family oldMethods functions
 #' @return
@@ -84,7 +90,7 @@ NULL
 
 #' sendAlertTextOld
 #'
-#' @param remDr
+#' @template remDr
 #'
 #' @family oldMethods functions
 #' @return

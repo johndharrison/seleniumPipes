@@ -9,7 +9,9 @@ findElementFromElement(webElem, using = c("xpath", "css selector", "id",
   ...)
 }
 \arguments{
-\item{webElem}{}
+\item{webElem}{web Element doc}
+
+\item{value}{}
 }
 \description{
 findElementFromElement

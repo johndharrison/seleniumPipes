@@ -1,6 +1,6 @@
 #' back
 #'
-#' @param remDr
+#' @template remDr
 #'
 #' @family navigation functions
 #' @return
@@ -12,7 +12,7 @@ NULL
 
 #' forward
 #'
-#' @param remDr
+#' @template remDr
 #'
 #' @family navigation functions
 #' @return
@@ -24,7 +24,7 @@ NULL
 
 #' getCurrentUrl
 #'
-#' @param remDr
+#' @template remDr
 #'
 #' @family navigation functions
 #' @return
@@ -36,7 +36,7 @@ NULL
 
 #' getTitle
 #'
-#' @param remDr
+#' @template remDr
 #'
 #' @family navigation functions
 #' @return
@@ -48,7 +48,8 @@ NULL
 
 #' go
 #'
-#' @param remDr
+#' @template remDr
+#' @param url
 #'
 #' @family navigation functions
 #' @return
@@ -60,7 +61,7 @@ NULL
 
 #' refresh
 #'
-#' @param remDr
+#' @template remDr
 #'
 #' @family navigation functions
 #' @return

@@ -1,6 +1,9 @@
 #' executeAsyncScript
 #'
-#' @param remDr
+#' @template remDr
+#' @param script
+#' @param args
+#' @param replace
 #'
 #' @family documentHandling functions
 #' @return
@@ -12,7 +15,10 @@ NULL
 
 #' executeScript
 #'
-#' @param remDr
+#' @template remDr
+#' @param script
+#' @param args
+#' @param replace
 #'
 #' @family documentHandling functions
 #' @return
@@ -24,7 +30,7 @@ NULL
 
 #' getPageSource
 #'
-#' @param remDr
+#' @template remDr
 #'
 #' @family documentHandling functions
 #' @return

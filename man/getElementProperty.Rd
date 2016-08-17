@@ -7,7 +7,9 @@
 getElementProperty(webElem, property, ...)
 }
 \arguments{
-\item{webElem}{}
+\item{webElem}{web Element doc}
+
+\item{property}{}
 }
 \description{
 getElementProperty

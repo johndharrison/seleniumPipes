@@ -1,6 +1,6 @@
 #' performActions
 #'
-#' @param remDr
+#' @template remDr
 #'
 #' @family interactions functions
 #' @return
@@ -12,7 +12,7 @@ NULL
 
 #' releasingActions
 #'
-#' @param remDr
+#' @template remDr
 #'
 #' @family interactions functions
 #' @return

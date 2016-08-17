@@ -29,7 +29,7 @@ newSession <- function(remDr, ...){
 }
 
 #' @rdname setTimeout
-setTimeout <- function(remDr, type = 'page load', milliseconds = 10000,  ...){
+setTimeout <- function(remDr, type = "page load", milliseconds = 10000, ...){
   obj <- remDr
   obj$sessionId <- remDr$sessionId(remDr$drvID)
   

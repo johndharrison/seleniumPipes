@@ -8,7 +8,9 @@ findElement(remDr, using = c("xpath", "css selector", "id", "name",
   "tag name", "class name", "link text", "partial link text"), value, ...)
 }
 \arguments{
-\item{remDr}{}
+\item{remDr}{remote driver doc}
+
+\item{value}{}
 }
 \description{
 findElement

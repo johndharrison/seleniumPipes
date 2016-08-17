@@ -7,7 +7,7 @@
 wbElement(elementId, remDr)
 }
 \arguments{
-\item{remDr}{}
+\item{remDr}{remote driver doc}
 }
 \description{
 wbElement

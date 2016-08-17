@@ -7,7 +7,9 @@
 switchToFrame(remDr, Id = NULL, ...)
 }
 \arguments{
-\item{remDr}{}
+\item{remDr}{remote driver doc}
+
+\item{Id}{}
 }
 \description{
 switchToFrame

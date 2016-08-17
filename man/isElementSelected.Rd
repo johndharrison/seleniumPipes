@@ -7,7 +7,7 @@
 isElementSelected(webElem, ...)
 }
 \arguments{
-\item{webElem}{}
+\item{webElem}{web Element doc}
 }
 \description{
 isElementSelected

@@ -7,7 +7,9 @@
 go(remDr, url, ...)
 }
 \arguments{
-\item{remDr}{}
+\item{remDr}{remote driver doc}
+
+\item{url}{}
 }
 \description{
 go

@@ -7,7 +7,9 @@
 getNamedCookie(remDr, name = NULL, ...)
 }
 \arguments{
-\item{remDr}{}
+\item{remDr}{remote driver doc}
+
+\item{name}{}
 }
 \description{
 getNamedCookie

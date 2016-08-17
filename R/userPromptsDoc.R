@@ -1,6 +1,6 @@
 #' acceptAlert
 #'
-#' @param remDr
+#' @template remDr
 #'
 #' @family userPrompts functions
 #' @return
@@ -12,7 +12,7 @@ NULL
 
 #' dismissAlert
 #'
-#' @param remDr
+#' @template remDr
 #'
 #' @family userPrompts functions
 #' @return
@@ -24,7 +24,7 @@ NULL
 
 #' getAlertText
 #'
-#' @param remDr
+#' @template remDr
 #'
 #' @family userPrompts functions
 #' @return
@@ -36,7 +36,7 @@ NULL
 
 #' sendAlertText
 #'
-#' @param remDr
+#' @template remDr
 #'
 #' @family userPrompts functions
 #' @return
