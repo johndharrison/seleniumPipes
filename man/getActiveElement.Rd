@@ -7,10 +7,16 @@
 getActiveElement(remDr, ...)
 }
 \arguments{
-\item{remDr}{remote driver doc}
+\item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
+}
+\value{
+ret4 : invisible(wbElement(res$value, remDr))
 }
 \description{
-getActiveElement
+\code{getActiveElement}
+}
+\examples{
+
 }
 \seealso{
 Other elementRetrieval functions: \code{\link{findElementFromElement}},

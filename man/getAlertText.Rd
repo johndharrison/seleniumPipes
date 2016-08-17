@@ -7,10 +7,16 @@
 getAlertText(remDr, ...)
 }
 \arguments{
-\item{remDr}{remote driver doc}
+\item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
+}
+\value{
+ret2 : res$value NEED TO FILL IN specifics for each function
 }
 \description{
-getAlertText
+\code{getAlertText}
+}
+\examples{
+
 }
 \seealso{
 Other userPrompts functions: \code{\link{acceptAlert}},

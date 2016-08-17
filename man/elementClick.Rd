@@ -9,8 +9,14 @@ elementClick(webElem, ...)
 \arguments{
 \item{webElem}{web Element doc}
 }
+\value{
+ret7 : invisible(webElem)
+}
 \description{
-elementClick
+\code{elementClick}
+}
+\examples{
+
 }
 \seealso{
 Other elementInteraction functions: \code{\link{elementClear}},

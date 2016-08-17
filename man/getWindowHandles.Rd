@@ -7,10 +7,16 @@
 getWindowHandles(remDr, ...)
 }
 \arguments{
-\item{remDr}{remote driver doc}
+\item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
+}
+\value{
+ret2 : res$value NEED TO FILL IN specifics for each function
 }
 \description{
-getWindowHandles
+\code{getWindowHandles}
+}
+\examples{
+
 }
 \seealso{
 Other commandContexts functions: \code{\link{closeWindow}},

@@ -7,10 +7,16 @@
 deleteSession(remDr, ...)
 }
 \arguments{
-\item{remDr}{remote driver doc}
+\item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
+}
+\value{
+ret9 : .e$sessionId[[remDr$drvID]] <- NULL;invisible(remDr)
 }
 \description{
-deleteSession
+\code{deleteSession}
+}
+\examples{
+
 }
 \seealso{
 Other sessions functions: \code{\link{newSession}},

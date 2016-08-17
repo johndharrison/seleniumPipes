@@ -7,12 +7,20 @@
 go(remDr, url, ...)
 }
 \arguments{
-\item{remDr}{remote driver doc}
+\item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
 
 \item{url}{}
 }
+\value{
+invisible(remDr): An object of class "rDriver" is invisibly returned.
+   A remote driver object see \code{\link{remoteDr}}. This allows for chaining from this function to
+   other functions that take such an object as an argument. See examples for further details.
+}
 \description{
-go
+\code{go}
+}
+\examples{
+
 }
 \seealso{
 Other navigation functions: \code{\link{back}},

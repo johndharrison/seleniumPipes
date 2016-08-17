@@ -1,24 +1,28 @@
 #' takeElementScreenshot
 #'
+#'\code{takeElementScreenshot}
+#'
 #' @template webElem
 #'
 #' @family screenCapture functions
-#' @return
+#' @template ret1
 #' @export
 #'
-#' @examples
+#' @example /inst/examples/docs/screenCapture.R
 #' @name takeElementScreenshot
 NULL
 
 #' takeScreenshot
 #'
+#'\code{takeScreenshot}
+#'
 #' @template remDr
 #'
 #' @family screenCapture functions
-#' @return
+#' @template ret1
 #' @export
 #'
-#' @examples
+#' @example /inst/examples/docs/screenCapture.R
 #' @name takeScreenshot
 NULL
 

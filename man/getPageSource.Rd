@@ -7,10 +7,16 @@
 getPageSource(remDr, ...)
 }
 \arguments{
-\item{remDr}{remote driver doc}
+\item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
+}
+\value{
+ret3 : read_html(res$value)
 }
 \description{
-getPageSource
+\code{getPageSource}
+}
+\examples{
+
 }
 \seealso{
 Other documentHandling functions: \code{\link{executeAsyncScript}},

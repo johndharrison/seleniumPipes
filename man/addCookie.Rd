@@ -2,18 +2,67 @@
 % Please edit documentation in R/cookies.R, R/cookiesDoc.R
 \name{addCookie}
 \alias{addCookie}
-\title{addCookie}
+\title{Add a specific cookie.}
 \usage{
 addCookie(remDr, name, value, path = NULL, domain = NULL, secure = FALSE,
   httpOnly = NULL, expiry = NULL, ...)
 }
 \arguments{
-\item{remDr}{remote driver doc}
+\item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
 
-\item{expiry}{}
+\item{name}{character: The name of the cookie; may not be null or an empty string}
+
+\item{value}{character: The cookie value; may not be null.}
+
+\item{path}{character: The path the cookie is visible to. If left blank or set
+to null, will be set to "/".}
+
+\item{domain}{character: The domain the cookie is visible to. It should be null or
+the same as the domain of the current URL.}
+
+\item{secure}{logical:  Whether this cookie requires a secure connection(https?).
+It should be null or equal to the security of the current URL.}
+
+\item{httpOnly}{logical:  Whether the cookie is an httpOnly cookie.}
+
+\item{expiry}{The cookie's expiration date; may be null.}
+
+\item{...}{Additonal function arguments - Currently unused.}
+}
+\value{
+invisible(remDr): An object of class "rDriver" is invisibly returned.
+   A remote driver object see \code{\link{remoteDr}}. This allows for chaining from this function to
+   other functions that take such an object as an argument. See examples for further details.
 }
 \description{
-addCookie
+\code{addCookie} Add a specific cookie.
+}
+\examples{
+\dontrun{
+# assume a server is running at default location
+remDr <- remoteDr()
+remDr \%>\% go("https://www.google.com/ncr") \%>\%
+  getTitle()
+# get the cookies
+remDr \%>\% getCookie()
+# get a named cookie
+remDr \%>\% getCookie("NID")
+# add our own cookie
+remDr \%>\% addCookie(name = "myCookie", value = "12")
+# check its value
+remDr \%>\% getCookie("myCookie")
+# delete our cookie
+remDr \%>\% deleteCookie("myCookie")
+# check its deleted
+remDr \%>\% getCookie("myCookie")
+
+# delete all cookies
+remDr \%>\% getCookie()
+remDr \%>\% deleteAllCookies() \%>\%
+  getCookie()
+
+remDr \%>\% deleteSession()
+}
 }
 \seealso{
 Other cookies functions: \code{\link{deleteAllCookies}},

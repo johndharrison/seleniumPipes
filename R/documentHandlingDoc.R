@@ -1,42 +1,48 @@
 #' executeAsyncScript
 #'
+#'\code{executeAsyncScript}
+#'
 #' @template remDr
 #' @param script
 #' @param args
 #' @param replace
 #'
 #' @family documentHandling functions
-#' @return
+#' @template ret6
 #' @export
 #'
-#' @examples
+#' @example /inst/examples/docs/documentHandling.R
 #' @name executeAsyncScript
 NULL
 
 #' executeScript
 #'
+#'\code{executeScript}
+#'
 #' @template remDr
 #' @param script
 #' @param args
 #' @param replace
 #'
 #' @family documentHandling functions
-#' @return
+#' @template ret6
 #' @export
 #'
-#' @examples
+#' @example /inst/examples/docs/documentHandling.R
 #' @name executeScript
 NULL
 
 #' getPageSource
 #'
+#'\code{getPageSource}
+#'
 #' @template remDr
 #'
 #' @family documentHandling functions
-#' @return
+#' @template ret3
 #' @export
 #'
-#' @examples
+#' @example /inst/examples/docs/documentHandling.R
 #' @name getPageSource
 NULL
 

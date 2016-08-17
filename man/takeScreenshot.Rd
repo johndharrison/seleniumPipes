@@ -7,10 +7,18 @@
 takeScreenshot(remDr, ...)
 }
 \arguments{
-\item{remDr}{remote driver doc}
+\item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
+}
+\value{
+invisible(remDr): An object of class "rDriver" is invisibly returned.
+   A remote driver object see \code{\link{remoteDr}}. This allows for chaining from this function to
+   other functions that take such an object as an argument. See examples for further details.
 }
 \description{
-takeScreenshot
+\code{takeScreenshot}
+}
+\examples{
+
 }
 \seealso{
 Other screenCapture functions: \code{\link{takeElementScreenshot}}

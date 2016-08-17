@@ -8,12 +8,18 @@ findElement(remDr, using = c("xpath", "css selector", "id", "name",
   "tag name", "class name", "link text", "partial link text"), value, ...)
 }
 \arguments{
-\item{remDr}{remote driver doc}
+\item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
 
 \item{value}{}
 }
+\value{
+ret4 : invisible(wbElement(res$value, remDr))
+}
 \description{
-findElement
+\code{findElement}
+}
+\examples{
+
 }
 \seealso{
 Other elementRetrieval functions: \code{\link{findElementFromElement}},

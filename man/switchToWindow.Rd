@@ -7,12 +7,20 @@
 switchToWindow(remDr, name, ...)
 }
 \arguments{
-\item{remDr}{remote driver doc}
+\item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
 
 \item{name}{}
 }
+\value{
+invisible(remDr): An object of class "rDriver" is invisibly returned.
+   A remote driver object see \code{\link{remoteDr}}. This allows for chaining from this function to
+   other functions that take such an object as an argument. See examples for further details.
+}
 \description{
-switchToWindow
+\code{switchToWindow}
+}
+\examples{
+
 }
 \seealso{
 Other commandContexts functions: \code{\link{closeWindow}},

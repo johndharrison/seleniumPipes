@@ -1,6 +1,6 @@
 # utility script to get the w3c specs to create the functions in seleniumPipes
 # assummed ran from the project base
-DOCUMENT <- TRUE
+DOCUMENT <- FALSE
 library(xml2)
 library(httr)
 library(rvest)
@@ -73,13 +73,15 @@ methPaths <- merge(methPaths, methGroups, by = "command")
 funcTemp <- list(
 remDr = list( roxy = "#' {{command}}
 #'
+#'{{codecommand}}
+#'
 #' @template remDr
 {{roxyArgs}}
 #' @family {{group}} functions
-#' @return
+#' @template {{rettype}}
 #' @export
 #'
-#' @examples
+#' @example /inst/examples/docs/{{group}}.R
 #' @name {{command}}
 NULL
 
@@ -102,13 +104,15 @@ fbody = "
 
 webElem = list(roxy = "#' {{command}}
 #'
+#'{{codecommand}}
+#'
 #' @template webElem
 {{roxyArgs}}
 #' @family {{group}} functions
-#' @return
+#' @template {{rettype}}
 #' @export
 #'
-#' @examples
+#' @example /inst/examples/docs/{{group}}.R
 #' @name {{command}}
 NULL
 
@@ -468,6 +472,8 @@ selPipeFuncs <- lapply(rowSplit(methPaths), function(x){
     appFunc[["type"]]
   }
   x[["return"]] <- selReturn[[type]]
+  x[["rettype"]] <- type
+  x[["codecommand"]] <- paste0("\\code{", x[["command"]], "}")
   list(fbody = whisker.render(funcTemp[[x$Arg]][["fbody"]], x)
        , roxy = whisker.render(funcTemp[[x$Arg]][["roxy"]], x))
 }

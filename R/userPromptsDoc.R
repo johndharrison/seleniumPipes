@@ -1,48 +1,56 @@
 #' acceptAlert
 #'
+#'\code{acceptAlert}
+#'
 #' @template remDr
 #'
 #' @family userPrompts functions
-#' @return
+#' @template ret1
 #' @export
 #'
-#' @examples
+#' @example /inst/examples/docs/userPrompts.R
 #' @name acceptAlert
 NULL
 
 #' dismissAlert
 #'
+#'\code{dismissAlert}
+#'
 #' @template remDr
 #'
 #' @family userPrompts functions
-#' @return
+#' @template ret1
 #' @export
 #'
-#' @examples
+#' @example /inst/examples/docs/userPrompts.R
 #' @name dismissAlert
 NULL
 
 #' getAlertText
 #'
+#'\code{getAlertText}
+#'
 #' @template remDr
 #'
 #' @family userPrompts functions
-#' @return
+#' @template ret2
 #' @export
 #'
-#' @examples
+#' @example /inst/examples/docs/userPrompts.R
 #' @name getAlertText
 NULL
 
 #' sendAlertText
 #'
+#'\code{sendAlertText}
+#'
 #' @template remDr
 #'
 #' @family userPrompts functions
-#' @return
+#' @template ret1
 #' @export
 #'
-#' @examples
+#' @example /inst/examples/docs/userPrompts.R
 #' @name sendAlertText
 NULL
 

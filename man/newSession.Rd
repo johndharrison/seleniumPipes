@@ -7,10 +7,16 @@
 newSession(remDr, ...)
 }
 \arguments{
-\item{remDr}{remote driver doc}
+\item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
+}
+\value{
+ret8 : remDr$sessionInfo <- res$value;invisible(remDr)
 }
 \description{
-newSession
+\code{newSession}
+}
+\examples{
+
 }
 \seealso{
 Other sessions functions: \code{\link{deleteSession}},

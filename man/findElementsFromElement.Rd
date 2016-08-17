@@ -13,8 +13,14 @@ findElementsFromElement(webElem, using = c("xpath", "css selector", "id",
 
 \item{value}{}
 }
+\value{
+ret11 : invisible(lapply(res$value, wbElement, remDr = webElem$remDr))
+}
 \description{
-findElementsFromElement
+\code{findElementsFromElement}
+}
+\examples{
+
 }
 \seealso{
 Other elementRetrieval functions: \code{\link{findElementFromElement}},

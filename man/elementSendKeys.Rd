@@ -9,8 +9,14 @@ elementSendKeys(webElem, ...)
 \arguments{
 \item{webElem}{web Element doc}
 }
+\value{
+ret7 : invisible(webElem)
+}
 \description{
-elementSendKeys
+\code{elementSendKeys}
+}
+\examples{
+
 }
 \seealso{
 Other elementInteraction functions: \code{\link{elementClear}},

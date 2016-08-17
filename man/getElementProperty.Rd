@@ -11,8 +11,14 @@ getElementProperty(webElem, property, ...)
 
 \item{property}{}
 }
+\value{
+ret2 : res$value NEED TO FILL IN specifics for each function
+}
 \description{
-getElementProperty
+\code{getElementProperty}
+}
+\examples{
+
 }
 \seealso{
 Other elementState functions: \code{\link{getElementAttribute}},

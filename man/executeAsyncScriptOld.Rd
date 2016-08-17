@@ -7,12 +7,18 @@
 executeAsyncScriptOld(remDr, script, args = list(), replace = TRUE, ...)
 }
 \arguments{
-\item{remDr}{remote driver doc}
+\item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
 
 \item{replace}{}
 }
+\value{
+ret6 : if(replace){testWebElement(res$value, remDr)}else{res$value}
+}
 \description{
-executeAsyncScriptOld
+\code{executeAsyncScriptOld}
+}
+\examples{
+
 }
 \seealso{
 Other oldMethods functions: \code{\link{acceptAlertOld}},

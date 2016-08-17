@@ -9,8 +9,14 @@ isElementSelected(webElem, ...)
 \arguments{
 \item{webElem}{web Element doc}
 }
+\value{
+ret2 : res$value NEED TO FILL IN specifics for each function
+}
 \description{
-isElementSelected
+\code{isElementSelected}
+}
+\examples{
+
 }
 \seealso{
 Other elementState functions: \code{\link{getElementAttribute}},

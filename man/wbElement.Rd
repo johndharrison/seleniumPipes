@@ -9,7 +9,7 @@ wbElement(elementId, remDr)
 \arguments{
 \item{elementId}{This is a string returned by the web driver that identifies the web element.}
 
-\item{remDr}{remote driver doc}
+\item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
 }
 \value{
 An object of class "wElement" is returned. This is a web element object that is used

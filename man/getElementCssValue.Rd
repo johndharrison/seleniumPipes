@@ -11,8 +11,14 @@ getElementCssValue(webElem, propertyName, ...)
 
 \item{propertyName}{}
 }
+\value{
+ret2 : res$value NEED TO FILL IN specifics for each function
+}
 \description{
-getElementCssValue
+\code{getElementCssValue}
+}
+\examples{
+
 }
 \seealso{
 Other elementState functions: \code{\link{getElementAttribute}},

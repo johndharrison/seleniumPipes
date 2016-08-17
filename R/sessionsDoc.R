@@ -1,38 +1,44 @@
 #' deleteSession
 #'
+#'\code{deleteSession}
+#'
 #' @template remDr
 #'
 #' @family sessions functions
-#' @return
+#' @template ret9
 #' @export
 #'
-#' @examples
+#' @example /inst/examples/docs/sessions.R
 #' @name deleteSession
 NULL
 
 #' newSession
 #'
+#'\code{newSession}
+#'
 #' @template remDr
 #'
 #' @family sessions functions
-#' @return
+#' @template ret8
 #' @export
 #'
-#' @examples
+#' @example /inst/examples/docs/sessions.R
 #' @name newSession
 NULL
 
 #' setTimeout
+#'
+#'\code{setTimeout}
 #'
 #' @template remDr
 #' @param type
 #' @param milliseconds
 #'
 #' @family sessions functions
-#' @return
+#' @template ret1
 #' @export
 #'
-#' @examples
+#' @example /inst/examples/docs/sessions.R
 #' @name setTimeout
 NULL
 
