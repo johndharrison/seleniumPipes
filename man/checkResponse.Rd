@@ -2,14 +2,18 @@
 % Please edit documentation in R/init.R
 \name{checkResponse}
 \alias{checkResponse}
-\title{Title}
+\title{Check the response from remote server}
 \usage{
 checkResponse(response)
 }
 \arguments{
-\item{response}{}
+\item{response}{The value returned by a http method from httr see \code{\link{VERB}}}
+}
+\value{
+Stops with appropriate error if any found. On error \code{\link{errorResponse}} and
+   \code{\link{errorContent}} may provide additional detail.
 }
 \description{
-Title
+\code{checkResponse} checks the response from a remote web driver and checks against known errors.
 }
 

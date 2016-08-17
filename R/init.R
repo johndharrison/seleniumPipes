@@ -130,13 +130,17 @@ wbElement <- function(elementId, remDr){
     ,  class = "wElement")
 }
 
-#' queryDriver
+#' Send a query to remote Driver.
 #'
-#' @param verb
-#' @param url
-#' @param ...
+#' \code{queryDriver} A function to send a query to a remote driver. Intended for seleniumPipes
+#'    internal use mainly.
+#' @param verb The http method to use. See \code{\link{VERB}}
+#' @param url The url of the remote server endpoint.
+#' @param source The name of the seleniumPipes function that called queryDriver.
+#' @param drvID The driver id of the session as given by an object of class "remoteDr"
+#' @param ... additonal arguments
 #'
-#' @return
+#' @return The contents of the response from the remote server. See \code{\link{content}} for details.
 #' @export
 #'
 #' @examples
@@ -158,11 +162,14 @@ queryDriver <- function(verb = GET, url, source, drvID, ...){
   res
 }
 
-#' Title
+#' Check the response from remote server
 #'
-#' @param response
+#' \code{checkResponse} checks the response from a remote web driver and checks against known errors.
 #'
-#' @return
+#' @param response The value returned by a http method from httr see \code{\link{VERB}}
+#'
+#' @return Stops with appropriate error if any found. On error \code{\link{errorResponse}} and
+#'    \code{\link{errorContent}} may provide additional detail.
 #' @export
 #'
 #' @examples
@@ -232,9 +239,10 @@ checkResponse <- function(response){
   stop("Selenium Server error", call. = FALSE)
 }
 
-#' Title
+#' Return the response from remote webdriver
 #'
-#' @return
+#'\code{errorResponse} returns the response from the remote webdriver on an error.
+#' @return returns response see \code{\link{VERB}}. Headers, request etc. can be examined from this object.
 #' @export
 #'
 #' @examples
@@ -243,9 +251,10 @@ errorResponse <- function(){
   .e$errorResponse
 }
 
-#' Title
+#' Returns the content from remote webdriver
 #'
-#' @return
+#'\code{errorContent} returns the content from the remote webdriver on an error.
+#' @return returns content see \code{\link{content}}
 #' @export
 #'
 #' @examples

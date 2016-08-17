@@ -2,7 +2,7 @@
 % Please edit documentation in R/init.R
 \name{remoteDr}
 \alias{remoteDr}
-\title{Create remote driver}
+\title{Create a remote driver}
 \usage{
 remoteDr(remoteServerAddr = "http://localhost", port = 4444L,
   browserName = "firefox", version = "", platform = "ANY",
@@ -36,7 +36,8 @@ Native events simulate the user interactions better.}
 }
 \value{
 An object of class "rDriver" is returned. This is a remote Driver object that is used
-   in many of the remote driver specific functions.
+   in many of the remote driver specific functions. Many functions that take a remote driver object as
+   input also return the remote driver object. This allows chaining of commands. See the examples for chaining in action.
 }
 \description{
 \code{remoteDr}: Create a remote Driver object
@@ -45,8 +46,11 @@ An object of class "rDriver" is returned. This is a remote Driver object that is
 \dontrun{
 # assume a server is available at the default location.
 remDr <- remoteDr()
-remDR \%>\% go("http://www.google.com") \%>\% findElement("name", "q") \%>\%
-   elementSendKeys("R project", key = "enter")
+remDR \%>\% go("http://www.google.com") \%>\%
+ findElement("name", "q") \%>\%
+ elementSendKeys("R project", key = "enter")
+# close our browser
+remDr \%>\% deleteSession
 }
 
 }

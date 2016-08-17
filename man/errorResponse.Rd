@@ -2,11 +2,14 @@
 % Please edit documentation in R/init.R
 \name{errorResponse}
 \alias{errorResponse}
-\title{Title}
+\title{Return the response from remote webdriver}
 \usage{
 errorResponse()
 }
+\value{
+returns response see \code{\link{VERB}}. Headers, request etc. can be examined from this object.
+}
 \description{
-Title
+\code{errorResponse} returns the response from the remote webdriver on an error.
 }
 

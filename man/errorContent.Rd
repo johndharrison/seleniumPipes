@@ -2,11 +2,14 @@
 % Please edit documentation in R/init.R
 \name{errorContent}
 \alias{errorContent}
-\title{Title}
+\title{Returns the content from remote webdriver}
 \usage{
 errorContent()
 }
+\value{
+returns content see \code{\link{content}}
+}
 \description{
-Title
+\code{errorContent} returns the content from the remote webdriver on an error.
 }
 
