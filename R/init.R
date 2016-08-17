@@ -10,7 +10,7 @@
 #' @importFrom  whisker whisker.render
 NULL
 
-#' Create remote driver
+#' Create a remote driver
 #'
 #' \code{remoteDr}: Create a remote Driver object
 #' @param remoteServerAddr Object of class \code{"character"}, giving the ip of the remote server.
@@ -28,15 +28,19 @@ NULL
 #' @param path Path on the server side to issue webdriver calls to. Normally use the default value.
 #' @param newSession Logical value whether to start an instance of the browser. If TRUE a browser will be opened using \code{\link{newSession}}
 #' @return An object of class "rDriver" is returned. This is a remote Driver object that is used
-#'    in many of the remote driver specific functions.
+#'    in many of the remote driver specific functions. Many functions that take a remote driver object as
+#'    input also return the remote driver object. This allows chaining of commands. See the examples for chaining in action.
 #' @export
 #'
 #' @examples
 #' \dontrun{
 #' # assume a server is available at the default location.
 #' remDr <- remoteDr()
-#' remDR %>% go("http://www.google.com") %>% findElement("name", "q") %>%
-#'    elementSendKeys("R project", key = "enter")
+#' remDR %>% go("http://www.google.com") %>%
+#'  findElement("name", "q") %>%
+#'  elementSendKeys("R project", key = "enter")
+#' # close our browser
+#' remDr %>% deleteSession
 #' }
 #'
 
@@ -89,16 +93,32 @@ remoteDr <- function(remoteServerAddr = "http://localhost",
   invisible(session)
 }
 
-#' wbElement
+#' Create a Web Element
 #'
-#' @param elementId
+#' \code{wbElement} Create a Web Element object of class "wElement"
+#'
+#' @param elementId This is a string returned by the web driver that identifies the web element.
 #' @template remDr
 #'
-#' @return
+#' @return An object of class "wElement" is returned. This is a web element object that is used
+#'    in many of the web Element specific functions. Many functions that take a web Element object as
+#'    input also return the web Element object. This allows chaining of commands. See the examples for chaining in action.
+
 #' @export
 #'
-#' @examples
+#' @examples \dontrun{
+#' remDr <- remoteDr()
+#' webElem <- remDR %>% go("http://www.google.com") %>%
+#'  findElement("name", "q")
+#' # print the webElement
+#' webElem
 #'
+#' # send keys to the web Element
+#' webElem %>%  elementSendKeys("R project", key = "enter")
+#'
+#' # close browser
+#' remDr %>% deleteSession()
+#' }
 
 wbElement <- function(elementId, remDr){
   structure(
