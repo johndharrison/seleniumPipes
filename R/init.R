@@ -70,7 +70,7 @@ remoteDr <- function(remoteServerAddr = "http://localhost",
 #' wbElement
 #'
 #' @param elementId
-#' @param remDr
+#' @template remDr
 #'
 #' @return
 #' @export
