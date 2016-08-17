@@ -2,20 +2,27 @@
 % Please edit documentation in R/documentHandling.R, R/documentHandlingDoc.R
 \name{executeScript}
 \alias{executeScript}
-\title{executeScript}
+\title{Execute JavaScript on browser.}
 \usage{
 executeScript(remDr, script, args = list(), replace = TRUE, ...)
 }
 \arguments{
 \item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
 
-\item{replace}{}
+\item{script}{character: The script to inject.}
+
+\item{args}{The arguments of the script as a list.}
+
+\item{replace}{logical: If TRUE any elements identify as web Elements are converted to such.}
 }
 \value{
-ret6 : if(replace){testWebElement(res$value, remDr)}else{res$value}
+If replace is TRUE parses the response from the server for web Elements and converts as such.
+   Otherwise the content returned is assummed to be a simple list.
 }
 \description{
-\code{executeScript}
+\code{executeScript}  Inject a snippet of JavaScript into the page for execution in the context
+   of the currently selected frame. The executed script is assumed to be
+   synchronous and the result of evaluating the script will be returned.
 }
 \examples{
 

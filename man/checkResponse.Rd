@@ -16,4 +16,9 @@ Stops with appropriate error if any found. On error \code{\link{errorResponse}} 
 \description{
 \code{checkResponse} checks the response from a remote web driver and checks against known errors.
 }
+\examples{
+\dontrun{
+}
+
+}
 

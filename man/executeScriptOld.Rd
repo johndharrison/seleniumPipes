@@ -12,7 +12,8 @@ executeScriptOld(remDr, script, args = list(), replace = TRUE, ...)
 \item{replace}{}
 }
 \value{
-ret6 : if(replace){testWebElement(res$value, remDr)}else{res$value}
+If replace is TRUE parses the response from the server for web Elements and converts as such.
+   Otherwise the content returned is assummed to be a simple list.
 }
 \description{
 \code{executeScriptOld}

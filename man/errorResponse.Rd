@@ -12,4 +12,8 @@ returns response see \code{\link{VERB}}. Headers, request etc. can be examined f
 \description{
 \code{errorResponse} returns the response from the remote webdriver on an error.
 }
+\examples{
+\dontrun{
+}
+}
 

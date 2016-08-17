@@ -2,7 +2,7 @@
 % Please edit documentation in R/documentHandling.R, R/documentHandlingDoc.R
 \name{getPageSource}
 \alias{getPageSource}
-\title{getPageSource}
+\title{Get source of last page.}
 \usage{
 getPageSource(remDr, ...)
 }
@@ -10,10 +10,12 @@ getPageSource(remDr, ...)
 \item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
 }
 \value{
-ret3 : read_html(res$value)
+read_html(res$value): An xml document is returned.
+  The content from the remote webdriver is parsed (see \code{\link{read_html}}) and returned
+  as xml.
 }
 \description{
-\code{getPageSource}
+\code{getPageSource} Get the source of the last loaded page.
 }
 \examples{
 
