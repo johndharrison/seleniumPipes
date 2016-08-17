@@ -1,13 +1,5 @@
-#' elementClear
-#'
-#' @param webElem
-#'
-#' @family elementInteraction functions
-#' @return
-#' @export
-#'
-#' @examples
 
+#' @rdname elementClear
 elementClear <- function(webElem, ...){
   obj <- webElem
   obj$sessionId <- webElem$sessionId(webElem$remDr$drvID)
@@ -21,16 +13,8 @@ elementClear <- function(webElem, ...){
 }
 
 
-#' elementClick
-#'
-#' @param webElem
-#'
-#' @family elementInteraction functions
-#' @return
-#' @export
-#'
-#' @examples
 
+#' @rdname elementClick
 elementClick <- function(webElem, ...){
   obj <- webElem
   obj$sessionId <- webElem$sessionId(webElem$remDr$drvID)
@@ -44,16 +28,8 @@ elementClick <- function(webElem, ...){
 }
 
 
-#' elementSendKeys
-#'
-#' @param webElem
-#'
-#' @family elementInteraction functions
-#' @return
-#' @export
-#'
-#' @examples
 
+#' @rdname elementSendKeys
 elementSendKeys <- function(webElem, ...){
   obj <- webElem
   obj$sessionId <- webElem$sessionId(webElem$remDr$drvID)

@@ -1,13 +1,5 @@
-#' findElement
-#'
-#' @param remDr
-#'
-#' @family elementRetrieval functions
-#' @return
-#' @export
-#'
-#' @examples
 
+#' @rdname findElement
 findElement <- function(remDr, using = c("xpath", "css selector", "id", "name", "tag name", "class name", "link text", "partial link text"), value, ...){
   obj <- remDr
   obj$sessionId <- remDr$sessionId(remDr$drvID)
@@ -25,17 +17,7 @@ findElement <- function(remDr, using = c("xpath", "css selector", "id", "name", 
   invisible(wbElement(res$value, remDr))
 }
 
-
-#' findElementFromElement
-#'
-#' @param webElem
-#'
-#' @family elementRetrieval functions
-#' @return
-#' @export
-#'
-#' @examples
-
+#' @rdname findElementFromElement
 findElementFromElement <- function(webElem, using = c("xpath", "css selector", "id", "name", "tag name", "class name", "link text", "partial link text"), value, ...){
   obj <- webElem
   obj$sessionId <- webElem$sessionId(webElem$remDr$drvID)
@@ -55,16 +37,8 @@ findElementFromElement <- function(webElem, using = c("xpath", "css selector", "
 }
 
 
-#' findElements
-#'
-#' @param remDr
-#'
-#' @family elementRetrieval functions
-#' @return
-#' @export
-#'
-#' @examples
 
+#' @rdname findElements
 findElements <- function(remDr, using = c("xpath", "css selector", "id", "name", "tag name", "class name", "link text", "partial link text"), value, ...){
   obj <- remDr
   obj$sessionId <- remDr$sessionId(remDr$drvID)
@@ -82,17 +56,7 @@ findElements <- function(remDr, using = c("xpath", "css selector", "id", "name",
   invisible(lapply(res$value, wbElement, remDr = remDr))
 }
 
-
-#' findElementsFromElement
-#'
-#' @param webElem
-#'
-#' @family elementRetrieval functions
-#' @return
-#' @export
-#'
-#' @examples
-
+#' @rdname findElementsFromElement
 findElementsFromElement <- function(webElem, using = c("xpath", "css selector", "id", "name", "tag name", "class name", "link text", "partial link text"), value, ...){
   obj <- webElem
   obj$sessionId <- webElem$sessionId(webElem$remDr$drvID)
@@ -112,16 +76,8 @@ findElementsFromElement <- function(webElem, using = c("xpath", "css selector", 
 }
 
 
-#' getActiveElement
-#'
-#' @param remDr
-#'
-#' @family elementRetrieval functions
-#' @return
-#' @export
-#'
-#' @examples
 
+#' @rdname getActiveElement
 getActiveElement <- function(remDr, ...){
   obj <- remDr
   obj$sessionId <- remDr$sessionId(remDr$drvID)
@@ -132,6 +88,4 @@ getActiveElement <- function(remDr, ...){
   res <- queryDriver(verb = GET, url = build_url(pathURL), source = "getActiveElement", drvID = remDr$drvID, json = NULL,...)
   invisible(wbElement(res$value, remDr))
 }
-
-
 

@@ -1,13 +1,5 @@
-#' performActions
-#'
-#' @param remDr
-#'
-#' @family interactions functions
-#' @return
-#' @export
-#'
-#' @examples
 
+#' @rdname performActions
 performActions <- function(remDr, ...){
   obj <- remDr
   obj$sessionId <- remDr$sessionId(remDr$drvID)
@@ -24,17 +16,7 @@ performActions <- function(remDr, ...){
   invisible(remDr)
 }
 
-
-#' releasingActions
-#'
-#' @param remDr
-#'
-#' @family interactions functions
-#' @return
-#' @export
-#'
-#' @examples
-
+#' @rdname releasingActions
 releasingActions <- function(remDr, ...){
   obj <- remDr
   obj$sessionId <- remDr$sessionId(remDr$drvID)
@@ -45,6 +27,4 @@ releasingActions <- function(remDr, ...){
   res <- queryDriver(verb = DELETE, url = build_url(pathURL), source = "releasingActions", drvID = remDr$drvID, json = NULL,...)
   invisible(remDr)
 }
-
-
 

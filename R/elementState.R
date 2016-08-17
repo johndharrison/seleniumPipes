@@ -1,13 +1,5 @@
-#' getElementAttribute
-#'
-#' @param webElem
-#'
-#' @family elementState functions
-#' @return
-#' @export
-#'
-#' @examples
 
+#' @rdname getElementAttribute
 getElementAttribute <- function(webElem, attribute,  ...){
   obj <- webElem
   obj$sessionId <- webElem$sessionId(webElem$remDr$drvID)
@@ -21,16 +13,8 @@ getElementAttribute <- function(webElem, attribute,  ...){
 }
 
 
-#' getElementCssValue
-#'
-#' @param webElem
-#'
-#' @family elementState functions
-#' @return
-#' @export
-#'
-#' @examples
 
+#' @rdname getElementCssValue
 getElementCssValue <- function(webElem, propertyName,  ...){
   obj <- webElem
   obj$sessionId <- webElem$sessionId(webElem$remDr$drvID)
@@ -44,16 +28,8 @@ getElementCssValue <- function(webElem, propertyName,  ...){
 }
 
 
-#' getElementProperty
-#'
-#' @param webElem
-#'
-#' @family elementState functions
-#' @return
-#' @export
-#'
-#' @examples
 
+#' @rdname getElementProperty
 getElementProperty <- function(webElem, property,  ...){
   obj <- webElem
   obj$sessionId <- webElem$sessionId(webElem$remDr$drvID)
@@ -67,16 +43,8 @@ getElementProperty <- function(webElem, property,  ...){
 }
 
 
-#' getElementRect
-#'
-#' @param webElem
-#'
-#' @family elementState functions
-#' @return
-#' @export
-#'
-#' @examples
 
+#' @rdname getElementRect
 getElementRect <- function(webElem, ...){
   obj <- webElem
   obj$sessionId <- webElem$sessionId(webElem$remDr$drvID)
@@ -90,16 +58,8 @@ getElementRect <- function(webElem, ...){
 }
 
 
-#' getElementTagName
-#'
-#' @param webElem
-#'
-#' @family elementState functions
-#' @return
-#' @export
-#'
-#' @examples
 
+#' @rdname getElementTagName
 getElementTagName <- function(webElem, ...){
   obj <- webElem
   obj$sessionId <- webElem$sessionId(webElem$remDr$drvID)
@@ -113,16 +73,8 @@ getElementTagName <- function(webElem, ...){
 }
 
 
-#' getElementText
-#'
-#' @param webElem
-#'
-#' @family elementState functions
-#' @return
-#' @export
-#'
-#' @examples
 
+#' @rdname getElementText
 getElementText <- function(webElem, ...){
   obj <- webElem
   obj$sessionId <- webElem$sessionId(webElem$remDr$drvID)
@@ -136,16 +88,8 @@ getElementText <- function(webElem, ...){
 }
 
 
-#' isElementEnabled
-#'
-#' @param webElem
-#'
-#' @family elementState functions
-#' @return
-#' @export
-#'
-#' @examples
 
+#' @rdname isElementEnabled
 isElementEnabled <- function(webElem, ...){
   obj <- webElem
   obj$sessionId <- webElem$sessionId(webElem$remDr$drvID)
@@ -159,16 +103,8 @@ isElementEnabled <- function(webElem, ...){
 }
 
 
-#' isElementSelected
-#'
-#' @param webElem
-#'
-#' @family elementState functions
-#' @return
-#' @export
-#'
-#' @examples
 
+#' @rdname isElementSelected
 isElementSelected <- function(webElem, ...){
   obj <- webElem
   obj$sessionId <- webElem$sessionId(webElem$remDr$drvID)

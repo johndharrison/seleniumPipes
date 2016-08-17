@@ -1,13 +1,5 @@
-#' acceptAlert
-#'
-#' @param remDr
-#'
-#' @family userPrompts functions
-#' @return
-#' @export
-#'
-#' @examples
 
+#' @rdname acceptAlert
 acceptAlert <- function(remDr, ...){
   obj <- remDr
   obj$sessionId <- remDr$sessionId(remDr$drvID)
@@ -19,17 +11,7 @@ acceptAlert <- function(remDr, ...){
   invisible(remDr)
 }
 
-
-#' dismissAlert
-#'
-#' @param remDr
-#'
-#' @family userPrompts functions
-#' @return
-#' @export
-#'
-#' @examples
-
+#' @rdname dismissAlert
 dismissAlert <- function(remDr, ...){
   obj <- remDr
   obj$sessionId <- remDr$sessionId(remDr$drvID)
@@ -41,17 +23,7 @@ dismissAlert <- function(remDr, ...){
   invisible(remDr)
 }
 
-
-#' getAlertText
-#'
-#' @param remDr
-#'
-#' @family userPrompts functions
-#' @return
-#' @export
-#'
-#' @examples
-
+#' @rdname getAlertText
 getAlertText <- function(remDr, ...){
   obj <- remDr
   obj$sessionId <- remDr$sessionId(remDr$drvID)
@@ -63,17 +35,7 @@ getAlertText <- function(remDr, ...){
   res$value
 }
 
-
-#' sendAlertText
-#'
-#' @param remDr
-#'
-#' @family userPrompts functions
-#' @return
-#' @export
-#'
-#' @examples
-
+#' @rdname sendAlertText
 sendAlertText <- function(remDr, ...){
   obj <- remDr
   obj$sessionId <- remDr$sessionId(remDr$drvID)
@@ -85,6 +47,4 @@ sendAlertText <- function(remDr, ...){
   res <- queryDriver(verb = POST, url = build_url(pathURL), source = "sendAlertText", drvID = remDr$drvID, json = jsonBody,...)
   invisible(remDr)
 }
-
-
 

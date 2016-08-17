@@ -1,13 +1,5 @@
-#' executeAsyncScript
-#'
-#' @param remDr
-#'
-#' @family documentHandling functions
-#' @return
-#' @export
-#'
-#' @examples
 
+#' @rdname executeAsyncScript
 executeAsyncScript <- function(remDr, script, args = list(), replace = TRUE,  ...){
   obj <- remDr
   obj$sessionId <- remDr$sessionId(remDr$drvID)
@@ -30,17 +22,7 @@ executeAsyncScript <- function(remDr, script, args = list(), replace = TRUE,  ..
   if(replace){testWebElement(res$value, remDr)}else{res$value}
 }
 
-
-#' executeScript
-#'
-#' @param remDr
-#'
-#' @family documentHandling functions
-#' @return
-#' @export
-#'
-#' @examples
-
+#' @rdname executeScript
 executeScript <- function(remDr, script, args = list(), replace = TRUE,  ...){
   obj <- remDr
   obj$sessionId <- remDr$sessionId(remDr$drvID)
@@ -63,17 +45,7 @@ executeScript <- function(remDr, script, args = list(), replace = TRUE,  ...){
   if(replace){testWebElement(res$value, remDr)}else{res$value}
 }
 
-
-#' getPageSource
-#'
-#' @param remDr
-#'
-#' @family documentHandling functions
-#' @return
-#' @export
-#'
-#' @examples
-
+#' @rdname getPageSource
 getPageSource <- function(remDr, ...){
   obj <- remDr
   obj$sessionId <- remDr$sessionId(remDr$drvID)
@@ -84,6 +56,4 @@ getPageSource <- function(remDr, ...){
   res <- queryDriver(verb = GET, url = build_url(pathURL), source = "getPageSource", drvID = remDr$drvID, json = NULL,...)
   read_html(res$value)
 }
-
-
 

@@ -1,13 +1,5 @@
-#' takeElementScreenshot
-#'
-#' @param webElem
-#'
-#' @family screenCapture functions
-#' @return
-#' @export
-#'
-#' @examples
 
+#' @rdname takeElementScreenshot
 takeElementScreenshot <- function(webElem, ...){
   obj <- webElem
   obj$sessionId <- webElem$sessionId(webElem$remDr$drvID)
@@ -21,16 +13,8 @@ takeElementScreenshot <- function(webElem, ...){
 }
 
 
-#' takeScreenshot
-#'
-#' @param remDr
-#'
-#' @family screenCapture functions
-#' @return
-#' @export
-#'
-#' @examples
 
+#' @rdname takeScreenshot
 takeScreenshot <- function(remDr, ...){
   obj <- remDr
   obj$sessionId <- remDr$sessionId(remDr$drvID)
@@ -41,6 +25,4 @@ takeScreenshot <- function(remDr, ...){
   res <- queryDriver(verb = GET, url = build_url(pathURL), source = "takeScreenshot", drvID = remDr$drvID, json = NULL,...)
   invisible(remDr)
 }
-
-
 

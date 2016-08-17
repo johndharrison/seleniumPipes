@@ -1,13 +1,5 @@
-#' addCookie
-#'
-#' @param remDr
-#'
-#' @family cookies functions
-#' @return
-#' @export
-#'
-#' @examples
 
+#' @rdname addCookie
 addCookie <- function(remDr, name, value, path = NULL, domain = NULL, secure = FALSE, httpOnly = NULL, expiry = NULL,  ...){
   obj <- remDr
   obj$sessionId <- remDr$sessionId(remDr$drvID)
@@ -23,17 +15,7 @@ addCookie <- function(remDr, name, value, path = NULL, domain = NULL, secure = F
   invisible(remDr)
 }
 
-
-#' deleteAllCookies
-#'
-#' @param remDr
-#'
-#' @family cookies functions
-#' @return
-#' @export
-#'
-#' @examples
-
+#' @rdname deleteAllCookies
 deleteAllCookies <- function(remDr, ...){
   obj <- remDr
   obj$sessionId <- remDr$sessionId(remDr$drvID)
@@ -45,17 +27,7 @@ deleteAllCookies <- function(remDr, ...){
   invisible(remDr)
 }
 
-
-#' deleteCookie
-#'
-#' @param remDr
-#'
-#' @family cookies functions
-#' @return
-#' @export
-#'
-#' @examples
-
+#' @rdname deleteCookie
 deleteCookie <- function(remDr, name = NULL,  ...){
   obj <- remDr
   obj$sessionId <- remDr$sessionId(remDr$drvID)
@@ -67,17 +39,7 @@ deleteCookie <- function(remDr, name = NULL,  ...){
   invisible(remDr)
 }
 
-
-#' getAllCookies
-#'
-#' @param remDr
-#'
-#' @family cookies functions
-#' @return
-#' @export
-#'
-#' @examples
-
+#' @rdname getAllCookies
 getAllCookies <- function(remDr, ...){
   obj <- remDr
   obj$sessionId <- remDr$sessionId(remDr$drvID)
@@ -89,17 +51,7 @@ getAllCookies <- function(remDr, ...){
   res$value
 }
 
-
-#' getNamedCookie
-#'
-#' @param remDr
-#'
-#' @family cookies functions
-#' @return
-#' @export
-#'
-#' @examples
-
+#' @rdname getNamedCookie
 getNamedCookie <- function(remDr, name = NULL,  ...){
   obj <- remDr
   obj$sessionId <- remDr$sessionId(remDr$drvID)
@@ -110,6 +62,4 @@ getNamedCookie <- function(remDr, name = NULL,  ...){
   res <- queryDriver(verb = GET, url = build_url(pathURL), source = "getNamedCookie", drvID = remDr$drvID, json = NULL,...)
   res$value
 }
-
-
 

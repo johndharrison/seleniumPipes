@@ -1,13 +1,5 @@
-#' back
-#'
-#' @param remDr
-#'
-#' @family navigation functions
-#' @return
-#' @export
-#'
-#' @examples
 
+#' @rdname back
 back <- function(remDr, ...){
   obj <- remDr
   obj$sessionId <- remDr$sessionId(remDr$drvID)
@@ -22,17 +14,7 @@ back <- function(remDr, ...){
   invisible(remDr)
 }
 
-
-#' forward
-#'
-#' @param remDr
-#'
-#' @family navigation functions
-#' @return
-#' @export
-#'
-#' @examples
-
+#' @rdname forward
 forward <- function(remDr, ...){
   obj <- remDr
   obj$sessionId <- remDr$sessionId(remDr$drvID)
@@ -47,17 +29,7 @@ forward <- function(remDr, ...){
   invisible(remDr)
 }
 
-
-#' getCurrentUrl
-#'
-#' @param remDr
-#'
-#' @family navigation functions
-#' @return
-#' @export
-#'
-#' @examples
-
+#' @rdname getCurrentUrl
 getCurrentUrl <- function(remDr, ...){
   obj <- remDr
   obj$sessionId <- remDr$sessionId(remDr$drvID)
@@ -69,17 +41,7 @@ getCurrentUrl <- function(remDr, ...){
   res$value
 }
 
-
-#' getTitle
-#'
-#' @param remDr
-#'
-#' @family navigation functions
-#' @return
-#' @export
-#'
-#' @examples
-
+#' @rdname getTitle
 getTitle <- function(remDr, ...){
   obj <- remDr
   obj$sessionId <- remDr$sessionId(remDr$drvID)
@@ -91,17 +53,7 @@ getTitle <- function(remDr, ...){
   res$value
 }
 
-
-#' go
-#'
-#' @param remDr
-#'
-#' @family navigation functions
-#' @return
-#' @export
-#'
-#' @examples
-
+#' @rdname go
 go <- function(remDr, url, ...){
   obj <- remDr
   obj$sessionId <- remDr$sessionId(remDr$drvID)
@@ -118,17 +70,7 @@ go <- function(remDr, url, ...){
   invisible(remDr)
 }
 
-
-#' refresh
-#'
-#' @param remDr
-#'
-#' @family navigation functions
-#' @return
-#' @export
-#'
-#' @examples
-
+#' @rdname refresh
 refresh <- function(remDr, ...){
   obj <- remDr
   obj$sessionId <- remDr$sessionId(remDr$drvID)
@@ -142,6 +84,4 @@ refresh <- function(remDr, ...){
   res <- queryDriver(verb = POST, url = build_url(pathURL), source = "refresh", drvID = remDr$drvID, json = jsonBody,...)
   invisible(remDr)
 }
-
-
 

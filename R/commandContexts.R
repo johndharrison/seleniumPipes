@@ -1,13 +1,5 @@
-#' closeWindow
-#'
-#' @param remDr
-#'
-#' @family commandContexts functions
-#' @return
-#' @export
-#'
-#' @examples
 
+#' @rdname closeWindow
 closeWindow <- function(remDr, ...){
   obj <- remDr
   obj$sessionId <- remDr$sessionId(remDr$drvID)
@@ -19,17 +11,7 @@ closeWindow <- function(remDr, ...){
   invisible(remDr)
 }
 
-
-#' fullscreenWindow
-#'
-#' @param remDr
-#'
-#' @family commandContexts functions
-#' @return
-#' @export
-#'
-#' @examples
-
+#' @rdname fullscreenWindow
 fullscreenWindow <- function(remDr, ...){
   obj <- remDr
   obj$sessionId <- remDr$sessionId(remDr$drvID)
@@ -46,17 +28,7 @@ fullscreenWindow <- function(remDr, ...){
   invisible(remDr)
 }
 
-
-#' getWindowHandle
-#'
-#' @param remDr
-#'
-#' @family commandContexts functions
-#' @return
-#' @export
-#'
-#' @examples
-
+#' @rdname getWindowHandle
 getWindowHandle <- function(remDr, ...){
   obj <- remDr
   obj$sessionId <- remDr$sessionId(remDr$drvID)
@@ -68,17 +40,7 @@ getWindowHandle <- function(remDr, ...){
   res$value
 }
 
-
-#' getWindowHandles
-#'
-#' @param remDr
-#'
-#' @family commandContexts functions
-#' @return
-#' @export
-#'
-#' @examples
-
+#' @rdname getWindowHandles
 getWindowHandles <- function(remDr, ...){
   obj <- remDr
   obj$sessionId <- remDr$sessionId(remDr$drvID)
@@ -90,17 +52,7 @@ getWindowHandles <- function(remDr, ...){
   res$value
 }
 
-
-#' getWindowPosition
-#'
-#' @param remDr
-#'
-#' @family commandContexts functions
-#' @return
-#' @export
-#'
-#' @examples
-
+#' @rdname getWindowPosition
 getWindowPosition <- function(remDr, ...){
   obj <- remDr
   obj$sessionId <- remDr$sessionId(remDr$drvID)
@@ -112,17 +64,7 @@ getWindowPosition <- function(remDr, ...){
   invisible(remDr)
 }
 
-
-#' getWindowSize
-#'
-#' @param remDr
-#'
-#' @family commandContexts functions
-#' @return
-#' @export
-#'
-#' @examples
-
+#' @rdname getWindowSize
 getWindowSize <- function(remDr, ...){
   obj <- remDr
   obj$sessionId <- remDr$sessionId(remDr$drvID)
@@ -134,17 +76,7 @@ getWindowSize <- function(remDr, ...){
   invisible(remDr)
 }
 
-
-#' maximizeWindow
-#'
-#' @param remDr
-#'
-#' @family commandContexts functions
-#' @return
-#' @export
-#'
-#' @examples
-
+#' @rdname maximizeWindow
 maximizeWindow <- function(remDr, ...){
   obj <- remDr
   obj$sessionId <- remDr$sessionId(remDr$drvID)
@@ -161,17 +93,7 @@ maximizeWindow <- function(remDr, ...){
   invisible(remDr)
 }
 
-
-#' setWindowPosition
-#'
-#' @param remDr
-#'
-#' @family commandContexts functions
-#' @return
-#' @export
-#'
-#' @examples
-
+#' @rdname setWindowPosition
 setWindowPosition <- function(remDr, ...){
   obj <- remDr
   obj$sessionId <- remDr$sessionId(remDr$drvID)
@@ -188,17 +110,7 @@ setWindowPosition <- function(remDr, ...){
   invisible(remDr)
 }
 
-
-#' setWindowSize
-#'
-#' @param remDr
-#'
-#' @family commandContexts functions
-#' @return
-#' @export
-#'
-#' @examples
-
+#' @rdname setWindowSize
 setWindowSize <- function(remDr, ...){
   obj <- remDr
   obj$sessionId <- remDr$sessionId(remDr$drvID)
@@ -215,17 +127,7 @@ setWindowSize <- function(remDr, ...){
   invisible(remDr)
 }
 
-
-#' switchToFrame
-#'
-#' @param remDr
-#'
-#' @family commandContexts functions
-#' @return
-#' @export
-#'
-#' @examples
-
+#' @rdname switchToFrame
 switchToFrame <- function(remDr, Id = NULL, ...){
   obj <- remDr
   obj$sessionId <- remDr$sessionId(remDr$drvID)
@@ -246,17 +148,7 @@ switchToFrame <- function(remDr, Id = NULL, ...){
   invisible(remDr)
 }
 
-
-#' switchToParentFrame
-#'
-#' @param remDr
-#'
-#' @family commandContexts functions
-#' @return
-#' @export
-#'
-#' @examples
-
+#' @rdname switchToParentFrame
 switchToParentFrame <- function(remDr, ...){
   obj <- remDr
   obj$sessionId <- remDr$sessionId(remDr$drvID)
@@ -273,17 +165,7 @@ switchToParentFrame <- function(remDr, ...){
   invisible(remDr)
 }
 
-
-#' switchToWindow
-#'
-#' @param remDr
-#'
-#' @family commandContexts functions
-#' @return
-#' @export
-#'
-#' @examples
-
+#' @rdname switchToWindow
 switchToWindow <- function(remDr, name, ...){
   obj <- remDr
   obj$sessionId <- remDr$sessionId(remDr$drvID)
@@ -299,6 +181,4 @@ switchToWindow <- function(remDr, name, ...){
   res <- queryDriver(verb = POST, url = build_url(pathURL), source = "switchToWindow", drvID = remDr$drvID, json = jsonBody,...)
   invisible(remDr)
 }
-
-
 

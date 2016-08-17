@@ -1,13 +1,5 @@
-#' acceptAlertOld
-#'
-#' @param remDr
-#'
-#' @family oldMethods functions
-#' @return
-#' @export
-#'
-#' @examples
 
+#' @rdname acceptAlertOld
 acceptAlertOld <- function(remDr, ...){
   obj <- remDr
   obj$sessionId <- remDr$sessionId(remDr$drvID)
@@ -19,17 +11,7 @@ acceptAlertOld <- function(remDr, ...){
   invisible(remDr)
 }
 
-
-#' dismissAlertOld
-#'
-#' @param remDr
-#'
-#' @family oldMethods functions
-#' @return
-#' @export
-#'
-#' @examples
-
+#' @rdname dismissAlertOld
 dismissAlertOld <- function(remDr, ...){
   obj <- remDr
   obj$sessionId <- remDr$sessionId(remDr$drvID)
@@ -41,17 +23,7 @@ dismissAlertOld <- function(remDr, ...){
   invisible(remDr)
 }
 
-
-#' executeAsyncScriptOld
-#'
-#' @param remDr
-#'
-#' @family oldMethods functions
-#' @return
-#' @export
-#'
-#' @examples
-
+#' @rdname executeAsyncScriptOld
 executeAsyncScriptOld <- function(remDr, script, args = list(), replace = TRUE,  ...){
   obj <- remDr
   obj$sessionId <- remDr$sessionId(remDr$drvID)
@@ -74,17 +46,7 @@ executeAsyncScriptOld <- function(remDr, script, args = list(), replace = TRUE, 
   if(replace){testWebElement(res$value, remDr)}else{res$value}
 }
 
-
-#' executeScriptOld
-#'
-#' @param remDr
-#'
-#' @family oldMethods functions
-#' @return
-#' @export
-#'
-#' @examples
-
+#' @rdname executeScriptOld
 executeScriptOld <- function(remDr, script, args = list(), replace = TRUE,  ...){
   obj <- remDr
   obj$sessionId <- remDr$sessionId(remDr$drvID)
@@ -107,17 +69,7 @@ executeScriptOld <- function(remDr, script, args = list(), replace = TRUE,  ...)
   if(replace){testWebElement(res$value, remDr)}else{res$value}
 }
 
-
-#' getAlertTextOld
-#'
-#' @param remDr
-#'
-#' @family oldMethods functions
-#' @return
-#' @export
-#'
-#' @examples
-
+#' @rdname getAlertTextOld
 getAlertTextOld <- function(remDr, ...){
   obj <- remDr
   obj$sessionId <- remDr$sessionId(remDr$drvID)
@@ -129,17 +81,7 @@ getAlertTextOld <- function(remDr, ...){
   res$value
 }
 
-
-#' getWindowHandleOld
-#'
-#' @param remDr
-#'
-#' @family oldMethods functions
-#' @return
-#' @export
-#'
-#' @examples
-
+#' @rdname getWindowHandleOld
 getWindowHandleOld <- function(remDr, ...){
   obj <- remDr
   obj$sessionId <- remDr$sessionId(remDr$drvID)
@@ -151,17 +93,7 @@ getWindowHandleOld <- function(remDr, ...){
   res$value
 }
 
-
-#' getWindowHandlesOld
-#'
-#' @param remDr
-#'
-#' @family oldMethods functions
-#' @return
-#' @export
-#'
-#' @examples
-
+#' @rdname getWindowHandlesOld
 getWindowHandlesOld <- function(remDr, ...){
   obj <- remDr
   obj$sessionId <- remDr$sessionId(remDr$drvID)
@@ -173,17 +105,7 @@ getWindowHandlesOld <- function(remDr, ...){
   res$value
 }
 
-
-#' sendAlertTextOld
-#'
-#' @param remDr
-#'
-#' @family oldMethods functions
-#' @return
-#' @export
-#'
-#' @examples
-
+#' @rdname sendAlertTextOld
 sendAlertTextOld <- function(remDr, ...){
   obj <- remDr
   obj$sessionId <- remDr$sessionId(remDr$drvID)
@@ -195,6 +117,4 @@ sendAlertTextOld <- function(remDr, ...){
   res <- queryDriver(verb = POST, url = build_url(pathURL), source = "sendAlertTextOld", drvID = remDr$drvID, json = jsonBody,...)
   invisible(remDr)
 }
-
-
 
