@@ -1,3 +1,8 @@
+# seleniumpipes 0.2.5
+* Add documentation for initial functions.
+* Add documentation for cookie group of functions.
+* Move documentation to templates.
+
 # seleniumpipes 0.2.4
 * Add support for multiple sessions
 
