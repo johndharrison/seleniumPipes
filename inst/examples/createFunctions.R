@@ -20,6 +20,8 @@ oldSelMethods <- list(
              command = "getWindowHandleOld", stringsAsFactors = FALSE),
   data.frame(method = "GET", uriTemplate = "/session/{session id}/window_handles",
              command = "getWindowHandlesOld", stringsAsFactors = FALSE),
+  data.frame(method = "GET", uriTemplate = "/session/{sessionId/window}/{windowHandle}/position",
+             command = "getWindowPositionOld", stringsAsFactors = FALSE),
   data.frame(method = "POST", uriTemplate = "/session/{session id}/execute",
              command = "executeScriptOld", stringsAsFactors = FALSE),
   data.frame(method = "POST", uriTemplate = "/session/{session id}/execute_async",
@@ -60,7 +62,8 @@ methGroups <- list(
   interactions = c("performActions", "releasingActions"),
   userPrompts = c("dismissAlert", "acceptAlert", "getAlertText", "sendAlertText"),
   screenCapture = c("takeScreenshot", "takeElementScreenshot"),
-  oldMethods = c("getWindowHandleOld", "getWindowHandlesOld", "executeScriptOld", "executeAsyncScriptOld"
+  oldMethods = c("getWindowHandleOld", "getWindowHandlesOld", "getWindowPositionOld"
+                 , "executeScriptOld", "executeAsyncScriptOld"
                  , "getAlertTextOld", "sendAlertTextOld", "acceptAlertOld", "dismissAlertOld")
 )
 methGroups <- lapply(names(methGroups), function(x){
@@ -218,6 +221,12 @@ JCommands <- list(
   getWindowHandles = list(type = "ret2"),
 
   getWindowHandlesOld = list(type = "ret2"),
+
+  getWindowPosition = list(type = "ret2"),
+
+  getWindowPositionOld = list(com = "obj$windowHandle <- handle"
+                              , args = list(handle = "current"), type = "ret2"
+                              ),
 
   switchToFrame = list(
     com = "
@@ -421,13 +430,15 @@ JCommands <- list(
   getAlertTextOld = list(type = "ret2"),
 
   sendAlertText = list(
-    com = "sendKeys <- list(...)
-  jsonBody <- toJSON(list(text = matchSelKeys(sendKeys)), auto_unbox = TRUE)"
+    com = "
+    jsonBody <- toJSON(list(text = text), auto_unbox = TRUE)"
+    , args = list(text = "")
     , type = "ret1"),
 
   sendAlertTextOld = list(
-    com = "sendKeys <- list(...)
-    jsonBody <- toJSON(list(text = matchSelKeys(sendKeys)), auto_unbox = TRUE)"
+    com = "
+    jsonBody <- toJSON(list(text = text), auto_unbox = TRUE)"
+    , args = list(text = "")
     , type = "ret1"),
 
   setTimeout = list(
