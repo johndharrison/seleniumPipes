@@ -2,7 +2,7 @@
 % Please edit documentation in R/elementRetrieval.R, R/elementRetrievalDoc.R
 \name{getActiveElement}
 \alias{getActiveElement}
-\title{getActiveElement}
+\title{Get the element on the page that currently has focus.}
 \usage{
 getActiveElement(remDr, ...)
 }
@@ -10,10 +10,12 @@ getActiveElement(remDr, ...)
 \item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
 }
 \value{
-ret4 : invisible(wbElement(res$value, remDr))
+invisible(wbElement(res$value, remDr)): An object of class "wElement" is invisibly returned.
+   A webElement object see \code{\link{wbElement}}. This allows for chaining from this function to
+   other functions that take such an object as an argument. See examples for further details.
 }
 \description{
-\code{getActiveElement}
+\code{getActiveElement} Get the element on the page that currently has focus. The located element will be returned as a WebcElement object.
 }
 \examples{
 

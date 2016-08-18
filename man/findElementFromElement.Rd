@@ -2,7 +2,7 @@
 % Please edit documentation in R/elementRetrieval.R, R/elementRetrievalDoc.R
 \name{findElementFromElement}
 \alias{findElementFromElement}
-\title{findElementFromElement}
+\title{Search for an element on the page, starting from another element}
 \usage{
 findElementFromElement(webElem, using = c("xpath", "css selector", "id",
   "name", "tag name", "class name", "link text", "partial link text"), value,
@@ -11,13 +11,30 @@ findElementFromElement(webElem, using = c("xpath", "css selector", "id",
 \arguments{
 \item{webElem}{web Element doc}
 
-\item{value}{}
+\item{using}{Locator scheme to use to search the element, available schemes: {"class name", "css selector", "id", "name", "link text", "partial link text", "tag name", "xpath" }. Defaults to 'xpath'. Partial string matching is accepted.}
+
+\item{value}{The search target. See examples.}
 }
 \value{
-ret10 : invisible(wbElement(res$value, webElem$remDr))
+invisible(wbElement(res$value, webElem$remDr)): An object of class "wElement" is invisibly returned.
+   A webElement object see \code{\link{wbElement}}. This allows for chaining from this function to
+   other functions that take such an object as an argument. See examples for further details.
 }
 \description{
-\code{findElementFromElement}
+\code{findElementFromElement} Search for an element on the page, starting from the node defined by the parent webElement. The located element will be returned as an object of wElement class.
+}
+\details{
+Details of possible locator schemes
+  \describe{
+    \item{"class name" :}{Returns an element whose class name contains the search value; compound class names are not permitted.}
+                                            \item{"css selector" :}{Returns an element matching a CSS selector.}
+                                            \item{"id" :}{Returns an element whose ID attribute matches the search value.}
+                                            \item{"name" :}{Returns an element whose NAME attribute matches the search value.}
+                                            \item{"link text" :}{Returns an anchor element whose visible text matches the search value.}
+                                            \item{"partial link text" :}{Returns an anchor element whose visible text partially matches the search value.}
+                                            \item{"tag name" :}{Returns an element whose tag name matches the search value.}
+                                            \item{"xpath" :}{Returns an element matching an XPath expression.}
+                                          }
 }
 \examples{
 
