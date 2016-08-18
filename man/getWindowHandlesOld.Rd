@@ -27,6 +27,9 @@ Other oldMethods functions: \code{\link{acceptAlertOld}},
   \code{\link{executeScriptOld}},
   \code{\link{getAlertTextOld}},
   \code{\link{getWindowHandleOld}},
-  \code{\link{sendAlertTextOld}}
+  \code{\link{getWindowPositionOld}},
+  \code{\link{getWindowSizeOld}},
+  \code{\link{sendAlertTextOld}},
+  \code{\link{setWindowSizeOld}}
 }
 

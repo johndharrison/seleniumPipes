@@ -4,7 +4,7 @@
 \alias{sendAlertTextOld}
 \title{Send text to alert}
 \usage{
-sendAlertTextOld(remDr, text, ...)
+sendAlertTextOld(remDr, text = "", ...)
 }
 \arguments{
 \item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
@@ -31,6 +31,9 @@ Other oldMethods functions: \code{\link{acceptAlertOld}},
   \code{\link{executeScriptOld}},
   \code{\link{getAlertTextOld}},
   \code{\link{getWindowHandleOld}},
-  \code{\link{getWindowHandlesOld}}
+  \code{\link{getWindowHandlesOld}},
+  \code{\link{getWindowPositionOld}},
+  \code{\link{getWindowSizeOld}},
+  \code{\link{setWindowSizeOld}}
 }
 

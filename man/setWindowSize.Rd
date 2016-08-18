@@ -4,10 +4,12 @@
 \alias{setWindowSize}
 \title{setWindowSize}
 \usage{
-setWindowSize(remDr, ...)
+setWindowSize(remDr, width, height, ...)
 }
 \arguments{
 \item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
+
+\item{...}{Additonal function arguments - Currently unused.}
 }
 \value{
 invisible(remDr): An object of class "rDriver" is invisibly returned.

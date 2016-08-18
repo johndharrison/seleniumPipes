@@ -105,16 +105,55 @@ getWindowHandlesOld <- function(remDr, ...){
   res$value
 }
 
-#' @rdname sendAlertTextOld
-sendAlertTextOld <- function(remDr, ...){
+#' @rdname getWindowPositionOld
+getWindowPositionOld <- function(remDr, handle = "current", ...){
   obj <- remDr
   obj$sessionId <- remDr$sessionId(remDr$drvID)
-  sendKeys <- list(...)
-    jsonBody <- toJSON(list(text = matchSelKeys(sendKeys)), auto_unbox = TRUE)
+  obj$windowHandle <- handle
+  pathTemplate <- whisker.render("/session/{{sessionId}}/window/{{windowHandle}}/position", data = obj)
+  pathURL <- remDr[['remServAdd']]
+  pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
+  res <- queryDriver(verb = GET, url = build_url(pathURL), source = "getWindowPositionOld", drvID = remDr$drvID, json = NULL,...)
+  res$value
+}
+
+#' @rdname getWindowSizeOld
+getWindowSizeOld <- function(remDr, handle = "current", ...){
+  obj <- remDr
+  obj$sessionId <- remDr$sessionId(remDr$drvID)
+  obj$windowHandle <- handle
+  pathTemplate <- whisker.render("/session/{{sessionId}}/window/{{windowHandle}}/size", data = obj)
+  pathURL <- remDr[['remServAdd']]
+  pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
+  res <- queryDriver(verb = GET, url = build_url(pathURL), source = "getWindowSizeOld", drvID = remDr$drvID, json = NULL,...)
+  res$value
+}
+
+#' @rdname sendAlertTextOld
+sendAlertTextOld <- function(remDr, text = "", ...){
+  obj <- remDr
+  obj$sessionId <- remDr$sessionId(remDr$drvID)
+  
+    jsonBody <- toJSON(list(text = text), auto_unbox = TRUE)
   pathTemplate <- whisker.render("/session/{{sessionId}}/alert_text", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
   res <- queryDriver(verb = POST, url = build_url(pathURL), source = "sendAlertTextOld", drvID = remDr$drvID, json = jsonBody,...)
+  invisible(remDr)
+}
+
+#' @rdname setWindowSizeOld
+setWindowSizeOld <- function(remDr, width, height, handle = "current", ...){
+  obj <- remDr
+  obj$sessionId <- remDr$sessionId(remDr$drvID)
+  obj$windowHandle <- handle
+  jsonBody <- toJSON(list(
+    width = width, height = height
+  ), auto_unbox = TRUE)
+  pathTemplate <- whisker.render("/session/{{sessionId}}/window/{{windowHandle}}/size", data = obj)
+  pathURL <- remDr[['remServAdd']]
+  pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
+  res <- queryDriver(verb = POST, url = build_url(pathURL), source = "setWindowSizeOld", drvID = remDr$drvID, json = jsonBody,...)
   invisible(remDr)
 }
 
