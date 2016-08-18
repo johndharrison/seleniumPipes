@@ -78,37 +78,38 @@ NULL
 #' @template ellipsis
 #'
 #' @family oldMethods functions
-#' @template ret2
+#' @return The alert text is returned as a string.
 #' @export
 #'
 #' @example /inst/examples/docs/oldMethods.R
 #' @name getAlertTextOld
 NULL
 
-#' getWindowHandleOld
+#' Retrieve the current window handle.
 #'
-#'\code{getWindowHandleOld}
+#'\code{getWindowHandleOld} Retrieve the current window handle. Uses the old JSONwireprotocol end points
 #'
 #' @template remDr
 #' @template ellipsis
 #'
 #' @family oldMethods functions
-#' @template ret2
+#' @return Returns a string which is the "handle" for the current window.
 #' @export
 #'
 #' @example /inst/examples/docs/oldMethods.R
 #' @name getWindowHandleOld
 NULL
 
-#' getWindowHandlesOld
+#' Get all window handles.
 #'
-#'\code{getWindowHandlesOld}
+#'\code{getWindowHandlesOld} Uses the old JSONwireprotocol end points. Retrieve the list of all window handles available to the session.
 #'
 #' @template remDr
 #' @template ellipsis
 #'
 #' @family oldMethods functions
-#' @template ret2
+#' @return Returns a list of windows handles. Each element of the list is a string. The order
+#'    window handles are returned is arbitrary.
 #' @export
 #'
 #' @example /inst/examples/docs/oldMethods.R
@@ -133,7 +134,76 @@ NULL
 
 #' Get window position
 #'
-#'\code{getWindowPositionOld}
+#'\code{getWindowPositionOld} Get the position of the specified window. Uses the old JSONwireprotocol end points.
+#'
+#' @template remDr
+#' @param handle Handle of the window to query. If handle = "current" (the default) the current window is used.
+#' @template ellipsis
+#'
+#' @family oldMethods functions
+#' @return Returns a list which contains the x coordinate to position the window at, relative to the upper left corner of the screen and
+#'  the Y coordinate to position the window at, relative to the upper left corner of the screen
+#' @export
+#'
+#' @example /inst/examples/docs/oldMethods.R
+#' @name getWindowPositionOld
+NULL
+
+#' Get window size
+#'
+#'\code{getWindowSizeOld} Get the size of the specified window. Uses the old JSONwireprotocol end points.
+#'
+#' @template remDr
+#' @param handle Handle of the window to query. If handle = "current" (the default) the current window is used.
+#' @template ellipsis
+#'
+#' @family oldMethods functions
+#' @return The width and height of the window are returned as elements in a list.
+#' @export
+#'
+#' @example /inst/examples/docs/oldMethods.R
+#' @name getWindowSizeOld
+NULL
+
+#' Change the size of the specified window.
+#'
+#'\code{setWindowSize} Change the size of the specified window.
+#'
+#' @template remDr
+#' @param width integer The new window width.
+#' @param height integer The new window height.
+#' @param handle Handle of the window to query. If handle = "current" (the default) the current window is used.
+#' @template ellipsis
+#'
+#' @family oldMethods functions
+#' @template ret1
+#' @export
+#'
+#' @example /inst/examples/docs/oldMethods.R
+#' @name setWindowSizeOld
+NULL
+
+#' Change the position of the specified window.
+#'
+#'\code{setWindowSize} Change the position of the specified window.
+#'
+#' @template remDr
+#' @param x integer The X coordinate to position the window at, relative to the upper left corner of the screen.
+#' @param y integer  The Y coordinate to position the window at, relative to the upper left corner of the screen.
+#' @param handle Handle of the window to query. If handle = "current" (the default) the current window is used.
+#' @template ellipsis
+#'
+#' @family oldMethods functions
+#' @template ret1
+#' @export
+#'
+#' @example /inst/examples/docs/oldMethods.R
+#' @name setWindowPositionOld
+NULL
+
+#' Maximize the current window.
+#'
+#'\code{maximizeWindowOld} Maximize the specified window if not already maximized.
 #'
 #' @template remDr
 #' @param handle Handle of the window to query. If handle = "current" (the default) the current window is used.
@@ -144,37 +214,7 @@ NULL
 #' @export
 #'
 #' @example /inst/examples/docs/oldMethods.R
-#' @name getWindowPositionOld
-NULL
-
-#' getWindowSize
-#'
-#'\code{getWindowSizeOld}
-#'
-#' @template remDr
-#' @template ellipsis
-#'
-#' @family oldMethods functions
-#' @template ret1
-#' @export
-#'
-#' @example /inst/examples/docs/oldMethods.R
-#' @name getWindowSizeOld
-NULL
-
-#' setWindowSizeOld
-#'
-#'\code{setWindowSize}
-#'
-#' @template remDr
-#' @template ellipsis
-#'
-#' @family oldMethods functions
-#' @template ret1
-#' @export
-#'
-#' @example /inst/examples/docs/oldMethods.R
-#' @name setWindowSizeOld
+#' @name maximizeWindowOld
 NULL
 
 

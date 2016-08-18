@@ -2,22 +2,22 @@
 % Please edit documentation in R/oldMethods.R, R/oldMethodsDoc.R
 \name{getWindowSizeOld}
 \alias{getWindowSizeOld}
-\title{getWindowSize}
+\title{Get window size}
 \usage{
 getWindowSizeOld(remDr, handle = "current", ...)
 }
 \arguments{
 \item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
 
+\item{handle}{Handle of the window to query. If handle = "current" (the default) the current window is used.}
+
 \item{...}{Additonal function arguments - Currently unused.}
 }
 \value{
-invisible(remDr): An object of class "rDriver" is invisibly returned.
-   A remote driver object see \code{\link{remoteDr}}. This allows for chaining from this function to
-   other functions that take such an object as an argument. See examples for further details.
+The width and height of the window are returned as elements in a list.
 }
 \description{
-\code{getWindowSizeOld}
+\code{getWindowSizeOld} Get the size of the specified window. Uses the old JSONwireprotocol end points.
 }
 \examples{
 
@@ -31,7 +31,9 @@ Other oldMethods functions: \code{\link{acceptAlertOld}},
   \code{\link{getWindowHandleOld}},
   \code{\link{getWindowHandlesOld}},
   \code{\link{getWindowPositionOld}},
+  \code{\link{maximizeWindowOld}},
   \code{\link{sendAlertTextOld}},
+  \code{\link{setWindowPositionOld}},
   \code{\link{setWindowSizeOld}}
 }
 

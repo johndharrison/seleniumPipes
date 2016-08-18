@@ -2,12 +2,18 @@
 % Please edit documentation in R/oldMethods.R, R/oldMethodsDoc.R
 \name{setWindowSizeOld}
 \alias{setWindowSizeOld}
-\title{setWindowSizeOld}
+\title{Change the size of the specified window.}
 \usage{
 setWindowSizeOld(remDr, width, height, handle = "current", ...)
 }
 \arguments{
 \item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
+
+\item{width}{integer The new window width.}
+
+\item{height}{integer The new window height.}
+
+\item{handle}{Handle of the window to query. If handle = "current" (the default) the current window is used.}
 
 \item{...}{Additonal function arguments - Currently unused.}
 }
@@ -17,7 +23,7 @@ invisible(remDr): An object of class "rDriver" is invisibly returned.
    other functions that take such an object as an argument. See examples for further details.
 }
 \description{
-\code{setWindowSize}
+\code{setWindowSize} Change the size of the specified window.
 }
 \examples{
 
@@ -32,6 +38,8 @@ Other oldMethods functions: \code{\link{acceptAlertOld}},
   \code{\link{getWindowHandlesOld}},
   \code{\link{getWindowPositionOld}},
   \code{\link{getWindowSizeOld}},
-  \code{\link{sendAlertTextOld}}
+  \code{\link{maximizeWindowOld}},
+  \code{\link{sendAlertTextOld}},
+  \code{\link{setWindowPositionOld}}
 }
 

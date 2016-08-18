@@ -20,8 +20,16 @@ oldSelMethods <- list(
              command = "getWindowHandleOld", stringsAsFactors = FALSE),
   data.frame(method = "GET", uriTemplate = "/session/{session id}/window_handles",
              command = "getWindowHandlesOld", stringsAsFactors = FALSE),
-  data.frame(method = "GET", uriTemplate = "/session/{sessionId/window}/{windowHandle}/position",
+  data.frame(method = "GET", uriTemplate = "/session/{sessionId}/window/{windowHandle}/size",
+             command = "getWindowSizeOld", stringsAsFactors = FALSE),
+  data.frame(method = "GET", uriTemplate = "/session/{sessionId}/window/{windowHandle}/position",
              command = "getWindowPositionOld", stringsAsFactors = FALSE),
+  data.frame(method = "POST", uriTemplate = "/session/{sessionId}/window/{windowHandle}/size",
+             command = "setWindowSizeOld", stringsAsFactors = FALSE),
+  data.frame(method = "POST", uriTemplate = "/session/{sessionId}/window/{windowHandle}/position",
+             command = "setWindowPositionOld", stringsAsFactors = FALSE),
+  data.frame(method = "POST", uriTemplate = "/session/{sessionId}/window/{windowHandle}/maximize",
+             command = "maximizeWindowOld", stringsAsFactors = FALSE),
   data.frame(method = "POST", uriTemplate = "/session/{session id}/execute",
              command = "executeScriptOld", stringsAsFactors = FALSE),
   data.frame(method = "POST", uriTemplate = "/session/{session id}/execute_async",
@@ -62,7 +70,8 @@ methGroups <- list(
   interactions = c("performActions", "releasingActions"),
   userPrompts = c("dismissAlert", "acceptAlert", "getAlertText", "sendAlertText"),
   screenCapture = c("takeScreenshot", "takeElementScreenshot"),
-  oldMethods = c("getWindowHandleOld", "getWindowHandlesOld", "getWindowPositionOld"
+  oldMethods = c("getWindowHandleOld", "getWindowHandlesOld", "getWindowPositionOld", "getWindowSizeOld"
+                 , "setWindowSizeOld", "setWindowPositionOld", "maximizeWindowOld"
                  , "executeScriptOld", "executeAsyncScriptOld"
                  , "getAlertTextOld", "sendAlertTextOld", "acceptAlertOld", "dismissAlertOld")
 )
@@ -225,8 +234,48 @@ JCommands <- list(
   getWindowPosition = list(type = "ret2"),
 
   getWindowPositionOld = list(com = "obj$windowHandle <- handle"
-                              , args = list(handle = "current"), type = "ret2"
+                              , args = list(handle = "\"current\""), type = "ret2"
                               ),
+
+  getWindowSize = list(type = "ret2"),
+
+  getWindowSizeOld = list(com = "obj$windowHandle <- handle"
+                            , args = list(handle = "\"current\""), type = "ret2"
+  ),
+
+  setWindowSize = list(com = "
+  jsonBody <- toJSON(list(
+    width = width, height = height
+  ), auto_unbox = TRUE)"
+                       , args = list(width = NA, height = NA), type = "ret1"),
+
+  setWindowSizeOld = list(com = "obj$windowHandle <- handle
+  jsonBody <- toJSON(list(
+    width = width, height = height
+  ), auto_unbox = TRUE)"
+                        , args = list(width = NA, height = NA, handle = "\"current\"")
+                        , type = "ret1"
+  ),
+
+  setWindowPosition = list(com = "
+  jsonBody <- toJSON(list(
+    x = x, y = y
+  ), auto_unbox = TRUE)"
+   , args = list(x = NA, y = NA), type = "ret1"),
+
+  setWindowPositionOld = list(com = "obj$windowHandle <- handle
+  jsonBody <- toJSON(list(
+    x = x, y = y
+  ), auto_unbox = TRUE)"
+                        , args = list(x = NA, y = NA, handle = "\"current\"")
+   , type = "ret1"
+  ),
+
+  maximizeWindow = list(com = "jsonBody <- NULL\n", type = "ret2"),
+
+  maximizeWindowOld = list(com = "jsonBody <- NULL\nobj$windowHandle <- handle"
+                        , args = list(handle = "\"current\""), type = "ret2"
+  ),
 
   switchToFrame = list(
     com = "
@@ -432,13 +481,13 @@ JCommands <- list(
   sendAlertText = list(
     com = "
     jsonBody <- toJSON(list(text = text), auto_unbox = TRUE)"
-    , args = list(text = "")
+    , args = list(text = "\"\"")
     , type = "ret1"),
 
   sendAlertTextOld = list(
     com = "
     jsonBody <- toJSON(list(text = text), auto_unbox = TRUE)"
-    , args = list(text = "")
+    , args = list(text = "\"\"")
     , type = "ret1"),
 
   setTimeout = list(

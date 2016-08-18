@@ -34,6 +34,8 @@ Other oldMethods functions: \code{\link{acceptAlertOld}},
   \code{\link{getWindowHandlesOld}},
   \code{\link{getWindowPositionOld}},
   \code{\link{getWindowSizeOld}},
+  \code{\link{maximizeWindowOld}},
+  \code{\link{setWindowPositionOld}},
   \code{\link{setWindowSizeOld}}
 }
 

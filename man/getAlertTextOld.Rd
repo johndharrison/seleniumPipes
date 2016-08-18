@@ -12,7 +12,7 @@ getAlertTextOld(remDr, ...)
 \item{...}{Additonal function arguments - Currently unused.}
 }
 \value{
-ret2 : res$value NEED TO FILL IN specifics for each function
+The alert text is returned as a string.
 }
 \description{
 \code{getAlertTextOld} Get the text from a JavaScript alert. This uses the old JSONwireprotocol endpoints.
@@ -27,6 +27,11 @@ Other oldMethods functions: \code{\link{acceptAlertOld}},
   \code{\link{executeScriptOld}},
   \code{\link{getWindowHandleOld}},
   \code{\link{getWindowHandlesOld}},
-  \code{\link{sendAlertTextOld}}
+  \code{\link{getWindowPositionOld}},
+  \code{\link{getWindowSizeOld}},
+  \code{\link{maximizeWindowOld}},
+  \code{\link{sendAlertTextOld}},
+  \code{\link{setWindowPositionOld}},
+  \code{\link{setWindowSizeOld}}
 }
 

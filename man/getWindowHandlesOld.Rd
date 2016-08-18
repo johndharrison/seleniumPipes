@@ -2,7 +2,7 @@
 % Please edit documentation in R/oldMethods.R, R/oldMethodsDoc.R
 \name{getWindowHandlesOld}
 \alias{getWindowHandlesOld}
-\title{getWindowHandlesOld}
+\title{Get all window handles.}
 \usage{
 getWindowHandlesOld(remDr, ...)
 }
@@ -12,10 +12,11 @@ getWindowHandlesOld(remDr, ...)
 \item{...}{Additonal function arguments - Currently unused.}
 }
 \value{
-ret2 : res$value NEED TO FILL IN specifics for each function
+Returns a list of windows handles. Each element of the list is a string. The order
+   window handles are returned is arbitrary.
 }
 \description{
-\code{getWindowHandlesOld}
+\code{getWindowHandlesOld} Uses the old JSONwireprotocol end points. Retrieve the list of all window handles available to the session.
 }
 \examples{
 
@@ -29,7 +30,9 @@ Other oldMethods functions: \code{\link{acceptAlertOld}},
   \code{\link{getWindowHandleOld}},
   \code{\link{getWindowPositionOld}},
   \code{\link{getWindowSizeOld}},
+  \code{\link{maximizeWindowOld}},
   \code{\link{sendAlertTextOld}},
+  \code{\link{setWindowPositionOld}},
   \code{\link{setWindowSizeOld}}
 }
 

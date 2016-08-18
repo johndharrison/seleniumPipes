@@ -2,7 +2,7 @@
 % Please edit documentation in R/oldMethods.R, R/oldMethodsDoc.R
 \name{getWindowHandleOld}
 \alias{getWindowHandleOld}
-\title{getWindowHandleOld}
+\title{Retrieve the current window handle.}
 \usage{
 getWindowHandleOld(remDr, ...)
 }
@@ -12,10 +12,10 @@ getWindowHandleOld(remDr, ...)
 \item{...}{Additonal function arguments - Currently unused.}
 }
 \value{
-ret2 : res$value NEED TO FILL IN specifics for each function
+Returns a string which is the "handle" for the current window.
 }
 \description{
-\code{getWindowHandleOld}
+\code{getWindowHandleOld} Retrieve the current window handle. Uses the old JSONwireprotocol end points
 }
 \examples{
 
@@ -29,7 +29,9 @@ Other oldMethods functions: \code{\link{acceptAlertOld}},
   \code{\link{getWindowHandlesOld}},
   \code{\link{getWindowPositionOld}},
   \code{\link{getWindowSizeOld}},
+  \code{\link{maximizeWindowOld}},
   \code{\link{sendAlertTextOld}},
+  \code{\link{setWindowPositionOld}},
   \code{\link{setWindowSizeOld}}
 }
 
