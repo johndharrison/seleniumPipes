@@ -2,12 +2,14 @@
 % Please edit documentation in R/commandContexts.R, R/commandContextsDoc.R
 \name{switchToWindow}
 \alias{switchToWindow}
-\title{switchToWindow}
+\title{Change focus to another window.}
 \usage{
 switchToWindow(remDr, name, ...)
 }
 \arguments{
 \item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
+
+\item{name}{The handle of the window to change focus to.}
 
 \item{...}{Additonal function arguments - Currently unused.}
 }
@@ -17,7 +19,7 @@ invisible(remDr): An object of class "rDriver" is invisibly returned.
    other functions that take such an object as an argument. See examples for further details.
 }
 \description{
-\code{switchToWindow}
+\code{switchToWindow} Change focus to another window.
 }
 \examples{
 

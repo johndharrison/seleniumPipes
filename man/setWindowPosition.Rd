@@ -2,12 +2,16 @@
 % Please edit documentation in R/commandContexts.R, R/commandContextsDoc.R
 \name{setWindowPosition}
 \alias{setWindowPosition}
-\title{setWindowPosition}
+\title{Change the position of the current window.}
 \usage{
-setWindowPosition(remDr, ...)
+setWindowPosition(remDr, x, y, ...)
 }
 \arguments{
 \item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
+
+\item{x}{integer The X coordinate to position the window at, relative to the upper left corner of the screen.}
+
+\item{y}{integer  The Y coordinate to position the window at, relative to the upper left corner of the screen.}
 
 \item{...}{Additonal function arguments - Currently unused.}
 }
@@ -17,7 +21,7 @@ invisible(remDr): An object of class "rDriver" is invisibly returned.
    other functions that take such an object as an argument. See examples for further details.
 }
 \description{
-\code{setWindowPosition}
+\code{setWindowPosition} Change the position of the current window.
 }
 \examples{
 

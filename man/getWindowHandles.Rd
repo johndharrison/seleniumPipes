@@ -2,18 +2,21 @@
 % Please edit documentation in R/commandContexts.R, R/commandContextsDoc.R
 \name{getWindowHandles}
 \alias{getWindowHandles}
-\title{getWindowHandles}
+\title{Get all window handles.}
 \usage{
 getWindowHandles(remDr, ...)
 }
 \arguments{
 \item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
+
+\item{...}{Additonal function arguments - Currently unused.}
 }
 \value{
-ret2 : res$value NEED TO FILL IN specifics for each function
+Returns a list of windows handles. Each element of the list is a string. The order
+   window handles are returned is arbitrary.
 }
 \description{
-\code{getWindowHandles}
+\code{getWindowHandles} Retrieve the list of all window handles available to the session.
 }
 \examples{
 

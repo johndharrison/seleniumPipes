@@ -2,20 +2,21 @@
 % Please edit documentation in R/commandContexts.R, R/commandContextsDoc.R
 \name{getWindowPosition}
 \alias{getWindowPosition}
-\title{getWindowPosition}
+\title{Get current window position}
 \usage{
 getWindowPosition(remDr, ...)
 }
 \arguments{
 \item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
+
+\item{...}{Additonal function arguments - Currently unused.}
 }
 \value{
-invisible(remDr): An object of class "rDriver" is invisibly returned.
-   A remote driver object see \code{\link{remoteDr}}. This allows for chaining from this function to
-   other functions that take such an object as an argument. See examples for further details.
+Returns a list which contains the x coordinate to position the window at, relative to the upper left corner of the screen and
+ the Y coordinate to position the window at, relative to the upper left corner of the screen
 }
 \description{
-\code{getWindowPosition}
+\code{getWindowPosition} The Get Window Position command returns the position on the screen of the operating system window corresponding to the current top-level browsing context.
 }
 \examples{
 

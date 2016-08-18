@@ -2,18 +2,20 @@
 % Please edit documentation in R/commandContexts.R, R/commandContextsDoc.R
 \name{getWindowHandle}
 \alias{getWindowHandle}
-\title{getWindowHandle}
+\title{get current window handle}
 \usage{
 getWindowHandle(remDr, ...)
 }
 \arguments{
 \item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
+
+\item{...}{Additonal function arguments - Currently unused.}
 }
 \value{
-ret2 : res$value NEED TO FILL IN specifics for each function
+Returns a string which is the "handle" for the current window.
 }
 \description{
-\code{getWindowHandle}
+\code{getWindowHandle} Retrieve the current window handle.
 }
 \examples{
 

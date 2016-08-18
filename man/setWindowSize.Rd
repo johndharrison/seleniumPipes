@@ -2,12 +2,16 @@
 % Please edit documentation in R/commandContexts.R, R/commandContextsDoc.R
 \name{setWindowSize}
 \alias{setWindowSize}
-\title{setWindowSize}
+\title{Change the size of the current window.}
 \usage{
 setWindowSize(remDr, width, height, ...)
 }
 \arguments{
 \item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
+
+\item{width}{integer The new window width.}
+
+\item{height}{integer The new window height.}
 
 \item{...}{Additonal function arguments - Currently unused.}
 }
@@ -17,7 +21,7 @@ invisible(remDr): An object of class "rDriver" is invisibly returned.
    other functions that take such an object as an argument. See examples for further details.
 }
 \description{
-\code{setWindowSize}
+\code{setWindowSize} Change the size of the current window.
 }
 \examples{
 

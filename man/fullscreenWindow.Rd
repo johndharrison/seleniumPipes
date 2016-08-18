@@ -2,12 +2,14 @@
 % Please edit documentation in R/commandContexts.R, R/commandContextsDoc.R
 \name{fullscreenWindow}
 \alias{fullscreenWindow}
-\title{fullscreenWindow}
+\title{Make current window full-screen}
 \usage{
 fullscreenWindow(remDr, ...)
 }
 \arguments{
 \item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
+
+\item{...}{Additonal function arguments - Currently unused.}
 }
 \value{
 invisible(remDr): An object of class "rDriver" is invisibly returned.
@@ -15,7 +17,8 @@ invisible(remDr): An object of class "rDriver" is invisibly returned.
    other functions that take such an object as an argument. See examples for further details.
 }
 \description{
-\code{fullscreenWindow}
+\code{fullscreenWindow} The Fullscreen Window command invokes the window manager-specific “full screen” operation, if any, on the window containing the current top-level browsing context.
+  This typically increases the window to the size of the physical display and can hide browser UI elements such as toolbars.
 }
 \examples{
 

@@ -2,12 +2,14 @@
 % Please edit documentation in R/commandContexts.R, R/commandContextsDoc.R
 \name{closeWindow}
 \alias{closeWindow}
-\title{closeWindow}
+\title{Close the current window.}
 \usage{
 closeWindow(remDr, ...)
 }
 \arguments{
 \item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
+
+\item{...}{Additonal function arguments - Currently unused.}
 }
 \value{
 invisible(remDr): An object of class "rDriver" is invisibly returned.
@@ -15,7 +17,7 @@ invisible(remDr): An object of class "rDriver" is invisibly returned.
    other functions that take such an object as an argument. See examples for further details.
 }
 \description{
-\code{closeWindow}
+\code{closeWindow} Close the current window.
 }
 \examples{
 

@@ -2,7 +2,7 @@
 % Please edit documentation in R/commandContexts.R, R/commandContextsDoc.R
 \name{switchToParentFrame}
 \alias{switchToParentFrame}
-\title{switchToParentFrame}
+\title{Change focus to the parent context.}
 \usage{
 switchToParentFrame(remDr, ...)
 }
@@ -17,7 +17,7 @@ invisible(remDr): An object of class "rDriver" is invisibly returned.
    other functions that take such an object as an argument. See examples for further details.
 }
 \description{
-\code{switchToParentFrame}
+\code{switchToParentFrame} Change focus to the parent context. If the current context is the top level browsing context, the context remains unchanged.
 }
 \examples{
 

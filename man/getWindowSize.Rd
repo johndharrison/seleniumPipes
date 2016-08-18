@@ -8,11 +8,11 @@ getWindowSize(remDr, ...)
 }
 \arguments{
 \item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
+
+\item{...}{Additonal function arguments - Currently unused.}
 }
 \value{
-invisible(remDr): An object of class "rDriver" is invisibly returned.
-   A remote driver object see \code{\link{remoteDr}}. This allows for chaining from this function to
-   other functions that take such an object as an argument. See examples for further details.
+The width and height of the window are returned as elements in a list.
 }
 \description{
 \code{getWindowSize}
