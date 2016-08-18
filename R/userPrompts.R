@@ -27,7 +27,7 @@ dismissAlert <- function(remDr, ...){
 getAlertText <- function(remDr, ...){
   obj <- remDr
   obj$sessionId <- remDr$sessionId(remDr$drvID)
-
+  
   pathTemplate <- whisker.render("/session/{{sessionId}}/alert/text", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
@@ -36,11 +36,11 @@ getAlertText <- function(remDr, ...){
 }
 
 #' @rdname sendAlertText
-sendAlertText <- function(remDr, text, ...){
+sendAlertText <- function(remDr, text = "", ...){
   obj <- remDr
   obj$sessionId <- remDr$sessionId(remDr$drvID)
-  # sendKeys <- list(...)
-  jsonBody <- toJSON(list(text = text), auto_unbox = TRUE)
+  
+    jsonBody <- toJSON(list(text = text), auto_unbox = TRUE)
   pathTemplate <- whisker.render("/session/{{sessionId}}/alert/text", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)

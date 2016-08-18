@@ -1,8 +1,9 @@
-#' acceptAlert
+#' Accept alert
 #'
-#'\code{acceptAlert}
+#'\code{acceptAlert} accept a JavaScript alert
 #'
 #' @template remDr
+#' @template ellipsis
 #'
 #' @family userPrompts functions
 #' @template ret1
@@ -12,11 +13,12 @@
 #' @name acceptAlert
 NULL
 
-#' dismissAlert
+#' Dismiss Alert
 #'
-#'\code{dismissAlert}
+#'\code{dismissAlert} dismiss a JavaScript alert
 #'
 #' @template remDr
+#' @template ellipsis
 #'
 #' @family userPrompts functions
 #' @template ret1
@@ -26,25 +28,28 @@ NULL
 #' @name dismissAlert
 NULL
 
-#' getAlertText
+#' Get alert text
 #'
-#'\code{getAlertText}
+#'\code{getAlertText} Get the text from a JavaScript alert.
 #'
 #' @template remDr
+#' @template ellipsis
 #'
 #' @family userPrompts functions
-#' @template ret2
+#' @return The text from the alert is returned.
 #' @export
 #'
 #' @example /inst/examples/docs/userPrompts.R
 #' @name getAlertText
 NULL
 
-#' sendAlertText
+#' Send text to alert
 #'
-#'\code{sendAlertText}
+#'\code{sendAlertText} Send keystrokes to JavaScript prompt() dialog
 #'
 #' @template remDr
+#' @param text A character vector of length 1. In other words a string. The text is passed to the JavaScript alert
+#' @template ellipsis
 #'
 #' @family userPrompts functions
 #' @template ret1

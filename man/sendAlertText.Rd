@@ -4,7 +4,7 @@
 \alias{sendAlertText}
 \title{Send text to alert}
 \usage{
-sendAlertText(remDr, text, ...)
+sendAlertText(remDr, text = "", ...)
 }
 \arguments{
 \item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
