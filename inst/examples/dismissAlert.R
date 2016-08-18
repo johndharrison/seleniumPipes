@@ -15,7 +15,7 @@ remDr %>% getAlertText()
 remDr %>% dismissAlert()
 
 
-sScript <- "setTimeout(function(){prompt('Please enter your name', 'Harry Potter')},1000); return 'DONE';"
+sScript <- "setTimeout(function(){prompt('Please enter your name', '')},1000); return 'DONE';"
 remDr %>% executeScript(sScript, args = list())
 remDr %>% getAlertText()
 remDr %>% sendAlertText("Buck Rogers?")

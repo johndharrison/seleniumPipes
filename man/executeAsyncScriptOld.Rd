@@ -9,14 +9,25 @@ executeAsyncScriptOld(remDr, script, args = list(), replace = TRUE, ...)
 \arguments{
 \item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
 
-\item{replace}{}
+\item{script}{character: The script to inject.}
+
+\item{args}{The arguments of the script as a list.}
+
+\item{replace}{logical: If TRUE any elements identify as web Elements are converted to such.}
+
+\item{...}{Additonal function arguments - Currently unused.}
 }
 \value{
 If replace is TRUE parses the response from the server for web Elements and converts as such.
    Otherwise the content returned is assummed to be a simple list.
 }
 \description{
-\code{executeAsyncScriptOld}
+\code{executeAsyncScriptOld} This function uses the old JSONwireprotocol end points. Inject a snippet of JavaScript into the page for asynchronous execution in
+   the context of the currently selected frame.
+}
+\details{
+The driver will pass a callback as the last argument to the snippet, and
+   block until the callback is invoked.
 }
 \examples{
 

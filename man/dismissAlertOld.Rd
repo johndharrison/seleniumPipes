@@ -2,12 +2,14 @@
 % Please edit documentation in R/oldMethods.R, R/oldMethodsDoc.R
 \name{dismissAlertOld}
 \alias{dismissAlertOld}
-\title{dismissAlertOld}
+\title{Dismiss Alert}
 \usage{
 dismissAlertOld(remDr, ...)
 }
 \arguments{
 \item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
+
+\item{...}{Additonal function arguments - Currently unused.}
 }
 \value{
 invisible(remDr): An object of class "rDriver" is invisibly returned.
@@ -15,7 +17,7 @@ invisible(remDr): An object of class "rDriver" is invisibly returned.
    other functions that take such an object as an argument. See examples for further details.
 }
 \description{
-\code{dismissAlertOld}
+\code{dismissAlertOld}  dismiss a JavaScript alert. This uses the old JSONwireprotocol endpoints.
 }
 \examples{
 

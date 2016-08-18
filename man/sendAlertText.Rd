@@ -2,12 +2,16 @@
 % Please edit documentation in R/userPrompts.R, R/userPromptsDoc.R
 \name{sendAlertText}
 \alias{sendAlertText}
-\title{sendAlertText}
+\title{Send text to alert}
 \usage{
-sendAlertText(remDr, ...)
+sendAlertText(remDr, text, ...)
 }
 \arguments{
 \item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
+
+\item{text}{A character vector of length 1. In other words a string. The text is passed to the JavaScript alert}
+
+\item{...}{Additonal function arguments - Currently unused.}
 }
 \value{
 invisible(remDr): An object of class "rDriver" is invisibly returned.
@@ -15,10 +19,35 @@ invisible(remDr): An object of class "rDriver" is invisibly returned.
    other functions that take such an object as an argument. See examples for further details.
 }
 \description{
-\code{sendAlertText}
+\code{sendAlertText} Send keystrokes to JavaScript prompt() dialog
 }
 \examples{
+\dontrun{
+  remDr <- remoteDr()
+  remDr \%>\% go("https://www.google.com/ncr") \%>\%
+    getTitle()
+  sScript <- "setTimeout(function(){alert('HELLO')},1000); return 'DONE';"
+  remDr \%>\% executeScript(sScript, args = list())
+  remDr \%>\% dismissAlert()
 
+  sScript <- "setTimeout(function(){confirm('Press a button')},1000); return 'DONE';"
+  remDr \%>\% executeScript(sScript, args = list())
+  remDr \%>\% acceptAlert()
+
+  sScript <- "setTimeout(function(){confirm('Press a button')},1000); return 'DONE';"
+  remDr \%>\% executeScript(sScript, args = list())
+  remDr \%>\% getAlertText()
+  remDr \%>\% dismissAlert()
+
+
+  sScript <- "setTimeout(function(){prompt('Please enter your name', '')},1000); return 'DONE';"
+  remDr \%>\% executeScript(sScript, args = list())
+  remDr \%>\% getAlertText()
+  remDr \%>\% sendAlertText("Buck Rogers?")
+
+  remDr \%>\% deleteSession()
+
+}
 }
 \seealso{
 Other userPrompts functions: \code{\link{acceptAlert}},

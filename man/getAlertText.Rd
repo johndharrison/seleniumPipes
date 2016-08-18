@@ -2,21 +2,48 @@
 % Please edit documentation in R/userPrompts.R, R/userPromptsDoc.R
 \name{getAlertText}
 \alias{getAlertText}
-\title{getAlertText}
+\title{Get alert text}
 \usage{
 getAlertText(remDr, ...)
 }
 \arguments{
 \item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
+
+\item{...}{Additonal function arguments - Currently unused.}
 }
 \value{
-ret2 : res$value NEED TO FILL IN specifics for each function
+The text from the alert is returned.
 }
 \description{
-\code{getAlertText}
+\code{getAlertText} Get the text from a JavaScript alert.
 }
 \examples{
+\dontrun{
+  remDr <- remoteDr()
+  remDr \%>\% go("https://www.google.com/ncr") \%>\%
+    getTitle()
+  sScript <- "setTimeout(function(){alert('HELLO')},1000); return 'DONE';"
+  remDr \%>\% executeScript(sScript, args = list())
+  remDr \%>\% dismissAlert()
 
+  sScript <- "setTimeout(function(){confirm('Press a button')},1000); return 'DONE';"
+  remDr \%>\% executeScript(sScript, args = list())
+  remDr \%>\% acceptAlert()
+
+  sScript <- "setTimeout(function(){confirm('Press a button')},1000); return 'DONE';"
+  remDr \%>\% executeScript(sScript, args = list())
+  remDr \%>\% getAlertText()
+  remDr \%>\% dismissAlert()
+
+
+  sScript <- "setTimeout(function(){prompt('Please enter your name', '')},1000); return 'DONE';"
+  remDr \%>\% executeScript(sScript, args = list())
+  remDr \%>\% getAlertText()
+  remDr \%>\% sendAlertText("Buck Rogers?")
+
+  remDr \%>\% deleteSession()
+
+}
 }
 \seealso{
 Other userPrompts functions: \code{\link{acceptAlert}},

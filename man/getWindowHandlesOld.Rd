@@ -8,6 +8,8 @@ getWindowHandlesOld(remDr, ...)
 }
 \arguments{
 \item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
+
+\item{...}{Additonal function arguments - Currently unused.}
 }
 \value{
 ret2 : res$value NEED TO FILL IN specifics for each function

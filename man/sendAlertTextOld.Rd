@@ -2,12 +2,16 @@
 % Please edit documentation in R/oldMethods.R, R/oldMethodsDoc.R
 \name{sendAlertTextOld}
 \alias{sendAlertTextOld}
-\title{sendAlertTextOld}
+\title{Send text to alert}
 \usage{
-sendAlertTextOld(remDr, ...)
+sendAlertTextOld(remDr, text, ...)
 }
 \arguments{
 \item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
+
+\item{text}{A character vector of length 1. In other words a string. The text is passed to the JavaScript alert}
+
+\item{...}{Additonal function arguments - Currently unused.}
 }
 \value{
 invisible(remDr): An object of class "rDriver" is invisibly returned.
@@ -15,7 +19,7 @@ invisible(remDr): An object of class "rDriver" is invisibly returned.
    other functions that take such an object as an argument. See examples for further details.
 }
 \description{
-\code{sendAlertTextOld}
+\code{sendAlertTextOld} Send keystrokes to JavaScript prompt() dialog. This uses the old JSONwireprotocol endpoints.
 }
 \examples{
 

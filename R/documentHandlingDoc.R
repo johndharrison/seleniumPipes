@@ -10,6 +10,7 @@
 #' @param script character: The script to inject.
 #' @param args The arguments of the script as a list.
 #' @param replace logical: If TRUE any elements identify as web Elements are converted to such.
+#' @template ellipsis
 #'
 #' @family documentHandling functions
 #' @template ret6
@@ -29,6 +30,7 @@ NULL
 #' @param script character: The script to inject.
 #' @param args The arguments of the script as a list.
 #' @param replace logical: If TRUE any elements identify as web Elements are converted to such.
+#' @template ellipsis
 #'
 #' @family documentHandling functions
 #' @template ret6
@@ -43,6 +45,7 @@ NULL
 #'\code{getPageSource} Get the source of the last loaded page.
 #'
 #' @template remDr
+#' @template ellipsis
 #'
 #' @family documentHandling functions
 #' @template ret3

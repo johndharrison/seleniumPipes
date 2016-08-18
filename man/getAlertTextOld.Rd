@@ -2,18 +2,20 @@
 % Please edit documentation in R/oldMethods.R, R/oldMethodsDoc.R
 \name{getAlertTextOld}
 \alias{getAlertTextOld}
-\title{getAlertTextOld}
+\title{Get alert text}
 \usage{
 getAlertTextOld(remDr, ...)
 }
 \arguments{
 \item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
+
+\item{...}{Additonal function arguments - Currently unused.}
 }
 \value{
 ret2 : res$value NEED TO FILL IN specifics for each function
 }
 \description{
-\code{getAlertTextOld}
+\code{getAlertTextOld} Get the text from a JavaScript alert. This uses the old JSONwireprotocol endpoints.
 }
 \examples{
 

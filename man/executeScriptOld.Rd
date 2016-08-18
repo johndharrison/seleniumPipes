@@ -2,21 +2,29 @@
 % Please edit documentation in R/oldMethods.R, R/oldMethodsDoc.R
 \name{executeScriptOld}
 \alias{executeScriptOld}
-\title{executeScriptOld}
+\title{Execute JavaScript asynchronously on browser.}
 \usage{
 executeScriptOld(remDr, script, args = list(), replace = TRUE, ...)
 }
 \arguments{
 \item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
 
-\item{replace}{}
+\item{script}{character: The script to inject.}
+
+\item{args}{The arguments of the script as a list.}
+
+\item{replace}{logical: If TRUE any elements identify as web Elements are converted to such.}
+
+\item{...}{Additonal function arguments - Currently unused.}
 }
 \value{
 If replace is TRUE parses the response from the server for web Elements and converts as such.
    Otherwise the content returned is assummed to be a simple list.
 }
 \description{
-\code{executeScriptOld}
+\code{executeScriptOld} This function uses the old JSONwireprotocol end points. Inject a snippet of JavaScript into the page for execution in the context
+   of the currently selected frame. The executed script is assumed to be
+   synchronous and the result of evaluating the script will be returned.
 }
 \examples{
 
