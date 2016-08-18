@@ -2,7 +2,7 @@
 % Please edit documentation in R/sessions.R, R/sessionsDoc.R
 \name{deleteSession}
 \alias{deleteSession}
-\title{deleteSession}
+\title{Delete the session.}
 \usage{
 deleteSession(remDr, ...)
 }
@@ -10,10 +10,11 @@ deleteSession(remDr, ...)
 \item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
 }
 \value{
-ret9 : .e$sessionId[[remDr$drvID]] <- NULL;invisible(remDr)
+Returns an object of class "rDriver". The sessionId associated with this driver has been removed however
+   and the associated browser should be closed by the server.
 }
 \description{
-\code{deleteSession}
+\code{deleteSession} Delete the session.
 }
 \examples{
 

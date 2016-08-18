@@ -2,14 +2,16 @@
 % Please edit documentation in R/sessions.R, R/sessionsDoc.R
 \name{setTimeout}
 \alias{setTimeout}
-\title{setTimeout}
+\title{Configure the amount of time that a particular type of operation can execute}
 \usage{
 setTimeout(remDr, type = "page load", milliseconds = 10000, ...)
 }
 \arguments{
 \item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
 
-\item{milliseconds}{}
+\item{type}{The type of operation to set the timeout for. Valid values are: "script" for script timeouts, "implicit" for modifying the implicit wait timeout and "page load" for setting a page load timeout.}
+
+\item{milliseconds}{The amount of time, in milliseconds, that time-limited commands are permitted to run.}
 }
 \value{
 invisible(remDr): An object of class "rDriver" is invisibly returned.
@@ -17,7 +19,8 @@ invisible(remDr): An object of class "rDriver" is invisibly returned.
    other functions that take such an object as an argument. See examples for further details.
 }
 \description{
-\code{setTimeout}
+\code{setTimeout} Configure the amount of time that a particular type of operation can execute
+   for before they are aborted and a |Timeout| error is returned to the client.
 }
 \examples{
 

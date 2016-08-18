@@ -1,6 +1,6 @@
-#' deleteSession
+#' Delete the session.
 #'
-#'\code{deleteSession}
+#'\code{deleteSession} Delete the session.
 #'
 #' @template remDr
 #'
@@ -12,9 +12,9 @@
 #' @name deleteSession
 NULL
 
-#' newSession
+#' Create a new session.
 #'
-#'\code{newSession}
+#'\code{newSession} The server should attempt to create a session that most closely matches the desired and required capabilities. Required capabilities have higher priority than desired capabilities and must be set for the session to be created.
 #'
 #' @template remDr
 #'
@@ -26,13 +26,14 @@ NULL
 #' @name newSession
 NULL
 
-#' setTimeout
+#' Configure the amount of time that a particular type of operation can execute
 #'
-#'\code{setTimeout}
+#'\code{setTimeout} Configure the amount of time that a particular type of operation can execute
+#'    for before they are aborted and a |Timeout| error is returned to the client.
 #'
 #' @template remDr
-#' @param type
-#' @param milliseconds
+#' @param type The type of operation to set the timeout for. Valid values are: "script" for script timeouts, "implicit" for modifying the implicit wait timeout and "page load" for setting a page load timeout.
+#' @param milliseconds The amount of time, in milliseconds, that time-limited commands are permitted to run.
 #'
 #' @family sessions functions
 #' @template ret1
