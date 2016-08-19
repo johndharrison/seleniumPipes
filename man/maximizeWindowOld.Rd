@@ -22,6 +22,9 @@ invisible(remDr): An object of class "rDriver" is invisibly returned.
 \code{maximizeWindowOld} Maximize the specified window if not already maximized.
 }
 \examples{
+\dontrun{
+# functions in this group are using the old JSONwireprotocol end points
+}
 
 }
 \seealso{

@@ -18,6 +18,9 @@ Returns a string which is the "handle" for the current window.
 \code{getWindowHandleOld} Retrieve the current window handle. Uses the old JSONwireprotocol end points
 }
 \examples{
+\dontrun{
+# functions in this group are using the old JSONwireprotocol end points
+}
 
 }
 \seealso{

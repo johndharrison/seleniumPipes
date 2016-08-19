@@ -14,6 +14,9 @@ returns content see \code{\link{content}}
 }
 \examples{
 \dontrun{
+remDr <- remoteDr()
+remDr \%>\% findElement("name", "sdofnsdofk")
+errorContent()
 }
 }
 

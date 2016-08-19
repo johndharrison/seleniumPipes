@@ -26,6 +26,9 @@ invisible(remDr): An object of class "rDriver" is invisibly returned.
 \code{setWindowSize} Change the position of the specified window.
 }
 \examples{
+\dontrun{
+# functions in this group are using the old JSONwireprotocol end points
+}
 
 }
 \seealso{

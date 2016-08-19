@@ -13,6 +13,8 @@ findElements(remDr, using = c("xpath", "css selector", "id", "name",
 \item{using}{Locator scheme to use to search the element, available schemes: {"class name", "css selector", "id", "name", "link text", "partial link text", "tag name", "xpath" }. Defaults to 'xpath'. Partial string matching is accepted.}
 
 \item{value}{The search target. See examples.}
+
+\item{...}{Additonal function arguments - Currently unused.}
 }
 \value{
 invisible(lapply(res$value, wbElement, remDr = remDr)): A list of objects of class "wElement" is invisibly returned.
@@ -36,6 +38,34 @@ Details of possible locator schemes
                                           }
 }
 \examples{
+\dontrun{
+  remDr <- remoteDr()
+  remDr \%>\% go("http://www.google.com/ncr")
+
+  # find the search form query box and search for "R project"
+  webElem <- remDr \%>\% findElement("name", "q") \%>\%
+    elementSendKeys("R project", key = "enter")
+  # click the first link hopefully should be www.r-project.org
+  remDr \%>\% findElement("css", "h3.r a") \%>\% elementClick
+
+  # get the navigation div
+  navElem <- remDr \%>\% findElement("css", "div[role='navigation']")
+
+  # find all the links in this div
+  navLinks <- navElem \%>\% findElementsFromElement("css", "a")
+
+  # check the links
+  nLinks <- sapply(navLinks, function(x) x \%>\% getElementText)
+
+  # compare with all links
+  allLinks <- remDr \%>\% findElements("css", "a")
+  aLinks <- sapply(allLinks, function(x) x \%>\% getElementText)
+
+  # show the effect of searching for elements from element
+  aLinks \%in\% nLinks
+
+  remDr \%>\% deleteSession
+}
 
 }
 \seealso{

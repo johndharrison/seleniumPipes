@@ -20,6 +20,9 @@ invisible(remDr): An object of class "rDriver" is invisibly returned.
 \code{dismissAlertOld}  dismiss a JavaScript alert. This uses the old JSONwireprotocol endpoints.
 }
 \examples{
+\dontrun{
+# functions in this group are using the old JSONwireprotocol end points
+}
 
 }
 \seealso{

@@ -20,6 +20,9 @@ invisible(remDr): An object of class "rDriver" is invisibly returned.
 \code{performActions} The Perform Actions command allows you to create sequential interactions that can be sent over from the local end to the remote end. This type of interactions allow emulations like drag and drop.
 }
 \examples{
+\dontrun{
+# functions not currently implemented
+}
 
 }
 \seealso{

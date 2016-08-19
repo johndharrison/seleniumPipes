@@ -27,6 +27,9 @@ If replace is TRUE parses the response from the server for web Elements and conv
    synchronous and the result of evaluating the script will be returned.
 }
 \examples{
+\dontrun{
+# functions in this group are using the old JSONwireprotocol end points
+}
 
 }
 \seealso{

@@ -8,6 +8,8 @@ newSession(remDr, ...)
 }
 \arguments{
 \item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
+
+\item{...}{Additonal function arguments - Currently unused.}
 }
 \value{
 invisible(remDr): An object of class "rDriver" is invisibly returned.
@@ -18,6 +20,20 @@ invisible(remDr): An object of class "rDriver" is invisibly returned.
 \code{newSession} The server should attempt to create a session that most closely matches the desired and required capabilities. Required capabilities have higher priority than desired capabilities and must be set for the session to be created.
 }
 \examples{
+\dontrun{
+  # start a driver without opening a browser
+  remDr <- remoteDr(newSession = FALSE)
+
+  # open a broswer
+  remDr \%>\% newSession
+
+  # set timeout on waiting for elements
+  remDr \%>\% setTimeout(type = "implicit", 5000)
+
+  # close Session
+  remDr \%>\% deleteSession
+
+}
 
 }
 \seealso{

@@ -5,6 +5,7 @@
 #' @template remDr
 #' @param using Locator scheme to use to search the element, available schemes: {"class name", "css selector", "id", "name", "link text", "partial link text", "tag name", "xpath" }. Defaults to 'xpath'. Partial string matching is accepted.
 #' @param value The search target. See examples.
+#' @template ellipsis
 #'
 #' @template locator
 #'
@@ -23,6 +24,7 @@ NULL
 #' @template webElem
 #' @param using Locator scheme to use to search the element, available schemes: {"class name", "css selector", "id", "name", "link text", "partial link text", "tag name", "xpath" }. Defaults to 'xpath'. Partial string matching is accepted.
 #' @param value The search target. See examples.
+#' @template ellipsis
 #'
 #' @template locator
 #'
@@ -41,6 +43,7 @@ NULL
 #' @template remDr
 #' @param using Locator scheme to use to search the element, available schemes: {"class name", "css selector", "id", "name", "link text", "partial link text", "tag name", "xpath" }. Defaults to 'xpath'. Partial string matching is accepted.
 #' @param value The search target. See examples.
+#' @template ellipsis
 #'
 #' @template locator
 #'
@@ -59,6 +62,7 @@ NULL
 #' @template webElem
 #' @param using Locator scheme to use to search the element, available schemes: {"class name", "css selector", "id", "name", "link text", "partial link text", "tag name", "xpath" }. Defaults to 'xpath'. Partial string matching is accepted.
 #' @param value The search target. See examples.
+#' @template ellipsis
 #'
 #' @template locator
 #'
@@ -75,6 +79,7 @@ NULL
 #'\code{getActiveElement} Get the element on the page that currently has focus. The located element will be returned as a WebcElement object.
 #'
 #' @template remDr
+#' @template ellipsis
 #'
 #' @family elementRetrieval functions
 #' @template ret4

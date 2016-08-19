@@ -18,6 +18,7 @@ Stops with appropriate error if any found. On error \code{\link{errorResponse}} 
 }
 \examples{
 \dontrun{
+# internal method
 }
 
 }

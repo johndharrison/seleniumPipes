@@ -22,6 +22,9 @@ invisible(remDr): An object of class "rDriver" is invisibly returned.
 \code{sendAlertTextOld} Send keystrokes to JavaScript prompt() dialog. This uses the old JSONwireprotocol endpoints.
 }
 \examples{
+\dontrun{
+# functions in this group are using the old JSONwireprotocol end points
+}
 
 }
 \seealso{

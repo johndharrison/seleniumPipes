@@ -25,6 +25,9 @@ The contents of the response from the remote server. See \code{\link{content}} f
    internal use mainly.
 }
 \examples{
+\dontrun{
+# internal method
+}
 
 }
 

@@ -8,6 +8,8 @@ deleteSession(remDr, ...)
 }
 \arguments{
 \item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
+
+\item{...}{Additonal function arguments - Currently unused.}
 }
 \value{
 Returns an object of class "rDriver". The sessionId associated with this driver has been removed however
@@ -17,6 +19,20 @@ Returns an object of class "rDriver". The sessionId associated with this driver 
 \code{deleteSession} Delete the session.
 }
 \examples{
+\dontrun{
+  # start a driver without opening a browser
+  remDr <- remoteDr(newSession = FALSE)
+
+  # open a broswer
+  remDr \%>\% newSession
+
+  # set timeout on waiting for elements
+  remDr \%>\% setTimeout(type = "implicit", 5000)
+
+  # close Session
+  remDr \%>\% deleteSession
+
+}
 
 }
 \seealso{

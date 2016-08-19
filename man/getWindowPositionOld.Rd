@@ -21,6 +21,9 @@ Returns a list which contains the x coordinate to position the window at, relati
 \code{getWindowPositionOld} Get the position of the specified window. Uses the old JSONwireprotocol end points.
 }
 \examples{
+\dontrun{
+# functions in this group are using the old JSONwireprotocol end points
+}
 
 }
 \seealso{

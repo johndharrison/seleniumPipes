@@ -20,6 +20,9 @@ The width and height of the window are returned as elements in a list.
 \code{getWindowSizeOld} Get the size of the specified window. Uses the old JSONwireprotocol end points.
 }
 \examples{
+\dontrun{
+# functions in this group are using the old JSONwireprotocol end points
+}
 
 }
 \seealso{

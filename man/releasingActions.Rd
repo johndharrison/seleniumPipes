@@ -20,6 +20,9 @@ invisible(remDr): An object of class "rDriver" is invisibly returned.
 \code{releasingActions} The Release Actions command is used to cancel all current action chains. This is the equivalent of releasing all modifiers from input sources.
 }
 \examples{
+\dontrun{
+# functions not currently implemented
+}
 
 }
 \seealso{

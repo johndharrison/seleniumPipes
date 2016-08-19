@@ -12,6 +12,8 @@ setTimeout(remDr, type = "page load", milliseconds = 10000, ...)
 \item{type}{The type of operation to set the timeout for. Valid values are: "script" for script timeouts, "implicit" for modifying the implicit wait timeout and "page load" for setting a page load timeout.}
 
 \item{milliseconds}{The amount of time, in milliseconds, that time-limited commands are permitted to run.}
+
+\item{...}{Additonal function arguments - Currently unused.}
 }
 \value{
 invisible(remDr): An object of class "rDriver" is invisibly returned.
@@ -23,6 +25,20 @@ invisible(remDr): An object of class "rDriver" is invisibly returned.
    for before they are aborted and a |Timeout| error is returned to the client.
 }
 \examples{
+\dontrun{
+  # start a driver without opening a browser
+  remDr <- remoteDr(newSession = FALSE)
+
+  # open a broswer
+  remDr \%>\% newSession
+
+  # set timeout on waiting for elements
+  remDr \%>\% setTimeout(type = "implicit", 5000)
+
+  # close Session
+  remDr \%>\% deleteSession
+
+}
 
 }
 \seealso{

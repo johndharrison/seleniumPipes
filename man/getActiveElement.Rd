@@ -8,6 +8,8 @@ getActiveElement(remDr, ...)
 }
 \arguments{
 \item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
+
+\item{...}{Additonal function arguments - Currently unused.}
 }
 \value{
 invisible(wbElement(res$value, remDr)): An object of class "wElement" is invisibly returned.
@@ -18,6 +20,34 @@ invisible(wbElement(res$value, remDr)): An object of class "wElement" is invisib
 \code{getActiveElement} Get the element on the page that currently has focus. The located element will be returned as a WebcElement object.
 }
 \examples{
+\dontrun{
+  remDr <- remoteDr()
+  remDr \%>\% go("http://www.google.com/ncr")
+
+  # find the search form query box and search for "R project"
+  webElem <- remDr \%>\% findElement("name", "q") \%>\%
+    elementSendKeys("R project", key = "enter")
+  # click the first link hopefully should be www.r-project.org
+  remDr \%>\% findElement("css", "h3.r a") \%>\% elementClick
+
+  # get the navigation div
+  navElem <- remDr \%>\% findElement("css", "div[role='navigation']")
+
+  # find all the links in this div
+  navLinks <- navElem \%>\% findElementsFromElement("css", "a")
+
+  # check the links
+  nLinks <- sapply(navLinks, function(x) x \%>\% getElementText)
+
+  # compare with all links
+  allLinks <- remDr \%>\% findElements("css", "a")
+  aLinks <- sapply(allLinks, function(x) x \%>\% getElementText)
+
+  # show the effect of searching for elements from element
+  aLinks \%in\% nLinks
+
+  remDr \%>\% deleteSession
+}
 
 }
 \seealso{

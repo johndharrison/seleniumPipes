@@ -29,6 +29,15 @@ If \code{returnPNG} is FALSE the web Element object is returned and additonal ch
 \code{takeElementScreenshot}
 }
 \examples{
+\dontrun{
+  remDr <- remoteDr()
+  remDr \%>\% go("http://www.google.com/ncr")
+  remDr \%>\% takeScreenshot
+
+  # select the search box
+  searchElem <- remDr \%>\% findElement("name", "q")
+  #searchElem \%>\% takeElementScreenshot()
+}
 
 }
 \seealso{

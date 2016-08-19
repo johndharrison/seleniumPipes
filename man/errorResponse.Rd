@@ -14,6 +14,9 @@ returns response see \code{\link{VERB}}. Headers, request etc. can be examined f
 }
 \examples{
 \dontrun{
+remDr <- remoteDr()
+remDr \%>\% findElement("name", "sdofnsdofk")
+errorResponse()
 }
 }
 

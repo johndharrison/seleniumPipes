@@ -3,6 +3,7 @@
 #'\code{deleteSession} Delete the session.
 #'
 #' @template remDr
+#' @template ellipsis
 #'
 #' @family sessions functions
 #' @template ret9
@@ -17,6 +18,7 @@ NULL
 #'\code{newSession} The server should attempt to create a session that most closely matches the desired and required capabilities. Required capabilities have higher priority than desired capabilities and must be set for the session to be created.
 #'
 #' @template remDr
+#' @template ellipsis
 #'
 #' @family sessions functions
 #' @template ret8
@@ -34,6 +36,7 @@ NULL
 #' @template remDr
 #' @param type The type of operation to set the timeout for. Valid values are: "script" for script timeouts, "implicit" for modifying the implicit wait timeout and "page load" for setting a page load timeout.
 #' @param milliseconds The amount of time, in milliseconds, that time-limited commands are permitted to run.
+#' @template ellipsis
 #'
 #' @family sessions functions
 #' @template ret1

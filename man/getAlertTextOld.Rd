@@ -18,6 +18,9 @@ The alert text is returned as a string.
 \code{getAlertTextOld} Get the text from a JavaScript alert. This uses the old JSONwireprotocol endpoints.
 }
 \examples{
+\dontrun{
+# functions in this group are using the old JSONwireprotocol end points
+}
 
 }
 \seealso{

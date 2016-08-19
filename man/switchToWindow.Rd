@@ -22,7 +22,49 @@ invisible(remDr): An object of class "rDriver" is invisibly returned.
 \code{switchToWindow} Change focus to another window.
 }
 \examples{
+\dontrun{
+  remDr <- remoteDr()
+  remDr \%>\% getWindowHandle() # The current window handle
+  remDr \%>\% getWindowHandles() # All windows in the session
 
+  # Get the window position
+  remDr \%>\% getWindowPosition
+
+  # Some browsers are still using the old JSON wire end points
+  remDr \%>\% getWindowPositionOld
+
+  # Get the size of the window
+  remDr \%>\% getWindowSize
+
+  # Some browsers are still using the old JSON wire end points
+  # remDr \%>\% getWindowSizeOld
+
+  # Set the window size
+  remDr \%>\% setWindowSize(500, 500)
+
+  # Some browsers are still using the old JSON wire end points
+  remDr \%>\% setWindowSizeOld(500, 500)
+
+  # Set the position of the window
+  remDr \%>\% setWindowPositionOld(400, 100)
+
+  # Some browsers are still using the old JSON wire end points
+  # remDr \%>\% setWindowPositionOld(400, 100)
+
+  # Maximise the window
+  remDr \%>\% maximizeWindow
+  # Some browsers are still using the old JSON wire end points
+  # remDr \%>\% maximizeWindowold()
+
+  remDr \%>\% go("http://www.google.com/ncr")
+  # search for the "R project"
+
+  remDr \%>\% findElement("name", "q") \%>\% elementSendKeys("R project", key = "enter")
+
+  webElem <- remDr \%>\% findElement("css", "h3.r a")
+
+  remDr \%>\% deleteSession
+}
 }
 \seealso{
 Other commandContexts functions: \code{\link{closeWindow}},

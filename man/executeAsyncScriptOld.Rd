@@ -30,6 +30,9 @@ The driver will pass a callback as the last argument to the snippet, and
    block until the callback is invoked.
 }
 \examples{
+\dontrun{
+# functions in this group are using the old JSONwireprotocol end points
+}
 
 }
 \seealso{

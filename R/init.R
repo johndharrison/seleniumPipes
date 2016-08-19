@@ -7,6 +7,8 @@
 #' @importFrom  xml2 read_html
 #' @importFrom  jsonlite toJSON
 #' @importFrom  jsonlite fromJSON
+#' @importFrom  jsonlite base64_dec
+#' @importFrom  magrittr %>%
 #' @importFrom  whisker whisker.render
 NULL
 
@@ -143,7 +145,9 @@ wbElement <- function(elementId, remDr){
 #' @return The contents of the response from the remote server. See \code{\link{content}} for details.
 #' @export
 #'
-#' @examples
+#' @examples \dontrun{
+#' # internal method
+#' }
 #'
 
 queryDriver <- function(verb = GET, url, source, drvID, ...){
@@ -173,6 +177,7 @@ queryDriver <- function(verb = GET, url, source, drvID, ...){
 #' @export
 #'
 #' @examples \dontrun{
+#' # internal method
 #' }
 #'
 
@@ -248,6 +253,9 @@ checkResponse <- function(response){
 #' @export
 #'
 #' @examples \dontrun{
+#' remDr <- remoteDr()
+#' remDr %>% findElement("name", "sdofnsdofk")
+#' errorResponse()
 #' }
 
 errorResponse <- function(){
@@ -261,6 +269,9 @@ errorResponse <- function(){
 #' @export
 #'
 #' @examples \dontrun{
+#' remDr <- remoteDr()
+#' remDr %>% findElement("name", "sdofnsdofk")
+#' errorContent()
 #' }
 
 errorContent <- function(){

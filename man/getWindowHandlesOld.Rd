@@ -19,6 +19,9 @@ Returns a list of windows handles. Each element of the list is a string. The ord
 \code{getWindowHandlesOld} Uses the old JSONwireprotocol end points. Retrieve the list of all window handles available to the session.
 }
 \examples{
+\dontrun{
+# functions in this group are using the old JSONwireprotocol end points
+}
 
 }
 \seealso{
