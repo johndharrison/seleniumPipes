@@ -4,15 +4,26 @@
 \alias{takeScreenshot}
 \title{takeScreenshot}
 \usage{
-takeScreenshot(remDr, ...)
+takeScreenshot(remDr, file = NULL,
+  display = getOption("seleniumPipes_display_screenshot"),
+  useViewer = !is.null(getOption("viewer")), returnPNG = FALSE, ...)
 }
 \arguments{
 \item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
+
+\item{file}{If not null the decoded PNG is written to file using the string provided here. Defaults to NULL.}
+
+\item{display}{logical Display the PNG or not (default is set in getOption("seleniumPipes_display_screenshot")).}
+
+\item{useViewer}{A viewer to view the PNG. Looks for the RSudio viewer by default.}
+
+\item{returnPNG}{logical return the decoded PNG. If false (default) remDr is returned to allw chaining.}
+
+\item{...}{Additonal function arguments - Currently unused.}
 }
 \value{
-invisible(remDr): An object of class "rDriver" is invisibly returned.
-   A remote driver object see \code{\link{remoteDr}}. This allows for chaining from this function to
-   other functions that take such an object as an argument. See examples for further details.
+If \code{returnPNG} is FALSE the remote Driver object is returned and additonal chaining is possible. If TRUE
+ then the decoded base64 image is returned see \code{\link{base64_dec}}
 }
 \description{
 \code{takeScreenshot}

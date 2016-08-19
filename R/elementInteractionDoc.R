@@ -33,7 +33,7 @@ NULL
 #'\code{elementSendKeys} The elementSendKeys function scrolls into view the form control element and then sends the provided keys to the element. In case the element is not keyboard interactable, an element not interactable error is returned.
 #'
 #' @template webElem
-#' @param ... keys to send the element. \code{seleniumPipes} includes mappings to unicode keys see \code{\link{selKeys}}. To use one of this name the string using key. See examples
+#' @param ... keys to send the element. \code{seleniumPipes} includes mappings to unicode keys see \code{\link{selKeys}}. To use one of this name the string using key. See examples.
 #'
 #' @family elementInteraction functions
 #' @template ret7

@@ -3,7 +3,8 @@
   op.seleniumPipes <- list(
     seleniumPipes_SL = FALSE,
     seleniumPipes_selOptions = list(),
-    seleniumPipes_sauceID = ""
+    seleniumPipes_sauceID = "",
+    seleniumPipes_display_screenshot = TRUE
   )
   toset <- !(names(op.seleniumPipes) %in% names(op))
   if(any(toset)) options(op.seleniumPipes[toset])

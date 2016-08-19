@@ -159,6 +159,47 @@ selReturn <- list(
   , ret9 = ".e$sessionId[[remDr$drvID]] <- NULL;invisible(remDr)"
   , ret10 = "invisible(wbElement(res$value, webElem$remDr))"
   , ret11 = "invisible(lapply(res$value, wbElement, remDr = webElem$remDr))"
+  , ret12 =
+"b64png <- base64_dec(res$value)
+if(display){
+  tmp <- file.path(tempdir(), 'tmpScreenShot.png')
+  writeBin(b64png, tmp)
+  viewer <- getOption(\"viewer\")
+  if (useViewer){
+    viewer(tmp)
+  }else{
+    utils::browseURL(tmp)
+  }
+}
+if(!is.null(file)){
+  writeBin(b64png, file)
+}
+if(returnPNG){
+  b64png
+}else{
+  invisible(remDr)
+}
+", ret13 =
+  "b64png <- base64_dec(res$value)
+if(display){
+  tmp <- file.path(tempdir(), 'tmpElementScreenShot.png')
+  writeBin(b64png, tmp)
+  viewer <- getOption(\"viewer\")
+  if (useViewer){
+    viewer(tmp)
+  }else{
+    utils::browseURL(tmp)
+  }
+}
+if(!is.null(file)){
+  writeBin(b64png, file)
+}
+if(returnPNG){
+  b64png
+}else{
+  invisible(webElem)
+}
+"
 )
 
 # list of POST type JSON commands
@@ -494,7 +535,17 @@ JCommands <- list(
     com = "
       jsonBody <- toJSON(list(type = type, ms = milliseconds), auto_unbox = TRUE)"
     , args = list(type = '\"page load\"', milliseconds = 10000)
-    , type = "ret1")
+    , type = "ret1"),
+
+  takeScreenshot = list(
+    args = list(file = "NULL", display = 'getOption("seleniumPipes_display_screenshot")',
+                  useViewer = '!is.null(getOption("viewer"))', returnPNG = "FALSE")
+    , type = "ret12"),
+
+  takeElementScreenshot = list(
+    args = list(file = "NULL", display = 'getOption("seleniumPipes_display_screenshot")',
+              useViewer = '!is.null(getOption("viewer"))', returnPNG = "FALSE")
+   , type = "ret13")
 
 
 )

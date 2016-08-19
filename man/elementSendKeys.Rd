@@ -9,7 +9,7 @@ elementSendKeys(webElem, ...)
 \arguments{
 \item{webElem}{web Element doc}
 
-\item{...}{keys to send the element. \code{seleniumPipes} includes mappings to unicode keys see \code{\link{selKeys}}. To use one of this name the string using key. See examples}
+\item{...}{keys to send the element. \code{seleniumPipes} includes mappings to unicode keys see \code{\link{selKeys}}. To use one of this name the string using key. See examples.}
 }
 \value{
 invisible(webElem): An object of class "wElement" is invisibly returned.
