@@ -2,14 +2,16 @@
 % Please edit documentation in R/navigation.R, R/navigationDoc.R
 \name{go}
 \alias{go}
-\title{go}
+\title{Navigate to a new URL.}
 \usage{
 go(remDr, url, ...)
 }
 \arguments{
 \item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
 
-\item{url}{}
+\item{url}{The URL to navigate to.}
+
+\item{...}{Additonal function arguments - Currently unused.}
 }
 \value{
 invisible(remDr): An object of class "rDriver" is invisibly returned.
@@ -17,7 +19,7 @@ invisible(remDr): An object of class "rDriver" is invisibly returned.
    other functions that take such an object as an argument. See examples for further details.
 }
 \description{
-\code{go}
+\code{go} Navigate to a new URL.
 }
 \examples{
 

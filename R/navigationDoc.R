@@ -1,8 +1,9 @@
-#' back
+#' Navigate backwards
 #'
-#'\code{back}
+#'\code{back} Navigate backwards in the browser history, if possible.
 #'
 #' @template remDr
+#' @template ellipsis
 #'
 #' @family navigation functions
 #' @template ret1
@@ -12,11 +13,12 @@
 #' @name back
 NULL
 
-#' forward
+#' Navigate forwards
 #'
-#'\code{forward}
+#'\code{forward} Navigate forwards in the browser history, if possible.
 #'
 #' @template remDr
+#' @template ellipsis
 #'
 #' @family navigation functions
 #' @template ret1
@@ -26,40 +28,43 @@ NULL
 #' @name forward
 NULL
 
-#' getCurrentUrl
+#' Retrieve the URL of the current page.
 #'
-#'\code{getCurrentUrl}
+#'\code{getCurrentUrl} Retrieve the URL of the current page.
 #'
 #' @template remDr
+#' @template ellipsis
 #'
 #' @family navigation functions
-#' @template ret2
+#' @return A character string is returned giving the current page URL.
 #' @export
 #'
 #' @example /inst/examples/docs/navigation.R
 #' @name getCurrentUrl
 NULL
 
-#' getTitle
+#' Get the current page title.
 #'
-#'\code{getTitle}
+#'\code{getTitle} Get the current page title.
 #'
 #' @template remDr
+#' @template ellipsis
 #'
 #' @family navigation functions
-#' @template ret2
+#' @return The title of the current page is returned as a character string.
 #' @export
 #'
 #' @example /inst/examples/docs/navigation.R
 #' @name getTitle
 NULL
 
-#' go
+#' Navigate to a new URL.
 #'
-#'\code{go}
+#'\code{go} Navigate to a new URL.
+#' @template ellipsis
 #'
 #' @template remDr
-#' @param url
+#' @param url The URL to navigate to.
 #'
 #' @family navigation functions
 #' @template ret1
@@ -69,11 +74,12 @@ NULL
 #' @name go
 NULL
 
-#' refresh
+#' Refresh the current page.
 #'
-#'\code{refresh}
+#'\code{refresh} Refresh the current page.
 #'
 #' @template remDr
+#' @template ellipsis
 #'
 #' @family navigation functions
 #' @template ret1

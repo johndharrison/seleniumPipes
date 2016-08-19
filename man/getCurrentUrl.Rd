@@ -2,18 +2,20 @@
 % Please edit documentation in R/navigation.R, R/navigationDoc.R
 \name{getCurrentUrl}
 \alias{getCurrentUrl}
-\title{getCurrentUrl}
+\title{Retrieve the URL of the current page.}
 \usage{
 getCurrentUrl(remDr, ...)
 }
 \arguments{
 \item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
+
+\item{...}{Additonal function arguments - Currently unused.}
 }
 \value{
-ret2 : res$value NEED TO FILL IN specifics for each function
+A character string is returned giving the current page URL.
 }
 \description{
-\code{getCurrentUrl}
+\code{getCurrentUrl} Retrieve the URL of the current page.
 }
 \examples{
 

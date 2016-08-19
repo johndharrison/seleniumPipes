@@ -2,12 +2,14 @@
 % Please edit documentation in R/navigation.R, R/navigationDoc.R
 \name{forward}
 \alias{forward}
-\title{forward}
+\title{Navigate forwards}
 \usage{
 forward(remDr, ...)
 }
 \arguments{
 \item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
+
+\item{...}{Additonal function arguments - Currently unused.}
 }
 \value{
 invisible(remDr): An object of class "rDriver" is invisibly returned.
@@ -15,7 +17,7 @@ invisible(remDr): An object of class "rDriver" is invisibly returned.
    other functions that take such an object as an argument. See examples for further details.
 }
 \description{
-\code{forward}
+\code{forward} Navigate forwards in the browser history, if possible.
 }
 \examples{
 

@@ -2,18 +2,20 @@
 % Please edit documentation in R/navigation.R, R/navigationDoc.R
 \name{getTitle}
 \alias{getTitle}
-\title{getTitle}
+\title{Get the current page title.}
 \usage{
 getTitle(remDr, ...)
 }
 \arguments{
 \item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
+
+\item{...}{Additonal function arguments - Currently unused.}
 }
 \value{
-ret2 : res$value NEED TO FILL IN specifics for each function
+The title of the current page is returned as a character string.
 }
 \description{
-\code{getTitle}
+\code{getTitle} Get the current page title.
 }
 \examples{
 
