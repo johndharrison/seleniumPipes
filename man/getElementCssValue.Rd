@@ -2,20 +2,22 @@
 % Please edit documentation in R/elementState.R, R/elementStateDoc.R
 \name{getElementCssValue}
 \alias{getElementCssValue}
-\title{getElementCssValue}
+\title{Query the value of an element's computed CSS property.}
 \usage{
 getElementCssValue(webElem, propertyName, ...)
 }
 \arguments{
 \item{webElem}{web Element doc}
 
-\item{propertyName}{}
+\item{propertyName}{The property to query as a character string}
 }
 \value{
-ret2 : res$value NEED TO FILL IN specifics for each function
+The value of the specified CSS property.
 }
 \description{
-\code{getElementCssValue}
+\code{getElementCssValue} Query the value of an element's computed CSS property.
+ The CSS property to query should be specified using the CSS property name,
+ not the JavaScript property name (e.g. background-color instead of backgroundColor).
 }
 \examples{
 

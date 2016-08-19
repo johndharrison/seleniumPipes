@@ -2,7 +2,7 @@
 % Please edit documentation in R/elementState.R, R/elementStateDoc.R
 \name{isElementEnabled}
 \alias{isElementEnabled}
-\title{isElementEnabled}
+\title{Determine if an element is currently enabled.}
 \usage{
 isElementEnabled(webElem, ...)
 }
@@ -10,10 +10,10 @@ isElementEnabled(webElem, ...)
 \item{webElem}{web Element doc}
 }
 \value{
-ret2 : res$value NEED TO FILL IN specifics for each function
+A logical value is returned indicating whether the elemnent is enabled.
 }
 \description{
-\code{isElementEnabled}
+\code{isElementEnabled} Determine if an element is currently enabled.
 }
 \examples{
 

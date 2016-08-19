@@ -2,7 +2,7 @@
 % Please edit documentation in R/elementState.R, R/elementStateDoc.R
 \name{getElementRect}
 \alias{getElementRect}
-\title{getElementRect}
+\title{Return the dimensions and coordinates of an element}
 \usage{
 getElementRect(webElem, ...)
 }
@@ -10,10 +10,16 @@ getElementRect(webElem, ...)
 \item{webElem}{web Element doc}
 }
 \value{
-ret2 : res$value NEED TO FILL IN specifics for each function
+The returned value is a list including the following members:
+\describe{
+  \item{x}{X axis position of the top-left corner of the web element relative to the current browsing context’s document element in CSS reference pixels.}
+  \item{y}{Y axis position of the top-left corner of the web element relative to the current browsing context’s document element in CSS reference pixels.}
+  \item{height}{Height of the web element’s bounding rectangle in CSS reference pixels. }
+  \item{width}{Width of the web element’s bounding rectangle in CSS reference pixels. }
+}
 }
 \description{
-\code{getElementRect}
+\code{getElementRect} The getElementRect fuinction returns the dimensions and coordinates of the given web element.
 }
 \examples{
 

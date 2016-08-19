@@ -2,20 +2,20 @@
 % Please edit documentation in R/elementState.R, R/elementStateDoc.R
 \name{getElementAttribute}
 \alias{getElementAttribute}
-\title{getElementAttribute}
+\title{Get the value of an element's attribute.}
 \usage{
 getElementAttribute(webElem, attribute, ...)
 }
 \arguments{
 \item{webElem}{web Element doc}
 
-\item{attribute}{}
+\item{attribute}{The attribute to query as a character string.}
 }
 \value{
-ret2 : res$value NEED TO FILL IN specifics for each function
+The value of the attribute, or null if it is not set on the element.
 }
 \description{
-\code{getElementAttribute}
+\code{getElementAttribute} Get the value of an element's attribute.
 }
 \examples{
 

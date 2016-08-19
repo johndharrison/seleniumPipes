@@ -2,7 +2,7 @@
 % Please edit documentation in R/elementState.R, R/elementStateDoc.R
 \name{isElementSelected}
 \alias{isElementSelected}
-\title{isElementSelected}
+\title{Determine if an element is currently selected.}
 \usage{
 isElementSelected(webElem, ...)
 }
@@ -10,10 +10,10 @@ isElementSelected(webElem, ...)
 \item{webElem}{web Element doc}
 }
 \value{
-ret2 : res$value NEED TO FILL IN specifics for each function
+A logical value is returned indicating whether the elemnent is selected.
 }
 \description{
-\code{isElementSelected}
+\code{isElementSelected} Determines if an OPTION element, or an INPUT element of type checkbox or radiobutton is currently selected.
 }
 \examples{
 

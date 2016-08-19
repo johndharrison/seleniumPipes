@@ -2,7 +2,7 @@
 % Please edit documentation in R/elementState.R, R/elementStateDoc.R
 \name{getElementText}
 \alias{getElementText}
-\title{getElementText}
+\title{Returns the visible text for the element.}
 \usage{
 getElementText(webElem, ...)
 }
@@ -10,10 +10,10 @@ getElementText(webElem, ...)
 \item{webElem}{web Element doc}
 }
 \value{
-ret2 : res$value NEED TO FILL IN specifics for each function
+The visible text for an element is returned as a character string.
 }
 \description{
-\code{getElementText}
+\code{getElementText} Returns the visible text for the element.
 }
 \examples{
 

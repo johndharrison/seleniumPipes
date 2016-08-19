@@ -2,20 +2,20 @@
 % Please edit documentation in R/elementState.R, R/elementStateDoc.R
 \name{getElementProperty}
 \alias{getElementProperty}
-\title{getElementProperty}
+\title{Query the value of an elements property.}
 \usage{
 getElementProperty(webElem, property, ...)
 }
 \arguments{
 \item{webElem}{web Element doc}
 
-\item{property}{}
+\item{property}{The property to query as a character string}
 }
 \value{
-ret2 : res$value NEED TO FILL IN specifics for each function
+The value of the elements specified property.
 }
 \description{
-\code{getElementProperty}
+\code{getElementProperty} Query the value of an elements property.
 }
 \examples{
 

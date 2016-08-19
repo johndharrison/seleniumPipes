@@ -2,7 +2,7 @@
 % Please edit documentation in R/elementState.R, R/elementStateDoc.R
 \name{getElementTagName}
 \alias{getElementTagName}
-\title{getElementTagName}
+\title{Query for an element's tag name.}
 \usage{
 getElementTagName(webElem, ...)
 }
@@ -10,10 +10,10 @@ getElementTagName(webElem, ...)
 \item{webElem}{web Element doc}
 }
 \value{
-ret2 : res$value NEED TO FILL IN specifics for each function
+The element's tag name, as a lowercase character string.
 }
 \description{
-\code{getElementTagName}
+\code{getElementTagName} Query for an element's tag name.
 }
 \examples{
 
