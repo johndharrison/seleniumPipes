@@ -2,18 +2,22 @@
 % Please edit documentation in R/elementInteraction.R, R/elementInteractionDoc.R
 \name{elementSendKeys}
 \alias{elementSendKeys}
-\title{elementSendKeys}
+\title{Send a sequence of key strokes to an element.}
 \usage{
 elementSendKeys(webElem, ...)
 }
 \arguments{
 \item{webElem}{web Element doc}
+
+\item{...}{keys to send the element. \code{seleniumPipes} includes mappings to unicode keys see \code{\link{selKeys}}. To use one of this name the string using key. See examples}
 }
 \value{
-ret7 : invisible(webElem)
+invisible(webElem): An object of class "wElement" is invisibly returned.
+   A webElement object see \code{\link{wbElement}}. This allows for chaining from this function to
+   other functions that take such an object as an argument. See examples for further details.
 }
 \description{
-\code{elementSendKeys}
+\code{elementSendKeys} The elementSendKeys function scrolls into view the form control element and then sends the provided keys to the element. In case the element is not keyboard interactable, an element not interactable error is returned.
 }
 \examples{
 

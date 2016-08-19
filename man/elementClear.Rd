@@ -2,18 +2,22 @@
 % Please edit documentation in R/elementInteraction.R, R/elementInteractionDoc.R
 \name{elementClear}
 \alias{elementClear}
-\title{elementClear}
+\title{Clear an elements text value.}
 \usage{
 elementClear(webElem, ...)
 }
 \arguments{
 \item{webElem}{web Element doc}
+
+\item{...}{Additonal function arguments - Currently unused.}
 }
 \value{
-ret7 : invisible(webElem)
+invisible(webElem): An object of class "wElement" is invisibly returned.
+   A webElement object see \code{\link{wbElement}}. This allows for chaining from this function to
+   other functions that take such an object as an argument. See examples for further details.
 }
 \description{
-\code{elementClear}
+\code{elementClear} Clear a TEXTAREA or text INPUT element's value.
 }
 \examples{
 

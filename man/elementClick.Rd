@@ -2,18 +2,22 @@
 % Please edit documentation in R/elementInteraction.R, R/elementInteractionDoc.R
 \name{elementClick}
 \alias{elementClick}
-\title{elementClick}
+\title{Click on an element.}
 \usage{
 elementClick(webElem, ...)
 }
 \arguments{
 \item{webElem}{web Element doc}
+
+\item{...}{Additonal function arguments - Currently unused.}
 }
 \value{
-ret7 : invisible(webElem)
+invisible(webElem): An object of class "wElement" is invisibly returned.
+   A webElement object see \code{\link{wbElement}}. This allows for chaining from this function to
+   other functions that take such an object as an argument. See examples for further details.
 }
 \description{
-\code{elementClick}
+\code{elementClick} The elementClick function scrolls into view the element and clicks the in-view centre point. If the element is not pointer-interactable, an element not interactable error is returned.
 }
 \examples{
 
