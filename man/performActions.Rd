@@ -2,12 +2,14 @@
 % Please edit documentation in R/interactions.R, R/interactionsDoc.R
 \name{performActions}
 \alias{performActions}
-\title{performActions}
+\title{Not currently implemented}
 \usage{
 performActions(remDr, ...)
 }
 \arguments{
 \item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
+
+\item{...}{Additonal function arguments - Currently unused.}
 }
 \value{
 invisible(remDr): An object of class "rDriver" is invisibly returned.
@@ -15,7 +17,7 @@ invisible(remDr): An object of class "rDriver" is invisibly returned.
    other functions that take such an object as an argument. See examples for further details.
 }
 \description{
-\code{performActions}
+\code{performActions} The Perform Actions command allows you to create sequential interactions that can be sent over from the local end to the remote end. This type of interactions allow emulations like drag and drop.
 }
 \examples{
 

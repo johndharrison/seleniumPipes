@@ -8,6 +8,8 @@ getElementTagName(webElem, ...)
 }
 \arguments{
 \item{webElem}{web Element doc}
+
+\item{...}{Additonal function arguments - Currently unused.}
 }
 \value{
 The element's tag name, as a lowercase character string.

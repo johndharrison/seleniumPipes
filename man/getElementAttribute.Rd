@@ -10,6 +10,8 @@ getElementAttribute(webElem, attribute, ...)
 \item{webElem}{web Element doc}
 
 \item{attribute}{The attribute to query as a character string.}
+
+\item{...}{Additonal function arguments - Currently unused.}
 }
 \value{
 The value of the attribute, or null if it is not set on the element.

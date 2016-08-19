@@ -10,6 +10,8 @@ getElementCssValue(webElem, propertyName, ...)
 \item{webElem}{web Element doc}
 
 \item{propertyName}{The property to query as a character string}
+
+\item{...}{Additonal function arguments - Currently unused.}
 }
 \value{
 The value of the specified CSS property.

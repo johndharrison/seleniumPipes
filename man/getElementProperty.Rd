@@ -10,6 +10,8 @@ getElementProperty(webElem, property, ...)
 \item{webElem}{web Element doc}
 
 \item{property}{The property to query as a character string}
+
+\item{...}{Additonal function arguments - Currently unused.}
 }
 \value{
 The value of the elements specified property.

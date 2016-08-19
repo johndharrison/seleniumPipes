@@ -8,6 +8,8 @@ getElementRect(webElem, ...)
 }
 \arguments{
 \item{webElem}{web Element doc}
+
+\item{...}{Additonal function arguments - Currently unused.}
 }
 \value{
 The returned value is a list including the following members:

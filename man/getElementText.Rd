@@ -8,6 +8,8 @@ getElementText(webElem, ...)
 }
 \arguments{
 \item{webElem}{web Element doc}
+
+\item{...}{Additonal function arguments - Currently unused.}
 }
 \value{
 The visible text for an element is returned as a character string.
