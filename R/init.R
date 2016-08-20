@@ -180,7 +180,7 @@ queryDriver <- function(verb = GET, url, source, drvID, ...){
 #' }
 #'
 
-checkResponse <- function(response, retry = FALSE){
+checkResponse <- function(response){
   statusCodes <- structure(list(Code = c(0L, 6L, 7L, 8L, 9L, 10L, 11L, 12L, 13L,
                                          15L, 17L, 19L, 21L, 23L, 24L, 25L, 26L, 27L, 28L, 29L, 30L, 31L,
                                          32L, 33L, 34L)
@@ -286,12 +286,9 @@ retry <- function(func, v, vArg, retry = getOption("seleniumPipes_retry")
                   , delay = getOption("seleniumPipes_retry_delay")){
   tryNo <- 1
   while(!tryNo > retry){
-    tst <- tryCatch({
-      if(!is.null(func(res <- do.call(v, vArg))$err)){
-        simpleError("")
-      }
-    }, error = function(e){e})
-    if(inherits(tst, "error")){
+    tst <- func(res <- do.call(v, vArg))
+
+    if(inherits(tst, "checkResponse")){
       cat("\nTry no: ", tryNo, " of ", retry, "\n")
       tryNo <- tryNo + 1
       Sys.sleep(delay/1000)
