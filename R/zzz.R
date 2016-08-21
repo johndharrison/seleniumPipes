@@ -5,8 +5,8 @@
     seleniumPipes_selOptions = list(),
     seleniumPipes_sauceID = "",
     seleniumPipes_display_screenshot = TRUE,
-    seleniumPipes_retry = 3,
-    seleniumPipes_retry_delay = 5000
+    seleniumPipes_retry = 3L,
+    seleniumPipes_retry_delay = 5000L
 
   )
   toset <- !(names(op.seleniumPipes) %in% names(op))

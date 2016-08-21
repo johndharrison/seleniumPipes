@@ -285,14 +285,14 @@ errorContent <- function(){
 
 retry <- function(func, v, vArg, source, retry = getOption("seleniumPipes_retry")
                   , delay = getOption("seleniumPipes_retry_delay")){
-  tryNo <- 1
+  tryNo <- 1L
   while(!tryNo > retry){
     tst <- func(res <- do.call(v, vArg))
 
     if(inherits(tst, "checkResponse")){
       cat("\nCalling ",source, " - Try no: ", tryNo, " of ", retry, "\n")
+      if(!identical(tryNo, retry)){Sys.sleep(delay/1000)}
       tryNo <- tryNo + 1
-      Sys.sleep(delay/1000)
     }else{
       tryNo <- retry + 1
     }
