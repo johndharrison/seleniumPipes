@@ -1,3 +1,7 @@
+# seleniumpipes 0.2.6
+* Complete documentation of package fuinctions.
+* The option to retry failing calls to endpoints on the remote server has been added
+
 # seleniumpipes 0.2.5
 * Add documentation for initial functions.
 * Add documentation for cookie group of functions.
