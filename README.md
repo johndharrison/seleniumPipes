@@ -65,3 +65,27 @@ Functions relating to the remote driver which would not be expected to return da
 be expected to return the remote driver. Functions relating to a web element which would not be expected to return data can be expected to return the web element. This allows chaining of commands as shown above.
 
 Further examples are available on install in the examples directory.
+
+### Builtin retry of Endpoints
+
+```
+remDr <- remoteDr()
+webElem <- remDr %>% go("http://www.google.com/ncr") %>% 
+  findElement("name", "q")
+
+# change the name of q with an 8 second delay
+myscript <- "var myElem = arguments[0]; window.setTimeout(function(){
+ myElem.setAttribute('name','funkyname');
+}, 8000);"
+remDr %>% executeScript(myscript, args = list(webElem))
+
+newWebElem <- remDr %>% findElement("name", "funkyname")
+
+# > newWebElem <- remDr %>% findElement("name", "funkyname")
+# 
+# Calling  findElement  - Try no:  1  of  3 
+# 
+# Calling  findElement  - Try no:  2  of  3 
+
+newWebElem %>% getElementAttribute("name")
+```
