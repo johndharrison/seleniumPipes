@@ -159,7 +159,8 @@ queryDriver <- function(verb = GET, url, source, drvID, ...){
     }
   }
   # Add error checking code here
-  res <- retry(func = checkResponse, v = verb, vArg = c(list(url), body = list(...)[["json"]]))
+  vArg <- c(list(url), body = list(...)[["json"]])
+  res <- retry(func = checkResponse, v = verb, vArg, source)
   res <- content(res)
   .e$sessionId[[drvID]] <- res$sessionId
   res
@@ -282,14 +283,14 @@ errorContent <- function(){
   .e$errorContent
 }
 
-retry <- function(func, v, vArg, retry = getOption("seleniumPipes_retry")
+retry <- function(func, v, vArg, source, retry = getOption("seleniumPipes_retry")
                   , delay = getOption("seleniumPipes_retry_delay")){
   tryNo <- 1
   while(!tryNo > retry){
     tst <- func(res <- do.call(v, vArg))
 
     if(inherits(tst, "checkResponse")){
-      cat("\nTry no: ", tryNo, " of ", retry, "\n")
+      cat("\nCalling ",source, " - Try no: ", tryNo, " of ", retry, "\n")
       tryNo <- tryNo + 1
       Sys.sleep(delay/1000)
     }else{
