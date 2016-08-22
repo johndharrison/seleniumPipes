@@ -2,7 +2,10 @@
 title: "seleniumPipes: Basic operation"
 author: "John D Harrison"
 date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
+output: 
+  html_document:
+    theme: cerulean
+    toc: yes
 vignette: >
   %\VignetteIndexEntry{Vignette Title}
   %\VignetteEngine{knitr::rmarkdown}
@@ -73,6 +76,13 @@ To connect to the Selenium Server `seleniumPipes` provides a `remoteDr` function
 ```
 library(seleniumPipes)
 remDr <- remoteDr(browserName = "chrome", port = 4445L)
+
+> remDr
+Remote Ip Address: http://localhost:4445/wd/hub 
+Remote sessionId: 640ad436-74e1-4ce8-afc3-898c0dee095d 
+
+> class(remDr)
+[1] "rDriver"
 ```
 
 Running the above should connect to the running Selenium Server which has default ip address (localhost) and is running on port 4445 (the default is 4444). It asks to open a `chrome` browser (the default is firefox). A browser should be opened:
@@ -96,11 +106,74 @@ Navigation is straightforward with `seleniumPipes`. There are a number of naviga
 |# go back|  |
 |`remDr %>% (seleniumPipes::back)` | `seleniumPipes::back(remDr)`|
 |# go forward|  |
-|`remDr %>% forward` | `seleniumPipes::forward(remDr)`|
+|`remDr %>% forward` | `forward(remDr)`|
 |# refresh page|  |
-|`remDr %>% refresh` | `seleniumPipes::refresh(remDr)`|
+|`remDr %>% refresh` | `refresh(remDr)`|
 
 We give the package path with the `back` function `seleniumPipes` as there is a `rvest::back` function which users
 may have in their workspace. If there are no namespace clashes `back` can simply be used.
 
 **From now on we will be using piped versions of our commands** and not listing the Non piped versions. `seleniumPipes` enables chaining by returning appropriate objects from functions and piping will ease our code writing in this case.
+
+### Closing the browser/Session
+
+To close the browser and remove the session from the Selenium Server we use the `deleteSession` function.
+
+```
+remDr %>% deleteSession
+```
+
+The browser on the machine running Selenium Server should now be closed and the session removed from the Selenium Server.
+
+## Finding elements and interacting with elements
+
+There are a number of functions in `seleniumPipes` that find elements in the DOM of the remote browser. They return objects of class `wElement` and can be used for further chaining. 
+
+### Selectors and elements
+
+The `findElement` function allows the user to search for an element in the remote browser DOM. 
+
+```
+remDr <- remoteDr(browserName = "chrome", port = 4445L)
+remDr %>% go("http://www.google.com/ncr")
+
+# find the search form query box and search for "R project"
+webElem <- remDr %>% findElement("name", "q")
+```
+
+If the selector returns a match an object of class `wElement` is returned:
+
+```
+> webElem
+ElementId: 0 
+Remote Driver: 
+Remote Ip Address: http://localhost:4445/wd/hub 
+Remote sessionId: 53f7a733-0e0e-4f73-87f2-e141ed530ebe 
+> class(webElem)
+[1] "wElement"
+```
+
+There are a number of different ways to search for an element. `xpath`, `css`, `id` are all examples of how a search can be carried out. Look at the help files for more info (`?findElement`)
+
+### Send text to an Element/ Click on an Element
+
+There are a number of functions which allow you to interact with the element in the DOM.
+As an example `?elementSendKeys`. Looking at the help file we see other functions in the `elementInteraction` group. As an example we will send some text to the google search box, clear it then send different text and submit it by pressing the search button.
+
+```
+queryBox <- remDr %>% findElement("name", "q")
+# send text to the query box
+queryBox %>% elementSendKeys("Some ", "text")
+
+# clear the query box
+queryBox %>% elementClear
+
+# get the search button
+searchBtn <- remDr %>% findElement("name", "btnG")
+# send text to query box
+queryBox %>% elementSendKeys("R project")
+
+# click the search button
+searchBtn %>% elementClick
+```
+
