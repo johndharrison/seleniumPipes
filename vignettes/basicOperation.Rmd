@@ -177,3 +177,10 @@ queryBox %>% elementSendKeys("R project")
 searchBtn %>% elementClick
 ```
 
+## Running JavaScript on remote browser
+
+## Error handling
+
+## Chaining of `seleniumPipes` functions
+
+## Frames and Windows
