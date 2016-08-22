@@ -19,3 +19,88 @@ WebDriver is a remote control interface that enables introspection and control o
 
 `seleniumPipes` implements the [w3c specification](https://w3c.github.io/webdriver/webdriver-spec.html) for 
 webdrivers. 
+
+### Starting a Selenium Server 
+
+The `seleniumPipes` package provides functions to connect to and communicate with a server which accepts w3c webdriver compliant requests. **_The `seleniumPipes` package does not provide functions or methods to manage such a server. An appropriate running server is assummed throughout._**
+
+In this short section we will highlight some ways a server maybe started.
+
+#### Manually starting via commandline
+
+On a given machine a Selenium Server can be started using the stand-alone binary available from the [Selenium Project](http://selenium-release.storage.googleapis.com/index.html). This link contains version of the Selenium Server. A stand-alone binary is released with each version. 
+Once downloaded it can be started via the commandline in its most basic form as:
+
+```
+> java  -jar selenium-server-standalone-3.0.0-beta2.jar
+```
+This assumes the file `selenium-server-standalone-3.0.0-beta2.jar` is in our path or we are issuing the command from the files directory. There are many additional options which can be passed via the commadline so of which are listed using `-help`:
+
+```
+> java  -jar selenium-server-standalone-3.0.0-beta2.jar -help
+```
+Other options are passed as system properties to the JVM:
+
+```
+> java -DpropertyName=value -jar selenium-server-standalone-3.0.0-beta2.jar -port 4445
+```
+
+#### Running Selenium Server via a Docker container
+
+The Selenium Project maintains a number of [Docker images](https://hub.docker.com/r/selenium/) that can be used to run a Docker container with a Selenium Server. A introduction to running a Selenium Server via Docker containers can be found in the [RSelenium package](http://rpubs.com/johndharrison/RSelenium-Docker).
+
+#### Start using an RScript
+
+The user can start and manage a Selenium server via an appropriate R script. An example of sourcing and starting a Selenium Server is given in the `RSelenium package`in the `serverUtils` directory full path `file.path(find.package("RSelenium"), "examples/serverUtils")`.
+
+## seleniumPipes basics
+
+In what follows I am running my code on Ubuntu 16.04. The same machine has a Selenium Server running in a docker container. This Docker image can be found [here](https://hub.docker.com/r/selenium/standalone-chrome-debug/~/dockerfile/). I am
+starting my Selenium server with the following `docker` command:
+
+```
+docker run -d -p 4445:4444 -p 5901:5900 selenium/standalone-chrome-debug:2.53.0
+```
+
+So I am running the standalone chrome debug image from the Selenium project at Docker Hub. I am running the version of this image with tag `2.53.0`. On my host machine the Selenium Server is exposed on port 4445 and the browser can be viewed via VNC on port 5901 on my ubuntu 16.04 host. 
+
+**The above is only for the users information and allows them to replicate my setup. It is not necessary and the user may use any Selenium Server they have access to.**
+
+### Connecting to the Selenium Server.
+
+To connect to the Selenium Server `seleniumPipes` provides a `remoteDr` function which takes a number of arguments and returns an object of class `rDriver` which can be used for further interaction with the Server. 
+
+```
+library(seleniumPipes)
+remDr <- remoteDr(browserName = "chrome", port = 4445L)
+```
+
+Running the above should connect to the running Selenium Server which has default ip address (localhost) and is running on port 4445 (the default is 4444). It asks to open a `chrome` browser (the default is firefox). A browser should be opened:
+
+<img src="chromeBrowser.png" title = "Chrome browser in docker container" width = '100%'/>
+
+### Navigating
+
+Navigation is straightforward with `seleniumPipes`. There are a number of navigation functions `go`, `back`, `forward`, `refresh` etc. 
+
+|Piped version      | Non piped|
+|------------------------------------------- |-----------------------------------------|
+|`remDr %>% go("http://www.google.com/ncr")` | `go(remDr, "http://www.google.com/ncr")`|
+|# get the title|  |
+|`remDr %>% getTitle` | `getTitle(remDr)`|
+|# get the current page url | |
+|`remDr %>% go("http://www.bbc.co.uk") %>% getCurrentUrl`| `getCurrentUrl(go(remDr, "http://www.bbc.co.uk"))`|
+
+|Piped version      | Non piped|
+|------------------------------------------- |-----------------------------------------|
+|# go back|  |
+|`remDr %>% (seleniumPipes::back)` | `seleniumPipes::back(remDr)`|
+|# go forward|  |
+|`remDr %>% forward` | `seleniumPipes::forward(remDr)`|
+|# refresh page|  |
+|`remDr %>% refresh` | `seleniumPipes::refresh(remDr)`|
+
+We give the package path with the `back` function `seleniumPipes` as there is a `rvest::back` function which users
+may have in their workspace. If there are no namespace clashes `back` can simply be used.
+
+**From now on we will be using piped versions of our commands** and not listing the Non piped versions. `seleniumPipes` enables chaining by returning appropriate objects from functions and piping will ease our code writing in this case.
