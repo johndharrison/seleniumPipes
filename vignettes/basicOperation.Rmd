@@ -184,6 +184,8 @@ asynchronously respectively.
 
 ### Executing synchronously
 
+Synchronous execution executes the script and returns any values. We can pass arguments to our script as follows:
+
 ```
 > remDr %>% executeScript("return 1+1;")
 [1] 2
@@ -193,10 +195,100 @@ asynchronously respectively.
 [1] 3
 
 ```
-### Executing asynchronously
+
+### Passing and returning webElements
+We can pass a web Element as an argument to the `execute` functions and also have
+web Elements returned. 
+
+#### Pass a web Element
+As an example we navigate to the Google home page. We select the search box in the DOM. We then pass the resulting web element back in our script
+and change the search box color:
+
 
 ```
-remDr %>% setTimeout("script")
+searchElem <- remDr %>% go("http://www.google.com/ncr") %>% 
+  findElement("name", "q")
+
+blueScript <- "arguments[0].style.backgroundColor = 'blue';"
+remDr %>% executeScript(blueScript, list(searchElem))
+
+```
+
+<img src="googleBlue.png" title = "Chrome browser in docker container" width = '100%'/>
+
+#### Return a web Element
+
+We can return web Elements from our script also. When web Elements are detected they are converted. This option is converned by the`replace` argument. By default elements in the DOM are replaced with web Elements.
+
+As an example lets refresh our page and return the google logo:
+
+```
+logoScript <- "return document.getElementById('hplogo');"
+logoElem <- remDr %>% refresh %>% 
+  executeScript(script = logoScript, args = list())
+```
+
+We can check that we have a web Element returned. We can also pass it back and change the visibility of the logo:
+
+```
+#> logoElem
+#ElementId: 1 
+#Remote Driver: 
+#Remote Ip Address: http://localhost:4445/wd/hub 
+#Remote sessionId: 5e322e1a-c06e-43c3-bebe-fe4465e0df7a 
+
+remDr %>% executeScript("arguments[0].hidden = true;", args = list(logoElem))
+
+# and turn the visibility back on
+remDr %>% executeScript("arguments[0].hidden = false;", args = list(logoElem))
+
+```
+
+Finally we show a slightly more complex object being returned with `replace` as `TRUE` and `FALSE` respectively
+
+```
+# Return a web Element in a more complex object
+script <- "var test ={num:1, str:'a', el:document.getElementById('hplogo')};return test;"
+remDr %>% executeScript(script = script
+                        , args = list())
+# $str
+# [1] "a"
+#
+# $num
+# [1] 1
+#
+# $el
+# ElementId: 0
+# Remote Driver:
+#   Remote Ip Address: http://localhost:4444/wd/hub
+# Remote sessionId: 9a83672a-d72b-4873-aa7d-96f7f1f80fa0
+
+# Run with replace = FALSE
+remDr %>% executeScript(script = script
+                        , args = list(), replace = FALSE)
+# $str
+# [1] "a"
+#
+# $num
+# [1] 1
+#
+# $el
+# $el$ELEMENT
+# [1] "0"
+```
+
+### Executing asynchronously
+
+By default the timeout on scripts is effectively set to zero. Asynchronous execution basically
+means our function waits for the script to finish execution. An appropriate value should be set 
+for script timeouts. Here we choose the default value of 10 seconds (10000 millisconds).
+
+A callback function is passed as the last argument and we `call` this function to signal ouyr script is finished.
+
+Here is an example illustrating the difference between sync calls and async calls:
+
+```
+remDr %>% setTimeout("script") # set default 10 secs for script timeout
 
 asScript <- "cb = arguments[0];setTimeout(function(){cb('DONE');},5000); "
 system.time(test1 <- remDr %>% executeAsyncScript(asScript, args = list()))
@@ -204,6 +296,7 @@ sScript <- "setTimeout(function(){},5000); return 'DONE';"
 system.time(test2 <- remDr %>% executeScript(sScript, args = list()))
 
 ```
+As a slightly more involved example:
 
 ```
 script <- "
@@ -216,21 +309,34 @@ script <- "
            });
         }, 3000);
 "
-> system.time(res <- remDr %>% executeAsyncScript(script = script, list("Super 2nd value")))
-   user  system elapsed 
-  0.032   0.000   3.103 
-> res
-$secondValue
-[1] "Super 2nd value"
+res <- remDr %>% executeAsyncScript(script = script, list("Super 2nd value"))
 
-$firstValue
-[1] 1
+#> system.time(res <- remDr %>% executeAsyncScript(script = script, list("Super 2nd value")))
+#   user  system elapsed 
+#  0.032   0.000   3.103 
+#> res
+#$secondValue
+#[1] "Super 2nd value"
+#
+#$firstValue
+#[1] 1
+remDr %>% deleteSession()
 ```
+
+Notice we can return a JavaScript object.
 
 ## Error handling
 
+By default there is a built-in `retry` function in the `seleniumPipes` codebase. If a call
+to the server returns an error the call is tried a number of times. See `?retry` for more details.
+
+By default functions are tried three times with a 5 second delay between tries. These values 
+can be changed see the package options `?seleniumPipes`.
+
+### Retry in action
+As an example of how the `retry` functionality works consider the following
 ```
-remDr <- remoteDr()
+remDr <- remoteDr(browserName = "chrome", port = 4445L)
 webElem <- remDr %>% go("http://www.google.com/ncr") %>% 
   findElement("name", "q")
 
@@ -251,6 +357,69 @@ newWebElem <- remDr %>% findElement("name", "funkyname")
 newWebElem %>% getElementAttribute("name")
 ```
 
-## Chaining of `seleniumPipes` functions
+In the above we navigate to the google homepage. We select an element in the DOM with name `q`. 
+We change the name of the element but set an 8 second delay on the change. Then we try to find the element. The first two attempts fail. The third attempt successfully finds the element as our 8 second delay is over and the time between function calls is a default 5 seconds. 
+
+
+### Changing retry values
+
+We can effectively turn `retry` off by setting appropriate options e.g.
+
+```
+# options(seleniumPipes_no_try = 1L)
+# options(seleniumPipes_no_try_delay = 50L)
+
+```
+which would limit calls to a given function to 1 try and a 50 millisecond delay. We can also 
+pass a retry argument in all the package functions
+
+```
+remDr %>% findElement("id", "i am not here", retry = list(noTry = 5, delay = 10))
+remDr %>% findElement("id", "i am not here", retry = FALSE)
+
+remDr %>% deleteSession
+```
 
 ## Frames and Windows
+
+## Chaining of `seleniumPipes` functions
+`seleniumPipes` functions best when functions are chained together. The `?retry` functionality also gives a failsafe for when a page may not have loaded or an element in the DOM is not ready. As an example we shall:
+
+* Navigate to google
+* Search for "CRAN r-project"
+* Click the first search result
+* Manipulate the frames at http://cran.r-project.org
+* Switch to the third frame
+* Get all the "Download R" urls
+
+
+```
+remDr <- remoteDr(browserName = "chrome", port = 4445L)
+
+# search for CRAN and the r project
+remDr %>% go("http://www.google.com/ncr") %>% 
+  findElement("name", "q") %>% 
+  elementSendKeys("CRAN r-project", key = "enter")
+
+# click the first link
+remDr %>% findElement("css", "h3.r") %>% 
+  elementClick
+
+# manipulate the frames. select the third
+appFrame <- remDr %>% findElements("css", "frame") %>% 
+  magrittr::extract2(3) 
+
+# switch to the third frame and get all the links containing "Download R"
+remDr %>% switchToFrame(appFrame) %>% 
+  findElements("xpath", "//a[contains(., 'Download R')]") %>% 
+  sapply(getElementAttribute, attribute = "href")
+
+#[1] "https://cran.r-project.org/bin/linux/"  
+#[2] "https://cran.r-project.org/bin/macosx/" 
+#[3] "https://cran.r-project.org/bin/windows/"
+
+remDr %>% deleteSession
+```
+
+
+
