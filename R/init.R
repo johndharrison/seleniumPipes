@@ -169,9 +169,9 @@ queryDriver <- function(verb = GET, url, source, drvID, ...){
         delay = 100L
       }
     }
-    if(is.list(retry)){
-      noTry <- ifelse(is.null(retry$noTry), getOption("seleniumPipes_no_try"), as.integer(retry$noTry))
-      delay <- ifelse(is.null(retry$delay), getOption("seleniumPipes_no_try_delay"), as.integer(retry$delay))
+    if(is.list(rtry)){
+      noTry <- ifelse(is.null(rtry$noTry), getOption("seleniumPipes_no_try"), as.integer(rtry$noTry))
+      delay <- ifelse(is.null(rtry$delay), getOption("seleniumPipes_no_try_delay"), as.integer(rtry$delay))
     }
   }
 

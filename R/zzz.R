@@ -47,3 +47,43 @@
 #' @docType package
 #' @name seleniumPipes
 NULL
+
+#' Documetation of retry argument
+#'
+#' The ability to \code{retry} function code is enabled by default.
+#' \code{retry} can be a logical value.
+#'  if it is TRUE then \code{noTry = getOption("seleniumPipes_no_try")} and \code{delay = getOption("seleniumPipes_no_try_delay")}.
+#'  If it is FALSE the facility to have multiple trys of the function call is removed. \code{retry} can also be
+#'  a list with the following named arguments that will override the values in \code{options}
+#'   \describe{
+#'      \item{"noTry"}{Integer indicating how many times to try the function call}
+#'      \item{"delay"}{Integer indicating delay between trys of the function call}
+#'    }
+#' @name retry
+#' @examples
+#' \dontrun{
+#' remDr <- remoteDr()
+#' webElem <- remDr %>% go("http://www.google.com/ncr") %>%
+#'   findElement("name", "q")
+#' # change the name of q with an 8 second delay
+#' myscript <- "var myElem = arguments[0];
+#' window.setTimeout(function(){
+#'  myElem.setAttribute('name','funkyname');
+#' }, 8000);"
+#' remDr %>% executeScript(myscript, args = list(webElem))
+#'
+#' newWebElem <- remDr %>% findElement("name", "funkyname")
+#'
+#'# > newWebElem <- remDr %>% findElement("name", "funkyname")
+#'#
+#'# Calling  findElement  - Try no:  1  of  3
+#'#
+#'# Calling  findElement  - Try no:  2  of  3
+#'
+#' newWebElem %>% getElementAttribute("name")
+#'
+#' # compare with a function that will fail (no element present)
+#' remDr %>% findElement("id", "i am not here", retry = list(noTry = 5, delay = 10))
+#' remDr %>% findElement("id", "i am not here", retry = FALSE)
+#' }
+NULL
