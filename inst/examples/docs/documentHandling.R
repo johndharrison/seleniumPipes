@@ -56,7 +56,7 @@ remDr %>% executeScript(script = script
 
 remDr %>% setTimeout("script")
 
-asScript <- "setTimeout(function(){arguments[arguments.length -1]('DONE');},5000); "
+asScript <- "cb = arguments[0];setTimeout(function(){cb('DONE');},5000); "
 system.time(test1 <- remDr %>% executeAsyncScript(asScript, args = list()))
 sScript <- "setTimeout(function(){},5000); return 'DONE';"
 system.time(test2 <- remDr %>% executeScript(sScript, args = list()))
