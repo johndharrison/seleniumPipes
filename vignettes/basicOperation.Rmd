@@ -382,6 +382,193 @@ remDr %>% deleteSession
 
 ## Frames and Windows
 
+Sometimes websites can be composed using frames. These are in effect seperate webpages which are brought together in a frameset. A webdriver 
+needs to switch from frame to frame. The easiest way to explain this is by way of example. 
+
+### Interacting with frames
+
+The `r-project` web-page at `CRAN` conviently uses frames so we will interact with it:
+
+```
+remDr <- remoteDr(browserName = "chrome", port = 4445L)
+
+remDr %>% go("https://cran.r-project.org/") %>%
+  getPageSource %>% 
+  xml_find_all("//frame") %>% 
+  xml_attr("name")
+
+# [1] "logo"     "contents" "banner"  
+```
+
+So we have navigated to the `CRAN` page, returned the page source, passed it to some functions in `xml2` which have returned the frame `names`.
+
+We can have a look at the structure of the html:
+
+```
+remDr %>% getPageSource %>% 
+  html_structure
+#<html [xmlns]>
+#  <head>
+#    {text}
+#    <title>
+#      {text}
+#    {text}
+#    <meta [http-equiv, content]>
+#    {text}
+#    <link [rel, href, type]>
+#    {text}
+#    <link [rel, href, type]>
+#    {text}
+#    <link [rel, type, href]>
+#    {text}
+#  {text}
+#  <frameset [cols, style]>
+#    {text}
+#    <frameset [rows]>
+#      {text}
+#      <frame [src, name, frameborder]>
+#      {text}
+#      <frame [src, name, frameborder]>
+#      {text}
+#    {text}
+#    <frame [src, name, frameborder]>
+#    {text}
+#    <noframes>
+#      {text}
+#    {text}
+#  {text}
+```
+Looking at the structure we can see the three frames we found. The logo frame contains simple the logo. The contents frame is the side menu on the left and the banner frame is the main section on the right. Lets inject some JavaScript to make this clearer:
+
+
+```
+frames <- remDr %>% findElements("css", "frame")
+
+script <- "arguments[0].setAttribute(arguments[1], arguments[2]);"
+style <- paste("border: 5px solid", c("yellow", "red", "blue"))
+
+remDr %>% {lapply(seq(3), function(x){
+  executeScript(., script, list(frames[[x]], "style", style[x]))
+})
+}
+
+```
+The above code colors the frames yellow (logo), red(content) and blue(banner).
+
+<img src="cranFrameColor.png" title = "Chrome browser in docker container" width = '100%'/>
+
+
+We can see the links in the red (content) frame. Lets try to get them
+
+```
+remDr %>% getPageSource %>%
+  xml_find_all("//a")
+{xml_nodeset (0)}
+```
+As we can see there are no html links in the html source returned. 
+
+#### Switch to frame
+
+Lets switch to the 2nd frame (red) and try again
+
+```
+remDr %>% switchToFrame(frames[[2]]) %>% 
+  getPageSource %>%
+  xml_find_all("//a") %>% 
+  xml_text
+
+#[1] "Mirrors"       "What's new?"   "Task Views"    "Search"        "R Homepage"    "The R Journal" "R Sources"    
+#[8] "R Binaries"    "Packages"      "Other"         "Manuals"       "FAQs"          "Contributed"  
+```
+
+To switch to the parent frame we pass NULL (this is the default value)
+
+```
+remDr %>% switchToFrame
+```
+
+Finally lets switch to the blue frame and get all the R download links:
+
+```
+remDr %>% switchToFrame(frames[[3]]) %>% 
+  getPageSource %>% 
+  xml_find_all("//a[contains(., 'Download R')]") %>% 
+  xml_attr("href")
+
+# [1] "bin/linux/"   "bin/macosx/"  "bin/windows/"
+
+remDr %>% deleteSession
+```
+So we can see the relative download urls returned.
+
+### Interacting with windows
+
+Windows are a bit like frames. We can switch between windows in a similar fashion. Again an example might be the best method
+to illustrate windows.
+
+```
+remDr <- remoteDr(browserName = "chrome", port = 4445L)
+remDr %>% executeScript("window.open('', '_blank', 'location=yes,height=570,width=520');")
+remDr %>% go("http://www.google.com/ncr")
+
+```
+<img src="windowsGoogle.png" title = "Chrome browser in docker container" width = '100%'/>
+
+So we can see the two windows. The current window is in the background and we can see we have navigated to the google homepage.
+
+Windows are designated by ids referred to as handles. We can examine our windows:
+
+```
+allHandles <- remDr %>% getWindowHandles
+
+#> allHandles
+#[[1]]
+#[1] "CDwindow-2BD80006-8759-44F8-9797-3E5C3DF5DD01"
+#
+#[[2]]
+#[1] "CDwindow-5A904D54-3C04-43B1-85A2-2F2B00560C07"
+
+currentHandle <- remDr %>% getWindowHandle
+
+#> currentHandle
+#[1] "CDwindow-2BD80006-8759-44F8-9797-3E5C3DF5DD01"
+
+newHandle <- allHandles[!allHandles %in% currentHandle][[1]]
+
+#> newHandle
+#[1] "CDwindow-5A904D54-3C04-43B1-85A2-2F2B00560C07"
+
+```
+The `getWindowHandles` function returns all the windows in the session. The `getWindowHandle` returns the current window. We can use the switchToWindow
+
+```
+remDr %>% switchToWindow(newHandle) %>% 
+  go("https://cran.r-project.org/") %>% 
+  getTitle
+  
+#[1] "The Comprehensive R Archive Network"
+```
+
+```
+remDr %>% switchToWindow(currentHandle) %>% 
+  getTitle
+#[1] "Google"
+```
+
+<img src="googleAndCran.png" title = "Chrome browser in docker container" width = '100%'/>
+
+Finally we can close the current window (in this case the first window with google) using the `closeWindow` function:
+
+```
+remDr %>% closeWindow
+```
+<img src="onlyCRAN.png" title = "Chrome browser in docker container" width = '100%'/>
+
+Lastly we delete the session
+```
+remDr %>% deleteSession
+```
+
 ## Chaining of `seleniumPipes` functions
 `seleniumPipes` functions best when functions are chained together. The `?retry` functionality also gives a failsafe for when a page may not have loaded or an element in the DOM is not ready. As an example we shall:
 
