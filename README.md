@@ -24,7 +24,15 @@ To install seleniumPipes run:
 devtools::install_github("johndharrison/seleniumPipes")
 ```
 
-To get started using `seleniumPipes` you can look at the following example
+### Getting started
+
+The easiest way to start is to look at the Basic operations vignette:
+
+* [seleniumpipes: Basic Operation](http://rpubs.com/johndharrison/seleniumPipes-basic)
+
+Failing this a few basic examples are presented below:
+
+Get started using `seleniumPipes` you can look at the following example
 
 ```
 library(seleniumPipes)
