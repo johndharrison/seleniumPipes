@@ -9,7 +9,7 @@ findElementsFromElement(webElem, using = c("xpath", "css selector", "id",
   ...)
 }
 \arguments{
-\item{webElem}{web Element doc}
+\item{webElem}{An object of class "wElement". A web Element object see \code{\link{wbElement}}.}
 
 \item{using}{Locator scheme to use to search the element, available schemes: {"class name", "css selector", "id", "name", "link text", "partial link text", "tag name", "xpath" }. Defaults to 'xpath'. Partial string matching is accepted.}
 

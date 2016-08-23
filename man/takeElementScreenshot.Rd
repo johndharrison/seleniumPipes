@@ -9,7 +9,7 @@ takeElementScreenshot(webElem, file = NULL,
   useViewer = !is.null(getOption("viewer")), returnPNG = FALSE, ...)
 }
 \arguments{
-\item{webElem}{web Element doc}
+\item{webElem}{An object of class "wElement". A web Element object see \code{\link{wbElement}}.}
 
 \item{file}{If not null the decoded PNG is written to file using the string provided here. Defaults to NULL.}
 

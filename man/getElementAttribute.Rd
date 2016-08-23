@@ -7,7 +7,7 @@
 getElementAttribute(webElem, attribute, ...)
 }
 \arguments{
-\item{webElem}{web Element doc}
+\item{webElem}{An object of class "wElement". A web Element object see \code{\link{wbElement}}.}
 
 \item{attribute}{The attribute to query as a character string.}
 

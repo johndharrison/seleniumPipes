@@ -7,7 +7,7 @@
 elementSendKeys(webElem, ...)
 }
 \arguments{
-\item{webElem}{web Element doc}
+\item{webElem}{An object of class "wElement". A web Element object see \code{\link{wbElement}}.}
 
 \item{...}{keys to send the element. \code{seleniumPipes} includes mappings to unicode keys see \code{\link{selKeys}}. To use one of this name the string using key. See examples.}
 }

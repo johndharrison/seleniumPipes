@@ -7,7 +7,7 @@
 getElementRect(webElem, ...)
 }
 \arguments{
-\item{webElem}{web Element doc}
+\item{webElem}{An object of class "wElement". A web Element object see \code{\link{wbElement}}.}
 
 \item{...}{Additonal function arguments - Currently passes the \code{\link{retry}} argument.}
 }
