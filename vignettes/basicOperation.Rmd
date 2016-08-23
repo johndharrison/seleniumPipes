@@ -179,7 +179,77 @@ searchBtn %>% elementClick
 
 ## Running JavaScript on remote browser
 
+Using `seleniumPipes` we can inject JavaScript into the remote browser. There are two functions executeScript and executeAsyncScript which execute JavaScript synchronously and
+asynchronously respectively. 
+
+### Executing synchronously
+
+```
+> remDr %>% executeScript("return 1+1;")
+[1] 2
+> remDr %>% executeScript("return arguments[0]+1;", list(1))
+[1] 2
+> remDr %>% executeScript("return arguments[0]+arguments[1];", list(1,2))
+[1] 3
+
+```
+### Executing asynchronously
+
+```
+remDr %>% setTimeout("script")
+
+asScript <- "cb = arguments[0];setTimeout(function(){cb('DONE');},5000); "
+system.time(test1 <- remDr %>% executeAsyncScript(asScript, args = list()))
+sScript <- "setTimeout(function(){},5000); return 'DONE';"
+system.time(test2 <- remDr %>% executeScript(sScript, args = list()))
+
+```
+
+```
+script <- "
+        var cb = arguments[ arguments.length - 1 ];
+        secondValue = arguments[0];
+        setTimeout(function () {
+           cb({
+              firstValue: 1,
+              secondValue: secondValue
+           });
+        }, 3000);
+"
+> system.time(res <- remDr %>% executeAsyncScript(script = script, list("Super 2nd value")))
+   user  system elapsed 
+  0.032   0.000   3.103 
+> res
+$secondValue
+[1] "Super 2nd value"
+
+$firstValue
+[1] 1
+```
+
 ## Error handling
+
+```
+remDr <- remoteDr()
+webElem <- remDr %>% go("http://www.google.com/ncr") %>% 
+  findElement("name", "q")
+
+# change the name of q with an 8 second delay
+myscript <- "var myElem = arguments[0]; window.setTimeout(function(){
+ myElem.setAttribute('name','funkyname');
+}, 8000);"
+remDr %>% executeScript(myscript, args = list(webElem))
+
+newWebElem <- remDr %>% findElement("name", "funkyname")
+
+# > newWebElem <- remDr %>% findElement("name", "funkyname")
+# 
+# Calling  findElement  - Try no:  1  of  3 
+# 
+# Calling  findElement  - Try no:  2  of  3 
+
+newWebElem %>% getElementAttribute("name")
+```
 
 ## Chaining of `seleniumPipes` functions
 
