@@ -5,8 +5,8 @@
     seleniumPipes_selOptions = list(),
     seleniumPipes_sauceID = "",
     seleniumPipes_display_screenshot = TRUE,
-    seleniumPipes_retry = 3L,
-    seleniumPipes_retry_delay = 5000L
+    seleniumPipes_no_try = 3L,
+    seleniumPipes_no_try_delay = 5000L
 
   )
   toset <- !(names(op.seleniumPipes) %in% names(op))
@@ -28,10 +28,10 @@
 #'      PNG returned by \code{\link{takeScreenshot}} and \code{\link{takeElementScreenshot}}.
 #'      Defaults to TRUE
 #'
-#'   \item \code{seleniumPipes_retry}: An integer giving the number of time to try calling an endpoint
+#'   \item \code{seleniumPipes_no_try}: An integer giving the number of time to try calling an endpoint
 #'      on the Selenium Server. Defaults to 3 attempts
 #'
-#'   \item \code{seleniumPipes_retry_delay}: An integer detailing the delay between attempts to
+#'   \item \code{seleniumPipes_no_try_delay}: An integer detailing the delay between attempts to
 #'      call a failing endpoint on the Selenium Server. Defaults to 5000 miliseconds = 5 seconds.
 #'
 #'   \item \code{seleniumPipes_SL}: A logical value which acts as a flag indicating whether SauiceLabs is being
