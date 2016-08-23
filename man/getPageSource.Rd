@@ -9,7 +9,7 @@ getPageSource(remDr, ...)
 \arguments{
 \item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
 
-\item{...}{Additonal function arguments - Currently unused.}
+\item{...}{Additonal function arguments - Currently passes the \code{\link{retry}} argument.}
 }
 \value{
 read_html(res$value): An xml document is returned.
@@ -78,7 +78,7 @@ remDr \%>\% executeScript(script = script
 
 remDr \%>\% setTimeout("script")
 
-asScript <- "setTimeout(function(){arguments[arguments.length -1]('DONE');},5000); "
+asScript <- "cb = arguments[0];setTimeout(function(){cb('DONE');},5000); "
 system.time(test1 <- remDr \%>\% executeAsyncScript(asScript, args = list()))
 sScript <- "setTimeout(function(){},5000); return 'DONE';"
 system.time(test2 <- remDr \%>\% executeScript(sScript, args = list()))

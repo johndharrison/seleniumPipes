@@ -9,7 +9,7 @@ getElementTagName(webElem, ...)
 \arguments{
 \item{webElem}{web Element doc}
 
-\item{...}{Additonal function arguments - Currently unused.}
+\item{...}{Additonal function arguments - Currently passes the \code{\link{retry}} argument.}
 }
 \value{
 The element's tag name, as a lowercase character string.

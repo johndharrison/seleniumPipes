@@ -9,7 +9,7 @@ isElementEnabled(webElem, ...)
 \arguments{
 \item{webElem}{web Element doc}
 
-\item{...}{Additonal function arguments - Currently unused.}
+\item{...}{Additonal function arguments - Currently passes the \code{\link{retry}} argument.}
 }
 \value{
 A logical value is returned indicating whether the elemnent is enabled.

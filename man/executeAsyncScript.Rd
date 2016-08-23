@@ -15,7 +15,7 @@ executeAsyncScript(remDr, script, args = list(), replace = TRUE, ...)
 
 \item{replace}{logical: If TRUE any elements identify as web Elements are converted to such.}
 
-\item{...}{Additonal function arguments - Currently unused.}
+\item{...}{Additonal function arguments - Currently passes the \code{\link{retry}} argument.}
 }
 \value{
 If replace is TRUE parses the response from the server for web Elements and converts as such.
@@ -88,7 +88,7 @@ remDr \%>\% executeScript(script = script
 
 remDr \%>\% setTimeout("script")
 
-asScript <- "setTimeout(function(){arguments[arguments.length -1]('DONE');},5000); "
+asScript <- "cb = arguments[0];setTimeout(function(){cb('DONE');},5000); "
 system.time(test1 <- remDr \%>\% executeAsyncScript(asScript, args = list()))
 sScript <- "setTimeout(function(){},5000); return 'DONE';"
 system.time(test2 <- remDr \%>\% executeScript(sScript, args = list()))

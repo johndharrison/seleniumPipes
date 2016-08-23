@@ -11,7 +11,7 @@ getWindowPositionOld(remDr, handle = "current", ...)
 
 \item{handle}{Handle of the window to query. If handle = "current" (the default) the current window is used.}
 
-\item{...}{Additonal function arguments - Currently unused.}
+\item{...}{Additonal function arguments - Currently passes the \code{\link{retry}} argument.}
 }
 \value{
 Returns a list which contains the x coordinate to position the window at, relative to the upper left corner of the screen and

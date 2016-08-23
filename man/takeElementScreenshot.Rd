@@ -19,7 +19,7 @@ takeElementScreenshot(webElem, file = NULL,
 
 \item{returnPNG}{logical return the decoded PNG. If false (default) webElem is returned to allw chaining.}
 
-\item{...}{Additonal function arguments - Currently unused.}
+\item{...}{Additonal function arguments - Currently passes the \code{\link{retry}} argument.}
 }
 \value{
 If \code{returnPNG} is FALSE the web Element object is returned and additonal chaining is possible. If TRUE

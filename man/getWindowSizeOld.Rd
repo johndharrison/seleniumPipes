@@ -11,7 +11,7 @@ getWindowSizeOld(remDr, handle = "current", ...)
 
 \item{handle}{Handle of the window to query. If handle = "current" (the default) the current window is used.}
 
-\item{...}{Additonal function arguments - Currently unused.}
+\item{...}{Additonal function arguments - Currently passes the \code{\link{retry}} argument.}
 }
 \value{
 The width and height of the window are returned as elements in a list.

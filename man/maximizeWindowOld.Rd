@@ -11,7 +11,7 @@ maximizeWindowOld(remDr, handle = "current", ...)
 
 \item{handle}{Handle of the window to query. If handle = "current" (the default) the current window is used.}
 
-\item{...}{Additonal function arguments - Currently unused.}
+\item{...}{Additonal function arguments - Currently passes the \code{\link{retry}} argument.}
 }
 \value{
 invisible(remDr): An object of class "rDriver" is invisibly returned.

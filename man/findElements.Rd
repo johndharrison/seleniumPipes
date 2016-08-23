@@ -14,7 +14,7 @@ findElements(remDr, using = c("xpath", "css selector", "id", "name",
 
 \item{value}{The search target. See examples.}
 
-\item{...}{Additonal function arguments - Currently unused.}
+\item{...}{Additonal function arguments - Currently passes the \code{\link{retry}} argument.}
 }
 \value{
 invisible(lapply(res$value, wbElement, remDr = remDr)): A list of objects of class "wElement" is invisibly returned.

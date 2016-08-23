@@ -11,7 +11,7 @@ getElementAttribute(webElem, attribute, ...)
 
 \item{attribute}{The attribute to query as a character string.}
 
-\item{...}{Additonal function arguments - Currently unused.}
+\item{...}{Additonal function arguments - Currently passes the \code{\link{retry}} argument.}
 }
 \value{
 The value of the attribute, or null if it is not set on the element.

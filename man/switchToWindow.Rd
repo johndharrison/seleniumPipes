@@ -11,7 +11,7 @@ switchToWindow(remDr, name, ...)
 
 \item{name}{The handle of the window to change focus to.}
 
-\item{...}{Additonal function arguments - Currently unused.}
+\item{...}{Additonal function arguments - Currently passes the \code{\link{retry}} argument.}
 }
 \value{
 invisible(remDr): An object of class "rDriver" is invisibly returned.

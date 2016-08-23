@@ -15,7 +15,7 @@ executeScriptOld(remDr, script, args = list(), replace = TRUE, ...)
 
 \item{replace}{logical: If TRUE any elements identify as web Elements are converted to such.}
 
-\item{...}{Additonal function arguments - Currently unused.}
+\item{...}{Additonal function arguments - Currently passes the \code{\link{retry}} argument.}
 }
 \value{
 If replace is TRUE parses the response from the server for web Elements and converts as such.

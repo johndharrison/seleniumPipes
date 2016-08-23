@@ -18,10 +18,10 @@ seleniumPipes uses the following \code{\link{options}} to configure behaviour:
      PNG returned by \code{\link{takeScreenshot}} and \code{\link{takeElementScreenshot}}.
      Defaults to TRUE
 
-  \item \code{seleniumPipes_retry}: An integer giving the number of time to try calling an endpoint
+  \item \code{seleniumPipes_no_try}: An integer giving the number of time to try calling an endpoint
      on the Selenium Server. Defaults to 3 attempts
 
-  \item \code{seleniumPipes_retry_delay}: An integer detailing the delay between attempts to
+  \item \code{seleniumPipes_no_try_delay}: An integer detailing the delay between attempts to
      call a failing endpoint on the Selenium Server. Defaults to 5000 miliseconds = 5 seconds.
 
   \item \code{seleniumPipes_SL}: A logical value which acts as a flag indicating whether SauiceLabs is being

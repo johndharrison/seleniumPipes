@@ -11,7 +11,7 @@ getNamedCookie(remDr, name = NULL, ...)
 
 \item{name}{character: The name of the cookie; may not be null or an empty string}
 
-\item{...}{Additonal function arguments - Currently unused.}
+\item{...}{Additonal function arguments - Currently passes the \code{\link{retry}} argument.}
 }
 \value{
 A named cookies from the current domain is returned if it exists. These cookies

@@ -9,7 +9,7 @@ getElementRect(webElem, ...)
 \arguments{
 \item{webElem}{web Element doc}
 
-\item{...}{Additonal function arguments - Currently unused.}
+\item{...}{Additonal function arguments - Currently passes the \code{\link{retry}} argument.}
 }
 \value{
 The returned value is a list including the following members:

@@ -11,7 +11,7 @@ getElementProperty(webElem, property, ...)
 
 \item{property}{The property to query as a character string}
 
-\item{...}{Additonal function arguments - Currently unused.}
+\item{...}{Additonal function arguments - Currently passes the \code{\link{retry}} argument.}
 }
 \value{
 The value of the elements specified property.

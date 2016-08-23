@@ -9,7 +9,7 @@ elementClick(webElem, ...)
 \arguments{
 \item{webElem}{web Element doc}
 
-\item{...}{Additonal function arguments - Currently unused.}
+\item{...}{Additonal function arguments - Currently passes the \code{\link{retry}} argument.}
 }
 \value{
 invisible(webElem): An object of class "wElement" is invisibly returned.
