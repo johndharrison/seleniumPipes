@@ -160,7 +160,22 @@ queryDriver <- function(verb = GET, url, source, drvID, ...){
   }
   # Add error checking code here
   vArg <- c(list(url), body = list(...)[["json"]])
-  res <- retry(func = checkResponse, v = verb, vArg, source)
+  noTry <- getOption("seleniumPipes_no_try")
+  delay <- getOption("seleniumPipes_no_try_delay")
+  if(!is.null(rtry <- list(...)[["retry"]])){
+    if(is.logical(rtry)){
+      if(!rtry){
+        noTry = 1L
+        delay = 100L
+      }
+    }
+    if(is.list(retry)){
+      noTry <- ifelse(is.null(retry$noTry), getOption("seleniumPipes_no_try"), as.integer(retry$noTry))
+      delay <- ifelse(is.null(retry$delay), getOption("seleniumPipes_no_try_delay"), as.integer(retry$delay))
+    }
+  }
+
+  res <- retry(func = checkResponse, v = verb, vArg, source, noTry = noTry, delay = delay)
   res <- content(res)
   .e$sessionId[[drvID]] <- res$sessionId
   res
@@ -283,18 +298,18 @@ errorContent <- function(){
   .e$errorContent
 }
 
-retry <- function(func, v, vArg, source, retry = getOption("seleniumPipes_retry")
-                  , delay = getOption("seleniumPipes_retry_delay")){
+retry <- function(func, v, vArg, source, noTry = getOption("seleniumPipes_no_try")
+                  , delay = getOption("seleniumPipes_no_try_delay")){
   tryNo <- 1L
-  while(!tryNo > retry){
+  while(!tryNo > noTry){
     tst <- func(res <- do.call(v, vArg))
 
     if(inherits(tst, "checkResponse")){
-      cat("\nCalling ",source, " - Try no: ", tryNo, " of ", retry, "\n")
-      if(!identical(tryNo, retry)){Sys.sleep(delay/1000)}
+      cat("\nCalled ",source, " - Try no: ", tryNo, " of ", noTry, "\n")
+      if(!identical(tryNo, noTry)){Sys.sleep(delay/1000)}
       tryNo <- tryNo + 1
     }else{
-      tryNo <- retry + 1
+      tryNo <- noTry + 1
     }
   }
   if(inherits(func(res), "checkResponse")){
