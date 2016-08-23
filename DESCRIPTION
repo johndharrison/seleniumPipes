@@ -1,12 +1,13 @@
 Package: seleniumPipes
 Type: Package
-Title: Implements the W3C WebDriver Specification
-Version: 0.2.7
-Author: John Harrison <johndharrison0@gmail.com>
-Maintainer: John Harrison <johndharrison0@gmail.com>
-Description: The seleniumPipes packages implements the W3C WebDriver
-    specification which defines a way for out-of-process programs to remotely
-    instruct the behaviour of web browsers.
+Title: R Client Implementing the W3C WebDriver Specification
+Version: 0.2.8
+Description: The W3C WebDriver specification defines a way for out-of-process
+    programs to remotely instruct the behaviour of web browsers. It is detailed
+    at <https://w3c.github.io/webdriver/webdriver-spec.html>. seleniumPipes provides
+    an R client implementing W3C the specification.
+Authors@R: c(
+    person("John", "Harrison", , "johndharrison0@gmail.com", role = c("aut", "cre")))
 Depends:
     R (>= 3.0.0),httr,jsonlite,xml2,magrittr,whisker
 Encoding: UTF-8
@@ -18,4 +19,6 @@ Suggests:
     testthat,
     data.table
 RoxygenNote: 5.0.1
+URL: https://github.com/johndharrison/seleniumPipes
+BugReports: https://github.com/johndharrison/seleniumPipes/issues
 VignetteBuilder: knitr
