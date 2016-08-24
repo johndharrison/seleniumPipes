@@ -1,11 +1,14 @@
 seleniumPipes
 ==========================
-[![](http://www.r-pkg.org/badges/version/seleniumPipes)](http://cran.rstudio.com/web/packages/seleniumPipes/index.html) 
-#### Travis build status
-[![Build Status](https://travis-ci.org/johndharrison/seleniumPipes.svg?branch=master)](https://travis-ci.org/johndharrison/seleniumPipes)
+| CRAN version       | Travis build status    | SauceTests  |
+| :-------------: |:-------------:|:-------------:|
+| [![](http://www.r-pkg.org/badges/version/seleniumPipes)](http://cran.rstudio.com/web/packages/seleniumPipes/index.html) | [![Build Status](https://travis-ci.org/johndharrison/seleniumPipes.svg?branch=master)](https://travis-ci.org/johndharrison/seleniumPipes) | [![Sauce Test Status](https://saucelabs.com/buildstatus/seleniumPipes)](https://saucelabs.com/u/seleniumPipes) |
+
+
+ 
 
 #### Selenium test staus
-[![Sauce Test Status](https://saucelabs.com/buildstatus/seleniumPipes)](https://saucelabs.com/u/seleniumPipes)
+
 
 [![Sauce Test Status](https://saucelabs.com/browser-matrix/seleniumPipes.svg)](https://saucelabs.com/u/seleniumPipes)
 
