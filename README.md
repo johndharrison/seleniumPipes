@@ -18,7 +18,14 @@ It has been built utilising `xml2`, `httr` and `magrittr` so provides an alterna
 
 ### Install
 
-To install seleniumPipes run:
+To install seleniumPipes from CRAN
+
+```
+install.packages("seleniumPipes")
+```
+
+
+To install the current developement version of seleniumPipes run:
 
 ```
 devtools::install_github("johndharrison/seleniumPipes")
