@@ -7,7 +7,7 @@ seleniumPipes
 
  
 
-#### Selenium test staus
+#### Selenium test status
 
 
 [![Sauce Test Status](https://saucelabs.com/browser-matrix/seleniumPipes.svg)](https://saucelabs.com/u/seleniumPipes)
