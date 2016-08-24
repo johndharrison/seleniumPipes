@@ -1,6 +1,6 @@
 seleniumPipes
 ==========================
-
+[![](http://www.r-pkg.org/badges/version/seleniumPipes)](http://cran.rstudio.com/web/packages/seleniumPipes/index.html) 
 #### Travis build status
 [![Build Status](https://travis-ci.org/johndharrison/seleniumPipes.svg?branch=master)](https://travis-ci.org/johndharrison/seleniumPipes)
 
