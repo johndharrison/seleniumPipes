@@ -13,7 +13,6 @@ Depends:
 Encoding: UTF-8
 License: GPL-3
 Suggests:
-    RSelenium,
     knitr,
     rmarkdown,
     data.table,
