@@ -23,6 +23,7 @@ if(identical(TRUE, getOption("seleniumPipes_SL"))){
   loadPage <- function(pgStr){
     paste0("http://", file.path(htmlSrc, paste0(pgStr, ".html")))
   }
+  rdBrowser <- remDr$sessionInfo$browserName
 
 }
 
@@ -61,7 +62,7 @@ test_that("FindElementByXpathThrowNoSuchElementException", {
   skip_on_cran()
   expect_error(
     findElementText <- remDr%>% go(loadPage("simpleTest")) %>%
-      findElement(using = "xpath", "//h4") %>% getElementText()
+      findElement(using = "xpath", "//h4", retry = FALSE) %>% getElementText()
   )
   expect_equal(7, errorContent()$status)
 }
@@ -131,7 +132,7 @@ test_that("FindElementByXpathInElementContextNotFound", {
   skip_on_cran()
   expect_error(remDr %>% go(loadPage("nestedElements")) %>%
                  findElement(using = "name", "form2") %>%
-                 findElementFromElement(using = "xpath", "div"))
+                 findElementFromElement(using = "xpath", "div", retry = FALSE))
   expect_equal(7, errorContent()$status)
 }
 )
