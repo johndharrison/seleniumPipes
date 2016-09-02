@@ -8,11 +8,10 @@ env:
   - NOT_CRAN=true
 
 before_install:
-  - docker pull selenium/standalone-firefox:2.53.0
-  - docker run -d -p 127.0.0.1:4444:4444 selenium/standalone-chrome:2.53.0
   - svn checkout https://github.com/SeleniumHQ/selenium/trunk/common/src/web
-  - npm install http-server -g
-  - http-server web -p 3000&
+  - docker run --rm -ti -p 3000:8080 --name http-server -v web:/public redsadic/docker-http-server&
+  - docker pull selenium/standalone-firefox:2.53.0
+  - docker run -d -p 127.0.0.1:4444:4444 --link http-server selenium/standalone-chrome:2.53.0
 
 r:
   - oldrel
