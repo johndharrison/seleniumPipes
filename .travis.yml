@@ -9,7 +9,7 @@ before_install:
   - docker pull selenium/standalone-firefox:2.53.0
   - docker run -d -p 127.0.0.1:4444:4444 selenium/standalone-chrome:2.53.0
   - svn checkout https://github.com/SeleniumHQ/selenium/trunk/common/src/web
-  - sudo npm install http-server -g
+  - npm install http-server -g
   - http-server web -p 3000
 
 r:
