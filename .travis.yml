@@ -10,7 +10,7 @@ before_install:
   - docker run -d -p 127.0.0.1:4444:4444 selenium/standalone-chrome:2.53.0
   - svn checkout https://github.com/SeleniumHQ/selenium/trunk/common/src/web
   - npm install http-server -g
-  - http-server web -p 3000
+  - http-server web -p 3000&
 
 r:
   - oldrel
