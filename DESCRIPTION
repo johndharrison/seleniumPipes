@@ -1,7 +1,7 @@
 Package: seleniumPipes
 Type: Package
 Title: R Client Implementing the W3C WebDriver Specification
-Version: 0.3.0
+Version: 0.3.1
 Description: The W3C WebDriver specification defines a way for out-of-process
     programs to remotely instruct the behaviour of web browsers. It is detailed
     at <https://w3c.github.io/webdriver/webdriver-spec.html>. This package provides
@@ -16,8 +16,8 @@ Suggests:
     RSelenium,
     knitr,
     rmarkdown,
-    testthat,
-    data.table
+    data.table,
+    testthat
 RoxygenNote: 5.0.1
 URL: https://github.com/johndharrison/seleniumPipes
 BugReports: https://github.com/johndharrison/seleniumPipes/issues
