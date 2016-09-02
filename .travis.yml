@@ -4,6 +4,8 @@ language: R
 cache: packages
 services:
   - docker
+env:
+  - NOT_CRAN=true
 
 before_install:
   - docker pull selenium/standalone-firefox:2.53.0
