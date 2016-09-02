@@ -15,6 +15,11 @@ if(identical(TRUE, getOption("seleniumPipes_SL"))){
   remDr <- remoteDr(browserName = "chrome")
   remDr %>% setTimeout(milliseconds = 10000) # set page load timeout to 3 secs
   remDr %>% setTimeout(type = "implicit", milliseconds = 5000) # wait 5 secs for elements to load
+  htmlSrc <- "localhost:3000"
+  loadPage <- function(pgStr){
+    paste0("http://", file.path(htmlSrc, paste0(pgStr, ".html")))
+  }
+
 }
 
 on.exit(remDr %>% deleteSession())
