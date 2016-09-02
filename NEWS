@@ -1,3 +1,6 @@
+# seleniumpipes 0.3.0
+* Initial release to CRAN
+
 # seleniumpipes 0.2.7
 * A vignette on basic operation has been added
 * The retry argument can now be passed in all functions and is detailed at ?retry
