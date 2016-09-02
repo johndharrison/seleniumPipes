@@ -10,14 +10,15 @@ env:
 before_install:
   - svn checkout https://github.com/SeleniumHQ/selenium/trunk/common/src/web
   - docker run -d -p 3000:8080 --name http-server -v web:/public redsadic/docker-http-server&
+  - ls
   - sleep 15
   - docker pull selenium/standalone-firefox:2.53.0
   - docker run -d -p 127.0.0.1:4444:4444 --link http-server selenium/standalone-chrome:2.53.0
 
 r:
-  - oldrel
+  #- oldrel
   - release
-  - devel
+  #- devel
 
 after_success:
 - Rscript -e 'covr::codecov()'
