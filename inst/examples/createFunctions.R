@@ -332,7 +332,10 @@ JCommands <- list(
     , type = "ret1"
   ),
 
-  switchToParentFrame = list(type = "ret1"),
+  switchToParentFrame = list(com =  "
+# Add function specific JSON to post
+  jsonBody <- NULL
+  ",type = "ret1"),
 
   findElement = list(
     com = "
