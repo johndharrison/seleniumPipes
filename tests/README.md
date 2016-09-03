@@ -29,6 +29,11 @@ or a debug version with VNC exposed on port 5901 of the host
 docker run -d -p 5901:5900 -p 127.0.0.1:4444:4444 --link http-server selenium/standalone-chrome-debug:2.53.0
 
 ```
+The two Docker containers are linked so the Selenium server will be able to access the http server on its port 8080 and referencing the http server as "http-server"
+
+```
+http-server:8080/*.html
+```
 
 Normally on the test machine docker containers are stopped and removed prior to testing:
 
