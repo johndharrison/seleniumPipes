@@ -26,5 +26,5 @@ initFun <- function(){
     rdBrowser <- remDr$sessionInfo$browserName
 
   }
-  list(remDr = remDr, rdBrowser = rdBrowser)
+  list(remDr = remDr, rdBrowser = rdBrowser, loadPage = loadPage)
 }
