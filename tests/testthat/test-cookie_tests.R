@@ -5,6 +5,7 @@ on.exit(remDr %>% deleteSession())
 
 
 test_that("testAddCookie", {
+  skip_on_cran()
   remDr %>% go(loadPage("simpleTest")) %>%
     executeScript("return document.cookie;")
   remDr %>% addCookie(name=  "foo",
@@ -18,6 +19,7 @@ test_that("testAddCookie", {
 )
 
 test_that("testAddingACookieThatExpiredInThePast", {
+  skip_on_cran()
   remDr %>% go(loadPage("simpleTest")) %>%
     addCookie(name=  "foo",
               value = "bar",
@@ -31,6 +33,7 @@ test_that("testAddingACookieThatExpiredInThePast", {
 )
 
 test_that("testDeleteAllCookie", {
+  skip_on_cran()
   remDr %>% go(loadPage("simpleTest")) %>%
     addCookie(name=  "foo",
                       value = "bar",
@@ -43,6 +46,7 @@ test_that("testDeleteAllCookie", {
 )
 
 test_that("testDeleteCookie", {
+  skip_on_cran()
   remDr %>% go(loadPage("simpleTest")) %>%
     addCookie(name=  "foo",
               value = "bar",
@@ -55,6 +59,7 @@ test_that("testDeleteCookie", {
 )
 
 test_that("testShouldGetCookieByName", {
+  skip_on_cran()
   key <- sprintf("key_%d", as.integer(runif(1) * 10000000))
   remDr %>% go(loadPage("simpleTest")) %>%
     executeScript("document.cookie = arguments[0] + '=set';", list(key))
@@ -65,6 +70,7 @@ test_that("testShouldGetCookieByName", {
 )
 
 test_that("testGetAllCookies", {
+  skip_on_cran()
   key1 <- sprintf("key_%d", as.integer(runif(1) * 10000000))
   key2 <- sprintf("key_%d", as.integer(runif(1) * 10000000))
   cookies <- remDr %>% go(loadPage("simpleTest")) %>%
@@ -79,6 +85,7 @@ test_that("testGetAllCookies", {
 )
 
 test_that("testShouldNotDeleteCookiesWithASimilarName", {
+  skip_on_cran()
   cookieOneName <- "fish"
   remDr %>% go(loadPage("simpleTest")) %>%
     addCookie(name = cookieOneName, value = "cod") %>%
