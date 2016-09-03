@@ -208,7 +208,7 @@ test_that("testUnexpectedAlertPresentExceptionContainsAlertText", {
     findElement("id", "alert") %>%
     elementClick
   expect_error(remDr %>% go(loadPage("simpleTest"), retry = FALSE))
-  expect_equal(errorResponse()$status, 26)
+  expect_equal(errorContent()$status, 26)
   remDr %>% acceptAlert
 }
 )
