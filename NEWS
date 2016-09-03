@@ -1,3 +1,10 @@
+# seleniumpipes 0.3.2
+* Fix issue with switchToParentFrame
+* Add further tests and increase test coverage
+
+# seleniumpipes 0.3.1
+* Add testing on Travis and testing locally using Docker containers
+
 # seleniumpipes 0.3.0
 * Initial release to CRAN
 
