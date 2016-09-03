@@ -1,4 +1,6 @@
 context("alerts_tests")
+init <- initFun()
+remDr <- init$remDr; rdBrowser <- init$rdBrowser
 on.exit(remDr %>% deleteSession())
 
 #1
@@ -38,15 +40,19 @@ test_that("testShouldAllowUsersToAcceptAnAlertWithNoTextManually", {
 )
 
 test_that("testShouldGetTextOfAlertOpenedInSetTimeout", {
+  #if(identical(rdBrowser, "chrome")) skip("Not chrome")
+  skip_on_cran()
   remDr %>% go(loadPage("alerts")) %>%
-    findElement("id", "slow-alert") %>%
+     findElement("id", "slow-alert") %>%
     elementClick
-  expect_equal("Slow", remDr %>% getAlertText)
+  alertTxt <- remDr %>% getAlertText
+  expect_equal("Slow", alertTxt)
   remDr %>% acceptAlert
 }
 )
 
 test_that("testShouldAllowUsersToDismissAnAlertManually", {
+  skip_on_cran()
   remDr %>% go(loadPage("alerts")) %>%
     findElement("id", "alert") %>%
     elementClick
@@ -56,6 +62,7 @@ test_that("testShouldAllowUsersToDismissAnAlertManually", {
 )
 
 test_that("testShouldAllowAUserToAcceptAPrompt", {
+  skip_on_cran()
   remDr %>% go(loadPage("alerts")) %>%
     findElement("id", "prompt") %>%
     elementClick
@@ -66,6 +73,7 @@ test_that("testShouldAllowAUserToAcceptAPrompt", {
 
 
 test_that("testShouldAllowAUserToDismissAPrompt", {
+  skip_on_cran()
   remDr %>% go(loadPage("alerts")) %>%
     findElement("id", "prompt") %>%
     elementClick
@@ -75,6 +83,7 @@ test_that("testShouldAllowAUserToDismissAPrompt", {
 )
 
 test_that("testShouldAllowAUserToSetTheValueOfAPrompt", {
+  skip_on_cran()
   remDr %>% go(loadPage("alerts")) %>%
     findElement("id", "prompt") %>%
     elementClick
@@ -87,6 +96,7 @@ test_that("testShouldAllowAUserToSetTheValueOfAPrompt", {
 
 test_that("testSettingTheValueOfAnAlertThrows", {
   if(identical("chrome", rdBrowser)) skip("Not chrome")
+  skip_on_cran()
   remDr %>% go(loadPage("alerts")) %>%
     findElement("id", "alert") %>%
     elementClick
@@ -96,6 +106,7 @@ test_that("testSettingTheValueOfAnAlertThrows", {
 )
 
 test_that("testAlertShouldNotAllowAdditionalCommandsIfDimissed", {
+  skip_on_cran()
   remDr %>% go(loadPage("alerts")) %>%
     findElement("id", "alert") %>%
     elementClick
@@ -105,6 +116,7 @@ test_that("testAlertShouldNotAllowAdditionalCommandsIfDimissed", {
 )
 
 test_that("testShouldAllowUsersToAcceptAnAlertInAFrame", {
+  skip_on_cran()
   remDr %>% go(loadPage("alerts")) %>%
     switchToFrame(remDr %>% findElement("name", "iframeWithAlert")) %>%
     findElement("id", "alertInFrame") %>%
@@ -115,6 +127,7 @@ test_that("testShouldAllowUsersToAcceptAnAlertInAFrame", {
 )
 
 test_that("testShouldAllowUsersToAcceptAnAlertInANestedFrame", {
+  skip_on_cran()
   remDr %>% go(loadPage("alerts")) %>%
     switchToFrame(remDr %>% findElement("name", "iframeWithIframe")) %>%
     switchToFrame(remDr %>% findElement("name", "iframeWithAlert")) %>%
@@ -126,6 +139,7 @@ test_that("testShouldAllowUsersToAcceptAnAlertInANestedFrame", {
 )
 
 test_that("testPromptShouldUseDefaultValueIfNoKeysSent", {
+  skip_on_cran()
   remDr %>% go(loadPage("alerts")) %>%
     findElement("id", "prompt-with-default") %>%
     elementClick
@@ -137,6 +151,7 @@ test_that("testPromptShouldUseDefaultValueIfNoKeysSent", {
 )
 
 test_that("testPromptShouldHaveNullValueIfDismissed", {
+  skip_on_cran()
   remDr %>% go(loadPage("alerts")) %>%
     findElement("id", "prompt-with-default") %>%
     elementClick
@@ -148,6 +163,7 @@ test_that("testPromptShouldHaveNullValueIfDismissed", {
 )
 
 test_that("testHandlesTwoAlertsFromOneInteraction", {
+  skip_on_cran()
   remDr %>% go(loadPage("alerts")) %>%
     findElement("id", "double-prompt") %>%
     elementClick
@@ -165,6 +181,7 @@ test_that("testHandlesTwoAlertsFromOneInteraction", {
 )
 
 test_that("testShouldHandleAlertOnPageLoad", {
+  skip_on_cran()
   remDr %>% go(loadPage("alerts")) %>%
     findElement("id", "open-page-with-onload-alert") %>%
     elementClick
@@ -175,6 +192,7 @@ test_that("testShouldHandleAlertOnPageLoad", {
 )
 
 test_that("testShouldAllowTheUserToGetTheTextOfAnAlert", {
+  skip_on_cran()
   remDr %>% go(loadPage("alerts")) %>%
     findElement("id", "alert") %>%
     elementClick
@@ -185,6 +203,7 @@ test_that("testShouldAllowTheUserToGetTheTextOfAnAlert", {
 )
 
 test_that("testUnexpectedAlertPresentExceptionContainsAlertText", {
+  skip_on_cran()
   remDr %>% go(loadPage("alerts")) %>%
     findElement("id", "alert") %>%
     elementClick

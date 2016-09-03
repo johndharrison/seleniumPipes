@@ -1,4 +1,6 @@
 context("api_example_tests")
+init <- initFun()
+remDr <- init$remDr; rdBrowser <- init$rdBrowser
 on.exit(remDr %>% deleteSession())
 
 #1
