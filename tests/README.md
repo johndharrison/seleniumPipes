@@ -1,6 +1,6 @@
 ### Tests for seleniumPipes
 
-These tests are converted from the Python tests in the Selenium project. The tests use a set off
+These tests are converted from the Python tests in the Selenium project. The tests use a set of
 HTML documents that can be sourced using
 
 ```
