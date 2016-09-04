@@ -86,7 +86,7 @@ maximizeWindow <- function(remDr, ...){
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
   res <- queryDriver(verb = POST, url = build_url(pathURL), source = "maximizeWindow", drvID = remDr$drvID, json = jsonBody,...)
-  res$value
+  invisible(remDr)
 }
 
 #' @rdname setWindowPosition
