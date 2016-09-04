@@ -20,5 +20,6 @@ Suggests:
     covr
 RoxygenNote: 5.0.1
 URL: https://github.com/johndharrison/seleniumPipes
+URLNote: https://github.com/johndharrison/seleniumPipes
 BugReports: https://github.com/johndharrison/seleniumPipes/issues
 VignetteBuilder: knitr
