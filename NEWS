@@ -1,3 +1,7 @@
+# seleniumpipes 0.3.3
+* Fix issue with maximiseWindow
+* Add further tests and increase test coverage
+
 # seleniumpipes 0.3.2
 * Fix issue with switchToParentFrame
 * Add further tests and increase test coverage
