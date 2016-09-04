@@ -55,7 +55,7 @@ test_that("testShouldBeAbleToNavigateBackInTheBrowserHistoryInPresenceOfIframes"
     findElement("name", "sameWindow") %>%
     elementClick
   expect_identical(remDr %>% getTitle, "This page has iframes")
-  result %>% remDr %>% back %>%
+  result <- remDr %>% back %>%
     getTitle
   expect_identical(result, "XHTML Test Page")
 }
