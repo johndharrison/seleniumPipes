@@ -361,43 +361,56 @@ test_that("IsElementDisplayed", {
 #45-46
 test_that("MoveWindowPosition", {
   skip_on_cran()
-  # not implemented for now
-  return()
   if(rdBrowser == 'android' || rdBrowser == "safari"){
     print("Not applicable")
     return()
   }
-  return()
-  loc <- remDr %>% go(loadPage("blank")) %>%
-    getWindowPosition()
-  # note can't test 0,0 since some OS's dont allow that location
-  # because of system toolbars
-  new_x = 50
-  new_y = 50
-  if(loc[['x']] == new_x){
-    new_x <- new_x + 10
+  chk <- tryCatch({
+    loc <- remDr %>% go(loadPage("blank")) %>%
+      getWindowPosition(retry = FALSE)
+    # note can't test 0,0 since some OS's dont allow that location
+    # because of system toolbars
+    new_x = 50
+    new_y = 50
+    if(loc[['x']] == new_x){
+      new_x <- new_x + 10
+    }
+    if(loc['y'] == new_y){
+      new_y <- new_y + 10
+    }
+    remDr %>% setWindowPosition(new_x, new_y)
+    loc = remDr %>% getWindowPosition
+  }, error = function(e) e)
+  if(grepl("Selenium Server error", as.character(chk))){
+    # try old functions
+    loc <- remDr %>% go(loadPage("blank")) %>%
+      getWindowPositionOld
+    # note can't test 0,0 since some OS's dont allow that location
+    # because of system toolbars
+    new_x = 50
+    new_y = 50
+    if(loc[['x']] == new_x){
+      new_x <- new_x + 10
+    }
+    if(loc['y'] == new_y){
+      new_y <- new_y + 10
+    }
+    remDr %>% setWindowPositionOld(new_x, new_y)
+    loc = remDr %>% getWindowPositionOld
   }
-  if(loc['y'] == new_y){
-    new_y <- new_y + 10
-  }
-  remDr %>% setWindowPosition(new_x, new_y)
-  loc = remDr %>% getWindowPosition()
   # change test to be within 10 pixels
-  expect_less_than(abs(loc[['x']] - new_x), 10)
-  expect_less_than(abs(loc[['y']] - new_y), 10)
+  expect_lt(abs(loc[['x']] - new_x), 10)
+  expect_lt(abs(loc[['y']] - new_y), 10)
 }
 )
 
 #47-48
 test_that("ChangeWindowSize", {
   skip_on_cran()
-  # not currently implemented
-  return()
   if(rdBrowser == 'android'){
     print("Not applicable")
     return()
   }
-  return()
   size <- remDr %>% go(loadPage("blank")) %>%
     getWindowSize()
   newSize <- rep(600, 2)
@@ -410,7 +423,18 @@ test_that("ChangeWindowSize", {
   remDr %>% setWindowSize(newSize[1], newSize[2])
   size <- remDr %>% getWindowSize()
   # change test to be within 10 pixels
-  expect_less_than(abs(size[['width']] - newSize[1]), 10)
-  expect_less_than(abs(size[['height']] - newSize[2]), 10)
+  expect_lt(abs(size[['width']] - newSize[1]), 10)
+  expect_lt(abs(size[['height']] - newSize[2]), 10)
+}
+)
+
+test_that("testShouldMaximizeTheWindow", {
+  size <- remDr %>% go(loadPage("blank")) %>%
+    setWindowSize(200,200) %>%
+    getWindowSize
+  new_size <- remDr %>% maximizeWindow %>%
+    getWindowSize
+  expect_gt(new_size[['width']], size[['width']])
+  expect_gt(new_size[['height']], size[['height']])
 }
 )
