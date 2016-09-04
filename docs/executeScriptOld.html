@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>executeScriptOld. seleniumPipes 0.3.3</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="index.html">seleniumPipes 0.3.3</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="reference.html">Reference</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Execute JavaScript asynchronously on browser.</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='executeScriptOld.html'>executeScriptOld</a></span><span class="keyword">(</span><span class="symbol">remDr</span><span class="keyword">,</span> <span class="symbol">script</span><span class="keyword">,</span> <span class="argument">args</span>&nbsp;<span class="argument">=</span>&nbsp;<span class="functioncall"><a href='http://www.rdocumentation.org/packages/base/topics/list'>list</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">replace</span>&nbsp;<span class="argument">=</span>&nbsp;<span class="number">TRUE</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>remDr</dt>
+      <dd>An object of class &quot;rDriver&quot;. A remote driver object see <code><a href='remoteDr.html'>remoteDr</a></code>.</dd>
+      <dt>script</dt>
+      <dd>character: The script to inject.</dd>
+      <dt>args</dt>
+      <dd>The arguments of the script as a list.</dd>
+      <dt>replace</dt>
+      <dd>logical: If TRUE any elements identify as web Elements are converted to such.</dd>
+      <dt>...</dt>
+      <dd>Additonal function arguments - Currently passes the <code><a href='retry.html'>retry</a></code> argument.</dd>
+    </dl>
+    
+    <div class="Value">
+      <h2>Value</h2>
+
+      <p><dl>
+If replace is TRUE parses the response from the server for web Elements and converts as such.
+   Otherwise the content returned is assummed to be a simple list.
+</dl></p>
+
+    </div>
+
+    <div class="Description">
+      <h2>Description</h2>
+
+      <p><code>executeScriptOld</code> This function uses the old JSONwireprotocol end points. Inject a snippet of JavaScript into the page for execution in the context
+   of the currently selected frame. The executed script is assumed to be
+   synchronous and the result of evaluating the script will be returned.</p>
+
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="comment">## Not run: ------------------------------------</span>
+<span class="comment"># # functions in this group are using the old JSONwireprotocol end points</span>
+<span class="comment">## ---------------------------------------------</span></div></pre>
+  </div>
+  <div class="span4 sidebar">
+    <!-- <ul>
+      <li>executeScriptOld</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+
+    <h2>See also</h2>
+      <p>Other oldMethods functions: <code><a href='acceptAlertOld.html'>acceptAlertOld</a></code>,
+  <code><a href='dismissAlertOld.html'>dismissAlertOld</a></code>,
+  <code><a href='executeAsyncScriptOld.html'>executeAsyncScriptOld</a></code>,
+  <code><a href='getAlertTextOld.html'>getAlertTextOld</a></code>,
+  <code><a href='getWindowHandleOld.html'>getWindowHandleOld</a></code>,
+  <code><a href='getWindowHandlesOld.html'>getWindowHandlesOld</a></code>,
+  <code><a href='getWindowPositionOld.html'>getWindowPositionOld</a></code>,
+  <code><a href='getWindowSizeOld.html'>getWindowSizeOld</a></code>,
+  <code><a href='maximizeWindowOld.html'>maximizeWindowOld</a></code>,
+  <code><a href='sendAlertTextOld.html'>sendAlertTextOld</a></code>,
+  <code><a href='setWindowPositionOld.html'>setWindowPositionOld</a></code>,
+  <code><a href='setWindowSizeOld.html'>setWindowSizeOld</a></code></p>
+
+    
+
+
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="https://getbootstrap.com/2.0.4/">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>

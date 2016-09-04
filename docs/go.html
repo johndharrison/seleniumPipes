@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>go. seleniumPipes 0.3.3</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="index.html">seleniumPipes 0.3.3</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="reference.html">Reference</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Navigate to a new URL.</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='go.html'>go</a></span><span class="keyword">(</span><span class="symbol">remDr</span><span class="keyword">,</span> <span class="symbol">url</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>remDr</dt>
+      <dd>An object of class &quot;rDriver&quot;. A remote driver object see <code><a href='remoteDr.html'>remoteDr</a></code>.</dd>
+      <dt>url</dt>
+      <dd>The URL to navigate to.</dd>
+      <dt>...</dt>
+      <dd>Additonal function arguments - Currently passes the <code><a href='retry.html'>retry</a></code> argument.</dd>
+    </dl>
+    
+    <div class="Value">
+      <h2>Value</h2>
+
+      <p><dl>
+invisible(remDr): An object of class &quot;rDriver&quot; is invisibly returned.
+   A remote driver object see <code><a href='remoteDr.html'>remoteDr</a></code>. This allows for chaining from this function to
+   other functions that take such an object as an argument. See examples for further details.
+</dl></p>
+
+    </div>
+
+    <div class="Description">
+      <h2>Description</h2>
+
+      <p><code>go</code> Navigate to a new URL.</p>
+
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="comment">## Not run: ------------------------------------</span>
+<span class="comment">#   remDr &lt;- remoteDr()</span>
+<span class="comment">#   remDr %&gt;% go("http://www.google.com/ncr")</span>
+<span class="comment"># </span>
+<span class="comment">#   # get the title</span>
+<span class="comment">#   remDr %&gt;% getTitle</span>
+<span class="comment"># </span>
+<span class="comment">#   # get the current page url</span>
+<span class="comment">#   remDr %&gt;% getCurrentUrl</span>
+<span class="comment"># </span>
+<span class="comment">#   # navigate</span>
+<span class="comment">#   remDr %&gt;% go("http://www.bbc.co.uk")</span>
+<span class="comment"># </span>
+<span class="comment">#   # go back</span>
+<span class="comment">#   remDr %&gt;% (seleniumPipes::back)</span>
+<span class="comment"># </span>
+<span class="comment">#   # go forward</span>
+<span class="comment">#   remDr %&gt;% forward</span>
+<span class="comment"># </span>
+<span class="comment">#   # refresh page</span>
+<span class="comment">#   remDr %&gt;% refresh</span>
+<span class="comment"># </span>
+<span class="comment">#   # close browser</span>
+<span class="comment">#   remDr %&gt;% deleteSession</span>
+<span class="comment">## ---------------------------------------------</span></div></pre>
+  </div>
+  <div class="span4 sidebar">
+    <!-- <ul>
+      <li>go</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+
+    <h2>See also</h2>
+      <p>Other navigation functions: <code><a href='back.html'>back</a></code>,
+  <code><a href='forward.html'>forward</a></code>, <code><a href='getCurrentUrl.html'>getCurrentUrl</a></code>,
+  <code><a href='getTitle.html'>getTitle</a></code>, <code><a href='refresh.html'>refresh</a></code></p>
+
+    
+
+
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="https://getbootstrap.com/2.0.4/">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>

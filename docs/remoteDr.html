@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>remoteDr. seleniumPipes 0.3.3</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="index.html">seleniumPipes 0.3.3</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="reference.html">Reference</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Create a remote driver</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='remoteDr.html'>remoteDr</a></span><span class="keyword">(</span><span class="argument">remoteServerAddr</span>&nbsp;<span class="argument">=</span>&nbsp;<span class="string">"http://localhost"</span><span class="keyword">,</span> <span class="argument">port</span>&nbsp;<span class="argument">=</span>&nbsp;<span class="number">4444L</span><span class="keyword">,</span>
+  <span class="argument">browserName</span>&nbsp;<span class="argument">=</span>&nbsp;<span class="string">"firefox"</span><span class="keyword">,</span> <span class="argument">version</span>&nbsp;<span class="argument">=</span>&nbsp;<span class="string">""</span><span class="keyword">,</span> <span class="argument">platform</span>&nbsp;<span class="argument">=</span>&nbsp;<span class="string">"ANY"</span><span class="keyword">,</span>
+  <span class="argument">javascript</span>&nbsp;<span class="argument">=</span>&nbsp;<span class="number">TRUE</span><span class="keyword">,</span> <span class="argument">nativeEvents</span>&nbsp;<span class="argument">=</span>&nbsp;<span class="number">TRUE</span><span class="keyword">,</span> <span class="argument">extraCapabilities</span>&nbsp;<span class="argument">=</span>&nbsp;<span class="functioncall"><a href='http://www.rdocumentation.org/packages/base/topics/list'>list</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">,</span>
+  <span class="argument">path</span>&nbsp;<span class="argument">=</span>&nbsp;<span class="string">"wd/hub"</span><span class="keyword">,</span> <span class="argument">newSession</span>&nbsp;<span class="argument">=</span>&nbsp;<span class="number">TRUE</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>remoteServerAddr</dt>
+      <dd>Object of class <code>&quot;character&quot;</code>, giving the ip of the remote server.
+Defaults to localhost</dd>
+      <dt>port</dt>
+      <dd>Object of class <code>&quot;integer&quot;</code>, the port of the remote server on which to connect</dd>
+      <dt>browserName</dt>
+      <dd>Object of class <code>&quot;character&quot;</code>. The name of the browser being used;
+choices include chrome|firefox|internet explorer|iphone|htmlunit. Defaults to firefox.</dd>
+      <dt>version</dt>
+      <dd>Object of class <code>&quot;character&quot;</code>. The browser version, or the empty string if unknown.</dd>
+      <dt>platform</dt>
+      <dd>Object of class <code>&quot;character&quot;</code>. A key specifying which platform the browser is running on. This value should be one of WINDOWS|XP|VISTA|MAC|LINUX|UNIX. When requesting a new session,
+the client may specify &quot;ANY&quot; to indicate any available platform may be used.</dd>
+      <dt>javascript</dt>
+      <dd>Object of class <code>&quot;logical&quot;</code>. Whether the session supports executing user supplied JavaScript in the context of the current page.</dd>
+      <dt>nativeEvents</dt>
+      <dd>Object of class <code>&quot;logical&quot;</code>. Whether the session supports native events. n WebDriver advanced user interactions are provided by either simulating the Javascript events directly (i.e. synthetic events) or by letting the browser generate the Javascript events (i.e. native events).
+Native events simulate the user interactions better.</dd>
+      <dt>extraCapabilities</dt>
+      <dd>A list containing any os/platform/driver specific arguments.</dd>
+      <dt>path</dt>
+      <dd>Path on the server side to issue webdriver calls to. Normally use the default value.</dd>
+      <dt>newSession</dt>
+      <dd>Logical value whether to start an instance of the browser. If TRUE a browser will be opened using <code><a href='newSession.html'>newSession</a></code></dd>
+    </dl>
+    
+    <div class="Value">
+      <h2>Value</h2>
+
+      <p><dl>
+An object of class &quot;rDriver&quot; is returned. This is a remote Driver object that is used
+   in many of the remote driver specific functions. Many functions that take a remote driver object as
+   input also return the remote driver object. This allows chaining of commands. See the examples for chaining in action.
+</dl></p>
+
+    </div>
+
+    <div class="Description">
+      <h2>Description</h2>
+
+      <p><code>remoteDr</code>: Create a remote Driver object</p>
+
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="comment">## Not run: ------------------------------------</span>
+<span class="comment"># # assume a server is available at the default location.</span>
+<span class="comment"># remDr &lt;- remoteDr()</span>
+<span class="comment"># remDR %&gt;% go("http://www.google.com") %&gt;%</span>
+<span class="comment">#  findElement("name", "q") %&gt;%</span>
+<span class="comment">#  elementSendKeys("R project", key = "enter")</span>
+<span class="comment"># # close our browser</span>
+<span class="comment"># remDr %&gt;% deleteSession</span>
+<span class="comment">## ---------------------------------------------</span></div></pre>
+  </div>
+  <div class="span4 sidebar">
+    <!-- <ul>
+      <li>remoteDr</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+
+
+
+
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="https://getbootstrap.com/2.0.4/">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>

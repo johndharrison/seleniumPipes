@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>deleteSession. seleniumPipes 0.3.3</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="index.html">seleniumPipes 0.3.3</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="reference.html">Reference</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Delete the session.</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='deleteSession.html'>deleteSession</a></span><span class="keyword">(</span><span class="symbol">remDr</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>remDr</dt>
+      <dd>An object of class &quot;rDriver&quot;. A remote driver object see <code><a href='remoteDr.html'>remoteDr</a></code>.</dd>
+      <dt>...</dt>
+      <dd>Additonal function arguments - Currently passes the <code><a href='retry.html'>retry</a></code> argument.</dd>
+    </dl>
+    
+    <div class="Value">
+      <h2>Value</h2>
+
+      <p><dl>
+Returns an object of class &quot;rDriver&quot;. The sessionId associated with this driver has been removed however
+   and the associated browser should be closed by the server.
+</dl></p>
+
+    </div>
+
+    <div class="Description">
+      <h2>Description</h2>
+
+      <p><code>deleteSession</code> Delete the session.</p>
+
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="comment">## Not run: ------------------------------------</span>
+<span class="comment">#   # start a driver without opening a browser</span>
+<span class="comment">#   remDr &lt;- remoteDr(newSession = FALSE)</span>
+<span class="comment"># </span>
+<span class="comment">#   # open a broswer</span>
+<span class="comment">#   remDr %&gt;% newSession</span>
+<span class="comment"># </span>
+<span class="comment">#   # set timeout on waiting for elements</span>
+<span class="comment">#   remDr %&gt;% setTimeout(type = "implicit", 5000)</span>
+<span class="comment"># </span>
+<span class="comment">#   # close Session</span>
+<span class="comment">#   remDr %&gt;% deleteSession</span>
+<span class="comment">## ---------------------------------------------</span></div></pre>
+  </div>
+  <div class="span4 sidebar">
+    <!-- <ul>
+      <li>deleteSession</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+
+    <h2>See also</h2>
+      <p>Other sessions functions: <code><a href='newSession.html'>newSession</a></code>,
+  <code><a href='setTimeout.html'>setTimeout</a></code></p>
+
+    
+
+
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="https://getbootstrap.com/2.0.4/">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>

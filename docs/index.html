@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>Home. seleniumPipes 0.3.3</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="index.html">seleniumPipes 0.3.3</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="reference.html">Reference</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <div class="row">
+  <div class="span8">
+    <h1>seleniumPipes</h1>
+
+<table><thead>
+<tr>
+<th align="center">CRAN version</th>
+<th align="center">Travis build status</th>
+<th align="center">SauceTests</th>
+<th align="center">Coverage</th>
+</tr>
+</thead><tbody>
+<tr>
+<td align="center"><a href="http://cran.rstudio.com/web/packages/seleniumPipes/index.html"><img src="http://www.r-pkg.org/badges/version/seleniumPipes" alt=""/></a></td>
+<td align="center"><a href="https://travis-ci.org/johndharrison/seleniumPipes"><img src="https://travis-ci.org/johndharrison/seleniumPipes.svg?branch=master" alt="Build Status"/></a></td>
+<td align="center"><a href="https://saucelabs.com/u/seleniumPipes"><img src="https://saucelabs.com/buildstatus/seleniumPipes" alt="Sauce Test Status"/></a></td>
+<td align="center"><a href="https://codecov.io/gh/johndharrison/seleniumPipes"><img src="https://codecov.io/gh/johndharrison/seleniumPipes/branch/master/graph/badge.svg" alt="codecov"/></a></td>
+</tr>
+</tbody></table>
+
+<h4>Selenium test status</h4>
+
+<p><a href="https://saucelabs.com/u/seleniumPipes"><img src="https://saucelabs.com/browser-matrix/seleniumPipes.svg" alt="Sauce Test Status"/></a></p>
+
+<h5><em>A lightweight implementation of w3c webdriver specification</em></h5>
+
+<h3>Introduction</h3>
+
+<p>seleniumPipes is a lightweight implementation of the <a href="https://w3c.github.io/webdriver/webdriver-spec.html">w3c webdriver specification</a>.
+It has been built utilising <code>xml2</code>, <code>httr</code> and <code>magrittr</code> so provides an alternative for users who are familiar with piping.</p>
+
+<h3>Install</h3>
+
+<p>To install seleniumPipes from CRAN</p>
+
+<pre><code>install.packages(&quot;seleniumPipes&quot;)
+</code></pre>
+
+<p>To install the current developement version of seleniumPipes run:</p>
+
+<pre><code>devtools::install_github(&quot;johndharrison/seleniumPipes&quot;)
+</code></pre>
+
+<h3>Getting started</h3>
+
+<p>The easiest way to start is to look at the Basic operations vignette:</p>
+
+<ul>
+<li><a href="http://rpubs.com/johndharrison/seleniumPipes-basic">seleniumpipes: Basic Operation</a></li>
+</ul>
+
+<p>Failing this a few basic examples are presented below:</p>
+
+<p>Get started using <code>seleniumPipes</code> you can look at the following example</p>
+
+<pre><code>library(seleniumPipes)
+library(RSelenium) # start a server with utility function
+selServ &lt;- RSelenium::startServer()
+remDr &lt;- remoteDr()
+remDr %&gt;% go(url = &quot;http://www.google.com&quot;)
+remDr %&gt;% go(url = &quot;http://www.bbc.com&quot;)
+remDr %&gt;% back()
+remDr %&gt;% forward()
+remDr %&gt;% refresh()
+remDr %&gt;% go(&quot;https://cloud.r-project.org/&quot;) %&gt;% getPageSource()
+# {xml_document}
+# &lt;html&gt;
+# [1] &lt;head&gt;\n&lt;title&gt;The Comprehensive R Archive Network&lt;/title&gt;\n&lt;meta content=&quot;text/html; charset=u ...
+# [2] &lt;frameset style=&quot;border: none;&quot; cols=&quot;1*, 4*&quot;&gt;\n&lt;frameset rows=&quot;120, 1*&quot;&gt;\n&lt;frame frameborder=&quot; ...
+
+remDr %&gt;% getPageSource() %&gt;% xml_find_all(&quot;//frame&quot;) %&gt;% xml_attr(&quot;name&quot;)
+
+# [1] &quot;logo&quot;     &quot;contents&quot; &quot;banner&quot;  
+
+remDr %&gt;% deleteSession()
+selServ$stop()
+</code></pre>
+
+<h3>Piping</h3>
+
+<p>Piping in <code>seleniumPipes</code> is achieved using the pipe operator from <code>magrittr</code>%&gt;%:</p>
+
+<pre><code>remDr %&gt;% go(&quot;http://www.google.com/ncr&quot;) %&gt;% 
+  findElement(&quot;name&quot;, &quot;q&quot;) %&gt;% 
+  elementSendKeys(&quot;R project&quot;, key = &quot;enter&quot;)
+
+</code></pre>
+
+<p>Functions relating to the remote driver which would not be expected to return data can
+be expected to return the remote driver. Functions relating to a web element which would not be expected to return data can be expected to return the web element. This allows chaining of commands as shown above.</p>
+
+<p>Further examples are available on install in the examples directory.</p>
+
+<h3>Builtin retry of Endpoints</h3>
+
+<pre><code>remDr &lt;- remoteDr()
+webElem &lt;- remDr %&gt;% go(&quot;http://www.google.com/ncr&quot;) %&gt;% 
+  findElement(&quot;name&quot;, &quot;q&quot;)
+
+# change the name of q with an 8 second delay
+myscript &lt;- &quot;var myElem = arguments[0]; window.setTimeout(function(){
+ myElem.setAttribute(&#39;name&#39;,&#39;funkyname&#39;);
+}, 8000);&quot;
+remDr %&gt;% executeScript(myscript, args = list(webElem))
+
+newWebElem &lt;- remDr %&gt;% findElement(&quot;name&quot;, &quot;funkyname&quot;)
+
+# &gt; newWebElem &lt;- remDr %&gt;% findElement(&quot;name&quot;, &quot;funkyname&quot;)
+# 
+# Calling  findElement  - Try no:  1  of  3 
+# 
+# Calling  findElement  - Try no:  2  of  3 
+
+newWebElem %&gt;% getElementAttribute(&quot;name&quot;)
+</code></pre>
+
+  </div>
+
+  <div class="span3 offset1 sidebar">
+    <h2>Vignettes</h2>
+    <ul>
+      <li><a href="vignettes/basicOperation.html">seleniumPipes - Basics</a></li>
+    </ul>
+        <h2>Authors</h2>
+    <ul>
+      <li><a href='mailto:johndharrison0@gmail.com'>John Harrison</a> [aut, cre]</li>
+    </ul>
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="https://getbootstrap.com/2.0.4/">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>

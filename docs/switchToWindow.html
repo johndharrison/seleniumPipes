@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>switchToWindow. seleniumPipes 0.3.3</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="index.html">seleniumPipes 0.3.3</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="reference.html">Reference</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Change focus to another window.</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='switchToWindow.html'>switchToWindow</a></span><span class="keyword">(</span><span class="symbol">remDr</span><span class="keyword">,</span> <span class="symbol">name</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>remDr</dt>
+      <dd>An object of class &quot;rDriver&quot;. A remote driver object see <code><a href='remoteDr.html'>remoteDr</a></code>.</dd>
+      <dt>name</dt>
+      <dd>The handle of the window to change focus to.</dd>
+      <dt>...</dt>
+      <dd>Additonal function arguments - Currently passes the <code><a href='retry.html'>retry</a></code> argument.</dd>
+    </dl>
+    
+    <div class="Value">
+      <h2>Value</h2>
+
+      <p><dl>
+invisible(remDr): An object of class &quot;rDriver&quot; is invisibly returned.
+   A remote driver object see <code><a href='remoteDr.html'>remoteDr</a></code>. This allows for chaining from this function to
+   other functions that take such an object as an argument. See examples for further details.
+</dl></p>
+
+    </div>
+
+    <div class="Description">
+      <h2>Description</h2>
+
+      <p><code>switchToWindow</code> Change focus to another window.</p>
+
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="comment">## Not run: ------------------------------------</span>
+<span class="comment">#   remDr &lt;- remoteDr()</span>
+<span class="comment">#   remDr %&gt;% getWindowHandle() # The current window handle</span>
+<span class="comment">#   remDr %&gt;% getWindowHandles() # All windows in the session</span>
+<span class="comment"># </span>
+<span class="comment">#   # Get the window position</span>
+<span class="comment">#   remDr %&gt;% getWindowPosition</span>
+<span class="comment"># </span>
+<span class="comment">#   # Some browsers are still using the old JSON wire end points</span>
+<span class="comment">#   remDr %&gt;% getWindowPositionOld</span>
+<span class="comment"># </span>
+<span class="comment">#   # Get the size of the window</span>
+<span class="comment">#   remDr %&gt;% getWindowSize</span>
+<span class="comment"># </span>
+<span class="comment">#   # Some browsers are still using the old JSON wire end points</span>
+<span class="comment">#   # remDr %&gt;% getWindowSizeOld</span>
+<span class="comment"># </span>
+<span class="comment">#   # Set the window size</span>
+<span class="comment">#   remDr %&gt;% setWindowSize(500, 500)</span>
+<span class="comment"># </span>
+<span class="comment">#   # Some browsers are still using the old JSON wire end points</span>
+<span class="comment">#   remDr %&gt;% setWindowSizeOld(500, 500)</span>
+<span class="comment"># </span>
+<span class="comment">#   # Set the position of the window</span>
+<span class="comment">#   remDr %&gt;% setWindowPositionOld(400, 100)</span>
+<span class="comment"># </span>
+<span class="comment">#   # Some browsers are still using the old JSON wire end points</span>
+<span class="comment">#   # remDr %&gt;% setWindowPositionOld(400, 100)</span>
+<span class="comment"># </span>
+<span class="comment">#   # Maximise the window</span>
+<span class="comment">#   remDr %&gt;% maximizeWindow</span>
+<span class="comment">#   # Some browsers are still using the old JSON wire end points</span>
+<span class="comment">#   # remDr %&gt;% maximizeWindowold()</span>
+<span class="comment"># </span>
+<span class="comment">#   remDr %&gt;% go("http://www.google.com/ncr")</span>
+<span class="comment">#   # search for the "R project"</span>
+<span class="comment"># </span>
+<span class="comment">#   remDr %&gt;% findElement("name", "q") %&gt;% elementSendKeys("R project", key = "enter")</span>
+<span class="comment"># </span>
+<span class="comment">#   webElem &lt;- remDr %&gt;% findElement("css", "h3.r a")</span>
+<span class="comment"># </span>
+<span class="comment">#   remDr %&gt;% deleteSession</span>
+<span class="comment">## ---------------------------------------------</span></div></pre>
+  </div>
+  <div class="span4 sidebar">
+    <!-- <ul>
+      <li>switchToWindow</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+
+    <h2>See also</h2>
+      <p>Other commandContexts functions: <code><a href='closeWindow.html'>closeWindow</a></code>,
+  <code><a href='fullscreenWindow.html'>fullscreenWindow</a></code>,
+  <code><a href='getWindowHandles.html'>getWindowHandles</a></code>,
+  <code><a href='getWindowHandle.html'>getWindowHandle</a></code>,
+  <code><a href='getWindowPosition.html'>getWindowPosition</a></code>,
+  <code><a href='getWindowSize.html'>getWindowSize</a></code>,
+  <code><a href='maximizeWindow.html'>maximizeWindow</a></code>,
+  <code><a href='setWindowPosition.html'>setWindowPosition</a></code>,
+  <code><a href='setWindowSize.html'>setWindowSize</a></code>, <code><a href='switchToFrame.html'>switchToFrame</a></code>,
+  <code><a href='switchToParentFrame.html'>switchToParentFrame</a></code></p>
+
+    
+
+
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="https://getbootstrap.com/2.0.4/">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>takeScreenshot. seleniumPipes 0.3.3</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="index.html">seleniumPipes 0.3.3</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="reference.html">Reference</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>takeScreenshot</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='takeScreenshot.html'>takeScreenshot</a></span><span class="keyword">(</span><span class="symbol">remDr</span><span class="keyword">,</span> <span class="argument">file</span>&nbsp;<span class="argument">=</span>&nbsp;NULL<span class="keyword">,</span>
+  <span class="argument">display</span>&nbsp;<span class="argument">=</span>&nbsp;<span class="functioncall"><a href='http://www.rdocumentation.org/packages/base/topics/options'>getOption</a></span><span class="keyword">(</span><span class="string">"seleniumPipes_display_screenshot"</span><span class="keyword">)</span><span class="keyword">,</span>
+  <span class="argument">useViewer</span>&nbsp;<span class="argument">=</span>&nbsp;<span class="keyword">!</span><span class="functioncall"><a href='http://www.rdocumentation.org/packages/base/topics/NULL'>is.null</a></span><span class="keyword">(</span><span class="functioncall"><a href='http://www.rdocumentation.org/packages/base/topics/options'>getOption</a></span><span class="keyword">(</span><span class="string">"viewer"</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">returnPNG</span>&nbsp;<span class="argument">=</span>&nbsp;<span class="number">FALSE</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>remDr</dt>
+      <dd>An object of class &quot;rDriver&quot;. A remote driver object see <code><a href='remoteDr.html'>remoteDr</a></code>.</dd>
+      <dt>file</dt>
+      <dd>If not null the decoded PNG is written to file using the string provided here. Defaults to NULL.</dd>
+      <dt>display</dt>
+      <dd>logical Display the PNG or not (default is set in getOption(&quot;seleniumPipes_display_screenshot&quot;)).</dd>
+      <dt>useViewer</dt>
+      <dd>A viewer to view the PNG. Looks for the RSudio viewer by default.</dd>
+      <dt>returnPNG</dt>
+      <dd>logical return the decoded PNG. If false (default) remDr is returned to allw chaining.</dd>
+      <dt>...</dt>
+      <dd>Additonal function arguments - Currently passes the <code><a href='retry.html'>retry</a></code> argument.</dd>
+    </dl>
+    
+    <div class="Value">
+      <h2>Value</h2>
+
+      <p><dl>
+If <code>returnPNG</code> is FALSE the remote Driver object is returned and additonal chaining is possible. If TRUE
+ then the decoded base64 image is returned see <code><a href='http://www.rdocumentation.org/packages/jsonlite/topics/base64'>base64_dec</a></code>
+</dl></p>
+
+    </div>
+
+    <div class="Description">
+      <h2>Description</h2>
+
+      <p><code>takeScreenshot</code></p>
+
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="comment">## Not run: ------------------------------------</span>
+<span class="comment">#   remDr &lt;- remoteDr()</span>
+<span class="comment">#   remDr %&gt;% go("http://www.google.com/ncr")</span>
+<span class="comment">#   remDr %&gt;% takeScreenshot</span>
+<span class="comment"># </span>
+<span class="comment">#   # select the search box</span>
+<span class="comment">#   searchElem &lt;- remDr %&gt;% findElement("name", "q")</span>
+<span class="comment">#   #searchElem %&gt;% takeElementScreenshot()</span>
+<span class="comment">## ---------------------------------------------</span></div></pre>
+  </div>
+  <div class="span4 sidebar">
+    <!-- <ul>
+      <li>takeScreenshot</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+
+    <h2>See also</h2>
+      <p>Other screenCapture functions: <code><a href='takeElementScreenshot.html'>takeElementScreenshot</a></code></p>
+
+    
+
+
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="https://getbootstrap.com/2.0.4/">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>

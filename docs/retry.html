@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>retry. seleniumPipes 0.3.3</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="index.html">seleniumPipes 0.3.3</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="reference.html">Reference</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Documetation of retry argument</h1>
+
+<div class="row">
+  <div class="span8">
+        
+    <div class="Description">
+      <h2>Description</h2>
+
+      <p>The ability to <code>retry</code> function code is enabled by default.
+<code>retry</code> can be a logical value.
+ if it is TRUE then <code>noTry = getOption(&quot;seleniumPipes_no_try&quot;)</code> and <code>delay = getOption(&quot;seleniumPipes_no_try_delay&quot;)</code>.
+ If it is FALSE the facility to have multiple trys of the function call is removed. <code>retry</code> can also be
+ a list with the following named arguments that will override the values in <code>options</code>
+  <dl>
+     <dt>&quot;noTry&quot;</dt><dd>Integer indicating how many times to try the function call</dd></p>
+
+      <p><dt>&quot;delay&quot;</dt><dd>Integer indicating delay between trys of the function call</dd></p>
+
+      <p></dl></p>
+
+      <p></p>
+
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="comment">## Not run: ------------------------------------</span>
+<span class="comment"># remDr &lt;- remoteDr()</span>
+<span class="comment"># webElem &lt;- remDr %&gt;% go("http://www.google.com/ncr") %&gt;%</span>
+<span class="comment">#   findElement("name", "q")</span>
+<span class="comment"># # change the name of q with an 8 second delay</span>
+<span class="comment"># myscript &lt;- "var myElem = arguments[0];</span>
+<span class="comment"># window.setTimeout(function(){</span>
+<span class="comment">#  myElem.setAttribute('name','funkyname');</span>
+<span class="comment"># }, 8000);"</span>
+<span class="comment"># remDr %&gt;% executeScript(myscript, args = list(webElem))</span>
+<span class="comment"># </span>
+<span class="comment"># newWebElem &lt;- remDr %&gt;% findElement("name", "funkyname")</span>
+<span class="comment"># </span>
+<span class="comment"># # &gt; newWebElem &lt;- remDr %&gt;% findElement("name", "funkyname")</span>
+<span class="comment"># #</span>
+<span class="comment"># # Calling  findElement  - Try no:  1  of  3</span>
+<span class="comment"># #</span>
+<span class="comment"># # Calling  findElement  - Try no:  2  of  3</span>
+<span class="comment"># </span>
+<span class="comment"># newWebElem %&gt;% getElementAttribute("name")</span>
+<span class="comment"># </span>
+<span class="comment"># # compare with a function that will fail (no element present)</span>
+<span class="comment"># remDr %&gt;% findElement("id", "i am not here", retry = list(noTry = 5, delay = 10))</span>
+<span class="comment"># remDr %&gt;% findElement("id", "i am not here", retry = FALSE)</span>
+<span class="comment">## ---------------------------------------------</span></div></pre>
+  </div>
+  <div class="span4 sidebar">
+    <!-- <ul>
+      <li>retry</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+
+
+
+
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="https://getbootstrap.com/2.0.4/">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>

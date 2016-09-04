@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>findElementFromElement. seleniumPipes 0.3.3</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="index.html">seleniumPipes 0.3.3</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="reference.html">Reference</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Search for an element on the page, starting from another element</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='findElementFromElement.html'>findElementFromElement</a></span><span class="keyword">(</span><span class="symbol">webElem</span><span class="keyword">,</span> <span class="argument">using</span>&nbsp;<span class="argument">=</span>&nbsp;<span class="functioncall"><a href='http://www.rdocumentation.org/packages/base/topics/c'>c</a></span><span class="keyword">(</span><span class="string">"xpath"</span><span class="keyword">,</span> <span class="string">"css selector"</span><span class="keyword">,</span> <span class="string">"id"</span><span class="keyword">,</span>
+  <span class="string">"name"</span><span class="keyword">,</span> <span class="string">"tag name"</span><span class="keyword">,</span> <span class="string">"class name"</span><span class="keyword">,</span> <span class="string">"link text"</span><span class="keyword">,</span> <span class="string">"partial link text"</span><span class="keyword">)</span><span class="keyword">,</span> <span class="symbol">value</span><span class="keyword">,</span>
+  <span class="symbol">...</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>webElem</dt>
+      <dd>An object of class &quot;wElement&quot;. A web Element object see <code><a href='wbElement.html'>wbElement</a></code>.</dd>
+      <dt>using</dt>
+      <dd>Locator scheme to use to search the element, available schemes: &quot;class name&quot;, &quot;css selector&quot;, &quot;id&quot;, &quot;name&quot;, &quot;link text&quot;, &quot;partial link text&quot;, &quot;tag name&quot;, &quot;xpath&quot; . Defaults to &#39;xpath&#39;. Partial string matching is accepted.</dd>
+      <dt>value</dt>
+      <dd>The search target. See examples.</dd>
+      <dt>...</dt>
+      <dd>Additonal function arguments - Currently passes the <code><a href='retry.html'>retry</a></code> argument.</dd>
+    </dl>
+    
+    <div class="Value">
+      <h2>Value</h2>
+
+      <p><dl>
+invisible(wbElement(res$value, webElem$remDr)): An object of class &quot;wElement&quot; is invisibly returned.
+   A webElement object see <code><a href='wbElement.html'>wbElement</a></code>. This allows for chaining from this function to
+   other functions that take such an object as an argument. See examples for further details.
+</dl></p>
+
+    </div>
+
+    <div class="Description">
+      <h2>Description</h2>
+
+      <p><code>findElementFromElement</code> Search for an element on the page, starting from the node defined by the parent webElement. The located element will be returned as an object of wElement class.</p>
+
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+
+      <p>Details of possible locator schemes
+  <dl>
+    <dt>&quot;class name&quot; :</dt><dd>Returns an element whose class name contains the search value; compound class names are not permitted.</dd></p>
+
+      <p><dt>&quot;css selector&quot; :</dt><dd>Returns an element matching a CSS selector.</dd></p>
+
+      <p><dt>&quot;id&quot; :</dt><dd>Returns an element whose ID attribute matches the search value.</dd></p>
+
+      <p><dt>&quot;name&quot; :</dt><dd>Returns an element whose NAME attribute matches the search value.</dd></p>
+
+      <p><dt>&quot;link text&quot; :</dt><dd>Returns an anchor element whose visible text matches the search value.</dd></p>
+
+      <p><dt>&quot;partial link text&quot; :</dt><dd>Returns an anchor element whose visible text partially matches the search value.</dd></p>
+
+      <p><dt>&quot;tag name&quot; :</dt><dd>Returns an element whose tag name matches the search value.</dd></p>
+
+      <p><dt>&quot;xpath&quot; :</dt><dd>Returns an element matching an XPath expression.</dd></p>
+
+      <p></dl></p>
+
+      <p></p>
+
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="comment">## Not run: ------------------------------------</span>
+<span class="comment">#   remDr &lt;- remoteDr()</span>
+<span class="comment">#   remDr %&gt;% go("http://www.google.com/ncr")</span>
+<span class="comment"># </span>
+<span class="comment">#   # find the search form query box and search for "R project"</span>
+<span class="comment">#   webElem &lt;- remDr %&gt;% findElement("name", "q") %&gt;%</span>
+<span class="comment">#     elementSendKeys("R project", key = "enter")</span>
+<span class="comment">#   # click the first link hopefully should be www.r-project.org</span>
+<span class="comment">#   remDr %&gt;% findElement("css", "h3.r a") %&gt;% elementClick</span>
+<span class="comment"># </span>
+<span class="comment">#   # get the navigation div</span>
+<span class="comment">#   navElem &lt;- remDr %&gt;% findElement("css", "div[role='navigation']")</span>
+<span class="comment"># </span>
+<span class="comment">#   # find all the links in this div</span>
+<span class="comment">#   navLinks &lt;- navElem %&gt;% findElementsFromElement("css", "a")</span>
+<span class="comment"># </span>
+<span class="comment">#   # check the links</span>
+<span class="comment">#   nLinks &lt;- sapply(navLinks, function(x) x %&gt;% getElementText)</span>
+<span class="comment"># </span>
+<span class="comment">#   # compare with all links</span>
+<span class="comment">#   allLinks &lt;- remDr %&gt;% findElements("css", "a")</span>
+<span class="comment">#   aLinks &lt;- sapply(allLinks, function(x) x %&gt;% getElementText)</span>
+<span class="comment"># </span>
+<span class="comment">#   # show the effect of searching for elements from element</span>
+<span class="comment">#   aLinks %in% nLinks</span>
+<span class="comment"># </span>
+<span class="comment">#   remDr %&gt;% deleteSession</span>
+<span class="comment">## ---------------------------------------------</span></div></pre>
+  </div>
+  <div class="span4 sidebar">
+    <!-- <ul>
+      <li>findElementFromElement</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+
+    <h2>See also</h2>
+      <p>Other elementRetrieval functions: <code><a href='findElementsFromElement.html'>findElementsFromElement</a></code>,
+  <code><a href='findElements.html'>findElements</a></code>, <code><a href='findElement.html'>findElement</a></code>,
+  <code><a href='getActiveElement.html'>getActiveElement</a></code></p>
+
+    
+
+
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="https://getbootstrap.com/2.0.4/">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>

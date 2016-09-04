@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>executeScript. seleniumPipes 0.3.3</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="index.html">seleniumPipes 0.3.3</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="reference.html">Reference</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Execute JavaScript on browser.</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='executeScript.html'>executeScript</a></span><span class="keyword">(</span><span class="symbol">remDr</span><span class="keyword">,</span> <span class="symbol">script</span><span class="keyword">,</span> <span class="argument">args</span>&nbsp;<span class="argument">=</span>&nbsp;<span class="functioncall"><a href='http://www.rdocumentation.org/packages/base/topics/list'>list</a></span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">replace</span>&nbsp;<span class="argument">=</span>&nbsp;<span class="number">TRUE</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>remDr</dt>
+      <dd>An object of class &quot;rDriver&quot;. A remote driver object see <code><a href='remoteDr.html'>remoteDr</a></code>.</dd>
+      <dt>script</dt>
+      <dd>character: The script to inject.</dd>
+      <dt>args</dt>
+      <dd>The arguments of the script as a list.</dd>
+      <dt>replace</dt>
+      <dd>logical: If TRUE any elements identify as web Elements are converted to such.</dd>
+      <dt>...</dt>
+      <dd>Additonal function arguments - Currently passes the <code><a href='retry.html'>retry</a></code> argument.</dd>
+    </dl>
+    
+    <div class="Value">
+      <h2>Value</h2>
+
+      <p><dl>
+If replace is TRUE parses the response from the server for web Elements and converts as such.
+   Otherwise the content returned is assummed to be a simple list.
+</dl></p>
+
+    </div>
+
+    <div class="Description">
+      <h2>Description</h2>
+
+      <p><code>executeScript</code>  Inject a snippet of JavaScript into the page for execution in the context
+   of the currently selected frame. The executed script is assumed to be
+   synchronous and the result of evaluating the script will be returned.</p>
+
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="comment">## Not run: ------------------------------------</span>
+<span class="comment"># remDr &lt;- remoteDr()</span>
+<span class="comment"># # Get the page source</span>
+<span class="comment"># remDr %&gt;% go("https://www.google.com/ncr") %&gt;%</span>
+<span class="comment">#   getPageSource</span>
+<span class="comment"># </span>
+<span class="comment"># remDr %&gt;% getTitle()</span>
+<span class="comment"># webElem &lt;- remDr %&gt;% findElement("css", "img#hplogo")</span>
+<span class="comment"># # check if the logo is hidden</span>
+<span class="comment"># remDr %&gt;% executeScript("return document.getElementById('hplogo').hidden;", args = list())</span>
+<span class="comment"># # [1] FALSE</span>
+<span class="comment"># # hide the logo</span>
+<span class="comment"># remDr %&gt;% executeScript("document.getElementById('hplogo').hidden = true;", args = list())</span>
+<span class="comment"># # Make the logo visible this time passing a web Element as an argument</span>
+<span class="comment"># remDr %&gt;% executeScript(script = "return arguments[0].hidden = false;", args = list(webElem))</span>
+<span class="comment"># </span>
+<span class="comment"># # Pass arguments</span>
+<span class="comment"># remDr %&gt;% executeScript(script = "return argument[1] + argument[2];"</span>
+<span class="comment">#                         , args = list(1, 2))</span>
+<span class="comment"># </span>
+<span class="comment"># # Return a web Element</span>
+<span class="comment"># remDr %&gt;% executeScript(script = "return document.getElementById('hplogo');", args = list())</span>
+<span class="comment"># # ElementId: 0</span>
+<span class="comment"># # Remote Driver:</span>
+<span class="comment"># #   Remote Ip Address: http://localhost:4444/wd/hub</span>
+<span class="comment"># # Remote sessionId: 9a83672a-d72b-4873-aa7d-96f7f1f80fa0</span>
+<span class="comment"># </span>
+<span class="comment"># # Return a web Element in a more complex object</span>
+<span class="comment"># script &lt;- "var test ={num:1, str:'a', el:document.getElementById('hplogo')};return test;"</span>
+<span class="comment"># remDr %&gt;% executeScript(script = script</span>
+<span class="comment">#                         , args = list())</span>
+<span class="comment"># # $str</span>
+<span class="comment"># # [1] "a"</span>
+<span class="comment"># #</span>
+<span class="comment"># # $num</span>
+<span class="comment"># # [1] 1</span>
+<span class="comment"># #</span>
+<span class="comment"># # $el</span>
+<span class="comment"># # ElementId: 0</span>
+<span class="comment"># # Remote Driver:</span>
+<span class="comment"># #   Remote Ip Address: http://localhost:4444/wd/hub</span>
+<span class="comment"># # Remote sessionId: 9a83672a-d72b-4873-aa7d-96f7f1f80fa0</span>
+<span class="comment"># </span>
+<span class="comment"># # Run with replace = FALSE</span>
+<span class="comment"># remDr %&gt;% executeScript(script = script</span>
+<span class="comment">#                         , args = list(), replace = FALSE)</span>
+<span class="comment"># # $str</span>
+<span class="comment"># # [1] "a"</span>
+<span class="comment"># #</span>
+<span class="comment"># # $num</span>
+<span class="comment"># # [1] 1</span>
+<span class="comment"># #</span>
+<span class="comment"># # $el</span>
+<span class="comment"># # $el$ELEMENT</span>
+<span class="comment"># # [1] "0"</span>
+<span class="comment"># </span>
+<span class="comment"># remDr %&gt;% setTimeout("script")</span>
+<span class="comment"># </span>
+<span class="comment"># asScript &lt;- "cb = arguments[0];setTimeout(function(){cb('DONE');},5000); "</span>
+<span class="comment"># system.time(test1 &lt;- remDr %&gt;% executeAsyncScript(asScript, args = list()))</span>
+<span class="comment"># sScript &lt;- "setTimeout(function(){},5000); return 'DONE';"</span>
+<span class="comment"># system.time(test2 &lt;- remDr %&gt;% executeScript(sScript, args = list()))</span>
+<span class="comment"># </span>
+<span class="comment"># </span>
+<span class="comment"># remDr %&gt;% deleteSession()</span>
+<span class="comment">## ---------------------------------------------</span></div></pre>
+  </div>
+  <div class="span4 sidebar">
+    <!-- <ul>
+      <li>executeScript</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+
+    <h2>See also</h2>
+      <p>Other documentHandling functions: <code><a href='executeAsyncScript.html'>executeAsyncScript</a></code>,
+  <code><a href='getPageSource.html'>getPageSource</a></code></p>
+
+    
+
+
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="https://getbootstrap.com/2.0.4/">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>

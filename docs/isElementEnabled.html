@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>isElementEnabled. seleniumPipes 0.3.3</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="index.html">seleniumPipes 0.3.3</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="reference.html">Reference</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Determine if an element is currently enabled.</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='isElementEnabled.html'>isElementEnabled</a></span><span class="keyword">(</span><span class="symbol">webElem</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>webElem</dt>
+      <dd>An object of class &quot;wElement&quot;. A web Element object see <code><a href='wbElement.html'>wbElement</a></code>.</dd>
+      <dt>...</dt>
+      <dd>Additonal function arguments - Currently passes the <code><a href='retry.html'>retry</a></code> argument.</dd>
+    </dl>
+    
+    <div class="Value">
+      <h2>Value</h2>
+
+      <p><dl>
+A logical value is returned indicating whether the elemnent is enabled.
+</dl></p>
+
+    </div>
+
+    <div class="Description">
+      <h2>Description</h2>
+
+      <p><code>isElementEnabled</code> Determine if an element is currently enabled.</p>
+
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="comment">## Not run: ------------------------------------</span>
+<span class="comment">#   remDr &lt;- remoteDr()</span>
+<span class="comment">#   remDr %&gt;% go("http://www.google.com/ncr")</span>
+<span class="comment"># </span>
+<span class="comment">#   # select the search box</span>
+<span class="comment">#   searchElem &lt;- remDr %&gt;% findElement("name", "q")</span>
+<span class="comment"># </span>
+<span class="comment">#   # get the name of our element</span>
+<span class="comment">#   searchElem %&gt;% getElementAttribute("name")</span>
+<span class="comment"># </span>
+<span class="comment">#   # get the css background-color</span>
+<span class="comment">#   searchElem %&gt;% getElementCssValue("background-color")</span>
+<span class="comment">#   blueScript &lt;- "arguments[0].style.backgroundColor = 'blue';"</span>
+<span class="comment">#   remDr %&gt;% executeScript(blueScript, list(searchElem))</span>
+<span class="comment">#   searchElem %&gt;% getElementCssValue("background-color")</span>
+<span class="comment"># </span>
+<span class="comment">#   # get the javascript property</span>
+<span class="comment">#   # searchElem %&gt;% getElementProperty("backgroundColor")</span>
+<span class="comment"># </span>
+<span class="comment">#   # get dimensions</span>
+<span class="comment">#   searchElem %&gt;% getElementRect</span>
+<span class="comment"># </span>
+<span class="comment">#   searchElem %&gt;% getElementTagName</span>
+<span class="comment"># </span>
+<span class="comment">#   # get some text and return it</span>
+<span class="comment">#   remDr %&gt;% go("http://r-project.org")</span>
+<span class="comment">#   remDr %&gt;% findElement("css", "h1") %&gt;% getElementText</span>
+<span class="comment"># </span>
+<span class="comment">#   # close browser</span>
+<span class="comment">#   remDr %&gt;% deleteSession</span>
+<span class="comment">## ---------------------------------------------</span></div></pre>
+  </div>
+  <div class="span4 sidebar">
+    <!-- <ul>
+      <li>isElementEnabled</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+
+    <h2>See also</h2>
+      <p>Other elementState functions: <code><a href='getElementAttribute.html'>getElementAttribute</a></code>,
+  <code><a href='getElementCssValue.html'>getElementCssValue</a></code>,
+  <code><a href='getElementProperty.html'>getElementProperty</a></code>,
+  <code><a href='getElementRect.html'>getElementRect</a></code>,
+  <code><a href='getElementTagName.html'>getElementTagName</a></code>,
+  <code><a href='getElementText.html'>getElementText</a></code>,
+  <code><a href='isElementSelected.html'>isElementSelected</a></code></p>
+
+    
+
+
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="https://getbootstrap.com/2.0.4/">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>
