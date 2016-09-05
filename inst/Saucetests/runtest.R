@@ -73,7 +73,7 @@ testResults <- Map(function(os, browser, version){
   )
   if(Sys.getenv("TRAVIS") == "true"){
     # use the first tunnel
-    selOptions$extraCapabilities$tunnelIdentifier <- appTunnels[[1]]$tunnel_identifier
+    selOptions$extraCapabilities[["tunnel-identifier"]] <- appTunnels[[1]]$tunnel_identifier
   }
   options(seleniumPipes_selOptions = selOptions)
   testRes <- test_dir(testDir, reporter = "Tap", filter = "api_example")
