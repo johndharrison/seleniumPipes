@@ -3,6 +3,8 @@ library(testthat)
 library(seleniumPipes)
 library(RSauceLabs)
 travis <- Sys.getenv("TRAVIS") == "true"
+oldRetry <- getOption("seleniumPipes_no_try_delay")
+options(seleniumPipes_no_try_delay = 1000)
 options(seleniumPipes_SL = TRUE)
 if(travis){
   user <- Sys.getenv("SAUCE_USERNAME")
@@ -92,3 +94,4 @@ updateResults <- lapply(testResults, function(x){
                          , testResults = data.frame(x$result)[, c("test", "failed", "error")])
   )
 })
+options(seleniumPipes_no_try_delay = oldRetry)
