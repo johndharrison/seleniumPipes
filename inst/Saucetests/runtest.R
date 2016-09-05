@@ -64,7 +64,6 @@ testDir <- system.file("Saucetests", package = "seleniumPipes")
 
 osBrowser <- supPlat[!short_version %in% c("dev", "beta") & api_name %in% c("chrome", "firefox")
         , .(max(as.numeric(short_version))), by = list(os, api_name)]
-osBrowser<- osBrowser[1]
 setnames(osBrowser, c("api_name", "os", "V1"), c("browser", "os", "version"))
 testResults <- Map(function(os, browser, version){
   selOptions <- list(remoteServerAddr = ip, port = port, browserName = browser
@@ -88,8 +87,8 @@ testResults <- Map(function(os, browser, version){
 pv <- packageVersion("seleniumPipes")
 updateResults <- lapply(testResults, function(x){
   updateJob(account = SLAccount, username = user, jobID = x$id,
-            passed = !any(data.frame(x$result)$error),
-    "custom-data" = list(release = do.call(paste, list(pv, collapse = "."))
+            passed = sum(data.frame(x$result)$failed) == 0L,
+            custom_data = list(release = do.call(paste, list(pv, collapse = "."))
                          , testResults = data.frame(x$result)[, c("test", "failed", "error")])
   )
 })
