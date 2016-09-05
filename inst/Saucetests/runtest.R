@@ -18,11 +18,12 @@ if(travis){
   SLAccount <- account(user, pass)
   if(identical(pass, "")){stop("Set a SLPASS env variable with sauceLabs pass")}
 }
-tunnels <- getTunnels(SLAccount)
+tunnels <- getTunnels(SLAccount, username = user)
+print(tunnels)
 if(length(tunnels) == 0L){
   quit("no")
 }
-appTunnels <- lapply(tunnels, function(x) getTunnel(SLAccount, tunnelID = x))
+appTunnels <- lapply(tunnels, function(x) getTunnel(SLAccount, username = user, tunnelID = x))
 supPlat <- getSupportedPlatforms(SLAccount)
 port <- 80
 # selVersion <- "2.53.1"
