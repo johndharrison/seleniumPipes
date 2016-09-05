@@ -12,7 +12,7 @@ if(identical(TRUE, getOption("seleniumPipes_SL"))){
   options(seleniumPipes_selOptions = selOptions)
 }
 
-source(file.path(find.package("seleniumPipes"), "tests", 'setup.R'), local = TRUE)
+source(file.path(find.package("seleniumPipes"), "Saucetests", 'setup.R'), local = TRUE)
 on.exit(remDr %>% deleteSession())
 
 #1
@@ -44,7 +44,7 @@ test_that("FindElementsByXPath", {
 test_that("FindElementByXpathThrowNoSuchElementException", {
   expect_error(
     findElementText <- remDr%>% go(loadPage("simpleTest")) %>%
-      findElement(using = "xpath", "//h4") %>% getElementText()
+      findElement(using = "xpath", "//h4", retry = FALSE) %>% getElementText()
   )
   expect_equal(7, errorContent()$status)
 }
@@ -111,7 +111,7 @@ test_that("FindElementByXpathInElementContext", {
 test_that("FindElementByXpathInElementContextNotFound", {
   expect_error(remDr %>% go(loadPage("nestedElements")) %>%
                  findElement(using = "name", "form2") %>%
-                 findElementFromElement(using = "xpath", "div"))
+                 findElementFromElement(using = "xpath", "div", retry = FALSE))
   expect_equal(7, errorContent()$status)
 }
 )
@@ -272,7 +272,7 @@ test_that("ExecuteSimpleScript", {
 test_that("ExecuteScriptAndReturnElement", {
   chk <- tryCatch({
     elem <- remDr %>% go(loadPage("xhtmlTest")) %>%
-      executeScript("return document.getElementById('id1');")
+      executeScript("return document.getElementById('id1');", retry = FALSE)
   }, error = function(e) e)
   if(grepl("Selenium Server error", as.character(chk))){
     # try old functions
@@ -287,7 +287,8 @@ test_that("ExecuteScriptAndReturnElement", {
 test_that("ExecuteScriptWithArgs", {
   chk <- tryCatch({
     result <- remDr %>% go(loadPage("xhtmlTest")) %>%
-      executeScript("return arguments[0] == 'fish' ? 'fish' : 'not fish';", list("fish"))
+      executeScript("return arguments[0] == 'fish' ? 'fish' : 'not fish';", list("fish")
+                    , retry = FALSE)
   }, error = function(e) e)
   if(grepl("Selenium Server error", as.character(chk))){
     # try old functions
@@ -302,7 +303,8 @@ test_that("ExecuteScriptWithArgs", {
 test_that("ExecuteScriptWithMultipleArgs", {
   chk <- tryCatch({
     result <- remDr %>% go(loadPage("xhtmlTest")) %>%
-      executeScript("return arguments[0] + arguments[1]", list(1, 2))
+      executeScript("return arguments[0] + arguments[1]", list(1, 2)
+                    , retry = FALSE)
   }, error = function(e) e)
   if(grepl("Selenium Server error", as.character(chk))){
     # try old functions
@@ -319,7 +321,7 @@ test_that("ExecuteScriptWithElementArgs", {
     button <- remDr %>% go(loadPage("javascriptPage")) %>%
       findElement(using = "id", "plainButton")
     appScript <- "arguments[0]['flibble'] = arguments[0].getAttribute('id'); return arguments[0]['flibble'];"
-    result <- remDr %>% executeScript(appScript, list(button))
+    result <- remDr %>% executeScript(appScript, list(button), retry = FALSE)
   }, error = function(e) e)
   if(grepl("Selenium Server error", as.character(chk))){
     # try old functions
