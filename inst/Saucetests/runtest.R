@@ -4,15 +4,25 @@ library(seleniumPipes)
 library(RSauceLabs)
 
 options(seleniumPipes_SL = TRUE)
+SLAccount <- account(user, pass)
 if(Sys.getenv("TRAVIS") == "true"){
   user <- Sys.getenv("SAUCE_USERNAME")
   pass <- Sys.getenv("SAUCE_ACCESS_KEY")
+  jobNo <- as.numeric(Sys.getenv("TRAVIS_JOB_NUMBER"))
+  if(jobNo%%1 > 0.100001){
+    quit("no")
+  }
 }else{
   user <- "seleniumPipes"
   pass <- Sys.getenv("SLPASS")
   if(identical(pass, "")){stop("Set a SLPASS env variable with sauceLabs pass")}
 }
-SLAccount <- account(user, pass)
+tunnels <- getTunnels(SLAccount)
+if(length(tunnels) == 0L){
+  quit("no")
+}
+appTunnels <- lapply(tunnels, function(x) getTunnel(SLAccount, tunnelID = x))
+if(length)
 supPlat <- getSupportedPlatforms(SLAccount)
 port <- 80
 # selVersion <- "2.53.1"
@@ -61,6 +71,10 @@ testResults <- Map(function(os, browser, version){
                                                         , accessKey = pass
                                                         )#, "selenium-version" = selVersion)
   )
+  if(Sys.getenv("TRAVIS") == "true"){
+    # use the first tunnel
+    selOptions$extraCapabilities$tunnelIdentifier <- appTunnels[[1]]$tunnel_identifier
+  }
   options(seleniumPipes_selOptions = selOptions)
   testRes <- test_dir(testDir, reporter = "Tap", filter = "api_example")
   list(id = getOption("seleniumPipes_sauceID"), result = testRes, browser = browser, os = os)
