@@ -2,9 +2,9 @@ library(data.table)
 library(testthat)
 library(seleniumPipes)
 library(RSauceLabs)
-
+travis <- Sys.getenv("TRAVIS") == "true"
 options(seleniumPipes_SL = TRUE)
-if(Sys.getenv("TRAVIS") == "true"){
+if(travis){
   user <- Sys.getenv("SAUCE_USERNAME")
   pass <- Sys.getenv("SAUCE_ACCESS_KEY")
   SLAccount <- account(user, pass)
@@ -71,8 +71,10 @@ testResults <- Map(function(os, browser, version){
                                                         , accessKey = pass
                                                         )#, "selenium-version" = selVersion)
   )
-  if(Sys.getenv("TRAVIS") == "true"){
+  print(appTunnels[[1]]$tunnel_identifier)
+  if(travis){
     # use the first tunnel
+    print(appTunnels[[1]]$tunnel_identifier)
     selOptions$extraCapabilities[["tunnel-identifier"]] <- appTunnels[[1]]$tunnel_identifier
   }
   options(seleniumPipes_selOptions = selOptions)
