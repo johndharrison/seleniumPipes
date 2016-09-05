@@ -22,4 +22,4 @@ r:
 after_success:
 - Rscript -e 'covr::codecov(line_exclusions = list("R/zzz.R", "R/oldMethods.R"))'
 - git log -n 1 --format=%B | grep -iq "SAUCETESTUPDATE"; if [ $? -eq 0 ]; then echo
-  "Updating SauceLab browser tests"; Rscript -e 'library(seleniumPipes); file.path(find.package("seleniumPipes"), "Saucetests", 'runtest.R')'; fi
+  "Updating SauceLab browser tests"; Rscript -e 'library(seleniumPipes); file.path(find.package("seleniumPipes"), "Saucetests", "runtest.R")'; fi
