@@ -1,4 +1,5 @@
 library(testthat)
 library(seleniumPipes)
-
-test_check("seleniumPipes")
+if(Sys.getenv("NOT_CRAN") == "true"){
+  test_check("seleniumPipes")
+}
