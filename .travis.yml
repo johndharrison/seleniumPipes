@@ -1,21 +1,23 @@
-# R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
 sudo: required
 language: R
 cache: packages
 services:
-  - docker
+- docker
+- sauce_connect
+  username: "seleniumPipes"
+- jwt
+  secure: "eHEv7xS4tYHPlmKAGJCt7TD7aZNzoMfUKymFA3jddo2opFNHMFPFWuxiN+3RZicXShc5qSW9ABEOcPduDJp7jkEonntoW7h3wPhONHWvYRyH7iRSAwN2UNonAH9z0vJKsQQmpDNoSLBc1g51WtLBpRjYP5tHZpgvIkaaUqlHMPc30TBRgxThm6HwbsFB+9PDVldsTGIPlVAh9RSzt2ZITxq2CQQvITfdfghWOxa/ht1jh6guiUFGFEeqT5cieCUveLYZlhu8RGN3wesXdSCg39x+lrflLDxEpamEwhThf8zRxiHXGuM8wvfbxgxkOMBzyeFjfBkFfaD8k3K8xe18lYTsasFUuiUuuGUwPf6WJNT+Fs/GDdettS4U6Qpg9iG2LtrGiOxschytCKvaqMnuINMy4RzR7KDTytKPjFLbwGIz04iUpmXxERLHC2VG1o+AeebyG1l+pEHLJTK1v/FtMiiOCflsVmESl0RVVs/mcf24uaUtzKBOBGT/TqAjJIncJroj4y9nh/Q9hgLBs5emRNCXdhLqrzihsM5PqIsU0y2YPwGPIOJCmYOAxt5iNeG7pBlXX+dkjBc79Zc6sd+gedF8kE5tsV4eewYrVlLTwGe+KBEcmRenaLzh24MdCJ6sshHKz85zBVmEyy9F11NdsABSUAe3TA+ek8GY/aw5cPI="
 env:
-  - NOT_CRAN=true
-
+- NOT_CRAN=true
 before_install:
-  - svn checkout https://github.com/SeleniumHQ/selenium/trunk/common/src/web
-  - docker run -d -p 3000:8080 --name http-server -v $(pwd)/web:/public redsadic/docker-http-server&
-  - docker run -d -p 127.0.0.1:4444:4444 --link http-server selenium/standalone-chrome:2.53.0
-
+- svn checkout https://github.com/SeleniumHQ/selenium/trunk/common/src/web
+- docker run -d -p 3000:8080 --name http-server -v $(pwd)/web:/public redsadic/docker-http-server&
+- docker run -d -p 127.0.0.1:4444:4444 --link http-server selenium/standalone-chrome:2.53.0
 r:
-  - oldrel
-  - release
-  - devel
-
+- oldrel
+- release
+- devel
 after_success:
 - Rscript -e 'covr::codecov(line_exclusions = list("R/zzz.R", "R/oldMethods.R"))'
+- git log -n 1 --format=%B | grep -iq "SAUCETESTUPDATE"; if [ $? -eq 0 ]; then echo
+  "Updating SauceLab browser tests"; Rscript -e '# add code here'; fi
