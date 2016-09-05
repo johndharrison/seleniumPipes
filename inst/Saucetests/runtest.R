@@ -18,12 +18,13 @@ if(travis){
   SLAccount <- account(user, pass)
   if(identical(pass, "")){stop("Set a SLPASS env variable with sauceLabs pass")}
 }
-tunnels <- getTunnels(SLAccount, username = user)
-print(tunnels)
+tunnels <- getTunnels(account = SLAccount, username = user)
 if(length(tunnels) == 0L){
   quit("no")
 }
-appTunnels <- lapply(tunnels, function(x) getTunnel(SLAccount, username = user, tunnelID = x))
+appTunnels <- lapply(tunnels, function(x){
+  getTunnel(account = SLAccount, username = user, tunnelID = x)}
+)
 supPlat <- getSupportedPlatforms(SLAccount)
 port <- 80
 # selVersion <- "2.53.1"
@@ -72,10 +73,8 @@ testResults <- Map(function(os, browser, version){
                                                         , accessKey = pass
                                                         )#, "selenium-version" = selVersion)
   )
-  print(appTunnels[[1]]$tunnel_identifier)
   if(travis){
     # use the first tunnel
-    print(appTunnels[[1]]$tunnel_identifier)
     selOptions$extraCapabilities[["tunnel-identifier"]] <- appTunnels[[1]]$tunnel_identifier
   }
   options(seleniumPipes_selOptions = selOptions)
@@ -88,7 +87,7 @@ testResults <- Map(function(os, browser, version){
 # Annotate tests
 pv <- packageVersion("seleniumPipes")
 updateResults <- lapply(testResults, function(x){
-  updateJob(account, user, jobID = x$id,
+  updateJob(account = SLAccount, username = user, jobID = x$id,
             passed = !any(data.frame(x$result)$error),
     "custom-data" = list(release = do.call(paste, list(pv, collapse = "."))
                          , testResults = data.frame(x$result)[, c("test", "failed", "error")])
