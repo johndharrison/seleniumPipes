@@ -4,10 +4,10 @@ library(seleniumPipes)
 library(RSauceLabs)
 
 options(seleniumPipes_SL = TRUE)
-SLAccount <- account(user, pass)
 if(Sys.getenv("TRAVIS") == "true"){
   user <- Sys.getenv("SAUCE_USERNAME")
   pass <- Sys.getenv("SAUCE_ACCESS_KEY")
+  SLAccount <- account(user, pass)
   jobNo <- as.numeric(Sys.getenv("TRAVIS_JOB_NUMBER"))
   if(jobNo%%1 > 0.100001){
     quit("no")
@@ -15,6 +15,7 @@ if(Sys.getenv("TRAVIS") == "true"){
 }else{
   user <- "seleniumPipes"
   pass <- Sys.getenv("SLPASS")
+  SLAccount <- account(user, pass)
   if(identical(pass, "")){stop("Set a SLPASS env variable with sauceLabs pass")}
 }
 tunnels <- getTunnels(SLAccount)
