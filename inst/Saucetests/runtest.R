@@ -23,7 +23,6 @@ if(length(tunnels) == 0L){
   quit("no")
 }
 appTunnels <- lapply(tunnels, function(x) getTunnel(SLAccount, tunnelID = x))
-if(length)
 supPlat <- getSupportedPlatforms(SLAccount)
 port <- 80
 # selVersion <- "2.53.1"
