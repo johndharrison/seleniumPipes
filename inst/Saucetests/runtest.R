@@ -28,6 +28,8 @@ appTunnels <- lapply(tunnels, function(x){
   getTunnel(account = SLAccount, username = user, tunnelID = x)}
 )
 supPlat <- getSupportedPlatforms(SLAccount)
+supPlat <- supPlat[!short_version %in% c("dev", "beta")]
+supPlat <- supPlat[!(api_name == "firefox" & as.numeric(short_version) > 47.999)]
 port <- 80
 # selVersion <- "2.53.1"
 ip <- paste0("http://", user, ':', pass, "@ondemand.saucelabs.com")
@@ -64,7 +66,7 @@ testDir <- system.file("Saucetests", package = "seleniumPipes")
 #
 # osBrowser <- rbindlist(osBrowser)
 
-osBrowser <- supPlat[!short_version %in% c("dev", "beta") & api_name %in% c("chrome", "firefox")
+osBrowser <- supPlat[api_name %in% c("chrome", "firefox")
         , .(max(as.numeric(short_version))), by = list(os, api_name)]
 setnames(osBrowser, c("api_name", "os", "V1"), c("browser", "os", "version"))
 testResults <- Map(function(os, browser, version){
