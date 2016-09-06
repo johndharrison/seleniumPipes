@@ -72,9 +72,11 @@ osBrowser <- supPlat[api_name %in% c("chrome", "firefox")
 setnames(osBrowser, c("api_name", "os", "V1"), c("browser", "os", "version"))
 testResults <- Map(function(os, browser, version){
   selOptions <- list(remoteServerAddr = ip, port = port, browserName = browser
-                             , version = version, platform = os
+                             , platform = os#, version = version
                              , extraCapabilities = list(username = user
                                                         , accessKey = pass
+                                                        , recordVideo = FALSE
+                                                        , recordScreenshots = FALSE
                                                         )#, "selenium-version" = selVersion)
   )
   if(travis){
