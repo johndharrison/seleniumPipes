@@ -30,6 +30,7 @@ appTunnels <- lapply(tunnels, function(x){
 supPlat <- getSupportedPlatforms(SLAccount)
 supPlat <- supPlat[!short_version %in% c("dev", "beta")]
 supPlat <- supPlat[!(api_name == "firefox" & as.numeric(short_version) > 47.999)]
+supPlat <- supPlat[!(api_name == "chrome" & as.numeric(short_version) > 51.999)]
 port <- 80
 # selVersion <- "2.53.1"
 ip <- paste0("http://", user, ':', pass, "@ondemand.saucelabs.com")
