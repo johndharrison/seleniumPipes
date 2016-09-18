@@ -14,7 +14,7 @@ test_that("testShouldBeAbleToOverrideTheWindowAlertMethod", {
   appText <- remDr %>% findElement("id", "text") %>%
     getElementText
   expect_equal("cheese", appText)
-  tryCatch({remDr %>% dismissAlert(retry = FALSE)}
+  tryCatch({remDr %>% dismissAlert(retry = 2)}
            , error = function(err){})
 }
 )
