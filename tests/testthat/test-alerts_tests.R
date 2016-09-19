@@ -98,7 +98,7 @@ test_that("testSettingTheValueOfAnAlertThrows", {
   remDr %>% go(loadPage("alerts")) %>%
     findElement("id", "alert") %>%
     elementClick
-  expect_error(remDr %>% sendAlertText("cheddar"))
+  expect_error(remDr %>% sendAlertText("cheddar", retry = FALSE))
   remDr %>% dismissAlert
 }
 )
@@ -207,6 +207,6 @@ test_that("testUnexpectedAlertPresentExceptionContainsAlertText", {
     elementClick
   expect_error(remDr %>% go(loadPage("simpleTest"), retry = FALSE))
   expect_equal(errorContent()$status, 26)
-  remDr %>% acceptAlert
+  tryCatch({remDr %>% acceptAlert}, error = function(e){})
 }
 )
