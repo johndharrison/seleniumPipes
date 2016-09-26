@@ -1,3 +1,6 @@
+# seleniumpipes 0.3.5
+* suggests RSauceLabs for polling SauceLabs.com API now on CRAN
+
 # seleniumpipes 0.3.4
 * Add sauceLabs test to travis
 
