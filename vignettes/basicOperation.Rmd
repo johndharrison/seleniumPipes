@@ -62,10 +62,10 @@ In what follows I am running my code on Ubuntu 16.04. The same machine has a Sel
 starting my Selenium server with the following `docker` command:
 
 ```
-docker run -d -p 4445:4444 -p 5901:5900 selenium/standalone-chrome-debug:2.53.0
+docker run -d -p 4445:4444 -p 5901:5900 selenium/standalone-chrome-debug:2.53.1
 ```
 
-So I am running the standalone chrome debug image from the Selenium project at Docker Hub. I am running the version of this image with tag `2.53.0`. On my host machine the Selenium Server is exposed on port 4445 and the browser can be viewed via VNC on port 5901 on my ubuntu 16.04 host. 
+So I am running the standalone chrome debug image from the Selenium project at Docker Hub. I am running the version of this image with tag `2.53.1`. On my host machine the Selenium Server is exposed on port 4445 and the browser can be viewed via VNC on port 5901 on my ubuntu 16.04 host. 
 
 **The above is only for the users information and allows them to replicate my setup. It is not necessary and the user may use any Selenium Server they have access to.**
 
