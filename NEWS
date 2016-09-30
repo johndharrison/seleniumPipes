@@ -1,3 +1,6 @@
+# seleniumpipes 0.3.6
+* Move testing to version 2.53.1
+
 # seleniumpipes 0.3.5
 * suggests RSauceLabs for polling SauceLabs.com API now on CRAN
 
