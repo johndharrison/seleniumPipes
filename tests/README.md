@@ -19,14 +19,14 @@ docker run -d -p 3000:8080 --name http-server -v $(pwd)/web:/public redsadic/doc
 Next we run a Docker image containing the standalone Selenium server and a chrome browser:
 
 ```
-docker run -d -p 127.0.0.1:4444:4444 --link http-server selenium/standalone-chrome:2.53.0
+docker run -d -p 127.0.0.1:4444:4444 --link http-server selenium/standalone-chrome:2.53.1
 
 ```
 
 or a debug version with VNC exposed on port 5901 of the host
 
 ```
-docker run -d -p 5901:5900 -p 127.0.0.1:4444:4444 --link http-server selenium/standalone-chrome-debug:2.53.0
+docker run -d -p 5901:5900 -p 127.0.0.1:4444:4444 --link http-server selenium/standalone-chrome-debug:2.53.1
 
 ```
 The two Docker containers are linked so the Selenium server will be able to access the http server on its port 8080 and referencing the http server as "http-server"
