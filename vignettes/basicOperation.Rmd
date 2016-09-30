@@ -575,7 +575,7 @@ remDr %>% deleteSession
 * Navigate to google
 * Search for "CRAN r-project"
 * Click the first search result
-* Manipulate the frames at http://cran.r-project.org
+* Manipulate the frames at https://CRAN.R-project.org/
 * Switch to the third frame
 * Get all the "Download R" urls
 

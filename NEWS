@@ -1,3 +1,6 @@
+# seleniumpipes 0.3.7
+* Set CRAN URL's in canonical form
+
 # seleniumpipes 0.3.6
 * Move testing to version 2.53.1
 * Update basic operation vignette
