@@ -3,7 +3,6 @@ language: R
 cache: packages
 r_github_packages:
 - johndharrison/seleniumPipes
-- johndharrison/RSauceLabs
 services:
 - docker
 addons:
