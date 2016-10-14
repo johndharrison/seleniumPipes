@@ -7,7 +7,7 @@
 remoteDr(remoteServerAddr = "http://localhost", port = 4444L,
   browserName = "firefox", version = "", platform = "ANY",
   javascript = TRUE, nativeEvents = TRUE, extraCapabilities = list(),
-  path = "wd/hub", newSession = TRUE)
+  path = "wd/hub", newSession = TRUE, ...)
 }
 \arguments{
 \item{remoteServerAddr}{Object of class \code{"character"}, giving the ip of the remote server.
@@ -33,6 +33,8 @@ Native events simulate the user interactions better.}
 \item{path}{Path on the server side to issue webdriver calls to. Normally use the default value.}
 
 \item{newSession}{Logical value whether to start an instance of the browser. If TRUE a browser will be opened using \code{\link{newSession}}}
+
+\item{...}{Pass addional arguments to newSession. Currently used to pass \code{\link{retry}}}
 }
 \value{
 An object of class "rDriver" is returned. This is a remote Driver object that is used
