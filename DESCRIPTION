@@ -9,7 +9,9 @@ Description: The W3C WebDriver specification defines a way for out-of-process
 Authors@R: c(
     person("John", "Harrison", , "johndharrison0@gmail.com", role = c("aut", "cre")))
 Depends:
-    R (>= 3.0.0),httr,jsonlite,xml2,magrittr,whisker
+    R (>= 3.0.0)
+Imports:
+    httr,jsonlite,xml2,magrittr,whisker
 Encoding: UTF-8
 License: GPL-3
 Suggests:
