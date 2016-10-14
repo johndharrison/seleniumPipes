@@ -1,3 +1,8 @@
+# seleniumpipes 0.3.8
+* Remove cat calls from error messages. Replace with message
+* Switch Depend arguments to Imports in DESCRIPTION
+* Add ellipsis argument to pass to newSession in remoteDr function.
+
 # seleniumpipes 0.3.7
 * Set CRAN URL's in canonical form
 
