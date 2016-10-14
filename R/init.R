@@ -4,6 +4,7 @@
 #' @importFrom  httr POST
 #' @importFrom  httr DELETE
 #' @importFrom  httr content
+#' @importFrom  httr message_for_status
 #' @importFrom  xml2 read_html
 #' @importFrom  jsonlite toJSON
 #' @importFrom  jsonlite fromJSON

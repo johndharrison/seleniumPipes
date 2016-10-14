@@ -1,4 +1,5 @@
 library(testthat)
+library(xml2)
 if(is.null(getOption("seleniumPipes_selOptions"))){
   stop("Please set test options")
 }
