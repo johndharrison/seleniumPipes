@@ -29,6 +29,7 @@ NULL
 #' @param extraCapabilities A list containing any os/platform/driver specific arguments.
 #' @param path Path on the server side to issue webdriver calls to. Normally use the default value.
 #' @param newSession Logical value whether to start an instance of the browser. If TRUE a browser will be opened using \code{\link{newSession}}
+#' @param ... Pass addional arguments to newSession. Currently used to pass \code{\link{retry}}
 #' @return An object of class "rDriver" is returned. This is a remote Driver object that is used
 #'    in many of the remote driver specific functions. Many functions that take a remote driver object as
 #'    input also return the remote driver object. This allows chaining of commands. See the examples for chaining in action.
@@ -54,8 +55,10 @@ remoteDr <- function(remoteServerAddr = "http://localhost",
                      javascript       = TRUE,
                      nativeEvents     = TRUE,
                      extraCapabilities = list(),
-                     path = "wd/hub"
-                     , newSession = TRUE){
+                     path = "wd/hub",
+                     newSession = TRUE,
+                     ...
+                     ){
   remServAdd <- parse_url(remoteServerAddr)
   remServAdd[["port"]] <- port
   remServAdd[["path"]] <- if(identical(remServAdd[["path"]], "")){
@@ -90,7 +93,7 @@ remoteDr <- function(remoteServerAddr = "http://localhost",
     , class = "rDriver")
 
   if(newSession){
-    session <- newSession(session)
+    session <- newSession(session, ...)
   }
   invisible(session)
 }
@@ -153,8 +156,8 @@ wbElement <- function(elementId, remDr){
 queryDriver <- function(verb = GET, url, source, drvID, ...){
   if(!identical(source, "newSession")){
     if(is.null(.e$sessionId[[drvID]])){
-      cat("\nDriver id is not registered. Has the session been deleted?\n")
-      cat("Alternatively no session exists:\n\tRun remoteRd with newSession = TRUE or\n\trun newSession()")
+      message("\nDriver id is not registered. Has the session been deleted?\n")
+      message("Alternatively no session exists:\n\tRun remoteRd with newSession = TRUE or\n\trun newSession()")
       stop("sessionId error")
     }
   }
@@ -235,29 +238,30 @@ checkResponse <- function(response){
   if(identical(response$status_code, 200L) && identical(content(response)$status, 0L)) return()
   structure(
     list(err =   function(){
-      cat("Error detected:\n")
-      cat("Response status code :", response$status_code, "\n")
+      message("Error detected:")
+      message("Response status code : ", response$status_code)
       errTest <- tryCatch(content(response, encoding = "UTF-8")$value, error = function(e)e)
       errTest <- inherits(errTest, "error")
       if(!errTest){
         if(!is.null(content(response)$value$class)){
-          cat("Selenium class exception:", content(response)$value$class,"\n")
+          message("Selenium class exception: ", content(response)$value$class)
         }
         if(!is.null(content(response)$status)){
           scDetail <- statusCodes[statusCodes$Code == content(response)$status,]
-          cat("Selenium Status code: ", scDetail$Code, "\n")
-          cat("Selenium Status summary: ", scDetail$Summary, "\n")
-          cat("Selenium Status detail: ", scDetail$Detail, "\n")
+          message("Selenium Status code: ", scDetail$Code)
+          message("Selenium Status summary: ", scDetail$Summary)
+          message("Selenium Status detail: ", scDetail$Detail)
         }
         if(!is.null(content(response)$value$message)){
           messageDetail <- content(response)$value$message
-          cat("Selenium message: ", messageDetail, "\n")
+          message("Selenium message: ", messageDetail)
         }
       }else{
-        cat("Response message:", content(response, encoding = "UTF-8"), "\n")
+        message("Response message:")
+        message_for_status(response)
       }
-      cat("Please check the response with errorResponse()\n")
-      cat("Please check the content returned with errorContent()\n")
+      message("Please check the response with errorResponse()")
+      message("Please check the content returned with errorContent()")
       .e$errorResponse <- response
       .e$errorContent <- content(response)
       stop("Selenium Server error", call. = FALSE)
@@ -302,10 +306,12 @@ retry <- function(func, v, vArg, source, noTry = getOption("seleniumPipes_no_try
                   , delay = getOption("seleniumPipes_no_try_delay")){
   tryNo <- 1L
   while(!tryNo > noTry){
-    tst <- func(res <- do.call(v, vArg))
+    tst <- tryCatch({func(res <- do.call(v, vArg))},
+                    error = function(e)e
+    )
 
     if(inherits(tst, "checkResponse")){
-      cat("\nCalled ",source, " - Try no: ", tryNo, " of ", noTry, "\n")
+      message("Called ",source, " - Try no: ", tryNo, " of ", noTry)
       if(!identical(tryNo, noTry)){Sys.sleep(delay/1000)}
       tryNo <- tryNo + 1
     }else{
