@@ -7,10 +7,12 @@
 errorResponse()
 }
 \value{
-returns response see \code{\link{VERB}}. Headers, request etc. can be examined from this object.
+returns response see \code{\link{VERB}}. Headers, request etc.
+   can be examined from this object.
 }
 \description{
-\code{errorResponse} returns the response from the remote webdriver on an error.
+\code{errorResponse} returns the response from the remote webdriver on
+   an error.
 }
 \examples{
 \dontrun{

@@ -5,13 +5,17 @@
 \title{Documetation of retry argument}
 \description{
 The ability to \code{retry} function code is enabled by default.
-\code{retry} can be a logical value.
- if it is TRUE then \code{noTry = getOption("seleniumPipes_no_try")} and \code{delay = getOption("seleniumPipes_no_try_delay")}.
- If it is FALSE the facility to have multiple trys of the function call is removed. \code{retry} can also be
- a list with the following named arguments that will override the values in \code{options}
+   \code{retry} can be a logical value. If it is TRUE then
+   \code{noTry = getOption("seleniumPipes_no_try")} and
+   \code{delay = getOption("seleniumPipes_no_try_delay")}. If it is
+   FALSE the facility to have multiple trys of the function call is
+   removed. \code{retry} can also be a list with the following named
+   arguments that will override the values in \code{options}
   \describe{
-     \item{"noTry"}{Integer indicating how many times to try the function call}
-     \item{"delay"}{Integer indicating delay between trys of the function call}
+     \item{"noTry"}{Integer indicating how many times to try the
+         function call}
+     \item{"delay"}{Integer indicating delay between trys of the
+         function call}
    }
 }
 \examples{
@@ -37,7 +41,8 @@ newWebElem <- remDr \%>\% findElement("name", "funkyname")
 newWebElem \%>\% getElementAttribute("name")
 
 # compare with a function that will fail (no element present)
-remDr \%>\% findElement("id", "i am not here", retry = list(noTry = 5, delay = 10))
+rList <- list(noTry = 5, delay = 10)
+remDr \%>\% findElement("id", "i am not here", retry = rList)
 remDr \%>\% findElement("id", "i am not here", retry = FALSE)
 }
 }

@@ -7,14 +7,17 @@
 wbElement(elementId, remDr)
 }
 \arguments{
-\item{elementId}{This is a string returned by the web driver that identifies the web element.}
+\item{elementId}{This is a string returned by the web driver that
+identifies the web element.}
 
 \item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
 }
 \value{
-An object of class "wElement" is returned. This is a web element object that is used
-   in many of the web Element specific functions. Many functions that take a web Element object as
-   input also return the web Element object. This allows chaining of commands. See the examples for chaining in action.
+An object of class "wElement" is returned. This is a web
+   element object that is used in many of the web Element specific
+   functions. Many functions that take a web Element object as input
+   also return the web Element object. This allows chaining of
+   commands. See the examples for chaining in action.
 }
 \description{
 \code{wbElement} Create a Web Element object of class "wElement"

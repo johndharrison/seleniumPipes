@@ -11,18 +11,21 @@ queryDriver(verb = GET, url, source, drvID, ...)
 
 \item{url}{The url of the remote server endpoint.}
 
-\item{source}{The name of the seleniumPipes function that called queryDriver.}
+\item{source}{The name of the seleniumPipes function that called
+queryDriver.}
 
-\item{drvID}{The driver id of the session as given by an object of class "remoteDr"}
+\item{drvID}{The driver id of the session as given by an object of
+class "remoteDr"}
 
 \item{...}{additonal arguments}
 }
 \value{
-The contents of the response from the remote server. See \code{\link{content}} for details.
+The contents of the response from the remote server. See
+   \code{\link{content}} for details.
 }
 \description{
-\code{queryDriver} A function to send a query to a remote driver. Intended for seleniumPipes
-   internal use mainly.
+\code{queryDriver} A function to send a query to a remote driver.
+Intended for seleniumPipes internal use mainly.
 }
 \examples{
 \dontrun{

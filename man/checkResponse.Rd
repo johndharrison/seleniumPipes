@@ -7,14 +7,18 @@
 checkResponse(response)
 }
 \arguments{
-\item{response}{The value returned by a http method from httr see \code{\link{VERB}}}
+\item{response}{The value returned by a http method from httr see
+\code{\link{VERB}}}
 }
 \value{
-Stops with appropriate error if any found. On error \code{\link{errorResponse}} and
-   \code{\link{errorContent}} may provide additional detail.
+Stops with appropriate error if any found. On error
+   \code{\link{errorResponse}} and \code{\link{errorContent}} may
+   provide additional detail.
 }
 \description{
-\code{checkResponse} checks the response from a remote web driver and checks against known errors.
+\code{checkResponse} checks the response from a remote web driver and
+   checks against known errors. uses statusCodes in sysdata.rda see
+   seleniumPipes:::statusCodes
 }
 \examples{
 \dontrun{

@@ -10,7 +10,8 @@ errorContent()
 returns content see \code{\link{content}}
 }
 \description{
-\code{errorContent} returns the content from the remote webdriver on an error.
+\code{errorContent} returns the content from the remote webdriver on an
+   error.
 }
 \examples{
 \dontrun{
