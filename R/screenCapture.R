@@ -1,14 +1,21 @@
 
 #' @rdname takeElementScreenshot
-takeElementScreenshot <- function(webElem, file = NULL, display = getOption("seleniumPipes_display_screenshot"), useViewer = !is.null(getOption("viewer")), returnPNG = FALSE, ...){
+takeElementScreenshot <-
+  function(webElem, file = NULL,
+           display = getOption("seleniumPipes_display_screenshot"),
+           useViewer = !is.null(getOption("viewer")), returnPNG = FALSE,
+           ...){
   obj <- webElem
   obj$sessionId <- webElem$sessionId(webElem$remDr$drvID)
   obj$elementId <- webElem$elementId$ELEMENT
-  
-  pathTemplate <- whisker.render("/session/{{sessionId}}/element/{{elementId}}/screenshot", data = obj)
+
+  pT <- "/session/{{sessionId}}/element/{{elementId}}/screenshot"
+  pathTemplate <- whisker.render(pT, data = obj)
   pathURL <- webElem[['remDr']][['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = GET, url = build_url(pathURL), source = "takeElementScreenshot", drvID = webElem$remDr$drvID, json = NULL,...)
+  res <- queryDriver(verb = GET, url = build_url(pathURL),
+            source = "takeElementScreenshot", drvID = webElem$remDr$drvID,
+            json = NULL,...)
   b64png <- base64_dec(res$value)
 if(display){
   tmp <- file.path(tempdir(), 'tmpElementScreenShot.png')
@@ -34,14 +41,21 @@ if(returnPNG){
 
 
 #' @rdname takeScreenshot
-takeScreenshot <- function(remDr, file = NULL, display = getOption("seleniumPipes_display_screenshot"), useViewer = !is.null(getOption("viewer")), returnPNG = FALSE, ...){
+takeScreenshot <-
+  function(remDr, file = NULL,
+           display = getOption("seleniumPipes_display_screenshot"),
+           useViewer = !is.null(getOption("viewer")), returnPNG = FALSE,
+           ...){
   obj <- remDr
   obj$sessionId <- remDr$sessionId(remDr$drvID)
-  
-  pathTemplate <- whisker.render("/session/{{sessionId}}/screenshot", data = obj)
+
+  pathTemplate <-
+    whisker.render("/session/{{sessionId}}/screenshot", data = obj)
   pathURL <- remDr[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = GET, url = build_url(pathURL), source = "takeScreenshot", drvID = remDr$drvID, json = NULL,...)
+  res <- queryDriver(verb = GET, url = build_url(pathURL),
+            source = "takeScreenshot",
+            drvID = remDr$drvID, json = NULL,...)
   b64png <- base64_dec(res$value)
 if(display){
   tmp <- file.path(tempdir(), 'tmpScreenShot.png')
