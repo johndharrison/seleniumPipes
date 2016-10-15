@@ -6,7 +6,8 @@ on.exit(remDr %>% deleteSession())
 #1
 test_that("testShouldBeAbleToOverrideTheWindowAlertMethod", {
   skip_on_cran()
-  script <- "window.alert = function(msg) { document.getElementById('text').innerHTML = msg;}"
+  script <- "window.alert = function(msg) {
+  document.getElementById('text').innerHTML = msg;}"
   remDr %>% go(loadPage("alerts")) %>%
     executeScript(script)
   remDr %>% findElement("id", "alert") %>%
