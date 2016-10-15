@@ -15,7 +15,9 @@ NULL
 
 #' Click on an element.
 #'
-#'\code{elementClick} The elementClick function scrolls into view the element and clicks the in-view centre point. If the element is not pointer-interactable, an element not interactable error is returned.
+#'\code{elementClick} The elementClick function scrolls into view the
+#'    element and clicks the in-view centre point. If the element is not
+#'    pointer-interactable, an element not interactable error is returned.
 #'
 #' @template webElem
 #' @template ellipsis
@@ -30,10 +32,15 @@ NULL
 
 #' Send a sequence of key strokes to an element.
 #'
-#'\code{elementSendKeys} The elementSendKeys function scrolls into view the form control element and then sends the provided keys to the element. In case the element is not keyboard interactable, an element not interactable error is returned.
+#'\code{elementSendKeys} The elementSendKeys function scrolls into view
+#'    the form control element and then sends the provided keys to the
+#'    element. In case the element is not keyboard interactable, an
+#'    element not interactable error is returned.
 #'
 #' @template webElem
-#' @param ... keys to send the element. \code{seleniumPipes} includes mappings to unicode keys see \code{\link{selKeys}}. To use one of this name the string using key. See examples.
+#' @param ... keys to send the element. \code{seleniumPipes} includes
+#'    mappings to unicode keys see \code{\link{selKeys}}. To use one of
+#'    this name the string using key. See examples.
 #'
 #' @family elementInteraction functions
 #' @template ret7
