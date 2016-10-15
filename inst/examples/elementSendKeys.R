@@ -10,7 +10,8 @@ webElem %>% elementSendKeys("R project", key = "enter")
 webElem %>% elementClear()
 # this time click the search button
 webElem %>% elementSendKeys("R project")
-searchButton <- remDr %>% findElement("xpath", "//button[@value='Search']")
+searchButton <- remDr %>% findElement("xpath",
+                                      "//button[@value='Search']")
 searchButton %>% elementClick
 
 # for now google urls search returns are designated h3[@class = 'r']

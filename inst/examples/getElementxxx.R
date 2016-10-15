@@ -6,10 +6,12 @@ remDr %>% getTitle()
 # usually google names its search box name="q"
 webElem <- remDr %>% findElement("name", "q")
 # observe the structure
-webElem %>% getElementAttribute("outerHTML") %>% read_html %>% html_structure
+webElem %>% getElementAttribute("outerHTML") %>%
+  read_html %>%
+  html_structure
 # <html>
 # <body>
-#  <input#lst-ib .gsfi.lst-d-f [spellcheck, dir, style, aria-autocomplete, role, aria-haspopup
+#  <input#lst-ib .gsfi.lst-d-f [spellcheck, dir, style, .....
 #    , maxlength, name, autocomplete, title, value, aria-label, type]>
 
 webElem %>% getElementAttribute("id")
@@ -20,7 +22,8 @@ webElem %>% getElementCssValue("font-family")
 # [1] "arial,sans-serif"
 
 # search for google search button (Usually has text = Google Search)
-webElem <- remDr %>% findElement("xpath", "//input[@value='Google Search']")
+webElem <- remDr %>% findElement("xpath",
+                                 "//input[@value='Google Search']")
 webElem  %>% getElementTagName()
 # [1] "input"
 

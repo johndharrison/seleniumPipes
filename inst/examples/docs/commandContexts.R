@@ -35,7 +35,8 @@
   remDr %>% go("http://www.google.com/ncr")
   # search for the "R project"
 
-  remDr %>% findElement("name", "q") %>% elementSendKeys("R project", key = "enter")
+  remDr %>% findElement("name", "q") %>%
+    elementSendKeys("R project", key = "enter")
 
   webElem <- remDr %>% findElement("css", "h3.r a")
 
