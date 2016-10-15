@@ -71,7 +71,7 @@ testWebElement <- function(x, remDr){
     if(identical(names(x), "ELEMENT")){wbElement(x, remDr)}else{x}
   }
   if(is.null(x)||identical(length(x), 0L)) return(x)
-  listTest <- sum(sapply(x, inherits, "list")) > 0
+  listTest <- sum(vapply(x, inherits, "TRUE", "list")) > 0
   if(listTest){
     lapply(x, testWebElement, remDr = remDr)
   }else{

@@ -7,7 +7,7 @@ addCookie <- function(remDr, name, value, path = NULL, domain = NULL,
 
   cookie <- list(name = name, value = value, path = path, domain = domain,
                  secure = secure, httpOnly = httpOnly, expiry = expiry)
-  cookie <- cookie[!sapply(cookie, is.null)]
+  cookie <- cookie[!vapply(cookie, is.null, TRUE)]
   jsonBody <- toJSON(list(cookie = cookie), null = "null",
                      auto_unbox = TRUE)
   pathTemplate <-
