@@ -1,13 +1,14 @@
 Package: seleniumPipes
 Type: Package
 Title: R Client Implementing the W3C WebDriver Specification
-Version: 0.3.8
-Description: The W3C WebDriver specification defines a way for out-of-process
-    programs to remotely instruct the behaviour of web browsers. It is detailed
-    at <https://w3c.github.io/webdriver/webdriver-spec.html>. This package provides
-    an R client implementing the W3C specification.
-Authors@R: c(
-    person("John", "Harrison", , "johndharrison0@gmail.com", role = c("aut", "cre")))
+Version: 0.3.9
+Description: The W3C WebDriver specification defines a way for
+    out-of-process
+    programs to remotely instruct the behaviour of web browsers. It is
+    detailed at <https://w3c.github.io/webdriver/webdriver-spec.html>.
+    This package provides an R client implementing the W3C specification.
+Authors@R: c( person("John", "Harrison", , "johndharrison0@gmail.com",
+    role = c("aut", "cre")))
 Depends:
     R (>= 3.0.0)
 Imports:
