@@ -17,9 +17,10 @@ getElementCssValue(webElem, propertyName, ...)
 The value of the specified CSS property.
 }
 \description{
-\code{getElementCssValue} Query the value of an element's computed CSS property.
- The CSS property to query should be specified using the CSS property name,
- not the JavaScript property name (e.g. background-color instead of backgroundColor).
+\code{getElementCssValue} Query the value of an element's computed CSS
+   property. The CSS property to query should be specified using the
+   CSS property name, not the JavaScript property name (e.g.
+   background-color instead of backgroundColor).
 }
 \examples{
 \dontrun{

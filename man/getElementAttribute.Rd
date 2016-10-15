@@ -14,7 +14,8 @@ getElementAttribute(webElem, attribute, ...)
 \item{...}{Additonal function arguments - Currently passes the \code{\link{retry}} argument.}
 }
 \value{
-The value of the attribute, or null if it is not set on the element.
+The value of the attribute, or null if it is not set on the
+   element.
 }
 \description{
 \code{getElementAttribute} Get the value of an element's attribute.

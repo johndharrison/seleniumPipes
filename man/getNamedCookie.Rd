@@ -9,13 +9,15 @@ getNamedCookie(remDr, name = NULL, ...)
 \arguments{
 \item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
 
-\item{name}{character: The name of the cookie; may not be null or an empty string}
+\item{name}{character: The name of the cookie; may not be null or an
+empty string}
 
 \item{...}{Additonal function arguments - Currently passes the \code{\link{retry}} argument.}
 }
 \value{
-A named cookies from the current domain is returned if it exists. These cookies
-have values as stipulated by the arguments given in \code{\link{addCookie}}.
+A named cookies from the current domain is returned if it
+   exists. These cookies have values as stipulated by the arguments
+   given in \code{\link{addCookie}}.
 }
 \description{
 \code{getNamedCookie} Get the cookie with a given name.

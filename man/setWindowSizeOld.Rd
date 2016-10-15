@@ -13,7 +13,8 @@ setWindowSizeOld(remDr, width, height, handle = "current", ...)
 
 \item{height}{integer The new window height.}
 
-\item{handle}{Handle of the window to query. If handle = "current" (the default) the current window is used.}
+\item{handle}{Handle of the window to query. If handle = "current"
+(the default) the current window is used.}
 
 \item{...}{Additonal function arguments - Currently passes the \code{\link{retry}} argument.}
 }

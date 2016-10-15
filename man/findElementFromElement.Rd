@@ -11,7 +11,10 @@ findElementFromElement(webElem, using = c("xpath", "css selector", "id",
 \arguments{
 \item{webElem}{An object of class "wElement". A web Element object see \code{\link{wbElement}}.}
 
-\item{using}{Locator scheme to use to search the element, available schemes: {"class name", "css selector", "id", "name", "link text", "partial link text", "tag name", "xpath" }. Defaults to 'xpath'. Partial string matching is accepted.}
+\item{using}{Locator scheme to use to search the element, available
+schemes: {"class name", "css selector", "id", "name", "link text",
+"partial link text", "tag name", "xpath" }. Defaults to 'xpath'.
+Partial string matching is accepted.}
 
 \item{value}{The search target. See examples.}
 
@@ -23,7 +26,9 @@ invisible(wbElement(res$value, webElem$remDr)): An object of class "wElement" is
    other functions that take such an object as an argument. See examples for further details.
 }
 \description{
-\code{findElementFromElement} Search for an element on the page, starting from the node defined by the parent webElement. The located element will be returned as an object of wElement class.
+\code{findElementFromElement} Search for an element on the page,
+   starting from the node defined by the parent webElement. The located
+   element will be returned as an object of wElement class.
 }
 \details{
 Details of possible locator schemes

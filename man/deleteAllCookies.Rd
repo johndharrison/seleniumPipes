@@ -17,7 +17,8 @@ invisible(remDr): An object of class "rDriver" is invisibly returned.
    other functions that take such an object as an argument. See examples for further details.
 }
 \description{
-\code{deleteAllCookies} Delete all the cookies that are currently visible.
+\code{deleteAllCookies} Delete all the cookies that are currently
+   visible.
 }
 \examples{
 \dontrun{

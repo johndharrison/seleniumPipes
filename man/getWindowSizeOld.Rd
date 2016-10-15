@@ -9,15 +9,18 @@ getWindowSizeOld(remDr, handle = "current", ...)
 \arguments{
 \item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
 
-\item{handle}{Handle of the window to query. If handle = "current" (the default) the current window is used.}
+\item{handle}{Handle of the window to query. If handle = "current"
+(the default) the current window is used.}
 
 \item{...}{Additonal function arguments - Currently passes the \code{\link{retry}} argument.}
 }
 \value{
-The width and height of the window are returned as elements in a list.
+The width and height of the window are returned as elements in
+   a list.
 }
 \description{
-\code{getWindowSizeOld} Get the size of the specified window. Uses the old JSONwireprotocol end points.
+\code{getWindowSizeOld} Get the size of the specified window. Uses the
+   old JSONwireprotocol end points.
 }
 \examples{
 \dontrun{

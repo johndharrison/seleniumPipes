@@ -9,7 +9,8 @@ maximizeWindowOld(remDr, handle = "current", ...)
 \arguments{
 \item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
 
-\item{handle}{Handle of the window to query. If handle = "current" (the default) the current window is used.}
+\item{handle}{Handle of the window to query. If handle = "current"
+(the default) the current window is used.}
 
 \item{...}{Additonal function arguments - Currently passes the \code{\link{retry}} argument.}
 }
@@ -19,7 +20,8 @@ invisible(remDr): An object of class "rDriver" is invisibly returned.
    other functions that take such an object as an argument. See examples for further details.
 }
 \description{
-\code{maximizeWindowOld} Maximize the specified window if not already maximized.
+\code{maximizeWindowOld} Maximize the specified window if not already
+   maximized.
 }
 \examples{
 \dontrun{

@@ -17,7 +17,8 @@ invisible(remDr): An object of class "rDriver" is invisibly returned.
    other functions that take such an object as an argument. See examples for further details.
 }
 \description{
-\code{acceptAlertOld} accept a JavaScript alert This uses the old JSONwireprotocol endpoints.
+\code{acceptAlertOld} accept a JavaScript alert This uses the old
+   JSONwireprotocol endpoints.
 }
 \examples{
 \dontrun{

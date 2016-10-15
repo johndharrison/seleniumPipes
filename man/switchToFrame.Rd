@@ -9,7 +9,8 @@ switchToFrame(remDr, Id = NULL, ...)
 \arguments{
 \item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
 
-\item{Id}{{string|number|null|WebElement} Identifier for the frame to change focus to.}
+\item{Id}{{string|number|null|WebElement} Identifier for the frame to
+change focus to.}
 
 \item{...}{Additonal function arguments - Currently passes the \code{\link{retry}} argument.}
 }
@@ -19,8 +20,9 @@ invisible(remDr): An object of class "rDriver" is invisibly returned.
    other functions that take such an object as an argument. See examples for further details.
 }
 \description{
-\code{switchToFrame} Change focus to another frame on the page. If the frame id is null, the server
- should switch to the page's default content.
+\code{switchToFrame} Change focus to another frame on the page. If the
+   frame id is null, the server should switch to the page's default
+   content.
 }
 \examples{
 \dontrun{

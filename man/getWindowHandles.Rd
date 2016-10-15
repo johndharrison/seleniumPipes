@@ -12,11 +12,12 @@ getWindowHandles(remDr, ...)
 \item{...}{Additonal function arguments - Currently passes the \code{\link{retry}} argument.}
 }
 \value{
-Returns a list of windows handles. Each element of the list is a string. The order
-   window handles are returned is arbitrary.
+Returns a list of windows handles. Each element of the list is a
+   string. The order window handles are returned is arbitrary.
 }
 \description{
-\code{getWindowHandles} Retrieve the list of all window handles available to the session.
+\code{getWindowHandles} Retrieve the list of all window handles available
+   to the session.
 }
 \examples{
 \dontrun{

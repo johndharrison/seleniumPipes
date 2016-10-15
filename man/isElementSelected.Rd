@@ -12,10 +12,12 @@ isElementSelected(webElem, ...)
 \item{...}{Additonal function arguments - Currently passes the \code{\link{retry}} argument.}
 }
 \value{
-A logical value is returned indicating whether the elemnent is selected.
+A logical value is returned indicating whether the elemnent is
+   selected.
 }
 \description{
-\code{isElementSelected} Determines if an OPTION element, or an INPUT element of type checkbox or radiobutton is currently selected.
+\code{isElementSelected} Determines if an OPTION element, or an INPUT
+   element of type checkbox or radiobutton is currently selected.
 }
 \examples{
 \dontrun{

@@ -11,13 +11,17 @@ takeElementScreenshot(webElem, file = NULL,
 \arguments{
 \item{webElem}{An object of class "wElement". A web Element object see \code{\link{wbElement}}.}
 
-\item{file}{If not null the decoded PNG is written to file using the string provided here. Defaults to NULL.}
+\item{file}{If not null the decoded PNG is written to file using the
+string provided here. Defaults to NULL.}
 
-\item{display}{logical Display the PNG or not (default is set in getOption("seleniumPipes_display_screenshot")).}
+\item{display}{logical Display the PNG or not (default is set in
+getOption("seleniumPipes_display_screenshot")).}
 
-\item{useViewer}{A viewer to view the PNG. Looks for the RSudio viewer by default.}
+\item{useViewer}{A viewer to view the PNG. Looks for the RSudio viewer
+by default.}
 
-\item{returnPNG}{logical return the decoded PNG. If false (default) webElem is returned to allw chaining.}
+\item{returnPNG}{logical return the decoded PNG. If false (default)
+webElem is returned to allow chaining.}
 
 \item{...}{Additonal function arguments - Currently passes the \code{\link{retry}} argument.}
 }

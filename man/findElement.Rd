@@ -10,7 +10,10 @@ findElement(remDr, using = c("xpath", "css selector", "id", "name",
 \arguments{
 \item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
 
-\item{using}{Locator scheme to use to search the element, available schemes: {"class name", "css selector", "id", "name", "link text", "partial link text", "tag name", "xpath" }. Defaults to 'xpath'. Partial string matching is accepted.}
+\item{using}{Locator scheme to use to search the element, available
+schemes: {"class name", "css selector", "id", "name", "link text",
+"partial link text", "tag name", "xpath" }. Defaults to 'xpath'.
+Partial string matching is accepted.}
 
 \item{value}{The search target. See examples.}
 
@@ -22,7 +25,9 @@ invisible(wbElement(res$value, remDr)): An object of class "wElement" is invisib
    other functions that take such an object as an argument. See examples for further details.
 }
 \description{
-\code{findElement} Search for an element on the page, starting from the document root. The located element will be returned as an object of "wElement" class
+\code{findElement} Search for an element on the page, starting from the
+   document root. The located element will be returned as an object of
+   "wElement" class
 }
 \details{
 Details of possible locator schemes

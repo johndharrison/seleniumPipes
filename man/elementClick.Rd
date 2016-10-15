@@ -17,7 +17,9 @@ invisible(webElem): An object of class "wElement" is invisibly returned.
    other functions that take such an object as an argument. See examples for further details.
 }
 \description{
-\code{elementClick} The elementClick function scrolls into view the element and clicks the in-view centre point. If the element is not pointer-interactable, an element not interactable error is returned.
+\code{elementClick} The elementClick function scrolls into view the
+   element and clicks the in-view centre point. If the element is not
+   pointer-interactable, an element not interactable error is returned.
 }
 \examples{
 \dontrun{

@@ -12,7 +12,8 @@ getWindowSize(remDr, ...)
 \item{...}{Additonal function arguments - Currently passes the \code{\link{retry}} argument.}
 }
 \value{
-The width and height of the window are returned as elements in a list.
+The width and height of the window are returned as elements in
+   a list.
 }
 \description{
 \code{getWindowSize}

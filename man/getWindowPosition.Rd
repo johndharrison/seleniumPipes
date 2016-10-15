@@ -12,11 +12,15 @@ getWindowPosition(remDr, ...)
 \item{...}{Additonal function arguments - Currently passes the \code{\link{retry}} argument.}
 }
 \value{
-Returns a list which contains the x coordinate to position the window at, relative to the upper left corner of the screen and
- the Y coordinate to position the window at, relative to the upper left corner of the screen
+Returns a list which contains the x coordinate to position the
+   window at, relative to the upper left corner of the screen and the Y
+   coordinate to position the window at, relative to the upper left
+   corner of the screen
 }
 \description{
-\code{getWindowPosition} The Get Window Position command returns the position on the screen of the operating system window corresponding to the current top-level browsing context.
+\code{getWindowPosition} The Get Window Position command returns the
+   position on the screen of the operating system window corresponding
+   to the current top-level browsing context.
 }
 \examples{
 \dontrun{

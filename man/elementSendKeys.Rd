@@ -9,7 +9,9 @@ elementSendKeys(webElem, ...)
 \arguments{
 \item{webElem}{An object of class "wElement". A web Element object see \code{\link{wbElement}}.}
 
-\item{...}{keys to send the element. \code{seleniumPipes} includes mappings to unicode keys see \code{\link{selKeys}}. To use one of this name the string using key. See examples.}
+\item{...}{keys to send the element. \code{seleniumPipes} includes
+mappings to unicode keys see \code{\link{selKeys}}. To use one of
+this name the string using key. See examples.}
 }
 \value{
 invisible(webElem): An object of class "wElement" is invisibly returned.
@@ -17,7 +19,10 @@ invisible(webElem): An object of class "wElement" is invisibly returned.
    other functions that take such an object as an argument. See examples for further details.
 }
 \description{
-\code{elementSendKeys} The elementSendKeys function scrolls into view the form control element and then sends the provided keys to the element. In case the element is not keyboard interactable, an element not interactable error is returned.
+\code{elementSendKeys} The elementSendKeys function scrolls into view
+   the form control element and then sends the provided keys to the
+   element. In case the element is not keyboard interactable, an
+   element not interactable error is returned.
 }
 \examples{
 \dontrun{

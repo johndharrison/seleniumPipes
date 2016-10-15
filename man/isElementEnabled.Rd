@@ -12,7 +12,8 @@ isElementEnabled(webElem, ...)
 \item{...}{Additonal function arguments - Currently passes the \code{\link{retry}} argument.}
 }
 \value{
-A logical value is returned indicating whether the elemnent is enabled.
+A logical value is returned indicating whether the elemnent is
+   enabled.
 }
 \description{
 \code{isElementEnabled} Determine if an element is currently enabled.

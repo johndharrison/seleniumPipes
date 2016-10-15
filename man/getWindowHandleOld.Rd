@@ -15,7 +15,8 @@ getWindowHandleOld(remDr, ...)
 Returns a string which is the "handle" for the current window.
 }
 \description{
-\code{getWindowHandleOld} Retrieve the current window handle. Uses the old JSONwireprotocol end points
+\code{getWindowHandleOld} Retrieve the current window handle. Uses the
+   old JSONwireprotocol end points
 }
 \examples{
 \dontrun{

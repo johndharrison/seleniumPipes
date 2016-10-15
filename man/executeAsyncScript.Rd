@@ -13,7 +13,8 @@ executeAsyncScript(remDr, script, args = list(), replace = TRUE, ...)
 
 \item{args}{The arguments of the script as a list.}
 
-\item{replace}{logical: If TRUE any elements identify as web Elements are converted to such.}
+\item{replace}{logical: If TRUE any elements identify as web Elements
+are converted to such.}
 
 \item{...}{Additonal function arguments - Currently passes the \code{\link{retry}} argument.}
 }
@@ -22,12 +23,13 @@ If replace is TRUE parses the response from the server for web Elements and conv
    Otherwise the content returned is assummed to be a simple list.
 }
 \description{
-\code{executeAsyncScript} Inject a snippet of JavaScript into the page for asynchronous execution in
-   the context of the currently selected frame.
+\code{executeAsyncScript} Inject a snippet of JavaScript into the page
+   for asynchronous execution in the context of the currently selected
+   frame.
 }
 \details{
-The driver will pass a callback as the last argument to the snippet, and
-   block until the callback is invoked.
+The driver will pass a callback as the last argument to the snippet,
+   and block until the callback is invoked.
 }
 \examples{
 \dontrun{

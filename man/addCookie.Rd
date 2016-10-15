@@ -10,18 +10,20 @@ addCookie(remDr, name, value, path = NULL, domain = NULL, secure = FALSE,
 \arguments{
 \item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
 
-\item{name}{character: The name of the cookie; may not be null or an empty string}
+\item{name}{character: The name of the cookie; may not be null or an
+empty string}
 
 \item{value}{character: The cookie value; may not be null.}
 
-\item{path}{character: The path the cookie is visible to. If left blank or set
-to null, will be set to "/".}
+\item{path}{character: The path the cookie is visible to. If left blank
+or set to null, will be set to "/".}
 
-\item{domain}{character: The domain the cookie is visible to. It should be null or
-the same as the domain of the current URL.}
+\item{domain}{character: The domain the cookie is visible to. It should
+be null or the same as the domain of the current URL.}
 
-\item{secure}{logical:  Whether this cookie requires a secure connection(https?).
-It should be null or equal to the security of the current URL.}
+\item{secure}{logical:  Whether this cookie requires a secure
+connection(https?). It should be null or equal to the security of
+the current URL.}
 
 \item{httpOnly}{logical:  Whether the cookie is an httpOnly cookie.}
 

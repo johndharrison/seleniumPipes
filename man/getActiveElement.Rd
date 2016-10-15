@@ -17,7 +17,8 @@ invisible(wbElement(res$value, remDr)): An object of class "wElement" is invisib
    other functions that take such an object as an argument. See examples for further details.
 }
 \description{
-\code{getActiveElement} Get the element on the page that currently has focus. The located element will be returned as a WebcElement object.
+\code{getActiveElement} Get the element on the page that currently has
+   focus. The located element will be returned as a WebcElement object.
 }
 \examples{
 \dontrun{

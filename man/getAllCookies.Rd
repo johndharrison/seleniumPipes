@@ -12,8 +12,9 @@ getAllCookies(remDr, ...)
 \item{...}{Additonal function arguments - Currently passes the \code{\link{retry}} argument.}
 }
 \value{
-A list of all the cookies on the current domain are returned. These cookies
-have values as stipulated by the arguments given in \code{\link{addCookie}}.
+A list of all the cookies on the current domain are returned.
+   These cookies have values as stipulated by the arguments given in
+   \code{\link{addCookie}}.
 }
 \description{
 \code{getAllCookies} Get all the cookies for the current domain.

@@ -14,14 +14,21 @@ getElementRect(webElem, ...)
 \value{
 The returned value is a list including the following members:
 \describe{
-  \item{x}{X axis position of the top-left corner of the web element relative to the current browsing context’s document element in CSS reference pixels.}
-  \item{y}{Y axis position of the top-left corner of the web element relative to the current browsing context’s document element in CSS reference pixels.}
-  \item{height}{Height of the web element’s bounding rectangle in CSS reference pixels. }
-  \item{width}{Width of the web element’s bounding rectangle in CSS reference pixels. }
+  \item{x}{X axis position of the top-left corner of the web element
+     relative to the current browsing context’s document element in CSS
+     reference pixels.}
+  \item{y}{Y axis position of the top-left corner of the web element
+     relative to the current browsing context’s document element in CSS
+     reference pixels.}
+  \item{height}{Height of the web element’s bounding rectangle in CSS
+     reference pixels. }
+  \item{width}{Width of the web element’s bounding rectangle in CSS
+     reference pixels. }
 }
 }
 \description{
-\code{getElementRect} The getElementRect fuinction returns the dimensions and coordinates of the given web element.
+\code{getElementRect} The getElementRect fuinction returns the
+   dimensions and coordinates of the given web element.
 }
 \examples{
 \dontrun{

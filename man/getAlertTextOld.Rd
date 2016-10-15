@@ -15,7 +15,8 @@ getAlertTextOld(remDr, ...)
 The alert text is returned as a string.
 }
 \description{
-\code{getAlertTextOld} Get the text from a JavaScript alert. This uses the old JSONwireprotocol endpoints.
+\code{getAlertTextOld} Get the text from a JavaScript alert. This uses
+   the old JSONwireprotocol endpoints.
 }
 \examples{
 \dontrun{

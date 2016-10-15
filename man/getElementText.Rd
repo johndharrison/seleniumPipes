@@ -12,7 +12,8 @@ getElementText(webElem, ...)
 \item{...}{Additonal function arguments - Currently passes the \code{\link{retry}} argument.}
 }
 \value{
-The visible text for an element is returned as a character string.
+The visible text for an element is returned as a character
+   string.
 }
 \description{
 \code{getElementText} Returns the visible text for the element.

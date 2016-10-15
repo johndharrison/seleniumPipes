@@ -9,16 +9,20 @@ getWindowPositionOld(remDr, handle = "current", ...)
 \arguments{
 \item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
 
-\item{handle}{Handle of the window to query. If handle = "current" (the default) the current window is used.}
+\item{handle}{Handle of the window to query. If handle = "current"
+(the default) the current window is used.}
 
 \item{...}{Additonal function arguments - Currently passes the \code{\link{retry}} argument.}
 }
 \value{
-Returns a list which contains the x coordinate to position the window at, relative to the upper left corner of the screen and
- the Y coordinate to position the window at, relative to the upper left corner of the screen
+Returns a list which contains the x coordinate to position the
+   window at, relative to the upper left corner of the screen and the
+   Y coordinate to position the window at, relative to the upper left
+   corner of the screen
 }
 \description{
-\code{getWindowPositionOld} Get the position of the specified window. Uses the old JSONwireprotocol end points.
+\code{getWindowPositionOld} Get the position of the specified window.
+   Uses the old JSONwireprotocol end points.
 }
 \examples{
 \dontrun{

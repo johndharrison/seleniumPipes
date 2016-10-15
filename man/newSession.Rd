@@ -17,7 +17,10 @@ invisible(remDr): An object of class "rDriver" is invisibly returned.
    other functions that take such an object as an argument. See examples for further details.
 }
 \description{
-\code{newSession} The server should attempt to create a session that most closely matches the desired and required capabilities. Required capabilities have higher priority than desired capabilities and must be set for the session to be created.
+\code{newSession} The server should attempt to create a session that
+   most closely matches the desired and required capabilities. Required
+   capabilities have higher priority than desired capabilities and must
+   be set for the session to be created.
 }
 \examples{
 \dontrun{
@@ -38,6 +41,7 @@ invisible(remDr): An object of class "rDriver" is invisibly returned.
 }
 \seealso{
 Other sessions functions: \code{\link{deleteSession}},
-  \code{\link{setTimeout}}
+  \code{\link{getTimeouts}}, \code{\link{setTimeouts}},
+  \code{\link{status}}
 }
 

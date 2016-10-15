@@ -9,7 +9,8 @@ sendAlertText(remDr, text = "", ...)
 \arguments{
 \item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
 
-\item{text}{A character vector of length 1. In other words a string. The text is passed to the JavaScript alert}
+\item{text}{A character vector of length 1. In other words a string.
+The text is passed to the JavaScript alert}
 
 \item{...}{Additonal function arguments - Currently passes the \code{\link{retry}} argument.}
 }
