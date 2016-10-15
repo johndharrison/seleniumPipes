@@ -7,7 +7,8 @@
 #' @template ellipsis
 #'
 #' @family elementState functions
-#' @return The value of the attribute, or null if it is not set on the element.
+#' @return The value of the attribute, or null if it is not set on the
+#'    element.
 #' @export
 #'
 #' @example /inst/examples/docs/elementState.R
@@ -16,9 +17,10 @@ NULL
 
 #' Query the value of an element's computed CSS property.
 #'
-#'\code{getElementCssValue} Query the value of an element's computed CSS property.
-#'  The CSS property to query should be specified using the CSS property name,
-#'  not the JavaScript property name (e.g. background-color instead of backgroundColor).
+#'\code{getElementCssValue} Query the value of an element's computed CSS
+#'    property. The CSS property to query should be specified using the
+#'    CSS property name, not the JavaScript property name (e.g.
+#'    background-color instead of backgroundColor).
 #'
 #' @template webElem
 #' @param propertyName The property to query as a character string
@@ -50,7 +52,8 @@ NULL
 
 #' Return the dimensions and coordinates of an element
 #'
-#'\code{getElementRect} The getElementRect fuinction returns the dimensions and coordinates of the given web element.
+#'\code{getElementRect} The getElementRect fuinction returns the
+#'    dimensions and coordinates of the given web element.
 #'
 #' @template webElem
 #' @template ellipsis
@@ -58,10 +61,16 @@ NULL
 #' @family elementState functions
 #' @return The returned value is a list including the following members:
 #' \describe{
-#'   \item{x}{X axis position of the top-left corner of the web element relative to the current browsing context’s document element in CSS reference pixels.}
-#'   \item{y}{Y axis position of the top-left corner of the web element relative to the current browsing context’s document element in CSS reference pixels.}
-#'   \item{height}{Height of the web element’s bounding rectangle in CSS reference pixels. }
-#'   \item{width}{Width of the web element’s bounding rectangle in CSS reference pixels. }
+#'   \item{x}{X axis position of the top-left corner of the web element
+#'      relative to the current browsing context’s document element in CSS
+#'      reference pixels.}
+#'   \item{y}{Y axis position of the top-left corner of the web element
+#'      relative to the current browsing context’s document element in CSS
+#'      reference pixels.}
+#'   \item{height}{Height of the web element’s bounding rectangle in CSS
+#'      reference pixels. }
+#'   \item{width}{Width of the web element’s bounding rectangle in CSS
+#'      reference pixels. }
 #' }
 #' @export
 #'
@@ -92,7 +101,8 @@ NULL
 #' @template ellipsis
 #'
 #' @family elementState functions
-#' @return The visible text for an element is returned as a character string.
+#' @return The visible text for an element is returned as a character
+#'    string.
 #' @export
 #'
 #' @example /inst/examples/docs/elementState.R
@@ -107,7 +117,8 @@ NULL
 #' @template ellipsis
 #'
 #' @family elementState functions
-#' @return A logical value is returned indicating whether the elemnent is enabled.
+#' @return A logical value is returned indicating whether the elemnent is
+#'    enabled.
 #' @export
 #'
 #' @example /inst/examples/docs/elementState.R
@@ -116,13 +127,15 @@ NULL
 
 #' Determine if an element is currently selected.
 #'
-#'\code{isElementSelected} Determines if an OPTION element, or an INPUT element of type checkbox or radiobutton is currently selected.
+#'\code{isElementSelected} Determines if an OPTION element, or an INPUT
+#'    element of type checkbox or radiobutton is currently selected.
 #'
 #' @template webElem
 #' @template ellipsis
 #'
 #' @family elementState functions
-#' @return A logical value is returned indicating whether the elemnent is selected.
+#' @return A logical value is returned indicating whether the elemnent is
+#'    selected.
 #' @export
 #'
 #' @example /inst/examples/docs/elementState.R
