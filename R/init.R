@@ -93,11 +93,12 @@ remoteDr <- function(remoteServerAddr = "http://localhost",
     list(
       remServAdd = remServAdd,
       desiredCapabilities = list(
-        browserName = browserName
-        , version = version
-        , javascriptEnabled = javascript
-        , platform = platform
-        , nativeEvents = nativeEvents),
+        browserName = browserName,
+        version = version,
+        javascriptEnabled = javascript,
+        platform = platform,
+        nativeEvents = nativeEvents
+      ),
       extraCapabilities = extraCapabilities,
       sessionId = function(drvID){.e$sessionId[[drvID]]},
       sessionInfo = NULL,
