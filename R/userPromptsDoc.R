@@ -48,7 +48,8 @@ NULL
 #'\code{sendAlertText} Send keystrokes to JavaScript prompt() dialog
 #'
 #' @template remDr
-#' @param text A character vector of length 1. In other words a string. The text is passed to the JavaScript alert
+#' @param text A character vector of length 1. In other words a string.
+#'    The text is passed to the JavaScript alert
 #' @template ellipsis
 #'
 #' @family userPrompts functions
