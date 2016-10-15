@@ -197,8 +197,8 @@ queryDriver <- function(verb = GET, url, source, drvID, ...){
   if(!is.null(rtry <- list(...)[["retry"]])){
     if(is.logical(rtry)){
       if(!rtry){
-        noTry = 1L
-        delay = 100L
+        noTry <- 1L
+        delay <- 100L
       }
     }
     if(is.list(rtry)){
