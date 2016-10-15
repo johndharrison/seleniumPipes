@@ -9,7 +9,8 @@ takeScreenshot(remDr, file = NULL,
   useViewer = !is.null(getOption("viewer")), returnPNG = FALSE, ...)
 }
 \arguments{
-\item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
+\item{remDr}{An object of class "rDriver". A remote driver object see
+\code{\link{remoteDr}}.}
 
 \item{file}{If not null the decoded PNG is written to file using the
 string provided here. Defaults to NULL.}
@@ -23,11 +24,13 @@ by default.}
 \item{returnPNG}{logical return the decoded PNG. If false (default)
 remDr is returned to allow chaining.}
 
-\item{...}{Additonal function arguments - Currently passes the \code{\link{retry}} argument.}
+\item{...}{Additonal function arguments - Currently passes the
+\code{\link{retry}} argument.}
 }
 \value{
-If \code{returnPNG} is FALSE the remote Driver object is returned and additonal chaining is possible. If TRUE
- then the decoded base64 image is returned see \code{\link{base64_dec}}
+If \code{returnPNG} is FALSE the remote Driver object is
+   returned and additonal chaining is possible. If TRUE then the
+   decoded base64 image is returned see \code{\link{base64_dec}}
 }
 \description{
 \code{takeScreenshot}

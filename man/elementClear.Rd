@@ -7,14 +7,17 @@
 elementClear(webElem, ...)
 }
 \arguments{
-\item{webElem}{An object of class "wElement". A web Element object see \code{\link{wbElement}}.}
+\item{webElem}{An object of class "wElement". A web Element object see
+\code{\link{wbElement}}.}
 
-\item{...}{Additonal function arguments - Currently passes the \code{\link{retry}} argument.}
+\item{...}{Additonal function arguments - Currently passes the
+\code{\link{retry}} argument.}
 }
 \value{
-invisible(webElem): An object of class "wElement" is invisibly returned.
-   A webElement object see \code{\link{wbElement}}. This allows for chaining from this function to
-   other functions that take such an object as an argument. See examples for further details.
+invisible(webElem): An object of class "wElement" is invisibly
+   returned. A webElement object see \code{\link{wbElement}}. This
+   allows for chaining from this function to other functions that take
+   such an object as an argument. See examples for further details.
 }
 \description{
 \code{elementClear} Clear a TEXTAREA or text INPUT element's value.

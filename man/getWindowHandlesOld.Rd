@@ -7,9 +7,11 @@
 getWindowHandlesOld(remDr, ...)
 }
 \arguments{
-\item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
+\item{remDr}{An object of class "rDriver". A remote driver object see
+\code{\link{remoteDr}}.}
 
-\item{...}{Additonal function arguments - Currently passes the \code{\link{retry}} argument.}
+\item{...}{Additonal function arguments - Currently passes the
+\code{\link{retry}} argument.}
 }
 \value{
 Returns a list of windows handles. Each element of the list is

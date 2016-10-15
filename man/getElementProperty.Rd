@@ -7,11 +7,13 @@
 getElementProperty(webElem, property, ...)
 }
 \arguments{
-\item{webElem}{An object of class "wElement". A web Element object see \code{\link{wbElement}}.}
+\item{webElem}{An object of class "wElement". A web Element object see
+\code{\link{wbElement}}.}
 
 \item{property}{The property to query as a character string}
 
-\item{...}{Additonal function arguments - Currently passes the \code{\link{retry}} argument.}
+\item{...}{Additonal function arguments - Currently passes the
+\code{\link{retry}} argument.}
 }
 \value{
 The value of the elements specified property.

@@ -7,7 +7,8 @@
 setWindowPositionOld(remDr, x, y, handle = "current", ...)
 }
 \arguments{
-\item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
+\item{remDr}{An object of class "rDriver". A remote driver object see
+\code{\link{remoteDr}}.}
 
 \item{x}{integer The X coordinate to position the window at, relative
 to the upper left corner of the screen.}
@@ -18,12 +19,14 @@ to the upper left corner of the screen.}
 \item{handle}{Handle of the window to query. If handle = "current"
 (the default) the current window is used.}
 
-\item{...}{Additonal function arguments - Currently passes the \code{\link{retry}} argument.}
+\item{...}{Additonal function arguments - Currently passes the
+\code{\link{retry}} argument.}
 }
 \value{
-invisible(remDr): An object of class "rDriver" is invisibly returned.
-   A remote driver object see \code{\link{remoteDr}}. This allows for chaining from this function to
-   other functions that take such an object as an argument. See examples for further details.
+invisible(remDr): An object of class "rDriver" is invisibly
+   returned. A remote driver object see \code{\link{remoteDr}}. This
+   allows for chaining from this function to other functions that take
+   such an object as an argument. See examples for further details.
 }
 \description{
 \code{setWindowSize} Change the position of the specified window.

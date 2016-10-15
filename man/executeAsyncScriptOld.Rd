@@ -7,7 +7,8 @@
 executeAsyncScriptOld(remDr, script, args = list(), replace = TRUE, ...)
 }
 \arguments{
-\item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
+\item{remDr}{An object of class "rDriver". A remote driver object see
+\code{\link{remoteDr}}.}
 
 \item{script}{character: The script to inject.}
 
@@ -16,11 +17,13 @@ executeAsyncScriptOld(remDr, script, args = list(), replace = TRUE, ...)
 \item{replace}{logical: If TRUE any elements identify as web Elements
 are converted to such.}
 
-\item{...}{Additonal function arguments - Currently passes the \code{\link{retry}} argument.}
+\item{...}{Additonal function arguments - Currently passes the
+\code{\link{retry}} argument.}
 }
 \value{
-If replace is TRUE parses the response from the server for web Elements and converts as such.
-   Otherwise the content returned is assummed to be a simple list.
+If replace is TRUE parses the response from the server for web
+   Elements and converts as such. Otherwise the content returned is
+   assummed to be a simple list.
 }
 \description{
 \code{executeAsyncScriptOld} This function uses the old JSONwireprotocol

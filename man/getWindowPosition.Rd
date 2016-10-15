@@ -7,9 +7,11 @@
 getWindowPosition(remDr, ...)
 }
 \arguments{
-\item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
+\item{remDr}{An object of class "rDriver". A remote driver object see
+\code{\link{remoteDr}}.}
 
-\item{...}{Additonal function arguments - Currently passes the \code{\link{retry}} argument.}
+\item{...}{Additonal function arguments - Currently passes the
+\code{\link{retry}} argument.}
 }
 \value{
 Returns a list which contains the x coordinate to position the
@@ -60,7 +62,8 @@ Returns a list which contains the x coordinate to position the
   remDr \%>\% go("http://www.google.com/ncr")
   # search for the "R project"
 
-  remDr \%>\% findElement("name", "q") \%>\% elementSendKeys("R project", key = "enter")
+  remDr \%>\% findElement("name", "q") \%>\%
+    elementSendKeys("R project", key = "enter")
 
   webElem <- remDr \%>\% findElement("css", "h3.r a")
 

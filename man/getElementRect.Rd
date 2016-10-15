@@ -7,9 +7,11 @@
 getElementRect(webElem, ...)
 }
 \arguments{
-\item{webElem}{An object of class "wElement". A web Element object see \code{\link{wbElement}}.}
+\item{webElem}{An object of class "wElement". A web Element object see
+\code{\link{wbElement}}.}
 
-\item{...}{Additonal function arguments - Currently passes the \code{\link{retry}} argument.}
+\item{...}{Additonal function arguments - Currently passes the
+\code{\link{retry}} argument.}
 }
 \value{
 The returned value is a list including the following members:

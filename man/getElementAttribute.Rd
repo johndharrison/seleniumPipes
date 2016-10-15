@@ -7,11 +7,13 @@
 getElementAttribute(webElem, attribute, ...)
 }
 \arguments{
-\item{webElem}{An object of class "wElement". A web Element object see \code{\link{wbElement}}.}
+\item{webElem}{An object of class "wElement". A web Element object see
+\code{\link{wbElement}}.}
 
 \item{attribute}{The attribute to query as a character string.}
 
-\item{...}{Additonal function arguments - Currently passes the \code{\link{retry}} argument.}
+\item{...}{Additonal function arguments - Currently passes the
+\code{\link{retry}} argument.}
 }
 \value{
 The value of the attribute, or null if it is not set on the

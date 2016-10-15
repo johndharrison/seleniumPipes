@@ -7,14 +7,16 @@
 getTimeouts(remDr, type = "page load", ...)
 }
 \arguments{
-\item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
+\item{remDr}{An object of class "rDriver". A remote driver object see
+\code{\link{remoteDr}}.}
 
 \item{type}{The type of operation to set the timeout for. Valid values
 are: "script" for script timeouts, "implicit" for modifying the
 implicit wait timeout and "page load" for setting a page load
 timeout.}
 
-\item{...}{Additonal function arguments - Currently passes the \code{\link{retry}} argument.}
+\item{...}{Additonal function arguments - Currently passes the
+\code{\link{retry}} argument.}
 }
 \value{
 ret2 : res$value NEED TO FILL IN specifics for each function

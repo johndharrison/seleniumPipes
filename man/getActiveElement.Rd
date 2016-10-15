@@ -7,14 +7,18 @@
 getActiveElement(remDr, ...)
 }
 \arguments{
-\item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
+\item{remDr}{An object of class "rDriver". A remote driver object see
+\code{\link{remoteDr}}.}
 
-\item{...}{Additonal function arguments - Currently passes the \code{\link{retry}} argument.}
+\item{...}{Additonal function arguments - Currently passes the
+\code{\link{retry}} argument.}
 }
 \value{
-invisible(wbElement(res$value, remDr)): An object of class "wElement" is invisibly returned.
-   A webElement object see \code{\link{wbElement}}. This allows for chaining from this function to
-   other functions that take such an object as an argument. See examples for further details.
+invisible(wbElement(res$value, remDr)): An object of class
+   "wElement" is invisibly returned. A webElement object see
+   \code{\link{wbElement}}. This allows for chaining from this function
+   to other functions that take such an object as an argument. See
+   examples for further details.
 }
 \description{
 \code{getActiveElement} Get the element on the page that currently has

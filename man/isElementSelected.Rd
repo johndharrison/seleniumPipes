@@ -7,9 +7,11 @@
 isElementSelected(webElem, ...)
 }
 \arguments{
-\item{webElem}{An object of class "wElement". A web Element object see \code{\link{wbElement}}.}
+\item{webElem}{An object of class "wElement". A web Element object see
+\code{\link{wbElement}}.}
 
-\item{...}{Additonal function arguments - Currently passes the \code{\link{retry}} argument.}
+\item{...}{Additonal function arguments - Currently passes the
+\code{\link{retry}} argument.}
 }
 \value{
 A logical value is returned indicating whether the elemnent is

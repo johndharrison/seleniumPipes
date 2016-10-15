@@ -7,9 +7,11 @@
 getAlertText(remDr, ...)
 }
 \arguments{
-\item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
+\item{remDr}{An object of class "rDriver". A remote driver object see
+\code{\link{remoteDr}}.}
 
-\item{...}{Additonal function arguments - Currently passes the \code{\link{retry}} argument.}
+\item{...}{Additonal function arguments - Currently passes the
+\code{\link{retry}} argument.}
 }
 \value{
 The text from the alert is returned.
@@ -26,17 +28,21 @@ The text from the alert is returned.
   remDr \%>\% executeScript(sScript, args = list())
   remDr \%>\% dismissAlert()
 
-  sScript <- "setTimeout(function(){confirm('Press a button')},1000); return 'DONE';"
+  sScript <- "setTimeout(function(){confirm('Press a button')},1000);
+              return 'DONE';"
   remDr \%>\% executeScript(sScript, args = list())
   remDr \%>\% acceptAlert()
 
-  sScript <- "setTimeout(function(){confirm('Press a button')},1000); return 'DONE';"
+  sScript <- "setTimeout(function(){confirm('Press a button')},1000);
+              return 'DONE';"
   remDr \%>\% executeScript(sScript, args = list())
   remDr \%>\% getAlertText()
   remDr \%>\% dismissAlert()
 
 
-  sScript <- "setTimeout(function(){prompt('Please enter your name', '')},1000); return 'DONE';"
+  sScript <-
+    "setTimeout(function(){prompt('Please enter your name', '')},1000);
+      return 'DONE';"
   remDr \%>\% executeScript(sScript, args = list())
   remDr \%>\% getAlertText()
   remDr \%>\% sendAlertText("Buck Rogers?")

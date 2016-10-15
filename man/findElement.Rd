@@ -8,7 +8,8 @@ findElement(remDr, using = c("xpath", "css selector", "id", "name",
   "tag name", "class name", "link text", "partial link text"), value, ...)
 }
 \arguments{
-\item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
+\item{remDr}{An object of class "rDriver". A remote driver object see
+\code{\link{remoteDr}}.}
 
 \item{using}{Locator scheme to use to search the element, available
 schemes: {"class name", "css selector", "id", "name", "link text",
@@ -17,12 +18,15 @@ Partial string matching is accepted.}
 
 \item{value}{The search target. See examples.}
 
-\item{...}{Additonal function arguments - Currently passes the \code{\link{retry}} argument.}
+\item{...}{Additonal function arguments - Currently passes the
+\code{\link{retry}} argument.}
 }
 \value{
-invisible(wbElement(res$value, remDr)): An object of class "wElement" is invisibly returned.
-   A webElement object see \code{\link{wbElement}}. This allows for chaining from this function to
-   other functions that take such an object as an argument. See examples for further details.
+invisible(wbElement(res$value, remDr)): An object of class
+   "wElement" is invisibly returned. A webElement object see
+   \code{\link{wbElement}}. This allows for chaining from this function
+   to other functions that take such an object as an argument. See
+   examples for further details.
 }
 \description{
 \code{findElement} Search for an element on the page, starting from the
@@ -32,15 +36,21 @@ invisible(wbElement(res$value, remDr)): An object of class "wElement" is invisib
 \details{
 Details of possible locator schemes
   \describe{
-    \item{"class name" :}{Returns an element whose class name contains the search value; compound class names are not permitted.}
-                                            \item{"css selector" :}{Returns an element matching a CSS selector.}
-                                            \item{"id" :}{Returns an element whose ID attribute matches the search value.}
-                                            \item{"name" :}{Returns an element whose NAME attribute matches the search value.}
-                                            \item{"link text" :}{Returns an anchor element whose visible text matches the search value.}
-                                            \item{"partial link text" :}{Returns an anchor element whose visible text partially matches the search value.}
-                                            \item{"tag name" :}{Returns an element whose tag name matches the search value.}
-                                            \item{"xpath" :}{Returns an element matching an XPath expression.}
-                                          }
+    \item{"class name" :}{Returns an element whose class name contains
+    the search value; compound class names are not permitted.}
+    \item{"css selector" :}{Returns an element matching a CSS selector.}
+    \item{"id" :}{Returns an element whose ID attribute matches the
+       search value.}
+     \item{"name" :}{Returns an element whose NAME attribute matches
+         the search value.}
+     \item{"link text" :}{Returns an anchor element whose visible text
+         matches the search value.}
+     \item{"partial link text" :}{Returns an anchor element whose
+         visible text partially matches the search value.}
+     \item{"tag name" :}{Returns an element whose tag name matches the
+         search value.}
+     \item{"xpath" :}{Returns an element matching an XPath expression.}
+  }
 }
 \examples{
 \dontrun{

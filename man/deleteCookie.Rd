@@ -7,17 +7,20 @@
 deleteCookie(remDr, name = NULL, ...)
 }
 \arguments{
-\item{remDr}{An object of class "rDriver". A remote driver object see \code{\link{remoteDr}}.}
+\item{remDr}{An object of class "rDriver". A remote driver object see
+\code{\link{remoteDr}}.}
 
 \item{name}{character: The name of the cookie; may not be null or an
 empty string}
 
-\item{...}{Additonal function arguments - Currently passes the \code{\link{retry}} argument.}
+\item{...}{Additonal function arguments - Currently passes the
+\code{\link{retry}} argument.}
 }
 \value{
-invisible(remDr): An object of class "rDriver" is invisibly returned.
-   A remote driver object see \code{\link{remoteDr}}. This allows for chaining from this function to
-   other functions that take such an object as an argument. See examples for further details.
+invisible(remDr): An object of class "rDriver" is invisibly
+   returned. A remote driver object see \code{\link{remoteDr}}. This
+   allows for chaining from this function to other functions that take
+   such an object as an argument. See examples for further details.
 }
 \description{
 \code{deleteCookie} Delete the cookie with the give name.
