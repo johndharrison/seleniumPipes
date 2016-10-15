@@ -1,6 +1,7 @@
 # seleniumpipes 0.3.9
 * statusCodes in checkResponse moved to internal data
 * Add status and getTimeouts to session group of functions.
+* setTimeout is renamed to setTimeouts
 
 # seleniumpipes 0.3.8
 * Remove cat calls from error messages. Replace with message
