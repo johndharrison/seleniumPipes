@@ -229,7 +229,6 @@ test_that("IsSelectedAndToggle", {
 test_that("Navigate", {
   skip_on_cran()
   # if(rdBrowser == 'safari'){
-  # see http://code.google.com/p/selenium/issues/detail?id=3771&can=1&q=browser%3DSafari%20component%3DWebDriver%20status%3ANew%2CAccepted%2CWorkingAsIntended%2CWontFix%2CNotFeasible&colspec=ID%20Stars%20Type%20Status%20Priority%20Owner%20Summary%20Browser%20Component
   # return()
   # }
 
@@ -399,7 +398,7 @@ test_that("MoveWindowPosition", {
       new_y <- new_y + 10
     }
     remDr %>% setWindowPosition(new_x, new_y)
-    loc = remDr %>% getWindowPosition
+    loc <- remDr %>% getWindowPosition
   }, error = function(e) e)
   if(grepl("Selenium Server error", as.character(chk))){
     # try old functions
@@ -416,7 +415,7 @@ test_that("MoveWindowPosition", {
       new_y <- new_y + 10
     }
     remDr %>% setWindowPositionOld(new_x, new_y)
-    loc = remDr %>% getWindowPositionOld
+    loc <- remDr %>% getWindowPositionOld
   }
   # change test to be within 10 pixels
   expect_lt(abs(loc[['x']] - new_x), 10)

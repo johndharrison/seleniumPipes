@@ -3,16 +3,21 @@ if(identical(TRUE, getOption("seleniumPipes_SL"))){
   # sauce labs test
   pv <- packageVersion("seleniumPipes")
   slFlags <- list(name = "seleniumPipes-test-suite"
-                  , build = sum(unlist(pv)*10^(3-seq_along(unlist(pv)))) # 1.2.1 for example 121
+                  , build = sum(unlist(pv)*10^(3-seq_along(unlist(pv))))
                   , tags =  list("api-example")
-                  , "custom-data" = list(release = do.call(paste, list(pv, collapse = ".")))
+                  , "custom-data" =
+                    list(release = do.call(paste,
+                                           list(pv, collapse = "."))
+
+                    )
   )
   selOptions <- getOption("seleniumPipes_selOptions")
   selOptions$extraCapabilities <- c(selOptions$extraCapabilities, slFlags)
   options(seleniumPipes_selOptions = selOptions)
 }
 
-source(file.path(find.package("seleniumPipes"), "Saucetests", 'setup.R'), local = TRUE)
+source(file.path(find.package("seleniumPipes"), "Saucetests", 'setup.R'),
+       local = TRUE)
 on.exit(remDr %>% deleteSession())
 
 #1
@@ -44,7 +49,8 @@ test_that("FindElementsByXPath", {
 test_that("FindElementByXpathThrowNoSuchElementException", {
   expect_error(
     findElementText <- remDr%>% go(loadPage("simpleTest")) %>%
-      findElement(using = "xpath", "//h4", retry = FALSE) %>% getElementText()
+      findElement(using = "xpath", "//h4", retry = FALSE) %>%
+      getElementText()
   )
   expect_equal(7, errorContent()$status)
 }
@@ -111,7 +117,8 @@ test_that("FindElementByXpathInElementContext", {
 test_that("FindElementByXpathInElementContextNotFound", {
   expect_error(remDr %>% go(loadPage("nestedElements")) %>%
                  findElement(using = "name", "form2") %>%
-                 findElementFromElement(using = "xpath", "div", retry = FALSE))
+                 findElementFromElement(using = "xpath", "div",
+                                        retry = FALSE))
   expect_equal(7, errorContent()$status)
 }
 )
@@ -119,10 +126,13 @@ test_that("FindElementByXpathInElementContextNotFound", {
 #15
 test_that("ShouldBeAbleToEnterDataIntoFormFields", {
   elem <- remDr %>% go(loadPage("xhtmlTest")) %>%
-    findElement(using = "xpath", "//form[@name='someForm']/input[@id='username']") %>%
+    findElement(using = "xpath",
+                "//form[@name='someForm']/input[@id='username']") %>%
     elementClear() %>%
     elementSendKeys("some text")
-  elem <- remDr %>% findElement(using = "xpath", "//form[@name='someForm']/input[@id='username']")
+  elem <- remDr %>%
+    findElement(using = "xpath",
+                "//form[@name='someForm']/input[@id='username']")
   expect_equal("some text", elem %>% getElementAttribute("value"))
 }
 )
@@ -153,8 +163,8 @@ test_that("SwitchToWindow", {
   # see https://code.google.com/p/selenium/issues/detail?id=3693
   #return()
   #}
-  title_1 = "XHTML Test Page"
-  title_2 = "We Arrive Here"
+  title_1 <- "XHTML Test Page"
+  title_2 <- "We Arrive Here"
 
   remDr %>% go (loadPage("xhtmlTest")) %>%
     findElement(using = "link text", "Open new window") %>% elementClick()
@@ -167,13 +177,15 @@ test_that("SwitchToWindow", {
   chk <- tryCatch({
     windows <- unlist(remDr %>% getWindowHandles(retry = FALSE))
     currentWindow <- remDr %>% getWindowHandle(retry = FALSE)
-    remDr %>% closeWindow() %>% switchToWindow(windows[!windows %in% currentWindow])
+    remDr %>% closeWindow() %>%
+      switchToWindow(windows[!windows %in% currentWindow])
   }, error = function(e) e)
   if(inherits(chk, "simpleError")){
     # try old functions
     windows <- unlist(remDr %>% getWindowHandlesOld)
     currentWindow <- remDr %>% getWindowHandleOld
-    remDr %>% closeWindow() %>% switchToWindow(windows[!windows %in% currentWindow])
+    remDr %>% closeWindow() %>%
+      switchToWindow(windows[!windows %in% currentWindow])
   }
   expect_equal(title_1, remDr %>% getTitle)
 }
@@ -192,19 +204,22 @@ test_that("IsEnabled", {
   elem <- remDr %>% go(loadPage("formPage")) %>%
     findElement(using = "xpath", "//input[@id='working']")
   expect_true(elem %>% isElementEnabled)
-  elem <- remDr %>% findElement(using = "xpath", "//input[@id='notWorking']")
+  elem <- remDr %>% findElement(using = "xpath",
+                                "//input[@id='notWorking']")
   expect_false(elem %>% isElementEnabled)
 }
 )
 
 #24-27
 test_that("IsSelectedAndToggle", {
-  if(rdBrowser == 'chrome' && package_version(remDr$sessionInfo$version)$major < 16){
+  if(rdBrowser == 'chrome' &&
+     package_version(remDr$sessionInfo$version)$major < 16){
     return("deselecting preselected values only works on chrome >= 16")
   }
   elem <- remDr %>% go(loadPage("formPage")) %>%
     findElement(using = "id", "multi")
-  option_elems <-  elem %>% findElementsFromElement(using = "xpath", "option")
+  option_elems <-  elem %>%
+    findElementsFromElement(using = "xpath", "option")
   Sys.sleep(2)
   expect_true(option_elems[[1]] %>% isElementSelected)
   option_elems[[1]] %>% elementClick
@@ -220,7 +235,6 @@ test_that("IsSelectedAndToggle", {
 #28-30
 test_that("Navigate", {
   # if(rdBrowser == 'safari'){
-  # see http://code.google.com/p/selenium/issues/detail?id=3771&can=1&q=browser%3DSafari%20component%3DWebDriver%20status%3ANew%2CAccepted%2CWorkingAsIntended%2CWontFix%2CNotFeasible&colspec=ID%20Stars%20Type%20Status%20Priority%20Owner%20Summary%20Browser%20Component
   # return()
   # }
 
@@ -248,7 +262,8 @@ test_that("GetImplicitAttribute", {
     findElements(using = "xpath", "//option")
   expect_true(length(elems) >= 3)
   for(x in seq(4)){
-    expect_equal(x-1, as.integer(elems[[x]] %>% getElementAttribute("index")))
+    expect_equal(x-1, as.integer(elems[[x]] %>%
+                                   getElementAttribute("index")))
   }
 }
 )
@@ -272,7 +287,8 @@ test_that("ExecuteSimpleScript", {
 test_that("ExecuteScriptAndReturnElement", {
   chk <- tryCatch({
     elem <- remDr %>% go(loadPage("xhtmlTest")) %>%
-      executeScript("return document.getElementById('id1');", retry = FALSE)
+      executeScript("return document.getElementById('id1');",
+                    retry = FALSE)
   }, error = function(e) e)
   if(inherits(chk, "simpleError")){
     # try old functions
@@ -286,14 +302,16 @@ test_that("ExecuteScriptAndReturnElement", {
 #39
 test_that("ExecuteScriptWithArgs", {
   chk <- tryCatch({
+    jS <- "return arguments[0] == 'fish' ? 'fish' : 'not fish';"
     result <- remDr %>% go(loadPage("xhtmlTest")) %>%
-      executeScript("return arguments[0] == 'fish' ? 'fish' : 'not fish';", list("fish")
+      executeScript(jS, list("fish")
                     , retry = FALSE)
   }, error = function(e) e)
   if(inherits(chk, "simpleError")){
     # try old functions
+    jS <- "return arguments[0] == 'fish' ? 'fish' : 'not fish';"
     result <- remDr %>% go(loadPage("xhtmlTest")) %>%
-      executeScriptOld("return arguments[0] == 'fish' ? 'fish' : 'not fish';", list("fish"))
+      executeScriptOld(jS, list("fish"))
   }
   expect_equal("fish", result)
 }
@@ -320,14 +338,19 @@ test_that("ExecuteScriptWithElementArgs", {
   chk <- tryCatch({
     button <- remDr %>% go(loadPage("javascriptPage")) %>%
       findElement(using = "id", "plainButton")
-    appScript <- "arguments[0]['flibble'] = arguments[0].getAttribute('id'); return arguments[0]['flibble'];"
-    result <- remDr %>% executeScript(appScript, list(button), retry = FALSE)
+    appScript <-
+      "arguments[0]['flibble'] = arguments[0].getAttribute('id');
+        return arguments[0]['flibble'];"
+    result <- remDr %>% executeScript(appScript, list(button),
+                                      retry = FALSE)
   }, error = function(e) e)
   if(inherits(chk, "simpleError")){
     # try old functions
     button <- remDr %>% go(loadPage("javascriptPage")) %>%
       findElement(using = "id", "plainButton")
-    appScript <- "arguments[0]['flibble'] = arguments[0].getAttribute('id'); return arguments[0]['flibble'];"
+    appScript <-
+      "arguments[0]['flibble'] = arguments[0].getAttribute('id');
+        return arguments[0]['flibble'];"
     result <- remDr %>% executeScriptOld(appScript, list(button))
   }
   expect_equal("plainButton", result)
@@ -345,8 +368,10 @@ test_that("FindElementsByPartialLinkText", {
 #43-44
 test_that("IsElementDisplayed", {
   visible <- remDr %>% go(loadPage("javascriptPage")) %>%
-    findElement(using = "id", "displayed") %>% getElementCssValue("visibility")
-  not_visible <- remDr %>% findElement(using = "id", "hidden")%>% getElementCssValue("visibility")
+    findElement(using = "id", "displayed") %>%
+    getElementCssValue("visibility")
+  not_visible <- remDr %>% findElement(using = "id", "hidden")%>%
+    getElementCssValue("visibility")
   expect_identical(visible, "visible")
   expect_identical(not_visible, "hidden")
 }
@@ -365,8 +390,8 @@ test_that("MoveWindowPosition", {
     getWindowPosition()
   # note can't test 0,0 since some OS's dont allow that location
   # because of system toolbars
-  new_x = 50
-  new_y = 50
+  new_x <- 50
+  new_y <- 50
   if(loc[['x']] == new_x){
     new_x <- new_x + 10
   }
@@ -374,7 +399,7 @@ test_that("MoveWindowPosition", {
     new_y <- new_y + 10
   }
   remDr %>% setWindowPosition(new_x, new_y)
-  loc = remDr %>% getWindowPosition()
+  loc <- remDr %>% getWindowPosition()
   # change test to be within 10 pixels
   expect_less_than(abs(loc[['x']] - new_x), 10)
   expect_less_than(abs(loc[['y']] - new_y), 10)

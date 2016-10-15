@@ -123,9 +123,10 @@ test_that("testShouldBeAbleToPassANumberAnAsArgument", {
 
 test_that("testShouldBeAbleToPassAWebElementAsArgument", {
   skip_on_cran()
+  jS <- "arguments[0]['flibble'] = arguments[0].getAttribute('id');
+          return arguments[0]['flibble']"
   value <- remDr %>% go(loadPage("javascriptPage")) %>%
-    executeScript("arguments[0]['flibble'] = arguments[0].getAttribute('id'); return arguments[0]['flibble']"
-                  , list(remDr %>% findElement("id", "plainButton")))
+    executeScript(jS, list(remDr %>% findElement("id", "plainButton")))
   expect_identical(value, "plainButton")
 }
 )

@@ -17,7 +17,7 @@ test_that("testShouldAlwaysFocusOnTheTopMostFrameAfterANavigationEvent", {
 }
 )
 
-test_that("testShouldNotAutomaticallySwitchFocusToAnIFrameWhenAPageContainingThemIsLoaded", {
+test_that("testNotSwitchFocusToAnIFrameWhenAPageContainingThemIsLoaded", {
   skip_on_cran()
   result <- remDr %>% go(loadPage("iframes")) %>%
     findElement("id", "iframe_page_heading")
@@ -113,7 +113,7 @@ test_that("testShouldBeAbleToSwitchToFrameWithNameContainingDot", {
 }
 )
 
-test_that("testShouldBeAbleToSwitchToAFrameUsingAPreviouslyLocatedWebElement", {
+test_that("testBeAbleToSwitchToAFrameUsingAPreviouslyLocatedWebElement", {
   skip_on_cran()
   frame <- remDr %>% go(loadPage("frameset")) %>%
     findElement("tag name", "frame")
@@ -124,7 +124,7 @@ test_that("testShouldBeAbleToSwitchToAFrameUsingAPreviouslyLocatedWebElement", {
 }
 )
 
-test_that("testShouldBeAbleToSwitchToAnIFrameUsingAPreviouslyLocatedWebElement", {
+test_that("testBeAbleToSwitchToIFrameUsingAPreviouslyLocatedWebElement", {
   skip_on_cran()
   frame <- remDr %>% go(loadPage("iframes")) %>%
     findElement("tag name", "iframe")
@@ -165,7 +165,7 @@ test_that("testShouldSelectChildFramesByChainedCalls", {
 }
 )
 
-test_that("testShouldThrowFrameNotFoundExceptionLookingUpSubFramesWithSuperFrameNames", {
+test_that("testThrowExceptionLookingUpSubFramesWithSuperFrameNames", {
   skip_on_cran()
   expect_error(remDr %>% go(loadPage("frameset")) %>%
     switchToFrame(remDr %>% findElement("name", "fourth")) %>%
@@ -178,7 +178,8 @@ test_that("testShouldThrowAnExceptionWhenAFrameCannotBeFound", {
   skip_on_cran()
   expect_error(
     result <- remDr %>% go(loadPage("xhtmlTest")) %>%
-      switchToFrame(remDr %>% findElement("name", "Nothing here", retry = FALSE))
+      switchToFrame(remDr %>% findElement("name", "Nothing here",
+                                          retry = FALSE))
   )
   expect_identical(errorContent()$status, 7L)
 }
@@ -306,7 +307,8 @@ test_that("testGetCurrentUrlReturnsTopLevelBrowsingContextUrl", {
   result <- remDr %>% go(loadPage("frameset")) %>%
     getCurrentUrl
   expect_identical(result, loadPage("frameset"))
-  result <- remDr %>% switchToFrame(remDr %>% findElement("name", "second")) %>%
+  result <- remDr %>%
+    switchToFrame(remDr %>% findElement("name", "second")) %>%
     getCurrentUrl
   expect_identical(result, loadPage("frameset"))
 }
@@ -317,13 +319,14 @@ test_that("testGetCurrentUrlReturnsTopLevelBrowsingContextUrlForIframes", {
   result <- remDr %>% go(loadPage("iframes")) %>%
     getCurrentUrl
   expect_identical(result, loadPage("iframes"))
-  result <- remDr %>% switchToFrame(remDr %>% findElement("id", "iframe1")) %>%
+  result <- remDr %>%
+    switchToFrame(remDr %>% findElement("id", "iframe1")) %>%
     getCurrentUrl
   expect_identical(result, loadPage("iframes"))
 }
 )
 
-test_that("testShouldBeAbleToSwitchToTheTopIfTheFrameIsDeletedFromUnderUs", {
+test_that("testShouldSwitchToTheTopIfTheFrameIsDeletedFromUnderUs", {
   skip_on_cran()
   remDr %>% go(loadPage("frame_switching_tests/deletingFrame")) %>%
     switchToFrame(remDr %>% findElement("id", "iframe1")) %>%
@@ -337,7 +340,7 @@ test_that("testShouldBeAbleToSwitchToTheTopIfTheFrameIsDeletedFromUnderUs", {
 }
 )
 
-test_that("testShouldBeAbleToSwitchToTheTopIfTheFrameIsDeletedFromUnderUsWithFrameIndex", {
+test_that("testShouldSwitchToTheTopIfTheFrameIsDeletedFromUnderUs", {
   skip_on_cran()
   remDr %>% go(loadPage("frame_switching_tests/deletingFrame")) %>%
     switchToFrame(0L) %>%
@@ -351,7 +354,7 @@ test_that("testShouldBeAbleToSwitchToTheTopIfTheFrameIsDeletedFromUnderUsWithFra
 }
 )
 
-test_that("testShouldBeAbleToSwitchToTheTopIfTheFrameIsDeletedFromUnderUsWithWebelement", {
+test_that("testShouldSwitchToTheTopIfTheFrameIsDeletedWithWebelement", {
   skip_on_cran()
   remDr %>% go(loadPage("frame_switching_tests/deletingFrame")) %>%
     switchToFrame(remDr %>% findElement("id", "iframe1")) %>%
@@ -380,7 +383,8 @@ test_that("testJavaScriptShouldExecuteInTheContextOfTheCurrentFrame", {
   result <- remDr %>% go(loadPage("frameset")) %>%
     executeScript("return window == window.top")
   expect_true(result)
-  result <- remDr %>% switchToFrame(remDr %>% findElement("name", "third")) %>%
+  result <- remDr %>%
+    switchToFrame(remDr %>% findElement("name", "third")) %>%
     executeScript("return window != window.top")
   expect_true(result)
 }

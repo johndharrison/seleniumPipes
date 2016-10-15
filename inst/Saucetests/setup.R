@@ -4,10 +4,13 @@ if(is.null(getOption("seleniumPipes_selOptions"))){
 }
 remDr <- do.call(remoteDr, getOption("seleniumPipes_selOptions"))
 if(identical(getOption("seleniumPipes_SL"), TRUE)){
-  options(seleniumPipes_sauceID = remDr$sessionInfo$webdriver.remote.sessionid)
+  options(seleniumPipes_sauceID =
+            remDr$sessionInfo$webdriver.remote.sessionid)
 }
-remDr %>% setTimeout(milliseconds = 10000) # set page load timeout to 3 secs
-remDr %>% setTimeout(type = "implicit", milliseconds = 5000) # wait 5 secs for elements to load
+# set page load timeout to 3 secs
+remDr %>% setTimeout(milliseconds = 10000)
+# wait 5 secs for elements to load
+remDr %>% setTimeout(type = "implicit", milliseconds = 5000)
 rdBrowser <- remDr$sessionInfo$browserName
 if(rdBrowser %in% c("iPhone", "iPad", "safari")){
   htmlSrc <- "myname.local:3000"

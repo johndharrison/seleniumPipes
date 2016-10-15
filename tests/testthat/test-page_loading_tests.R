@@ -49,7 +49,7 @@ test_that("testShouldBeAbleToNavigateBackInTheBrowserHistory", {
 }
 )
 
-test_that("testShouldBeAbleToNavigateBackInTheBrowserHistoryInPresenceOfIframes", {
+test_that("testShouldBeAbleToNavigateBackInPresenceOfIframes", {
   skip_on_cran()
   remDr %>% go(loadPage("xhtmlTest")) %>%
     findElement("name", "sameWindow") %>%
@@ -74,7 +74,7 @@ test_that("testShouldBeAbleToNavigateForwardsInTheBrowserHistory", {
 }
 )
 
-test_that("testShouldNotHangifDocumentOpenCallIsNeverFollowedByDocumentCloseCall", {
+test_that("testShouldNotHangifOpenCallIsNeverFollowedByCloseCall", {
   skip_on_cran()
   result <- remDr %>% go(loadPage("document_write_in_onload")) %>%
     findElement("xpath", "//body")
