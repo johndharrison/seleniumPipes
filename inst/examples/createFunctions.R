@@ -1,5 +1,5 @@
-# utility script to get the w3c specs to create the functions in seleniumPipes
-# assummed ran from the project base
+# utility script to get the w3c specs to create the functions in
+# seleniumPipes. Assummed ran from the project base
 DOCUMENT <- FALSE
 library(xml2)
 library(httr)
@@ -16,67 +16,125 @@ setnames(methPaths, names(methPaths), tocamel(tolower(names(methPaths))))
 methPaths[,command := tocamel(tolower(command))]
 
 oldSelMethods <- list(
-  data.frame(method = "GET", uriTemplate = "/session/{session id}/window_handle",
-             command = "getWindowHandleOld", stringsAsFactors = FALSE),
-  data.frame(method = "GET", uriTemplate = "/session/{session id}/window_handles",
-             command = "getWindowHandlesOld", stringsAsFactors = FALSE),
-  data.frame(method = "GET", uriTemplate = "/session/{sessionId}/window/{windowHandle}/size",
-             command = "getWindowSizeOld", stringsAsFactors = FALSE),
-  data.frame(method = "GET", uriTemplate = "/session/{sessionId}/window/{windowHandle}/position",
-             command = "getWindowPositionOld", stringsAsFactors = FALSE),
-  data.frame(method = "POST", uriTemplate = "/session/{sessionId}/window/{windowHandle}/size",
-             command = "setWindowSizeOld", stringsAsFactors = FALSE),
-  data.frame(method = "POST", uriTemplate = "/session/{sessionId}/window/{windowHandle}/position",
-             command = "setWindowPositionOld", stringsAsFactors = FALSE),
-  data.frame(method = "POST", uriTemplate = "/session/{sessionId}/window/{windowHandle}/maximize",
-             command = "maximizeWindowOld", stringsAsFactors = FALSE),
-  data.frame(method = "POST", uriTemplate = "/session/{session id}/execute",
-             command = "executeScriptOld", stringsAsFactors = FALSE),
-  data.frame(method = "POST", uriTemplate = "/session/{session id}/execute_async",
-             command = "executeAsyncScriptOld", stringsAsFactors = FALSE),
-  data.frame(method = "GET", uriTemplate = "/session/{session id}/alert_text",
-             command = "getAlertTextOld", stringsAsFactors = FALSE),
-  data.frame(method = "POST", uriTemplate = "/session/{session id}/alert_text",
-             command = "sendAlertTextOld", stringsAsFactors = FALSE),
-  data.frame(method = "POST", uriTemplate = "/session/{session id}/alert_accept",
-             command = "acceptAlertOld", stringsAsFactors = FALSE),
-  data.frame(method = "POST", uriTemplate = "/session/{session id}/alert_dismiss",
-             command = "dismissAlertOld", stringsAsFactors = FALSE)
+  data.frame(
+    method = "GET",
+    uriTemplate = "/session/{session id}/window_handle",
+    command = "getWindowHandleOld", stringsAsFactors = FALSE
+  ),
+  data.frame(
+    method = "GET",
+    uriTemplate = "/session/{session id}/window_handles",
+    command = "getWindowHandlesOld", stringsAsFactors = FALSE
+  ),
+  data.frame(
+    method = "GET",
+    uriTemplate = "/session/{sessionId}/window/{windowHandle}/size",
+    command = "getWindowSizeOld", stringsAsFactors = FALSE
+  ),
+  data.frame(
+    method = "GET",
+    uriTemplate = "/session/{sessionId}/window/{windowHandle}/position",
+    command = "getWindowPositionOld", stringsAsFactors = FALSE
+  ),
+  data.frame(
+    method = "POST",
+    uriTemplate = "/session/{sessionId}/window/{windowHandle}/size",
+    command = "setWindowSizeOld", stringsAsFactors = FALSE
+  ),
+  data.frame(
+    method = "POST",
+    uriTemplate = "/session/{sessionId}/window/{windowHandle}/position",
+    command = "setWindowPositionOld", stringsAsFactors = FALSE
+  ),
+  data.frame(
+    method = "POST",
+    uriTemplate = "/session/{sessionId}/window/{windowHandle}/maximize",
+    command = "maximizeWindowOld", stringsAsFactors = FALSE
+  ),
+  data.frame(
+    method = "POST",
+    uriTemplate = "/session/{session id}/execute",
+    command = "executeScriptOld", stringsAsFactors = FALSE
+  ),
+  data.frame(
+    method = "POST",
+    uriTemplate = "/session/{session id}/execute_async",
+    command = "executeAsyncScriptOld", stringsAsFactors = FALSE
+  ),
+  data.frame(
+    method = "GET",
+    uriTemplate = "/session/{session id}/alert_text",
+    command = "getAlertTextOld", stringsAsFactors = FALSE
+  ),
+  data.frame(
+    method = "POST",
+    uriTemplate = "/session/{session id}/alert_text",
+    command = "sendAlertTextOld", stringsAsFactors = FALSE
+  ),
+  data.frame(
+    method = "POST",
+    uriTemplate = "/session/{session id}/alert_accept",
+    command = "acceptAlertOld", stringsAsFactors = FALSE
+  ),
+  data.frame(
+    method = "POST",
+    uriTemplate = "/session/{session id}/alert_dismiss",
+    command = "dismissAlertOld", stringsAsFactors = FALSE
   )
+)
 methPaths <- rbindlist(list(methPaths, rbindlist(oldSelMethods)))
 
-methPaths[, uriTemplate := gsub("/session/\\{session id)/cookie", "/session/\\{session id\\}/cookie", uriTemplate)]
+methPaths[, uriTemplate := gsub("/session/\\{session id)/cookie",
+                                "/session/\\{session id\\}/cookie",
+                                uriTemplate)]
 methPaths[, uriTemplate := gsub("session id", "sessionId", uriTemplate)]
 methPaths[, uriTemplate := gsub("element id", "elementId", uriTemplate)]
-methPaths[, uriTemplate := gsub("\\{property name\\}", "\\{propertyName\\}", uriTemplate)]
+methPaths[, uriTemplate := gsub("\\{property name\\}",
+                                "\\{propertyName\\}",
+                                uriTemplate)]
 methPaths[, uriTemplate := gsub("\\{", "\\{\\{", uriTemplate)]
 methPaths[, uriTemplate := gsub("\\}", "\\}\\}", uriTemplate)]
 methPaths[, elemInd := grepl("\\{elementId\\}", uriTemplate)]
 methPaths[, Arg := ifelse(elemInd, "webElem", "remDr")]
 
 methGroups <- list(
-  sessions = c("newSession", "deleteSession", "setTimeout"),
-  navigation = c("go", "getCurrentUrl", "back", "forward", "refresh", "getTitle"),
-  commandContexts = c("getWindowHandle", "closeWindow", "switchToWindow", "getWindowHandles"
-                      , "switchToFrame", "switchToParentFrame", "getWindowSize", "setWindowSize"
-                      , "getWindowPosition", "setWindowPosition", "maximizeWindow", "fullscreenWindow"),
-  elementRetrieval = c("getActiveElement", "findElement", "findElements", "findElementFromElement"
-                       , "findElementsFromElement"),
-  elementState = c("isElementSelected", "getElementAttribute", "getElementProperty", "getElementCssValue"
-                   , "getElementText", "getElementTagName", "getElementRect", "isElementEnabled"),
-  elementInteraction = c("elementClick", "elementClear", "elementSendKeys"),
-  documentHandling = c("getPageSource", "executeScript", "executeAsyncScript"),
-  cookies = c("getAllCookies", "getNamedCookie", "addCookie", "deleteCookie", "deleteAllCookies"),
+  sessions = c("newSession", "deleteSession", "status", "setTimeouts",
+               "getTimeouts"),
+  navigation = c("go", "getCurrentUrl", "back", "forward", "refresh",
+                 "getTitle"),
+  commandContexts = c("getWindowHandle", "closeWindow", "switchToWindow",
+                      "getWindowHandles" , "switchToFrame",
+                      "switchToParentFrame", "getWindowSize",
+                      "setWindowSize", "getWindowPosition",
+                      "setWindowPosition", "maximizeWindow",
+                      "fullscreenWindow"),
+  elementRetrieval = c("getActiveElement", "findElement", "findElements",
+                       "findElementFromElement",
+                       "findElementsFromElement"),
+  elementState = c("isElementSelected", "getElementAttribute",
+                   "getElementProperty", "getElementCssValue",
+                   "getElementText", "getElementTagName",
+                   "getElementRect", "isElementEnabled"),
+  elementInteraction = c("elementClick", "elementClear",
+                         "elementSendKeys"),
+  documentHandling = c("getPageSource", "executeScript",
+                       "executeAsyncScript"),
+  cookies = c("getAllCookies", "getNamedCookie", "addCookie",
+              "deleteCookie", "deleteAllCookies"),
   interactions = c("performActions", "releasingActions"),
-  userPrompts = c("dismissAlert", "acceptAlert", "getAlertText", "sendAlertText"),
+  userPrompts = c("dismissAlert", "acceptAlert", "getAlertText",
+                  "sendAlertText"),
   screenCapture = c("takeScreenshot", "takeElementScreenshot"),
-  oldMethods = c("getWindowHandleOld", "getWindowHandlesOld", "getWindowPositionOld", "getWindowSizeOld"
-                 , "setWindowSizeOld", "setWindowPositionOld", "maximizeWindowOld"
-                 , "executeScriptOld", "executeAsyncScriptOld"
-                 , "getAlertTextOld", "sendAlertTextOld", "acceptAlertOld", "dismissAlertOld")
+  oldMethods = c("getWindowHandleOld", "getWindowHandlesOld",
+                 "getWindowPositionOld", "getWindowSizeOld",
+                 "setWindowSizeOld", "setWindowPositionOld",
+                 "maximizeWindowOld", "executeScriptOld",
+                 "executeAsyncScriptOld", "getAlertTextOld",
+                 "sendAlertTextOld", "acceptAlertOld", "dismissAlertOld")
 )
 methGroups <- lapply(names(methGroups), function(x){
-  expand.grid(group = x, command = methGroups[[x]], stringsAsFactors = FALSE)
+  expand.grid(group = x, command = methGroups[[x]],
+              stringsAsFactors = FALSE)
 }
 )
 methGroups <- rbindlist(methGroups)
@@ -105,10 +163,13 @@ fbody = "
   obj <- {{Arg}}
   obj$sessionId <- {{Arg}}$sessionId({{Arg}}$drvID)
   {{{JSON_command}}}
-  pathTemplate <- whisker.render(\"{{uriTemplate}}\", data = obj)
+  pathTemplate <-
+    whisker.render(\"{{uriTemplate}}\", data = obj)
   pathURL <- {{Arg}}[['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = {{method}}, url = build_url(pathURL), source = \"{{command}}\", drvID = {{Arg}}$drvID, json = {{JSON}},...)
+  res <- queryDriver(verb = {{method}}, url = build_url(pathURL),
+            source = \"{{command}}\",
+            drvID = {{Arg}}$drvID, json = {{JSON}},...)
   {{{return}}}
 }
 "
@@ -136,10 +197,13 @@ fbody = "
   obj$sessionId <- {{Arg}}$sessionId({{Arg}}$remDr$drvID)
   obj$elementId <- {{Arg}}$elementId$ELEMENT
   {{{JSON_command}}}
-  pathTemplate <- whisker.render(\"{{uriTemplate}}\", data = obj)
+  pathTemplate <-
+    whisker.render(\"{{uriTemplate}}\", data = obj)
   pathURL <- {{Arg}}[['remDr']][['remServAdd']]
   pathURL[['path']] <- paste0(pathURL[['path']], pathTemplate)
-  res <- queryDriver(verb = {{method}}, url = build_url(pathURL), source = \"{{command}}\", drvID = {{Arg}}$remDr$drvID, json = {{JSON}},...)
+  res <- queryDriver(verb = {{method}}, url = build_url(pathURL),
+            source = \"{{command}}\", drvID = {{Arg}}$remDr$drvID,
+            json = {{JSON}},...)
   {{{return}}}
 }
 
@@ -208,7 +272,8 @@ JCommands <- list(
   newSession = list( com = "
 # Add function specific JSON to post
   jsonBody <- toJSON(list(
-    desiredCapabilities =c(remDr$desiredCapabilities, remDr$extraCapabilities)
+    desiredCapabilities =c(remDr$desiredCapabilities,
+                            remDr$extraCapabilities)
   ), auto_unbox = TRUE)
   ", type = "ret8"),
 
@@ -264,8 +329,9 @@ JCommands <- list(
   jsonBody <- toJSON(list(
     name = name
   ), auto_unbox = TRUE)
-    ", args = list(name = NA)
-    , type = "ret1"
+    ",
+    args = list(name = NA),
+    type = "ret1"
   ),
 
   getWindowHandles = list(type = "ret2"),
@@ -274,48 +340,62 @@ JCommands <- list(
 
   getWindowPosition = list(type = "ret2"),
 
-  getWindowPositionOld = list(com = "obj$windowHandle <- handle"
-                              , args = list(handle = "\"current\""), type = "ret2"
-                              ),
+  getWindowPositionOld = list(
+    com = "obj$windowHandle <- handle",
+    args = list(handle = "\"current\""),
+    type = "ret2"
+  ),
 
   getWindowSize = list(type = "ret2"),
 
-  getWindowSizeOld = list(com = "obj$windowHandle <- handle"
-                            , args = list(handle = "\"current\""), type = "ret2"
+  getWindowSizeOld = list(
+    com = "obj$windowHandle <- handle",
+    args = list(handle = "\"current\""),
+    type = "ret2"
   ),
 
-  setWindowSize = list(com = "
+  setWindowSize = list(
+    com = "
   jsonBody <- toJSON(list(
     width = width, height = height
-  ), auto_unbox = TRUE)"
-                       , args = list(width = NA, height = NA), type = "ret1"),
-
-  setWindowSizeOld = list(com = "obj$windowHandle <- handle
-  jsonBody <- toJSON(list(
-    width = width, height = height
-  ), auto_unbox = TRUE)"
-                        , args = list(width = NA, height = NA, handle = "\"current\"")
-                        , type = "ret1"
+  ), auto_unbox = TRUE)",
+    args = list(width = NA, height = NA),
+    type = "ret1"
   ),
 
-  setWindowPosition = list(com = "
+  setWindowSizeOld = list(
+    com = "obj$windowHandle <- handle
   jsonBody <- toJSON(list(
-    x = x, y = y
-  ), auto_unbox = TRUE)"
-   , args = list(x = NA, y = NA), type = "ret1"),
+    width = width, height = height
+  ), auto_unbox = TRUE)",
+    args = list(width = NA, height = NA, handle = "\"current\""),
+    type = "ret1"
+  ),
 
-  setWindowPositionOld = list(com = "obj$windowHandle <- handle
+  setWindowPosition = list(
+    com = "
   jsonBody <- toJSON(list(
     x = x, y = y
-  ), auto_unbox = TRUE)"
-                        , args = list(x = NA, y = NA, handle = "\"current\"")
-   , type = "ret1"
+  ), auto_unbox = TRUE)",
+    args = list(x = NA, y = NA),
+    type = "ret1"
+  ),
+
+  setWindowPositionOld = list(
+    com = "obj$windowHandle <- handle
+  jsonBody <- toJSON(list(
+    x = x, y = y
+  ), auto_unbox = TRUE)",
+    args = list(x = NA, y = NA, handle = "\"current\""),
+    type = "ret1"
   ),
 
   maximizeWindow = list(com = "jsonBody <- NULL\n", type = "ret1"),
 
-  maximizeWindowOld = list(com = "jsonBody <- NULL\nobj$windowHandle <- handle"
-                        , args = list(handle = "\"current\""), type = "ret1"
+  maximizeWindowOld = list(
+    com = "jsonBody <- NULL\nobj$windowHandle <- handle",
+    args = list(handle = "\"current\""),
+    type = "ret1"
   ),
 
   switchToFrame = list(
@@ -328,14 +408,18 @@ JCommands <- list(
   jsonBody <- toJSON(list(
     id = Id
   ), auto_unbox = TRUE, null = \"null\")
-    ", args = list(Id = "NULL")
-    , type = "ret1"
+    ",
+    args = list(Id = "NULL"),
+    type = "ret1"
   ),
 
-  switchToParentFrame = list(com =  "
+  switchToParentFrame = list(
+    com = "
 # Add function specific JSON to post
   jsonBody <- NULL
-  ",type = "ret1"),
+  ",
+    type = "ret1"
+  ),
 
   findElement = list(
     com = "
@@ -344,8 +428,13 @@ JCommands <- list(
   jsonBody <- toJSON(list(
     using = using, value = value
   ), auto_unbox = TRUE)
-  ", args = list(using = "c(\"xpath\", \"css selector\", \"id\", \"name\", \"tag name\", \"class name\", \"link text\", \"partial link text\")"
-                 , value = NA)
+  ",
+    args = list(
+      using =
+"c(\"xpath\", \"css selector\", \"id\", \"name\",
+   \"tag name\", \"class name\", \"link text\",
+   \"partial link text\")",
+      value = NA)
     , type = "ret4"
   ),
 
@@ -356,8 +445,13 @@ JCommands <- list(
   jsonBody <- toJSON(list(
     using = using, value = value
   ), auto_unbox = TRUE)
-  " , args = list(using = "c(\"xpath\", \"css selector\", \"id\", \"name\", \"tag name\", \"class name\", \"link text\", \"partial link text\")"
-                  , value = NA)
+  " ,
+    args = list(
+      using =
+"c(\"xpath\", \"css selector\", \"id\", \"name\",
+   \"tag name\", \"class name\", \"link text\",
+   \"partial link text\")",
+      value = NA)
     , type = "ret10"
   ),
 
@@ -368,8 +462,13 @@ JCommands <- list(
   jsonBody <- toJSON(list(
     using = using, value = value
   ), auto_unbox = TRUE)
-  " , args = list(using = "c(\"xpath\", \"css selector\", \"id\", \"name\", \"tag name\", \"class name\", \"link text\", \"partial link text\")"
-                  , value = NA)
+  " ,
+    args = list(
+      using =
+"c(\"xpath\", \"css selector\", \"id\", \"name\",
+   \"tag name\", \"class name\", \"link text\",
+   \"partial link text\")",
+      value = NA)
     , type = "ret5"
   ),
 
@@ -380,8 +479,13 @@ JCommands <- list(
   jsonBody <- toJSON(list(
     using = using, value = value
   ), auto_unbox = TRUE)
-  "  , args = list(using = "c(\"xpath\", \"css selector\", \"id\", \"name\", \"tag name\", \"class name\", \"link text\", \"partial link text\")"
-                   , value = NA)
+  "  ,
+    args = list(
+      using =
+"c(\"xpath\", \"css selector\", \"id\", \"name\",
+   \"tag name\", \"class name\", \"link text\",
+   \"partial link text\")",
+      value = NA)
     , type = "ret11"
   ),
 
@@ -390,16 +494,22 @@ JCommands <- list(
   isElementSelected = list(type = "ret2"),
 
   getElementAttribute = list(
-    com = "obj$name <- attribute"
-    , args = list(attribute =NA), type = "ret2"),
+    com = "obj$name <- attribute",
+    args = list(attribute =NA),
+    type = "ret2"
+  ),
 
   getElementProperty = list(
-    com = "obj$name <- property"
-    , args = list(property = NA), type = "ret2"),
+    com = "obj$name <- property",
+    args = list(property = NA),
+    type = "ret2"
+  ),
 
   getElementCssValue = list(
-    com = "obj$propertyName <- propertyName"
-    , args = list(propertyName = NA), type = "ret2"),
+    com = "obj$propertyName <- propertyName",
+    args = list(propertyName = NA),
+    type = "ret2"
+  ),
 
   getElementText = list(type = "ret2"),
 
@@ -415,8 +525,9 @@ JCommands <- list(
 
   elementSendKeys = list(
     com = "sendKeys <- list(...)
-      jsonBody <- toJSON(list(value = matchSelKeys(sendKeys)), auto_unbox = TRUE)"
-    , type = "ret7"),
+      jsonBody <- toJSON(list(value = matchSelKeys(sendKeys)),
+    auto_unbox = TRUE)",
+    type = "ret7"),
 
   executeScript = list(
     com = "
@@ -430,9 +541,9 @@ JCommands <- list(
   jsonBody <- toJSON(list(
     script = script, args = args
   ), auto_unbox = TRUE)
-"
-    , args = list(script = NA, args = "list()", replace = "TRUE")
-    , type = "ret6"
+",
+    args = list(script = NA, args = "list()", replace = "TRUE"),
+    type = "ret6"
   ),
 
   executeScriptOld = list(
@@ -447,9 +558,9 @@ JCommands <- list(
     jsonBody <- toJSON(list(
     script = script, args = args
     ), auto_unbox = TRUE)
-    "
-    , args = list(script = NA, args = "list()", replace = "TRUE")
-    , type = "ret6"
+    ",
+    args = list(script = NA, args = "list()", replace = "TRUE"),
+    type = "ret6"
   ),
 
   executeAsyncScript = list(
@@ -464,9 +575,9 @@ JCommands <- list(
   jsonBody <- toJSON(list(
     script = script, args = args
   ), auto_unbox = TRUE)
-"
-    , args = list(script = NA, args = "list()", replace = "TRUE")
-    , type = "ret6"
+",
+    args = list(script = NA, args = "list()", replace = "TRUE"),
+    type = "ret6"
   ),
 
   executeAsyncScriptOld = list(
@@ -481,32 +592,36 @@ JCommands <- list(
     jsonBody <- toJSON(list(
     script = script, args = args
     ), auto_unbox = TRUE)
-    "
-    , args = list(script = NA, args = "list()", replace = "TRUE")
-    , type = "ret6"
+    ",
+    args = list(script = NA, args = "list()", replace = "TRUE"),
+    type = "ret6"
   ),
 
   getAllCookies = list(type = "ret2"),
 
   getNamedCookie = list(
-    com = "obj$name <- name"
-    , args = list(name = "NULL")
-    , type = "ret2"),
+    com = "obj$name <- name",
+    args = list(name = "NULL"),
+    type = "ret2"
+  ),
 
   addCookie = list(
     com = "
   cookie <- list(name = name, value = value, path = path, domain = domain
                 , secure = secure, httpOnly = httpOnly, expiry = expiry)
   cookie <- cookie[!sapply(cookie, is.null)]
-  jsonBody <- toJSON(list(cookie = cookie), null = \"null\", auto_unbox = TRUE)"
-    , args = list(name = NA, value = NA, path = "NULL", domain = "NULL", secure = "FALSE"
-                  , httpOnly = "NULL", expiry = "NULL")
-    , type = "ret1"),
+  jsonBody <- toJSON(list(cookie = cookie), null = \"null\",
+    auto_unbox = TRUE)",
+    args = list(name = NA, value = NA, path = "NULL", domain = "NULL",
+                  secure = "FALSE", httpOnly = "NULL", expiry = "NULL"),
+    type = "ret1"
+  ),
 
   deleteCookie = list(
-    com = "obj$name <- name"
-    , args = list(name = "NULL")
-    , type = "ret1"),
+    com = "obj$name <- name",
+    args = list(name = "NULL"),
+    type = "ret1"
+  ),
 
   deleteAllCookies = list(type = "ret1"),
 
@@ -524,33 +639,53 @@ JCommands <- list(
 
   sendAlertText = list(
     com = "
-    jsonBody <- toJSON(list(text = text), auto_unbox = TRUE)"
-    , args = list(text = "\"\"")
-    , type = "ret1"),
+    jsonBody <- toJSON(list(text = text), auto_unbox = TRUE)",
+    args = list(text = "\"\""),
+    type = "ret1"
+  ),
 
   sendAlertTextOld = list(
     com = "
-    jsonBody <- toJSON(list(text = text), auto_unbox = TRUE)"
-    , args = list(text = "\"\"")
-    , type = "ret1"),
+    jsonBody <- toJSON(list(text = text), auto_unbox = TRUE)",
+    args = list(text = "\"\""),
+    type = "ret1"
+  ),
 
-  setTimeout = list(
+  setTimeouts = list(
     com = "
-      jsonBody <- toJSON(list(type = type, ms = milliseconds), auto_unbox = TRUE)"
-    , args = list(type = '\"page load\"', milliseconds = 10000)
-    , type = "ret1"),
+      jsonBody <- toJSON(list(type = type, ms = milliseconds),
+    auto_unbox = TRUE)",
+    args = list(type = '\"page load\"', milliseconds = 10000),
+    type = "ret1"
+  ),
+
+  getTimeouts = list(
+    com = "
+      jsonBody <- toJSON(list(type = type),
+    auto_unbox = TRUE)",
+    args = list(type = '\"page load\"'),
+    type = "ret2"
+  ),
+
+  status = list(
+    type = "ret2"
+  ),
 
   takeScreenshot = list(
-    args = list(file = "NULL", display = 'getOption("seleniumPipes_display_screenshot")',
-                  useViewer = '!is.null(getOption("viewer"))', returnPNG = "FALSE")
-    , type = "ret12"),
+    args = list(file = "NULL",
+                display = 'getOption("seleniumPipes_display_screenshot")',
+                  useViewer = '!is.null(getOption("viewer"))',
+                returnPNG = "FALSE"),
+    type = "ret12"
+  ),
 
   takeElementScreenshot = list(
-    args = list(file = "NULL", display = 'getOption("seleniumPipes_display_screenshot")',
-              useViewer = '!is.null(getOption("viewer"))', returnPNG = "FALSE")
-   , type = "ret13")
-
-
+    args = list(file = "NULL",
+                display = 'getOption("seleniumPipes_display_screenshot")',
+                useViewer = '!is.null(getOption("viewer"))',
+                returnPNG = "FALSE"),
+    type = "ret13"
+  )
 )
 
 selPipeFuncs <- lapply(rowSplit(methPaths), function(x){
@@ -558,7 +693,8 @@ selPipeFuncs <- lapply(rowSplit(methPaths), function(x){
   appCommand <- appFunc[["com"]]
   if(identical(x[["method"]], "POST")){
     defCommand <- JCommands[["default"]][["com"]]
-    x[["JSON_command"]] <- ifelse(!is.null(appCommand), appCommand, defCommand)
+    x[["JSON_command"]] <-
+      ifelse(!is.null(appCommand), appCommand, defCommand)
     x[["JSON"]] <- "jsonBody"
   }else{
     x[["JSON_command"]] <- if(!is.null(appCommand)){appCommand
@@ -569,14 +705,17 @@ selPipeFuncs <- lapply(rowSplit(methPaths), function(x){
   }
   args <- JCommands[[x[["command"]]]][["args"]]
   if(!is.null(args)){
-    x[["addArgs"]] <- paste(paste0(lapply(name(args), function(x){if(is.na(args[[x]])){
-      paste0(x, ", ")
-    }else{
-      paste0(x," = ",args[[x]],", ")
-    }
-    }
-    )), collapse = "")
-    x[["roxyArgs"]] <- paste(c(paste0("#' @param ",name(args), "\n"), "#'"), collapse = "")
+    x[["addArgs"]] <- paste(paste0(
+      lapply(name(args), function(x){
+        if(is.na(args[[x]])){
+          paste0(x, ", ")
+        }else{
+          paste0(x," = ",args[[x]],", ")
+        }
+      }
+      )), collapse = "")
+    x[["roxyArgs"]] <-
+      paste(c(paste0("#' @param ",name(args), "\n"), "#'"), collapse = "")
   }else{
     x[["roxyArgs"]] <- "#'"
   }
@@ -588,22 +727,22 @@ selPipeFuncs <- lapply(rowSplit(methPaths), function(x){
   x[["return"]] <- selReturn[[type]]
   x[["rettype"]] <- type
   x[["codecommand"]] <- paste0("\\code{", x[["command"]], "}")
-  list(fbody = whisker.render(funcTemp[[x$Arg]][["fbody"]], x)
-       , roxy = whisker.render(funcTemp[[x$Arg]][["roxy"]], x))
+  list(fbody = whisker.render(funcTemp[[x$Arg]][["fbody"]], x),
+       roxy = whisker.render(funcTemp[[x$Arg]][["roxy"]], x))
 }
 )
 methPaths[["selFuncs"]] <- sapply(selPipeFuncs, "[[", "fbody")
 methPaths[["selRoxy"]] <- sapply(selPipeFuncs, "[[", "roxy")
-# remDrFuncs <- paste(selPipeFuncs[!grepl("\\{elementId\\}", selPipeFuncs)], collapse = "")
-# webElemFuncs <- paste(selPipeFuncs[grepl("\\{elementId\\}", selPipeFuncs)], collapse = "")
-# write(remDrFuncs, "R/remoteDriver.R")
-# write(webElemFuncs, "R/webElement.R")
 
 # write the functions to file based on the groups they are in
-methPaths[,write(file = paste0("R/", group, ".R"), paste(selFuncs, collapse = "")), by = group]
+methPaths[,write(file = paste0("R/", group, ".R"),
+                 paste(selFuncs, collapse = "")),
+          by = group]
 
 # add documentation
 if(DOCUMENT){
-  methPaths[,write(file = paste0("R/", group, "Doc.R"), paste(selRoxy, collapse = "")), by = group]
+  methPaths[,write(file = paste0("R/", group, "Doc.R"),
+                   paste(selRoxy, collapse = "")),
+            by = group]
 }
 
