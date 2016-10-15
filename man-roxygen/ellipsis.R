@@ -1,1 +1,2 @@
-#' @param ... Additonal function arguments - Currently passes the \code{\link{retry}} argument.
+#' @param ... Additonal function arguments - Currently passes the
+#'    \code{\link{retry}} argument.
