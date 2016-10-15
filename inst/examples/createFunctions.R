@@ -731,8 +731,8 @@ selPipeFuncs <- lapply(rowSplit(methPaths), function(x){
        roxy = whisker.render(funcTemp[[x$Arg]][["roxy"]], x))
 }
 )
-methPaths[["selFuncs"]] <- vapply(selPipeFuncs, "[[", "a", "fbody")
-methPaths[["selRoxy"]] <- vapply(selPipeFuncs, "[[", "a", "roxy")
+methPaths[["selFuncs"]] <- vapply(selPipeFuncs, "[[", character(1), "fbody")
+methPaths[["selRoxy"]] <- vapply(selPipeFuncs, "[[", character(1), "roxy")
 
 # write the functions to file based on the groups they are in
 methPaths[,write(file = paste0("R/", group, ".R"),
