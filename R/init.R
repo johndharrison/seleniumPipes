@@ -9,7 +9,6 @@
 #' @importFrom  jsonlite toJSON
 #' @importFrom  jsonlite fromJSON
 #' @importFrom  jsonlite base64_dec
-#' @importFrom  magrittr %>%
 #' @importFrom  whisker whisker.render
 NULL
 
@@ -317,7 +316,15 @@ retry <- function(func, v, vArg, source,
   tryNo <- 1L
   while(!tryNo > noTry){
     tst <- tryCatch({func(res <- do.call(v, vArg))},
-                    error = function(e)e
+                    error = function(e){
+                      if(identical(e$message,
+                                   "Couldn't connect to server")
+                      ){
+                        stop(e$message, " on ", vArg[[1]])
+                      }else{
+                        stop(e$message)
+                      }
+                    }
     )
 
     if(inherits(tst, "checkResponse")){
