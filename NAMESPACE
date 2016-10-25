@@ -2,6 +2,7 @@
 
 S3method(print,rDriver)
 S3method(print,wElement)
+export("%>%")
 export(acceptAlert)
 export(acceptAlertOld)
 export(addCookie)
