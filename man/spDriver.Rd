@@ -50,7 +50,7 @@ iedrver). If new versions are available they will be downloaded.}
 \value{
 A list containing a server and a client. The server is the object
 returned by \code{\link[wdman]{selenium}} and the client is an object of class
-\code{\link{remoteDriver}}
+\code{rDriver}.
 }
 \description{
 Start a selenium server and browser

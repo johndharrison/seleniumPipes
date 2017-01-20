@@ -30,7 +30,7 @@
 #'
 #' @return A list containing a server and a client. The server is the object
 #' returned by \code{\link[wdman]{selenium}} and the client is an object of class
-#' \code{\link{remoteDriver}}
+#' \code{rDriver}.
 #' @details This function is a wrapper around \code{\link[wdman]{selenium}}.
 #'     It provides a "shim" for the current issue running firefox on
 #'     Windows. For a more detailed set of functions for running binaries
