@@ -180,7 +180,7 @@ wbElement <- function(elementId, remDr){
 #'
 
 queryDriver <- function(verb = GET, url, source, drvID, ...){
-  if(!identical(source, "newSession")){
+  if(!(source %in% c("newSession", "status"))){
     if(is.null(.e$sessionId[[drvID]])){
       message("Driver id is not registered. Has the session been deleted?")
       message("Alternatively no session exists:
