@@ -94,7 +94,7 @@ NULL
 #' @export
 print.spClientServer <- function(x, ...){
   cat("$client\n")
-  print(sp[["client"]], ...)
+  print(x[["client"]], ...)
   cat("\n$server\n")
   print(x[["server"]][["process"]], ...)
 }
