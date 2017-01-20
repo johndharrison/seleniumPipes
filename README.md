@@ -46,9 +46,8 @@ Get started using `seleniumPipes` you can look at the following example
 
 ```
 library(seleniumPipes)
-library(RSelenium) # start a server with utility function
-selServ <- RSelenium::startServer()
-remDr <- remoteDr()
+sp <- spDriver()
+remDr <- sp[["client"]]
 remDr %>% go(url = "http://www.google.com")
 remDr %>% go(url = "http://www.bbc.com")
 remDr %>% back()
@@ -65,7 +64,7 @@ remDr %>% getPageSource() %>% xml_find_all("//frame") %>% xml_attr("name")
 # [1] "logo"     "contents" "banner"  
 
 remDr %>% deleteSession()
-selServ$stop()
+sp[["server]]$stop()
 ```
 
 ### Piping
